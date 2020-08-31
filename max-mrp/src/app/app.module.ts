@@ -1,4 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -70,7 +75,11 @@ import { SharedTemplateModule } from './template/template.module';
     HttpClientModule,
     FormsModule, ReactiveFormsModule, BrowserAnimationsModule,
     MatDialogModule, MatButtonModule, MatProgressSpinnerModule,MatDatepickerModule,
-    MatNativeDateModule,MatMomentDateModule,SharedCommonModule,SharedTemplateModule
+    MatNativeDateModule,MatMomentDateModule,SharedCommonModule,SharedTemplateModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: "th-TH"},

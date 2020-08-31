@@ -3,9 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  api_url:'http://localhost/my_app/API/public'
-  //api_url:'http://localhost/my_app/API/index.php'
+    production: false,
+    api_url:'http://localhost/my_app/API/public',
+    firebase: {
+        apiKey: "AIzaSyC_O3-E3vF7YuPgQNZn6Io459owIIrA6ms",
+        authDomain: "max-erp-7c4df.firebaseapp.com",
+        databaseURL: "https://max-erp-7c4df.firebaseio.com",
+        projectId: "max-erp-7c4df",
+        storageBucket: "max-erp-7c4df.appspot.com",
+        messagingSenderId: "179728651206",
+        appId: "1:179728651206:web:3813d044f023b74f9418c7",
+        measurementId: "G-T4L6Y54PPH"
+    }
 };
 
 /*

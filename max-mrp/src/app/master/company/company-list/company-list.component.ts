@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MessageService, MessageClass } from '../../../service/message.service';
 import { CompanyService, cSearch, cData } from '../../../service/company.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../../../common/confirm-dialog/confirm-dialog.component'
+import { ConfirmDialogComponent } from '../../../common/confirm-dialog/confirm-dialog.component';
 
 @Component ( {
     selector: 'app-company-list',
@@ -117,3 +117,7 @@ export class CompanyListComponent implements OnInit {
 
 }
 
+export class company_data{
+    code: string;
+    name: string;
+}

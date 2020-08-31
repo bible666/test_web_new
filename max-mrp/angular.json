@@ -119,6 +119,10 @@
               "devServerTarget": "max-mrp:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

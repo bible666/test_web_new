@@ -4,13 +4,19 @@ import { MessageService, MessageClass } from '../../../service/message.service';
 import { cInput, CompanyService } from '../../../service/company.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { company_data } from '../company-list/company-list.component';
+
 @Component({
     selector    : 'app-company-edit',
     templateUrl : './company-edit.component.html',
     styleUrls   : ['./company-edit.component.css']
 })
 export class CompanyEditComponent implements OnInit {
-
+    private itemsRef: AngularFireList<any>;
     public message    : MessageClass[] = [];
 
     public calendar_datas : any;
@@ -23,7 +29,7 @@ export class CompanyEditComponent implements OnInit {
     inputForm = new FormGroup({
         'company_code'        : new FormControl('', [ Validators.required, Validators.maxLength(10) ]),
         'company_name'        : new FormControl('', [ Validators.required, Validators.maxLength(50) ]),
-        'address'            : new FormControl(''),
+        'address'             : new FormControl(''),
         'zip'                 : new FormControl(''),
         'telno'               : new FormControl(''),
         'faxno'               : new FormControl(''),
@@ -36,8 +42,11 @@ export class CompanyEditComponent implements OnInit {
         private param           : ActivatedRoute,
         private Service         : CompanyService,
         private ServiceMessage  : MessageService,
-        private router          : Router
-    ) { }
+        private router          : Router,
+        private db              : AngularFireDatabase
+    ) {
+        this.itemsRef = db.list('companies');
+    }
 
     ngOnInit() {
         window.scroll(0,0);
@@ -102,7 +111,23 @@ export class CompanyEditComponent implements OnInit {
                 this.message = this.ServiceMessage.getMessage();
             }
         );
+
+        let myData: company_edit = new company_edit();
+
+        this.itemsRef.push(input_data);
     }
 
+}
+
+export class company_edit{
+    company_code:   string;
+    company_name:   string;
+    address:        string;
+    zip:            string;
+    telno:          string;
+    faxno:          string;
+    email:          string;
+    cal_no:         number;
+    remark:         string;
 }
 
