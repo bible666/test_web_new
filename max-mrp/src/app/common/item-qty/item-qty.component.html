@@ -1,0 +1,78 @@
+<h1 mat-dialog-title>ข้อมูล เพิ่ม/แก้ไข</h1>
+<div mat-dialog-content>
+<form [formGroup]="inputForm" >
+    <div class="row input">
+        <div class="col-md-3 ">
+            <label class="control-label">วัตถุดิบ</label>
+        </div>
+        <div class="col-md-9">
+            <input matInput placeholder="กรุณาเลือก" (keyup)="onItemKeyUp($event)" (blur)="onBlurItemCode()" class="mat-input" formControlName = "item_code"  [matAutocomplete]="item_data" >
+            <mat-autocomplete #item_data="matAutocomplete"  [displayWith]="displayFn.bind(this)">
+                <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
+                <ng-container *ngIf="!isLoading">
+                    <mat-option *ngFor="let item of filteredItem " [value]="item.item_code" >
+                    {{item.item_name}}
+                    </mat-option>
+                </ng-container>
+            </mat-autocomplete>
+      
+        </div>
+    </div>
+    <div class="row input">
+        <div class="col-md-3 ">
+            <label class="control-label">Lot No</label>
+        </div>
+        <div class="col-md-9">
+            <select formControlName = "lot_no" class="input_select" (change)="onLotNoChange($event)">
+                <option value="">กรุณาเลือก</option>
+                <option *ngFor="let lot of AR_lot_no" value={{lot.lot_no}}>{{lot.lot_no}}</option>
+            </select>
+            <span class="help"></span>
+        </div>
+    </div>
+
+    <div class="row input">
+        <div class="col-md-3 ">
+            <label class="control-label">วันที่รับของ</label>
+        </div>
+        <div class="col-md-9">
+            <select formControlName = "first_receive_date" class="input_select" (change)="onReceiveDateChange($event)">
+                <option value="">กรุณาเลือก</option>
+                <option *ngFor="let receiveDate of AR_receive_date" value={{receiveDate.first_receive_date}}>{{receiveDate.first_receive_date}}[{{convertStringToNumber(receiveDate.quantity)}} {{receiveDate.unit_name}}]</option>
+            </select>
+            <span class="help"></span>
+        </div>
+    </div>
+
+    <div class="row input">
+        <div class="col-md-3 ">
+            <label class="control-label">จำนวน</label>
+        </div>
+        <div class="col-md-9">
+            {{oldQty}}
+        </div>
+    </div>
+
+    <div class="row input">
+        <div class="col-md-3 ">
+            <label class="control-label">เบิก</label>
+        </div>
+        <div class="col-md-9">
+
+            <input matInput class="mat-input" formControlName="quantity">
+            <mat-error *ngIf="inputForm.hasError('checkInput')">
+                ใส่จำนวนเกิน
+            </mat-error>
+
+        </div>
+    </div>
+
+
+</form>
+
+</div>
+<div mat-dialog-actions>
+<button mat-button (click)="onNoClick()">ยกเลิก</button>
+<button mat-button (click)="onSave()" cdkFocusInitial>ยืนยัน</button>
+</div>
+

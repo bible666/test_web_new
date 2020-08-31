@@ -1,0 +1,15 @@
+จำนวน{{AllData}}รายการ （{{currentPage}} / {{AllPage}} หน้า）
+<nav aria-label="" class="float-right mr-2 ml-3 mt-0">
+    <ul class="pagination mb-1">
+        <li class="page-item"><a class="page-link" (click)="onFirstPageClick()">&lt;&lt;</a></li>
+        <li class="page-item"><a class="page-link" rel="prev" (click)="onPrevPageClick()">&lt;</a></li>
+
+        <li *ngFor='let page of pages' class="page-item" [ngClass]="{'active' : page.activePage}">
+            <a class="page-link" (click)="onPageButtonClick(page.pageNumber)">{{page.pageNumber}}</a>
+        </li>
+
+
+        <li class="page-item"><a class="page-link" rel="next" (click)="onNextPageClick()">&gt;</a></li>
+        <li class="page-item"><a class="page-link" (click)="onLastPageClick()">&gt;&gt;</a></li>
+    </ul>
+</nav>

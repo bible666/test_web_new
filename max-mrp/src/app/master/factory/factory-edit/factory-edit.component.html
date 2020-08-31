@@ -1,0 +1,151 @@
+<app-header></app-header>
+<show-message [message]="message"></show-message>
+
+<form class="example-form" [formGroup]="inputForm" (ngSubmit)="onSubmit()" >
+
+    <!-- ↓↓===== Page Title ===================↓↓ -->
+    <div class="row wow pagetitle ml-2 mr-2 p-0">
+
+        <div class="col-sm-4">
+            <h1 id="title" name="title">ข้อมูลโรงงาน เพิ่ม/แก้ไข</h1>
+        </div>
+
+    </div><!-- /row wow -->
+    <!-- ↑↑===== Page Title ===================↑↑ -->
+
+    <!-- ↓↓===== Main layout ここから ==========================================================↓↓ -->
+    <main class="pt-0 mx-lg-0">
+        <div class="container-fluid">
+            <!-- ↓== Input Data ==↓ -->
+            <div class="card col-12" style="margin-bottom: 6em">
+                <div class="card-body">
+
+                    <div class="row input required">
+                        <div class="col-md-3 label_name column_area f_16" >
+                            <label class="control-label">บริษัท</label>
+                        </div>
+                        <div class="col-md-9 edit_area">
+                            <select formControlName = "company_code">
+                                <option *ngFor="let company_data of company_datas" value="{{company_data.company_code}}">{{company_data.company_name}}</option>
+                            </select>
+                            <span class="help"></span>
+                        </div>
+                    </div>
+
+                    <div class="row input required">
+                        <div class="col-md-3 label_name column_area f_16" >
+                            <label class="control-label">รหัสโรงงาน</label>
+                        </div>
+                        <div class="col-md-9 edit_area">
+                            <input type="text" formControlName="factory_code"/>
+                            <div *ngIf="submitted && inputForm.controls['factory_code'].hasError">
+                                <span class="help" *ngIf="inputForm.controls['factory_code'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                <span class="help" *ngIf="inputForm.controls['factory_code'].hasError('maxlength')">ใส่ได้ไม่เกิน 10 ตัวอักษร</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row input required">
+                        <div class="col-md-3 label_name column_area f_16" >
+                            <label class="control-label">ชื่อโรงงาน</label>
+                        </div>
+                        <div class="col-md-9 edit_area">
+                            <input type="text" formControlName="factory_name"/>
+                            <div *ngIf="submitted && inputForm.controls['factory_name'].hasError">
+                                <span class="help" *ngIf="inputForm.controls['factory_name'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                <span class="help" *ngIf="inputForm.controls['factory_name'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row input">
+                        <div class="col-md-3 label_name column_area f_16" >
+                            <label class="control-label">ที่อยู่</label>
+                        </div>
+                        <div class="col-md-9 edit_area">
+                            <input type="text" formControlName="address"/>
+                        </div>
+                    </div>
+
+                    <div class="row input">
+                        <div class="col-md-3 label_name column_area f_16" >
+                            <label class="control-label">เบอร์โทร</label>
+                        </div>
+                        <div class="col-md-9 edit_area">
+                            <input type="text" formControlName="telno"/>
+                        </div>
+                    </div>
+
+                    <div class="row input">
+                        <div class="col-md-3 label_name column_area f_16" >
+                            <label class="control-label">FAX</label>
+                        </div>
+                        <div class="col-md-9 edit_area">
+                            <input type="text" formControlName="faxno"/>
+                        </div>
+                    </div>
+
+                    <div class="row input">
+                        <div class="col-md-3 label_name column_area f_16" >
+                            <label class="control-label">E-Mail</label>
+                        </div>
+                        <div class="col-md-9 edit_area">
+                            <input type="text" formControlName="email"/>
+                        </div>
+                    </div>
+
+                    <div class="row input">
+                        <div class="col-md-3 label_name column_area f_16" >
+                            <label class="control-label">ปฏิทิน</label>
+                        </div>
+                        <div class="col-md-9 edit_area">
+                            <select formControlName = "cal_no">
+                                <option *ngFor="let calendar_data of calendar_datas" value="{{calendar_data.cal_no}}">{{calendar_data.cal_name}}</option>
+                            </select>
+                            <span class="help"></span>
+                        </div>
+                    </div>
+
+                    <div class="row input">
+                        <div class="col-md-3 label_name column_area f_16" >
+                            <label class="control-label">หมายเหตุ</label>
+                        </div>
+                        <div class="col-md-9 edit_area">
+                            <textarea formControlName="remark" ></textarea>
+                            <span class="help"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- /card-body -->
+        <!-- /"card col-12 -->
+        <!-- ↑== Input Data ==↑ -->
+
+        <!-- ↓↓===== フッター footer Navigation ここから ==========================================↓↓ -->
+        <footer>
+
+            <!-- ↓== 確認・登録ボタン等 ここから==↓ -->
+            <div class="footer_btn_area fixed-bottom">
+
+                <div class="row m-2">
+                    <div class="col-md-6">
+                        <a [routerLink]="['/factory/list']" class="btn btn-sm btn-back" >กลับ</a>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn_edit" type="submit">บันทึก</button>
+                    </div>
+                </div><!-- /row m-2 -->
+
+            </div><!-- /footer_btn_area fixed-bottom -->
+            <!-- ↑== 確認・登録ボタン等 ここから==↑ -->
+
+        </footer>
+        <!-- ↑↑===== フッター Main Navigation ここまで ============================================↑↑ -->
+
+    <!-- /container-fluid -->
+    </main><!-- /main -->
+    <!-- ↑↑===== Main layout ここから ==========================================================↑↑ -->
+</form>
+

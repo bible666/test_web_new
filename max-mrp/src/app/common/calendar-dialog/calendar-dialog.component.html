@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>ข้อมูลวันหยุด เพิ่ม/แก้ไข</h1>
+<div mat-dialog-content>
+  <form class="example-form" [formGroup]="inputForm"  >
+    <div class="row input required">
+      <div class="col-md-3">
+        วันหยุด
+      </div>
+      <div class="col-md-9">
+          <input matInput [matDatepicker]="holiday_date" formControlName="holiday_date">
+          <mat-datepicker-toggle matSuffix [for]="holiday_date"></mat-datepicker-toggle>
+          <mat-datepicker #holiday_date></mat-datepicker>
+          <div *ngIf=" inputForm.controls['holiday_date'].hasError">
+            <span class="help" *ngIf="inputForm.controls['holiday_date'].hasError('required')">กรุณาใส่ข้อมูลวันหยุด</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row input required">
+      <div class="col-md-3">
+        ชื่อวันหยุด
+      </div>
+      <div class="col-md-9">
+        <input type="text" formControlName="holiday_text"/>
+        <div *ngIf="inputForm.controls['holiday_text'].hasError">
+          <span class="help" *ngIf="inputForm.controls['holiday_text'].hasError('required')">กรุณาใส่ข้อมูล</span>
+      </div>
+    </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">ยกเลิก</button>
+    <button mat-button (click)="onSave()" cdkFocusInitial>ยืนยัน</button>
+</div>
+

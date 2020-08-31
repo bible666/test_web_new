@@ -1,0 +1,36 @@
+.mat-input{
+    height:24px !important;
+}
+
+.is-loading ::ng-deep .mat-option-text {
+    display: flex;
+    justify-content: center;
+}
+
+::ng-deep .mat-option {
+    color: black;
+    background-color: whitesmoke;
+}
+
+::ng-deep .mat-option:hover{
+    color: white;
+}
+
+.input_select{
+    border-color: black;
+    width: 100%!important;
+}
+
+
+.input_textarea{
+    border-color: black;
+    height: 100px;
+}
+
+.btn-search{
+    background-color: #00887A;
+}
+
+.btn-clear{
+    background-color: #F5F5F5;
+}

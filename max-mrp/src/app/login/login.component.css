@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+/*
+---------------------------------------
+# SiteName: エッグ 管理者画面
+# Page: 共通箇所
+# /css/style-egg.css
+# Update: 2018.11.12
+# Editor: Shimizu
+# History: 
+---------------------------------------
+*/
+
+.submain{
+    padding-top: 5px;
+}
+
+
+
+.login_input_area{
+display: -ms-flexbox;
+display: flex;
+-ms-flex-direction: column;
+flex-direction: column;
+min-width: 0;
+word-wrap: break-word;
+background-color: #F6F6F6;
+background-clip: border-box;
+border: 1px solid rgba(0, 0, 0, 0.125);
+border-radius: 0.25rem;
+max-width:400px; margin:40px auto ;
+box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+word-wrap: break-word;
+}
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+    font-size: 120%; letter-spacing: 1px;
+}
+
+.login_input_area input{ width: 98%;}
+
+.login_user_icon{
+width: 100%;
+height: 180px;
+
+text-align: center;
+padding: 0 0.65rem  0.75rem 0.65rem;
+font-size: 1rem; line-height: inherit;
+margin: auto;
+}
+.login_user_icon::before {
+    content: "\e7fd";
+    font-family: "Material Icons";
+    color: #999 !important;
+    border:2px #EEEEEE solid;
+    background-color: #fff;
+    font-size:130px; line-height: 150%;
+    -moz-border-radius: 120px;
+    -webkit-border-radius: 120px;
+    border-radius: 120px;
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    margin: auto;
+    box-sizing: border-box;
+}
+input.login_input{ margin:0px auto 10px auto; width:95%;
+    display: block;
+    max-width: 100%;
+    padding: 0.375em 0.5rem;
+    font-size:16px;
+    line-height: 1.5;
+    font-weight: normal;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    vertical-align: middle;
+}
+.field {padding: 0.75rem 0.65rem;}
+
+.button_login{ width:75%!important; margin: 25px auto 35px auto; padding: 16px 10px; }
+
+
+.main_menu_color{ display: none; visibility: hidden;}
+

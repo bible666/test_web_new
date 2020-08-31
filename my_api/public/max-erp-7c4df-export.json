@@ -1,0 +1,12 @@
+{
+  "User" : {
+    "User1" : "ratt",
+    "User2" : "king",
+    "User3" : "realtime",
+    "User4" : {
+      "Email" : "rattapol@gmail.com",
+      "Lastname" : "Ratt",
+      "Name" : "King"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>test db</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="app.js"></script>
+      </head>
+    <body>
+        <div calss="container">
+          <div class="form-group">
+            <label for="usr">E-maile</label>
+            <input type="text" class="form-control" id="email">
+            <button id="btnSave" name="save" class="btn btn-primary" onclick="saveOnclick()">save</button>
+            <button id="btnDel" class="btn btn-danger">delete</button>
+            <button id="btnUpdate" class="btn btn-success">update</button>
+          </div>
+        </div>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+
+        <script>
+          // Your web app's Firebase configuration
+          var firebaseConfig = {
+            apiKey: "AIzaSyC_O3-E3vF7YuPgQNZn6Io459owIIrA6ms",
+            authDomain: "max-erp-7c4df.firebaseapp.com",
+            databaseURL: "https://max-erp-7c4df.firebaseio.com",
+            projectId: "max-erp-7c4df",
+            storageBucket: "max-erp-7c4df.appspot.com",
+            messagingSenderId: "179728651206",
+            appId: "1:179728651206:web:62c5cb5104ed418a9418c7"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          console.log(firebase.database());
+          //var database = firebase.database();
+        </script>
+    </body>
+</html>

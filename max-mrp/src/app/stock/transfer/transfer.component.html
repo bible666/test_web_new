@@ -1,0 +1,103 @@
+<app-header></app-header>
+<show-message [message]="message"></show-message>
+
+<!-- ↓↓===== Page Title/Download ======↓↓ -->
+<div class="row wow pagetitle ml-2 mr-2 p-0">
+    <div class="col-sm-8"><h1>โอนวัตถุดิบ</h1></div>
+    <div class="col-sm-4 text-lg-right">
+        <!-- 
+        <button type="button" class="btn btn-default btn-lg btn-sm btn-download">CSV Export</button>
+        <button type="button" class="btn btn-default btn-sm btn-upload">CSV Import</button> 
+        -->
+    </div>
+</div>
+<!-- ↑↑===== Page Title/Download ======↑↑ -->
+
+<form name="frmInput" [formGroup]="inputForm">
+<!-- ↓↓===== Main layout ==========================================================↓↓ -->
+<main class="pt-0 mx-lg-0">
+    <div class="container-fluid">
+        <div class="search card mb-4 p-0"><!-- /search -->
+            <div class="card-body d-sm-flex justify-content-between"><!-- /card-body -->
+                <!-- ↓↓Search Item Area----------------------↓↓ -->
+                <div class="col-sm-10">
+                    <table class="w-100" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <th>จาก</th>
+                            <td>
+                                <select formControlName = "location_from" class="input_select">
+                                    <option value="">กรุณาเลือก</option>
+                                    <option *ngFor="let location of ar_location" value={{location.location_code}}>{{location.location_name}}</option>
+                                </select>
+                                <span class="help"></span>
+                            </td>
+
+                            <th>ถึง</th>
+                            <td>
+                                <select formControlName = "location_to" class="input_select">
+                                    <option value="">กรุณาเลือก</option>
+                                    <option *ngFor="let location of ar_location" value={{location.location_code}}>{{location.location_name}}</option>
+                                </select>
+                                <span class="help"></span>
+                            </td>
+                            
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-warning btn-add btn-sm" name="btnAdd" (click)="onAdd()">เพิ่ม</button>
+    <div class="container-fluid">
+        <div class="search card mb-4 p-0"><!-- /search -->
+            <div class="card-body d-sm-flex justify-content-between"><!-- /card-body -->
+                <!-- ↓↓Search Item Area----------------------↓↓ -->
+                <div class="col-sm-10">
+                    <table class="w-100" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <th>รหัสวัตถุดิบ</th>
+                            <th>ชื่อวัตถุดิบ</th>
+                            <th>Lot No</th>
+                            <th>วันที่รับของ</th>
+                            <th>จำนวน</th>
+                            <th>หน่วย</th>
+                            <th></th>
+                        </tr>
+
+                        <tr *ngFor="let gridData of ar_grid_data">
+                            <td>{{gridData.item_code}}</td>
+                            <td>{{gridData.item_name}}</td>
+                            <td>{{gridData.lot_no}}</td>
+                            <td>{{gridData.receive_date}}</td>
+                            <td>{{gridData.quantity}}</td>
+                            <td>{{gridData.unit_name}}</td>
+                            <td></td>
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /container-fluid -->
+
+    <!-- ↓↓===== フッター footer Navigation ここから ==========================================↓↓ -->
+    <footer>
+
+        <!-- ↓== 確認・登録ボタン等 ここから==↓ -->
+        <div class="footer_btn_area fixed-bottom">
+
+            <div class="row m-2">
+                <div class="col-md-12"><button class="btn btn-primary btn_edit" id="btnSubmit" type="submit">บันทึก</button></div>
+            </div><!-- /row m-2 -->
+
+        </div><!-- /footer_btn_area fixed-bottom -->
+        <!-- ↑== 確認・登録ボタン等 ここから==↑ -->
+    </footer>
+    <!-- ↑↑===== フッター Main Navigation ここまで ============================================↑↑ -->
+
+</main><!-- /main -->
+<!-- ↑↑===== Main layout ==========================================================↑↑ -->
+</form>

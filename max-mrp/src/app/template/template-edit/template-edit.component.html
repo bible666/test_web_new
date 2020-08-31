@@ -1,0 +1,67 @@
+<app-header></app-header>
+<show-message [message]="message"></show-message>
+
+<form name="frmLogin" [formGroup]="inputForm">
+    <!-- ↓↓===== Page title / Download to here ===================↓↓ -->
+    <div class="row wow pagetitle ml-2 mr-2 p-0">
+        <div class="col-sm-4"><h1 id="title" name="title">Template Edit</h1></div>
+    </div>
+    <!-- ↑↑===== Page title / Download to here ===================↑↑ -->
+
+    <!-- ↓↓===== Main layout ==========================================================↓↓ -->
+    <main class="pt-0 mx-lg-0">
+        <div class="container-fluid">
+            <!-- ↓== Input item==↓ -->
+            <div class="card col-12" style="margin-bottom: 6em">
+                <div class="card-body">
+                    <div class="row input text">
+                        <div class="col-md-3 column_area" id="lbl_attachment_1_file" for="attachment_1_file">
+                            Data 1
+                        </div>
+                        <div class="col-md-9 edit_area upload">
+                            <select class="form-control" formControlName="txt1">
+                                <option value="volvo">20</option>
+                                <option value="saab">50</option>
+                                <option value="fiat">100</option>
+                                <option value="audi">200</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row input text">
+                        <div class="col-md-3 column_area" id="lbl_attachment_1_file" for="attachment_1_file">
+                            Data 1
+                        </div>
+                        <div class="col-md-9 edit_area upload">
+                            <input type="text" formControlName="txt2"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ↑== Input item==↑ -->
+
+            <!-- ↓↓===== footer Navigation ==========================================↓↓ -->
+            <footer>
+                <!-- ↓== Confirmation / registration button, etc.==↓ -->
+                <div class="footer_btn_area fixed-bottom">
+                    <div class="row m-2">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-sm btn-back" (click)="onClickBack()">กลับ</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-primary btn_edit" (click)="onClickSave()">บันทึก</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- ↑== Confirmation / registration button, etc.==↑ -->
+            </footer>
+            <!-- ↑↑===== footer Navigation ==========================================↑↑ -->
+        </div>
+    </main>
+    <!-- ↑↑===== Main layout ==========================================================↑↑ -->
+</form>
+<div *ngIf="isLoading" class="spinner_overlay_on">
+    <div class="spinner_center">
+        <mat-spinner diameter="400"></mat-spinner>
+    </div>
+</div>

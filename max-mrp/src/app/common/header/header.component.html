@@ -1,0 +1,61 @@
+<header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light main_menu_color scrolling-navbar">
+    
+		<!-- サイトタイトル -->
+        <a (click)="onTopClick()" class="navbar-brand ml-1  ">ระบบ MAX</a>
+
+        <!-- Collapse -->
+        <button class="navbar-toggler mr-2 collapsed" aria-expanded="false" aria-controls="navbarSupportedContent" aria-label="Toggle navigation" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"><i class="material-icons">menu</i></span>
+        </button>
+    
+        <!-- Links -->
+        <div class="navbar-collapse collapse" id="navbarSupportedContent" >
+
+            <!-- Left -->
+            <ul class="navbar-nav navbar-nav-left mr-auto">
+
+                <!-- ■TOP top:業務,所属,総務,産医 -->
+                <li class="nav-item ">
+                    <a (click)="onTopClick()" class="nav-link waves-effectnav-item active">TOP menu</a>
+                </li>
+
+                <li class="nav-item dropdown" *ngFor="let menu_data of menu_datas">
+					<a (click)="onMainMenuClick(menu_data)" class="nav-link waves-effect dropdown-toggle nav-item active" data-togger="dropdown">
+						{{menu_data.menu_short_name}}
+					</a>
+
+					<ul class="dropdown-menu">
+						<li *ngFor="let sub_menu_data of menu_data.child_menu">
+							<a (click)="onMainMenuClick(sub_menu_data)">{{sub_menu_data.menu_name}}</a>
+						</li>
+						
+					</ul>
+                </li>
+    
+            </ul>
+    
+    
+            <!-- Right -->
+            <ul class="navbar-nav navbar-nav-right nav-flex-icons">
+                <li class="nav-item f_11 pr-2">
+                    <span class="navbar_department">Test_Department | </span>
+                    <span class="navbar_user"><!--ADMIN00001：-->Test Admin User</span>
+                </li>
+                <li class="nav-item nav-item_right">
+                    <a href="/hyogo_healthcare/pages/manual" class="float-left h-icon-help"></a>
+                    <label (click)="onLogout()" class="float-right h-icon-logoff"></label> <!--ログオフ-->
+                </li>
+            </ul><!-- /navbar-nav nav-flex-icons -->
+    
+        </div>
+    
+        <!-- /collapse navbar-collapse -->
+    
+    
+    </nav>
+    <!-- Navbar -->
+
+</header>
