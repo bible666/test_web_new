@@ -46,7 +46,7 @@ export class ItemQtyComponent implements OnInit {
         'lot_no'               : new FormControl(this.data.lot_no, [ Validators.required ]),
         'first_receive_date'   : new FormControl(this.data.first_receive_date, [ Validators.required ]),
         'stock_qty'            : new FormControl(0),
-        'quantity'             : new FormControl(0, [ Validators.required ]),
+        'quantity'             : new FormControl('', [ Validators.required ]),
         'unit_name'            : new FormControl(''),
     }, {
         validators: [this.checkInput()],
@@ -163,7 +163,7 @@ export class ItemQtyComponent implements OnInit {
         this.inputForm.patchValue({
             'first_receive_date'    : '',
             'lot_no'                : '',
-            'quantity'              : 0,
+            'quantity'              : '',
         });
         this.oldQty                    = 0;
         //check item code is exist or not
