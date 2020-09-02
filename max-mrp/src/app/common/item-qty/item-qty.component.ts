@@ -9,9 +9,12 @@ import {switchMap,debounceTime, tap, finalize,map}  from 'rxjs/operators';
 export interface DialogData {
     location_code:      string;
     item_code:          string;
+    item_name:          string;
     lot_no:             string;
     first_receive_date: Date;
+    stock_qty:          number;
     quantity:           number;
+    unit_name:          string;
 }
 
 export interface cItem {
@@ -42,6 +45,7 @@ export class ItemQtyComponent implements OnInit {
         'item_name'            : new FormControl(''),
         'lot_no'               : new FormControl(this.data.lot_no, [ Validators.required ]),
         'first_receive_date'   : new FormControl(this.data.first_receive_date, [ Validators.required ]),
+        'stock_qty'            : new FormControl(0),
         'quantity'             : new FormControl(0, [ Validators.required ]),
         'unit_name'            : new FormControl(''),
     }, {
@@ -89,6 +93,7 @@ export class ItemQtyComponent implements OnInit {
                     this.inputForm.patchValue({
                         'item_name'   : data['data']['item_name'],
                         'unit_name'   : data['data']['unit_name'],
+                        'stock_qty'   : this.oldQty
                       });
                 }
                 this.dialogRef.close(this.inputForm.value);
@@ -108,6 +113,9 @@ export class ItemQtyComponent implements OnInit {
         .subscribe(data=>{
             if (data['status']== 'success'){
                 this.filteredItem   = data['data'];
+                this.inputForm.patchValue({
+                    'item_code'    : this.data.item_name
+                });
             } 
         },
         error=>{
@@ -184,27 +192,27 @@ export class ItemQtyComponent implements OnInit {
                 });
             }
 
-            // get lot no from db.
-            let item_code: string = this.inputForm.get("item_code").value;
-            //clear select lot no
-            this.inputForm.patchValue({
-                'lot_no'    : ''
-            });
+            // // get lot no from db.
+            // let item_code: string = this.inputForm.get("item_code").value;
+            // //clear select lot no
+            // this.inputForm.patchValue({
+            //     'lot_no'    : ''
+            // });
 
-            if ( !item_code ) {
-                this.AR_lot_no = [];
-            } else {
-                this.Service.getLotNo(this.location_code,item_code)
-                .pipe(
-                    tap(()      =>{this.loading.show();}),
-                    finalize(() =>{this.loading.hide();})
-                )
-                .subscribe(data=>{
-                    if (data['status']== 'success'){
-                        this.AR_lot_no = data['data'];
-                    } 
-                });
-            }
+            // if ( !item_code ) {
+            //     this.AR_lot_no = [];
+            // } else {
+            //     this.Service.getLotNo(this.location_code,item_code)
+            //     .pipe(
+            //         tap(()      =>{this.loading.show();}),
+            //         finalize(() =>{this.loading.hide();})
+            //     )
+            //     .subscribe(data=>{
+            //         if (data['status']== 'success'){
+            //             this.AR_lot_no = data['data'];
+            //         } 
+            //     });
+            // }
         });
 
     }

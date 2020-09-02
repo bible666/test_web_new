@@ -78,6 +78,49 @@ export class TransferComponent implements OnInit {
             } else {
                 // update seq
                 this.seq        += 1;
+                console.log(result);
+                //conver result data to class
+                let insert_grid             : cGridData;
+                insert_grid                 = new cGridData();
+                insert_grid.id              = this.seq;
+                insert_grid.item_code       = result['item_code'];
+                insert_grid.item_name       = result['item_name'];
+                insert_grid.unit_name       = result['unit_name'];
+                insert_grid.lot_no          = result['lot_no'];
+                insert_grid.receive_date    = result['first_receive_date'];
+                insert_grid.stock_qty       = +result['stock_qty'];
+                insert_grid.quantity        = +result['quantity'];
+
+                //add class to array
+                this.ar_grid_data.push(insert_grid);
+                
+            }
+        });
+
+    }
+
+    onEditClick(editData){
+        console.log(editData);
+        const dialogRef = this.dialog.open(ItemQtyComponent,{
+            width:  '500px',
+            height: '300px',
+            data: {
+                location_code:      this.inputForm.value['location_from'],
+                item_code:          editData.item_code,
+                item_name:          editData.item_name,
+                lot_no:             editData.lot_no,
+                first_receive_date: editData.receive_date,
+                quantity:           editData.quantity
+            },
+        })
+
+        dialogRef.afterClosed().subscribe(result=>{
+            if (!result){
+                //cancel delete data
+                //alert('hiii');
+            } else {
+                // update seq
+                this.seq        += 1;
 
                 //conver result data to class
                 let insert_grid             : cGridData;
@@ -88,6 +131,7 @@ export class TransferComponent implements OnInit {
                 insert_grid.unit_name       = result['unit_name'];
                 insert_grid.lot_no          = result['lot_no'];
                 insert_grid.receive_date    = result['first_receive_date'];
+                insert_grid.stock_qty       = +result['stock_qty'];
                 insert_grid.quantity        = +result['quantity'];
 
                 //add class to array
@@ -95,7 +139,6 @@ export class TransferComponent implements OnInit {
                 
             }
         });
-
     }
 
 }
@@ -115,5 +158,6 @@ export class cGridData{
     public unit_name        : string;
     public lot_no           : string;
     public receive_date     : Date;
+    public stock_qty        : number;
     public quantity         : number;
 }
