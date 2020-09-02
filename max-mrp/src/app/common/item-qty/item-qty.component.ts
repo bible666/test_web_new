@@ -192,27 +192,27 @@ export class ItemQtyComponent implements OnInit {
                 });
             }
 
-            // // get lot no from db.
-            // let item_code: string = this.inputForm.get("item_code").value;
-            // //clear select lot no
-            // this.inputForm.patchValue({
-            //     'lot_no'    : ''
-            // });
+            // get lot no from db.
+            let item_code: string = this.inputForm.get("item_code").value;
+            //clear select lot no
+            this.inputForm.patchValue({
+                'lot_no'    : ''
+            });
 
-            // if ( !item_code ) {
-            //     this.AR_lot_no = [];
-            // } else {
-            //     this.Service.getLotNo(this.location_code,item_code)
-            //     .pipe(
-            //         tap(()      =>{this.loading.show();}),
-            //         finalize(() =>{this.loading.hide();})
-            //     )
-            //     .subscribe(data=>{
-            //         if (data['status']== 'success'){
-            //             this.AR_lot_no = data['data'];
-            //         } 
-            //     });
-            // }
+            if ( !item_code ) {
+                this.AR_lot_no = [];
+            } else {
+                this.Service.getLotNo(this.location_code,item_code)
+                .pipe(
+                    tap(()      =>{this.loading.show();}),
+                    finalize(() =>{this.loading.hide();})
+                )
+                .subscribe(data=>{
+                    if (data['status']== 'success'){
+                        this.AR_lot_no = data['data'];
+                    } 
+                });
+            }
         });
 
     }
