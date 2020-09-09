@@ -71,8 +71,8 @@ export class TransferComponent implements OnInit {
             },
         })
 
-        dialogRef.afterClosed().subscribe(result=>{
-            if (!result){
+        dialogRef.afterClosed().subscribe( result => {
+            if ( !result ){
                 //cancel delete data
                 //alert('hiii');
             } else {
@@ -144,11 +144,11 @@ export class TransferComponent implements OnInit {
 }
 
 export class cLocation{
-    public user_id:           number;
-    public user_group_id:     number;
-    public department_code:   string;
-    public factory_code:      string;
-    public location_code:     string;
+    public user_id :           number;
+    public user_group_id :     number;
+    public department_code :   string;
+    public factory_code :      string;
+    public location_code :     string;
 }
 
 export class cGridData{

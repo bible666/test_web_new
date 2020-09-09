@@ -179,14 +179,14 @@ export class ItemQtyComponent implements OnInit {
                 this.loading.hide();
             })
         )
-        .subscribe(data=>{
-            if (data['status']== 'success'){
+        .subscribe( data => {
+            if ( data['status'] == 'success' ){
                 if ( data['data'].length >= 1 ) {
                     new_item_code = data['data'][0]['item_code'];
                 }
             }
 
-            if (old_item_code != new_item_code){
+            if ( old_item_code != new_item_code ){
                 this.inputForm.patchValue({
                     'item_code'     : new_item_code
                 });
@@ -228,21 +228,21 @@ export class ItemQtyComponent implements OnInit {
         });
       
         this.service_item.getReceiveDate( this.data.location_code , item_code , lot_no )
-            .pipe(
-                tap(()=>{
-                    this.loading.show();
-                }),
-                finalize(()=>{
-                    this.loading.hide();
-                })
-            )
-            .subscribe(data=>{
+        .pipe(
+            tap(()=>{
+                this.loading.show();
+            }),
+            finalize(()=>{
+                this.loading.hide();
+            })
+        )
+        .subscribe(data=>{
 
-                if (data['status']== 'success'){
-                    this.AR_receive_date = data['data'];
-                }
+            if (data['status']== 'success'){
+                this.AR_receive_date = data['data'];
+            }
 
-            });
+        });
     }
 
     convertStringToNumber(myString:string){
