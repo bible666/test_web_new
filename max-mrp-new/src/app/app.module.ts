@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { MyMainSidebarContainerComponent } from './layout/my-main-sidebar-container/my-main-sidebar-container.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { HeaderComponent } from './layout/header/header.component';
         LoginComponent,
         DashboardComponent,
         AppLayoutComponent,
-        HeaderComponent
+        HeaderComponent,
+        MyMainSidebarContainerComponent
     ],
     imports: [
         BrowserModule,
