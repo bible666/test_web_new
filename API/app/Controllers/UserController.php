@@ -37,7 +37,7 @@ class UserController extends Origin001
         }
 
         //init data
-        $token         = '';
+        $token = '';
 
         $dataDB['status']  = "error";
         $dataDB['message'] = "";
@@ -56,9 +56,10 @@ class UserController extends Origin001
             $dataDB['status']  = "error";
             $dataDB['message'] = "ไม่สามารถเข้าใช้งานระบบได้ login หรือ password ผิดพลาด";
             $dataDB['data']    = "";
+
             return $this->respond( $dataDB, HTML_STATUS_UNAUTHORIZED );
         }
-        
+
         //$my = $this->encryption->decrypt($row['staff_pwd']);
         //if ($user_password == $this->encryption->decrypt($row['staff_pwd'])) {
 
@@ -67,8 +68,9 @@ class UserController extends Origin001
 
         if ( $row->ng_count >= MAX_LOGIN_COUNT && $diff_time <= MAX_LOCK_LOGIN_TIME_MINIUS ) {
             $dataDB['status']  = "error";
-            $dataDB['message'] = 'คุณ login เกินจำนวนครั้งที่กำหนด กรุณาลองใหม่อีกครั้งหลังผ่าน '.MAX_LOCK_LOGIN_TIME_MINIUS.' นาที';
+            $dataDB['message'] = 'คุณ login เกินจำนวนครั้งที่กำหนด กรุณาลองใหม่อีกครั้งหลังผ่าน ' . MAX_LOCK_LOGIN_TIME_MINIUS . ' นาที';
             $dataDB['data']    = "";
+
             return $this->respond( $dataDB, HTML_STATUS_UNAUTHORIZED );
         }
 
@@ -84,6 +86,7 @@ class UserController extends Origin001
             $dataDB['status']  = "error";
             $dataDB['message'] = "ไม่สามารถเข้าใช้งานระบบได้ login หรือ password ผิดพลาด";
             $dataDB['data']    = "";
+
             return $this->respond( $dataDB, HTML_STATUS_UNAUTHORIZED );
         }
 
@@ -121,12 +124,14 @@ class UserController extends Origin001
 
         $menu_data = $this->db->query( $sql, ['user_group_id' => $row->user_group_id] )->getResult();
 
-        $result['token'] = $token;
+        $result['token']     = $token;
+        $result['user_name'] = $row->first_name . ' ' . $row->last_name;
 
         $dataDB['status']   = "success";
         $dataDB['message']  = "";
         $dataDB['data']     = $result;
         $dataDB['menuData'] = $menu_data;
+
         return $this->respond( $dataDB, HTML_STATUS_SUCCESS );
 
     }

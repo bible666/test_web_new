@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
                 if ( data['status'] == 'success' ) {
                     this.user.set_token(data['data']['token']);
                     this.user.set_company_id(data['data']['company_id']);
+                    this.user.set_user_name(data['data']['user_name']);
                     this.user.set_menu_data(data['menuData']);
                     this.router.navigateByUrl('/');
                 }

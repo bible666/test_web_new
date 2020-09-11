@@ -99,6 +99,16 @@ export class UserService {
     public get_company_id(){
         return localStorage.getItem('company_id');
     }
+
+    public set_user_name(p_user_name:string){
+        localStorage.setItem('user_name', p_user_name);
+    }
+
+    public get_user_name(){
+        return localStorage.getItem('user_name');
+    }
+
+
 }
 
 class cLogin{
