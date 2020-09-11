@@ -12,11 +12,20 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
     {
         path: 'common',
-        component: AppLayoutComponent, 
-        loadChildren: () => MyCommonModule 
+        component: AppLayoutComponent,
+        loadChildren: () => MyCommonModule
     },
     { path: 'login',                      component:LoginComponent},
-    { path: '' ,                          component: DashboardComponent ,canActivate:[AuthGuard]},
+    {
+        path: '' ,
+        component: AppLayoutComponent ,
+        children: [
+            {
+                path: '' ,
+                component: DashboardComponent ,canActivate:[AuthGuard]
+            }
+        ]
+    }
 ];
 
 @NgModule({
