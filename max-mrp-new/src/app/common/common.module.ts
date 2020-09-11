@@ -5,11 +5,22 @@ import { TemplateIndexComponent } from './template-index/template-index.componen
 import { TemplateIndex2Component } from './template-index2/template-index2.component';
 
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 @NgModule({
-  declarations: [TemplateIndexComponent, TemplateIndex2Component],
-  imports: [
-    CommonModule,
-    CommonRoutingModule
-  ]
+    declarations: [
+        TemplateIndexComponent,
+        TemplateIndex2Component
+    ],
+    imports: [
+        CommonModule,
+        CommonRoutingModule,
+        FormsModule,
+        ReactiveFormsModule
+    ],
+    exports: [
+
+    ]
 })
 export class MyCommonModule { }
