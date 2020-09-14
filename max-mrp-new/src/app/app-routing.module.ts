@@ -5,6 +5,7 @@ import { AuthGuard } from './service/auth.guard';
 import { AppLayoutComponent } from './layout/app-layout/app-layout.component';
 
 import { MyCommonModule } from './common/common.module';
+import { MasterModule } from './master/master.module';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -15,6 +16,11 @@ const routes: Routes = [
         path: 'common',
         component: AppLayoutComponent,
         loadChildren: () => MyCommonModule
+    },
+    {
+        path: 'master',
+        component: AppLayoutComponent,
+        loadChildren: () => MasterModule
     },
     { path: 'login',                      component:LoginComponent},
     { path: 'logout',                     component:LogoutComponent},
