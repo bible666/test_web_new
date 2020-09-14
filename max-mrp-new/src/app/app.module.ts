@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { MyMainSidebarContainerComponent } from './layout/my-main-sidebar-container/my-main-sidebar-container.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { MyMainSidebarContainerComponent } from './layout/my-main-sidebar-contai
         DashboardComponent,
         AppLayoutComponent,
         HeaderComponent,
-        MyMainSidebarContainerComponent
+        MyMainSidebarContainerComponent,
+        LogoutComponent
     ],
     imports: [
         BrowserModule,

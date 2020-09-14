@@ -25,8 +25,11 @@ const httpOptions = {
 })
 export class UserService {
 
-    Menu_Data: MenuNode[];
+    Menu_Data: MenuNode[] = [];
     public menu_datas;
+    public main_menu_selected : number = 1;
+    public sub_menu_selected  : number = 9;
+    public main_menu_open     : string[] = ['1','2'];
 
     private MenuDataSource = new BehaviorSubject(this.Menu_Data);
     currentMenuDataSource = this.MenuDataSource.asObservable();

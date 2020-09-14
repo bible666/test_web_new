@@ -6,6 +6,7 @@ import { AppLayoutComponent } from './layout/app-layout/app-layout.component';
 
 import { MyCommonModule } from './common/common.module';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 
@@ -16,6 +17,7 @@ const routes: Routes = [
         loadChildren: () => MyCommonModule
     },
     { path: 'login',                      component:LoginComponent},
+    { path: 'logout',                     component:LogoutComponent},
     {
         path: '' ,
         component: AppLayoutComponent ,
