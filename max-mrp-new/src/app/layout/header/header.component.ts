@@ -18,6 +18,15 @@ export class HeaderComponent implements OnInit {
 
     }
 
+    onCollapseClick(){
+        alert(1);
+        const body = document.getElementsByTagName('body')[0];
+
+        body.classList.remove('sidebar-collapse');
+        body.classList.add('sidebar-collapse');
+        //sidebar-mini layout-fixed sidebar-collapse
+    }
+    
     onLogout() {
         this.user.logout();
         this.router.navigate(['/login']);

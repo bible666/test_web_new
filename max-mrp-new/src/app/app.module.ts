@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ServerErrorInterceptor } from './error.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppLayoutComponent } from './layout/app-layout/app-layout.component';
+import { SharedTemplateModule } from './shared-template/template.module';
 
 import { MyCommonModule } from './common/common.module';
 import { SharedCommonModule } from './shared-common/shared-common.module';
@@ -32,7 +33,8 @@ import { LogoutComponent } from './logout/logout.component';
         HttpClientModule,
         FormsModule, ReactiveFormsModule,
         MyCommonModule,
-        SharedCommonModule
+        SharedCommonModule,
+        SharedTemplateModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true }
