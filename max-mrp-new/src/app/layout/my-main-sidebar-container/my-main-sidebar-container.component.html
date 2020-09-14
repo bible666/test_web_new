@@ -21,13 +21,21 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent text-sm" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                    with font-awesome or any other icon font library -->
-                <li [ngClass]="user.main_menu_open.indexOf(menu_data.menu_id) == -1 ? 'nav-item menu-open' : 'nav-item'" *ngFor="let menu_data of menu_datas">
-                    <a href="#" [ngClass]="menu_data.menu_id == user.main_menu_selected ? 'nav-link active' : 'nav-link'">
+                <li class="nav-item">
+                    <a href="pages/gallery.html" [ngClass]="-1 == user.main_menu_selected ? 'nav-link active' : 'nav-link'">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            {{menu_data.menu_name}}{{user.main_menu_selected}}{{user.main_menu_open.indexOf(menu_data.menu_id)}}
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <!-- Add icons to the links using the .nav-icon class
+                    with font-awesome or any other icon font library -->
+                <li [ngClass]="user.main_menu_open.indexOf(menu_data.menu_id) !== -1 ? 'nav-item menu-open' : 'nav-item'" *ngFor="let menu_data of menu_datas">
+                    <a href="#" [ngClass]="menu_data.menu_id == user.main_menu_selected ? 'nav-link active' : 'nav-link'" (click)="onMainMenuClick(menu_data.menu_id)">
+                        <i class="nav-icon {{menu_data.menu_icon}}"></i>
+                        <p>
+                            {{menu_data.menu_name}}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -40,35 +48,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a routerLink = "/common/templateIndex" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v1</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a routerLink = "/common/templateIndex2" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v2</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v3</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                
                 <li class="nav-item">
                     <a href="pages/widgets.html" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -300,14 +280,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
-                        <p>
-                            Gallery
-                        </p>
-                    </a>
-                </li>
+                
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon far fa-envelope"></i>

@@ -13,7 +13,8 @@ class Migration_sys_menu extends \CodeIgniter\Database\Migration {
 				menu_name         text,
 				menu_short_name   text,
 				screen_url        text,
-				menu_position     INT
+                menu_position     INT,
+                menu_icon         text
             );
         ");
     }

@@ -34,5 +34,14 @@ export class MyMainSidebarContainerComponent implements OnInit {
         return ret_menu;
     }
 
+    private onMainMenuClick(menu_id:string){
+        if ( this.user.main_menu_open.indexOf(menu_id) !== -1 ){
+            this.user.main_menu_open.splice(this.user.main_menu_open.indexOf(menu_id),1);
+        } else {
+            this.user.main_menu_open.push(menu_id);
+        }
+        
+    }
+
 
 }

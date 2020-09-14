@@ -27,9 +27,9 @@ export class UserService {
 
     Menu_Data: MenuNode[] = [];
     public menu_datas;
-    public main_menu_selected : number = 1;
-    public sub_menu_selected  : number = 9;
-    public main_menu_open     : string[] = ['1','2'];
+    public main_menu_selected : number = -1;
+    public sub_menu_selected  : number = -1;
+    public main_menu_open     : string[] = [''];
 
     private MenuDataSource = new BehaviorSubject(this.Menu_Data);
     currentMenuDataSource = this.MenuDataSource.asObservable();
