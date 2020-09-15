@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MessageService, MessageClass } from '../../../service/message.service';
 import { CompanyService, cSearch, cData } from '../../../service/company.service';
 import { UserService } from '../../../service/user.service';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-company',
