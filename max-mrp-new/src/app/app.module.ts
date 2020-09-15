@@ -17,6 +17,11 @@ import { HeaderComponent } from './layout/header/header.component';
 import { MyMainSidebarContainerComponent } from './layout/my-main-sidebar-container/my-main-sidebar-container.component';
 import { LogoutComponent } from './logout/logout.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ConfirmDialogComponent } from './shared-common/confirm-dialog/confirm-dialog.component';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -34,11 +39,15 @@ import { LogoutComponent } from './logout/logout.component';
         FormsModule, ReactiveFormsModule,
         MyCommonModule,
         SharedCommonModule,
-        SharedTemplateModule
+        SharedTemplateModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatNativeDateModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true }
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [ConfirmDialogComponent]
 })
 export class AppModule { }

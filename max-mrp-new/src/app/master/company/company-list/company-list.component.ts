@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MessageService, MessageClass } from '../../../service/message.service';
 import { CompanyService, cSearch, cData } from '../../../service/company.service';
 import { UserService } from '../../../service/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/shared-common/confirm-dialog/confirm-dialog.component';
 
 @Component({
     selector: 'app-company',
@@ -29,7 +31,8 @@ export class CompanyListComponent implements OnInit {
     constructor(
         private messageService  : MessageService ,
         private service         : CompanyService ,
-        private userData        : UserService
+        private userData        : UserService ,
+        private dialog: MatDialog
     ) { 
         //set inital value when open form
         this.onInitValue();
@@ -86,19 +89,35 @@ export class CompanyListComponent implements OnInit {
     }
 
     onDelete(companyCode:string){
-        let result = confirm("ต้องการลบรหัส"+companyCode);
-        if ( result == true ) {
-            this.service.deleteById(companyCode).subscribe(
-                data => {
-                    this.messageService.setSuccess('ทำการลบเสร็จแล้ว');
-                    this.onSearch();
-                },
-                error => {
-                    this.messageService.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
-                    this.message = this.messageService.getMessage();
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            width: '350px' ,
+            height: '200px' ,
+            data: {
+                description : 'คุณต้องการลบรายการนี้หรือเปล่ารหัส '+companyCode ,
+                id          : companyCode
+            }
+        } )
+        
+        dialogRef.afterClosed().subscribe(
+            result => {
+                if ( !result ) {
+                    //cancel delete data
+                    //alert('hiii');
+                } else {
+                    this.service.deleteById(companyCode).subscribe(
+                        data => {
+                            this.messageService.setError('ทำการลบเสร็จแล้ว');
+                            this.onSearch();
+                        },
+                        error => {
+                            this.messageService.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
+                            this.message = this.messageService.getMessage();
+                        }
+                    );
                 }
-            );
-        }
+            }
+        );
+        
     }
 
 }
