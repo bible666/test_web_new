@@ -90,7 +90,7 @@ export class CompanyEditComponent implements OnInit {
             data => {
                 if ( data['status'] == 'success' ) {
                     this.ServiceMessage.setSuccess('บันทึกสำเร็จ');
-                    this.router.navigateByUrl('/company/list');
+                    this.router.navigateByUrl('/master/company');
                 } else {
                     this.ServiceMessage.setError(data['message']);
                     this.message = this.ServiceMessage.getMessage();

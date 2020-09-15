@@ -10,9 +10,9 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a routerLink ="/master/company">ข้อมูลบริษัท</a></li>
-                    <li class="breadcrumb-item active">แก้ไข</li>
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a routerLink ="/master/company">ข้อมูลบริษัท</a></li>
+                        <li class="breadcrumb-item active">แก้ไข</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -23,11 +23,11 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form [formGroup]="inputForm">
+            <form [formGroup]="inputForm" (ngSubmit)="onSubmit()" >
                 <div class="card-body">
                     <div class="form-group">
                         <label>รหัสบริษัท</label>
-                        <input type="text" class="form-control" formControlName="company_code" placeholder="กรุณาใส่รหัสบริษัท">
+                        <input type="text" [ngClass]="inputForm.controls['company_code'].invalid?'form-control is-invalid': 'form-control'" formControlName="company_code" placeholder="กรุณาใส่รหัสบริษัท">
                         <div *ngIf="inputForm.controls['company_code'].hasError">
                             <span class="help" *ngIf="inputForm.controls['company_code'].hasError('required')">กรุณาใส่ข้อมูล</span>
                             <span class="help" *ngIf="inputForm.controls['company_code'].hasError('maxlength')">ใส่ได้ไม่เกิน 10 ตัวอักษร</span>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label>ชื่อบริษัท</label>
-                        <input type="text" class="form-control" formControlName="company_name" placeholder="กรุณาใส่ชื่อบริษัท">
+                        <input type="text" [ngClass]="inputForm.controls['company_code'].invalid?'form-control is-invalid': 'form-control'" formControlName="company_name" placeholder="กรุณาใส่ชื่อบริษัท">
                         <div *ngIf="inputForm.controls['company_name'].hasError">
                             <span class="help" *ngIf="inputForm.controls['company_name'].hasError('required')">กรุณาใส่ข้อมูล</span>
                             <span class="help" *ngIf="inputForm.controls['company_name'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
@@ -66,12 +66,13 @@
                         <textarea class="form-control" rows="3" formControlName="remark"></textarea>
                     </div>
                 </div>
+                <div class="card-footer">
+                    <a [routerLink]="['/master/company']" class="btn btn-info">กลับ</a>
+                    <button type="submit" class="btn btn-primary float-right">ยืนยัน</button>
+                </div>
             </form>
         </div>
-        <div class="card-footer">
-            <a [routerLink]="['/master/company']" class="btn btn-info">กลับ</a>
-            <button type="submit" class="btn btn-primary float-right">ยืนยัน</button>
-          </div>
+        
     </section>
     <!-- /.content -->
 

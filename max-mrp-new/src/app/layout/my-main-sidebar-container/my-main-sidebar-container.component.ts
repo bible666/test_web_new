@@ -18,7 +18,6 @@ export class MyMainSidebarContainerComponent implements OnInit {
     ngOnInit() {
         let menu_datas = JSON.parse(localStorage.getItem('menu_data'));
         this.menu_datas = this.getMenuData('-1',menu_datas);
-        console.log(this.menu_datas);
     }
 
     private getMenuData(menuId:string,menu_datas) {
