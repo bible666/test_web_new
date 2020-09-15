@@ -29,6 +29,7 @@ export class UserService {
     public menu_datas;
     public main_menu_selected : number = -1;
     public sub_menu_selected  : number = -1;
+    public is_Collapse        : boolean = false;
     public main_menu_open     : string[] = [''];
 
     private MenuDataSource = new BehaviorSubject(this.Menu_Data);

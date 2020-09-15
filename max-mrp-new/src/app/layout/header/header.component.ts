@@ -19,11 +19,17 @@ export class HeaderComponent implements OnInit {
     }
 
     onCollapseClick(){
-        alert(1);
         const body = document.getElementsByTagName('body')[0];
 
-        body.classList.remove('sidebar-collapse');
-        body.classList.add('sidebar-collapse');
+        if ( this.user.is_Collapse ) {
+            this.user.is_Collapse = false;
+            body.classList.remove('sidebar-collapse');
+        } else {
+            this.user.is_Collapse = true;
+            body.classList.add('sidebar-collapse');
+        }
+        
+        
         //sidebar-mini layout-fixed sidebar-collapse
     }
     
