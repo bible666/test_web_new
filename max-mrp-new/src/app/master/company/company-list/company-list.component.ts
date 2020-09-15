@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MessageService, MessageClass } from '../../../service/message.service';
 import { CompanyService, cSearch, cData } from '../../../service/company.service';
+import { UserService } from '../../../service/user.service';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -28,13 +29,16 @@ export class CompanyListComponent implements OnInit {
 
     constructor(
         private messageService  : MessageService ,
-        private service         : CompanyService
+        private service         : CompanyService ,
+        private userData        : UserService
     ) { 
         //set inital value when open form
         this.onInitValue();
     }
 
     ngOnInit() {
+        this.userData.main_menu_selected = 8;
+        this.userData.sub_menu_selected  = 37;
         window.scroll(0,0);
         this.onSearch();
     }

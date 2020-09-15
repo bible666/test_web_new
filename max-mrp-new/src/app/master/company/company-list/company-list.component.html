@@ -1,4 +1,5 @@
 <div class="content-wrapper">
+    <show-message [message]="message"></show-message>
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -72,7 +73,7 @@
             <div class="row wow">
                 <!-- ↓↓ 新規追加ボタン↓↓ -->
                 <div class="col-sm-6 mb-0">
-                    <a [routerLink]="['/company/edit',-1]" class="btn btn-success btn-add btn-sm" name="btnAdd">
+                    <a [routerLink]="['/master/company/edit',-1]" class="btn btn-success btn-add btn-sm" name="btnAdd">
                         <i class="fa fa-plus"></i>
                         เพิ่ม
                     </a>
@@ -111,7 +112,7 @@
                                         <tbody>
                                             <tr *ngFor="let gridData of gridDatas">
                                                 <td>
-                                                    <a [routerLink]="['/company/edit',gridData.company_code]" class="btn btn-primary btn-sm" >
+                                                    <a [routerLink]="['/master/company/edit',gridData.company_code]" class="btn btn-primary btn-sm" >
                                                         <i class="far fa-edit"></i> แก้ไข
                                                     </a>
                                                     <a (click)="onDelete(gridData.company_code)" class="btn btn-danger btn-sm">
