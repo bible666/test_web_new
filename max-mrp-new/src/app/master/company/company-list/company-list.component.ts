@@ -86,4 +86,20 @@ export class CompanyListComponent implements OnInit {
         this.getData();
     }
 
+    onDelete(companyCode:string){
+        let result = confirm("ต้องการลบรหัส"+companyCode);
+        if ( result == true ) {
+            this.service.deleteById(companyCode).subscribe(
+                data => {
+                    this.messageService.setSuccess('ทำการลบเสร็จแล้ว');
+                    this.onSearch();
+                },
+                error => {
+                    this.messageService.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
+                    this.message = this.messageService.getMessage();
+                }
+            );
+        }
+    }
+
 }

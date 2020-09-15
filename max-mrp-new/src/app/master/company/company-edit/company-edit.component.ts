@@ -94,12 +94,14 @@ export class CompanyEditComponent implements OnInit {
                 } else {
                     this.ServiceMessage.setError(data['message']);
                     this.message = this.ServiceMessage.getMessage();
+                    window.scroll(0,0);
                 }
           
             },
             error => {
                 this.ServiceMessage.setError('บันทึกผิดพลาด');
                 this.message = this.ServiceMessage.getMessage();
+                window.scroll(0,0);
             }
         );
     }
