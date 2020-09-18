@@ -102,15 +102,11 @@ class Origin001 extends ResourceController
         $tokenData->company_id = 0;
         $tokenData->staff_cat  = $staff_data->user_group_id;
 
-            //update token data
-            $data = ['update_date' => date( "Y-m-d H:i:s" )];
-            $this->prg_token_origin->where( ['token_code' => $token] );
-            $this->prg_token_origin->update( $data );
-            //     $this->db->set(['update_date' => date("Y-m-d H:i:s")]);
-            //     $this->db->where(['id' => $staff_data->token_code]);
-            //     $this->db->update('prg_token');
+        //update token data
+        $data = ['update_date' => date( "Y-m-d H:i:s" )];
+        $this->prg_token_origin->where( ['token_code' => $token] );
+        $this->prg_token_origin->update( $data );
 
-        //echo $minDiff;
         //if ($staff_data->token_update > date("Y-m-d H:i:s"))
 
 
@@ -149,9 +145,10 @@ class Origin001 extends ResourceController
         $datetime1 = date_create( $date_1 );
         $datetime2 = date_create( $date_2 );
 
-        $interval = date_diff( $datetime1, $datetime2 );
-
-        return $interval->format( $differenceFormat );
+        $interval   = date_diff( $datetime1, $datetime2 );
+        $diff_value = ($interval->y * 350 * 8 * 60) + ($interval->m * 30 * 8 * 60) + ($interval->d * 8 * 60) + ($interval->h * 60) + $interval->i;
+        
+        return $diff_value;
 
     }
 
