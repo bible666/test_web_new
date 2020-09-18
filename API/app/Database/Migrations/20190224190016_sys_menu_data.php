@@ -47,7 +47,7 @@ class Migration_sys_menu_data extends \CodeIgniter\Database\Migration {
 		(6,'S','Delivery Search','D/O Search','/',2,''),
 		(6,'S','Delivery Result Entry','D/O Result','/',3,''),
 		(8,'S','บริษัท','บริษัท','/master/company',1,''),
-		(8,'S','โรงงาน','โรงงาน','/factory/list',2,''),
+		(8,'S','โรงงาน','โรงงาน','/master/factory',2,''),
 		(8,'S','พื้นที่จัดเก็บ','พื้นที่จัดเก็บ','/location/list',3,''),
 		(8,'S','สกุลเงิน','สกุลเงิน','/currency/list',4,''),
 		(8,'S','หน่วยวัตถุดิบ','หน่วยวัตถุดิบ','/system/unit/list',5,''),
