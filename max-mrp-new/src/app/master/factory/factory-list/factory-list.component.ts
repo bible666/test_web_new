@@ -93,7 +93,7 @@ export class FactoryListComponent implements OnInit {
 
         const dialogRef = this.dialog.open( ConfirmDialogComponent , {
             width   : '350px',
-            height  : '200px',
+            height  : '210px',
             data    : {
                 description : 'คุณต้องการลบรายการนี้หรือเปล่า ',
                 id          : company_code
@@ -108,7 +108,7 @@ export class FactoryListComponent implements OnInit {
                 } else {
                     this.service.deleteById(company_code,facotry_code).subscribe(
                         data => {
-                            this.messageService.setError('ทำการลบเสร็จแล้ว');
+                            this.messageService.setSuccess('ทำการลบเสร็จแล้ว');
                             this.onSearch();
                         },
                         error => {

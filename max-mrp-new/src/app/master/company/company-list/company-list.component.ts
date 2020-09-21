@@ -91,7 +91,7 @@ export class CompanyListComponent implements OnInit {
     onDelete(companyCode:string){
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
             width: '350px' ,
-            height: '200px' ,
+            height: '210px' ,
             data: {
                 description : 'คุณต้องการลบรายการนี้หรือเปล่ารหัส '+companyCode ,
                 id          : companyCode
@@ -106,7 +106,7 @@ export class CompanyListComponent implements OnInit {
                 } else {
                     this.service.deleteById(companyCode).subscribe(
                         data => {
-                            this.messageService.setError('ทำการลบเสร็จแล้ว');
+                            this.messageService.setSuccess('ทำการลบเสร็จแล้ว');
                             this.onSearch();
                         },
                         error => {
