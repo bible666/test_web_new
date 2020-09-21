@@ -9,10 +9,12 @@ import { CompanyListComponent } from './company/company-list/company-list.compon
 import { CompanyEditComponent } from './company/company-edit/company-edit.component';
 import { FactoryListComponent } from './factory/factory-list/factory-list.component';
 import { FactoryEditComponent } from './factory/factory-edit/factory-edit.component';
+import { LocationListComponent } from './location/location-list/location-list.component';
+import { LocationEditComponent } from './location/location-edit/location-edit.component';
 
 
 @NgModule({
-  declarations: [CompanyListComponent, CompanyEditComponent, FactoryListComponent, FactoryEditComponent],
+  declarations: [CompanyListComponent, CompanyEditComponent, FactoryListComponent, FactoryEditComponent, LocationListComponent, LocationEditComponent],
   imports: [
     CommonModule,
     MasterRoutingModule,
