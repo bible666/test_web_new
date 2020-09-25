@@ -1,0 +1,62 @@
+<div class="content-wrapper">
+    <show-message [message]="message"></show-message>
+        <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">ข้อมูลวัตถุดิบ(แก้ไข)</h1>
+                    
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a routerLink ="/master/item">ข้อมูลวัตถุดิบ</a></li>
+                        <li class="breadcrumb-item active">แก้ไข</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <form [formGroup]="inputForm" (ngSubmit)="onSubmit()" >
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>รหัสวัตถุดิบ</label>
+                                <input type="text" [ngClass]="inputForm.controls['item_code'].invalid?'form-control is-invalid': 'form-control'" formControlName="item_code" placeholder="กรุณาใส่รหัส">
+                                <div *ngIf="inputForm.controls['item_code'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['item_code'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                    <span class="help" *ngIf="inputForm.controls['item_code'].hasError('maxlength')">ใส่ได้ไม่เกิน 10 ตัวอักษร</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ชื่อวัตถุดิบ</label>
+                        <input type="text" [ngClass]="inputForm.controls['item_name'].invalid?'form-control is-invalid': 'form-control'" formControlName="item_name" placeholder="กรุณาใส่ชื่อ">
+                        <div *ngIf="inputForm.controls['item_name'].hasError">
+                            <span class="help" *ngIf="inputForm.controls['item_name'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                            <span class="help" *ngIf="inputForm.controls['item_name'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                        </div>
+                    </div>
+
+                    
+                </div> 
+                <div class="card-footer">
+                    <a [routerLink]="['/master/factory']" class="btn btn-info">กลับ</a>
+                    <button type="submit" class="btn btn-primary float-right">ยืนยัน</button>
+                </div>
+            </form>
+        </div>
+        
+    </section>
+    <!-- /.content -->
+
+</div>

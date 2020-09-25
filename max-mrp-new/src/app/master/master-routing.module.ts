@@ -7,6 +7,8 @@ import { FactoryListComponent } from './factory/factory-list/factory-list.compon
 import { FactoryEditComponent } from './factory/factory-edit/factory-edit.component';
 import { LocationEditComponent } from './location/location-edit/location-edit.component';
 import { LocationListComponent } from './location/location-list/location-list.component';
+import { ItemListComponent } from './item/item-list/item-list.component';
+import { ItemEditComponent } from './item/item-edit/item-edit.component';
 
 
 const routes: Routes = [
@@ -15,7 +17,9 @@ const routes: Routes = [
     { path: 'factory' ,                                     component: FactoryListComponent },
     { path: 'factory/edit/:company_code/:factory_code' ,    component: FactoryEditComponent },
     { path: 'location' ,                                    component: LocationListComponent },
-    { path: 'location/edit/:factory_code/:location_code' ,  component: LocationEditComponent }
+    { path: 'location/edit/:factory_code/:location_code' ,  component: LocationEditComponent },
+    { path: 'item' ,                                        component: ItemListComponent },
+    { path: 'item/edit/:item_code',                         component: ItemEditComponent }
 ];
 
 @NgModule({
