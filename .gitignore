@@ -3,3 +3,4 @@ max-mrp-new/node_modules/*
 API/writable/debugbar/*
 API/writable/logs/*
 max-mrp-new/node_modules/.bin/ansi-html
+API/writable/uploads/*

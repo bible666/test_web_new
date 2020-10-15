@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormControlDirective, FormGroup, Validators } from '@angular/forms';
 import { MessageService, MessageClass } from '../../../service/message.service';
 import { cInput, ItemService } from '../../../service/item.service';
 import { LoadingService } from '../../../service/loading.service';
+import { UploadService } from '../../../service/upload.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import {switchMap,debounceTime, tap, finalize,map} from 'rxjs/operators';
@@ -30,6 +31,7 @@ export class ItemEditComponent implements OnInit {
     show_unit_name :string = 'DDD';
 
     unit_datas;
+    selected_file: File = null;
 
     options: User[] = [
         {name: 'Mary', value: 'Mary'},
@@ -57,14 +59,18 @@ export class ItemEditComponent implements OnInit {
         'production_lead_time'  : new FormControl(0),
         'request_decimal'       : new FormControl(0),
         'mrp_flag'              : new FormControl(false),
-        'remark'                : new FormControl('', [ Validators.maxLength(200) ])
+        'remark'                : new FormControl('', [ Validators.maxLength(200) ]),
+        'file'                  : new FormControl('')
     });
   
-    constructor(private param: ActivatedRoute,
+    constructor(
+        private param: ActivatedRoute,
         private Service: ItemService,
         private ServiceMessage: MessageService,
         private router: Router,
-        private loading: LoadingService) { }
+        private loading: LoadingService,
+        private upload: UploadService
+    ) { }
 
     ngOnInit() {
         window.scroll(0,0);
@@ -177,30 +183,45 @@ export class ItemEditComponent implements OnInit {
             return;
         }
 
-        let input_data	: cInput = new cInput(this.inputForm.value);
-        input_data.old_item_code = this.old_item_code;
+        // let input_data	: cInput = new cInput(this.inputForm.value);
+        // input_data.old_item_code = this.old_item_code;
 
-        this.Service.updateById(input_data)
-        .pipe(
-            tap(()=>{this.loading.show();}),
-            finalize(()=>{this.loading.hide();})
-        )
-        .subscribe(data=>{
+        // this.Service.updateById(input_data)
+        // .pipe(
+        //     tap(()=>{this.loading.show();}),s
+        //     finalize(()=>{this.loading.hide();})
+        // )
+        // .subscribe(data=>{
 
-            if (data['status']== 'success'){
-                this.ServiceMessage.setSuccess('บันทึกสำเร็จ');
+        //     if (data['status']== 'success'){
+        //         this.ServiceMessage.setSuccess('บันทึกสำเร็จ');
                 
-                this.router.navigateByUrl('/master/item');
-                    } else {
-                this.ServiceMessage.setError(data['message']);
-                this.message = this.ServiceMessage.getMessage();
-            }
+        //         this.router.navigateByUrl('/master/item');
+        //             } else {
+        //         this.ServiceMessage.setError(data['message']);
+        //         this.message = this.ServiceMessage.getMessage();
+        //     }
 
+        // },
+        // error=>{
+        //     this.ServiceMessage.setError('บันทึกผิดพลาด');
+        //     this.message = this.ServiceMessage.getMessage();
+        // });
+    }
+
+    onFileSelected(event) {
+        this.selected_file = <File>event.target.files[0];
+        console.log(this.selected_file);
+        const fd = new FormData();
+        fd.append('file',this.selected_file);
+        console.log(fd);
+        this.upload.upload(fd).subscribe(data=>{
+            console.log(data);
         },
         error=>{
-            this.ServiceMessage.setError('บันทึกผิดพลาด');
-            this.message = this.ServiceMessage.getMessage();
+            console.log(error);
         });
+
     }
 
 }
