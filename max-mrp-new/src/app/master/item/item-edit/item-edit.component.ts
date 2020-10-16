@@ -214,6 +214,7 @@ export class ItemEditComponent implements OnInit {
         console.log(this.selected_file);
         const fd = new FormData();
         fd.append('file',this.selected_file);
+        fd.append('feature','item');
         console.log(fd);
         this.upload.upload(fd).subscribe(data=>{
             console.log(data);
