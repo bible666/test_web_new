@@ -49,6 +49,7 @@
 
                     <div class="form-group">
                         <label>รูปภาพ</label>
+                        <img [src]="imgURL" height="200" *ngIf="imgURL">
                         <input type="file" (change)="onFileSelected($event)" name="file">
                     </div>
 

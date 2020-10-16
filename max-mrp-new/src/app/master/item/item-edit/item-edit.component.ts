@@ -7,6 +7,7 @@ import { UploadService } from '../../../service/upload.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import {switchMap,debounceTime, tap, finalize,map} from 'rxjs/operators';
+import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/template';
 
 export interface User {
     name: string;
@@ -40,6 +41,8 @@ export class ItemEditComponent implements OnInit {
     ];
 
     isLoading = false;
+
+    imgURL : any;
 
     filteredOptions: Observable<User[]>;
     filteredUnit: Unit[] = [];
@@ -211,17 +214,22 @@ export class ItemEditComponent implements OnInit {
 
     onFileSelected(event) {
         this.selected_file = <File>event.target.files[0];
-        console.log(this.selected_file);
+       
         const fd = new FormData();
         fd.append('file',this.selected_file);
         fd.append('feature','item');
-        console.log(fd);
-        this.upload.upload(fd).subscribe(data=>{
-            console.log(data);
-        },
-        error=>{
-            console.log(error);
-        });
+        
+        var render = new FileReader();
+        render.readAsDataURL(this.selected_file);
+        render.onload = (_event) => {
+            this.imgURL = render.result;
+        }
+        //this.upload.upload(fd).subscribe(data=>{
+        //    console.log(data);
+        //},
+        //error=>{
+        //    console.log(error);
+        //});
 
     }
 
