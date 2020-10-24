@@ -68,15 +68,15 @@ export class ItemListComponent implements OnInit {
         this.frmSearchData.page_index = this.CurrentPage;
         this.service.getListData(this.frmSearchData)
         .pipe(
-        tap(()=>{this.loading.show();}),
-        finalize(()=>{this.loading.hide();})
+            tap(()=>{this.loading.show();}),
+            finalize(()=>{this.loading.hide();})
         )
         .subscribe(data => {
-        if (data['status'] == 'success'){
-            this.CountData    = data['max_rows'];
-            this.AllPage      = Math.ceil(this.CountData / this.inputForm.value.rowsPerpage);
-            this.gridDatas     = data['data'];
-        }
+            if (data['status'] == 'success'){
+                this.CountData    = data['max_rows'];
+                this.AllPage      = Math.ceil(this.CountData / this.inputForm.value.rowsPerpage);
+                this.gridDatas     = data['data'];
+            }
         
         });
     }

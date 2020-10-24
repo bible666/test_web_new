@@ -16,13 +16,13 @@ import { ItemEditComponent } from './item/item-edit/item-edit.component';
 
 
 @NgModule({
-  declarations: [CompanyListComponent, CompanyEditComponent, FactoryListComponent, FactoryEditComponent, LocationListComponent, LocationEditComponent, ItemListComponent, ItemEditComponent],
-  imports: [
-    CommonModule,
-    MasterRoutingModule,
-    SharedTemplateModule,
-    FormsModule, ReactiveFormsModule,
-    SharedCommonModule
-  ]
+    declarations: [CompanyListComponent, CompanyEditComponent, FactoryListComponent, FactoryEditComponent, LocationListComponent, LocationEditComponent, ItemListComponent, ItemEditComponent],
+    imports: [
+        CommonModule,
+        MasterRoutingModule,
+        SharedTemplateModule,
+        FormsModule, ReactiveFormsModule,
+        SharedCommonModule
+    ]
 })
 export class MasterModule { }

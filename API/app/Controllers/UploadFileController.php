@@ -32,12 +32,11 @@ class UploadFileController extends Origin001
      */
     public function upload_file()
     {
-        //$uploads = $this->request->getFiles();
-        //print_r($uploads);
         $file = $this->request->getFile('file');
+        $folder = $this->request->getPost('feature');
         //print_r($file);
         //print_r(WRITEPATH);
-        $file->move(WRITEPATH.'uploads');
+        $file->move(WRITEPATH.'uploads/'.$folder);
         //exit;
         $dataDB['status']  = "success";
         $dataDB['message'] = "";

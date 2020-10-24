@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormControl, FormControlDirective, FormGroup, Validators } from '@angular/forms';
 import { MessageService, MessageClass } from '../../../service/message.service';
 import { cInput, ItemService } from '../../../service/item.service';
+import { ComboService } from '../../../service/combo.service';
 import { LoadingService } from '../../../service/loading.service';
 import { UploadService } from '../../../service/upload.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -31,7 +32,8 @@ export class ItemEditComponent implements OnInit {
 
     show_unit_name :string = 'DDD';
 
-    unit_datas;
+    comboType: string = "unit";
+
     selected_file: File = null;
 
     options: User[] = [
@@ -41,6 +43,8 @@ export class ItemEditComponent implements OnInit {
     ];
 
     isLoading = false;
+
+    itemImage : ElementRef;
 
     imgURL : any;
 
@@ -72,83 +76,59 @@ export class ItemEditComponent implements OnInit {
         private ServiceMessage: MessageService,
         private router: Router,
         private loading: LoadingService,
-        private upload: UploadService
-    ) { }
+        private upload: UploadService,
+        private comboService: ComboService
+    ) { 
+
+    }
 
     ngOnInit() {
         window.scroll(0,0);
         
         this.old_item_code    = this.param.snapshot.params.item_code;
 
-        this.Service.getUnit('')
-        .pipe(
-        tap(()=>{this.loading.show();}),
-        finalize(()=>{this.loading.hide();})
-        )
-        .subscribe(unit =>{
-        this.filteredUnit = unit['data'];
-        });
+
 
         if (this.old_item_code != '-1') {
-        //get data from database
-        
-        this.Service.getDataById(this.old_item_code)
-        .pipe(
-            tap(()=>{this.loading.show();}),
-            finalize(()=>{this.loading.hide();})
-        )
-        .subscribe(data=>{
+            //get data from database
             
-            if (data['status']== 'success'){
-            
-            let isDefault = true;
-            
-            this.inputForm.patchValue({
-                'item_code'             : data['data'].item_code,
-                'item_name'             : data['data'].item_name,
-                'item_type'             : data['data'].item_type,
-                'lot_flag'              : data['data'].lot_flag == 1 ?true:false,
-                'unit_code'             : data['data'].unit_code,
-                'standard_location'     : data['data'].standard_location,
-                'production_lead_time'  : data['data'].production_lead_time,
-                'request_decimal'       : data['data'].request_decimal,
-                'mrp_flag'              : data['data'].mrp_flag == 1 ? true:false,
-                'remark'                : data['data'].remark
-            });
-            } else {
-            this.ServiceMessage.setError(data['message']);
-            this.message = this.ServiceMessage.getMessage();
-            }
-
-            
-        },
-        error=>{
-            this.ServiceMessage.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
-            this.message = this.ServiceMessage.getMessage();
-            
-        });
-        }
-        //test auto complete
-        this.inputForm.get("unit_code").valueChanges
-        .pipe(
-        debounceTime(300), //if keypress interval is less then call service
-        tap(() => {
-            //before service start
-            this.isLoading    = true;
-            this.filteredUnit = [];
-        }),
-        switchMap(value => this.Service.getUnit(value)
-        .pipe(
-            finalize(() => {
-                //after service en
-                this.isLoading = false
-            })
+            this.Service.getDataById(this.old_item_code)
+            .pipe(
+                tap(()=>{this.loading.show();}),
+                finalize(()=>{this.loading.hide();})
             )
-        )
-        )
-        .subscribe(unit =>{
-        this.filteredUnit = unit['data'];
-        });
+            .subscribe(data=>{
+                
+                if (data['status']== 'success'){
+                
+                let isDefault = true;
+                
+                this.inputForm.patchValue({
+                    'item_code'             : data['data'].item_code,
+                    'item_name'             : data['data'].item_name,
+                    'item_type'             : data['data'].item_type,
+                    'lot_flag'              : data['data'].lot_flag == 1 ?true:false,
+                    'unit_code'             : data['data'].unit_code,
+                    'standard_location'     : data['data'].standard_location,
+                    'production_lead_time'  : data['data'].production_lead_time,
+                    'request_decimal'       : data['data'].request_decimal,
+                    'mrp_flag'              : data['data'].mrp_flag == 1 ? true:false,
+                    'remark'                : data['data'].remark
+                });
+                } else {
+                this.ServiceMessage.setError(data['message']);
+                this.message = this.ServiceMessage.getMessage();
+                }
+
+                
+            },
+            error=>{
+                this.ServiceMessage.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
+                this.message = this.ServiceMessage.getMessage();
+                
+            });
+        }
+        
     }
 
     onBlurUnitCode(){
@@ -212,18 +192,43 @@ export class ItemEditComponent implements OnInit {
         // });
     }
 
-    onFileSelected(event) {
+    onFileSelected(event,file) {
         this.selected_file = <File>event.target.files[0];
-       
-        const fd = new FormData();
-        fd.append('file',this.selected_file);
-        fd.append('feature','item');
-        
+
+        var mimeType = this.selected_file.type;
+
+        if (mimeType.match(/image\/*/) == null) {
+            alert("Only images are supported.");
+            file.value= null;
+            this.selected_file = null;
+            this.imgURL = null;
+            return;
+        }
+
+        //check image width
         var render = new FileReader();
         render.readAsDataURL(this.selected_file);
         render.onload = (_event) => {
+            let img = new Image();
+            img.onload = () => {
+                if ( img.width > 200 || img.height > 200 ) {
+                    alert("image size is 200 x 200");
+                    file.value= null;
+                    this.selected_file = null;
+                    this.imgURL = null;
+                    return;
+                } else {
+
+                }
+            }
+            
             this.imgURL = render.result;
+            img.src = this.imgURL;
         }
+
+        //const fd = new FormData();
+        //fd.append('file',this.selected_file);
+        //fd.append('feature','item');
         //this.upload.upload(fd).subscribe(data=>{
         //    console.log(data);
         //},

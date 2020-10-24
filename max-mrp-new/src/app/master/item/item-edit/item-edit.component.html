@@ -27,7 +27,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <label>รหัสวัตถุดิบ</label>
                                 <input type="text" [ngClass]="inputForm.controls['item_code'].invalid?'form-control is-invalid': 'form-control'" formControlName="item_code" placeholder="กรุณาใส่รหัส">
                                 <div *ngIf="inputForm.controls['item_code'].hasError">
@@ -35,22 +35,33 @@
                                     <span class="help" *ngIf="inputForm.controls['item_code'].hasError('maxlength')">ใส่ได้ไม่เกิน 10 ตัวอักษร</span>
                                 </div>
                             </div>
+                            <div class="col-sm-9">
+                                <label>ชื่อวัตถุดิบ</label>
+                                <input type="text" [ngClass]="inputForm.controls['item_name'].invalid?'form-control is-invalid': 'form-control'" formControlName="item_name" placeholder="กรุณาใส่ชื่อ">
+                                <div *ngIf="inputForm.controls['item_name'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['item_name'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                    <span class="help" *ngIf="inputForm.controls['item_name'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>ชื่อวัตถุดิบ</label>
-                        <input type="text" [ngClass]="inputForm.controls['item_name'].invalid?'form-control is-invalid': 'form-control'" formControlName="item_name" placeholder="กรุณาใส่ชื่อ">
-                        <div *ngIf="inputForm.controls['item_name'].hasError">
-                            <span class="help" *ngIf="inputForm.controls['item_name'].hasError('required')">กรุณาใส่ข้อมูล</span>
-                            <span class="help" *ngIf="inputForm.controls['item_name'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                        <div class="col-sm-3">
+                            <label>หน่วยวัตถุดิบ</label>
+                                <input type="text" [ngClass]="inputForm.controls['unit_code'].invalid?'form-control is-invalid': 'form-control'" formControlName="unit_code" placeholder="กรุณาเลือก">
+                                <div *ngIf="inputForm.controls['unit_code'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['unit_code'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                    <span class="help" *ngIf="inputForm.controls['unit_code'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                </div>
                         </div>
                     </div>
 
                     <div class="form-group">
+                        <my-combo [comboType]=comboType [width]=10></my-combo>
                         <label>รูปภาพ</label>
                         <img [src]="imgURL" height="200" *ngIf="imgURL">
-                        <input type="file" (change)="onFileSelected($event)" name="file">
+                        <input type="file" (change)="onFileSelected($event,itemImage)" #itemImage >
                     </div>
 
                     
@@ -65,4 +76,6 @@
     </section>
     <!-- /.content -->
     {{inputForm.value|json}}
+    <br/>
+    {{filteredUnit|json}}
 </div>
