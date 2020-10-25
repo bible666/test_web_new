@@ -51,25 +51,17 @@ export class MyComboComponent implements OnInit {
         let searchValue: string = this.inputForm.get("value_search").value;
         this.service.getData(this.service_name,searchValue)
         .pipe(
-            tap(()=>{this.loading.show();}),
-            finalize(()=>{this.loading.hide();})
+            tap( ()      => { this.loading.show(); } ),
+            finalize( () => { this.loading.hide(); } )
         )
         .subscribe(data =>{
             this.displayValue = "";
             if ( data['data'][0] ) {
                 this.displayValue = data['data'][0].display_code;
             }
-            //this.comboDatas = data['data'];
 
-            //console.log(this.comboDatas[0]);
         });
-        // for (let row = 0 ; row < this.comboDatas.length ; row++){
-        //     if ( value == this.comboDatas[row].value_code ) {
-        //         console.log(this.comboDatas[row]);
-        //         this.displayValue = this.comboDatas[row].display_code;
-        //     }
 
-        // }
     }
 
     onClick(){
@@ -99,34 +91,47 @@ export class DialogComboDialog implements OnInit {
 
     public comboDatas      : ComboData[] = [];
 
+    service_name           : string = "";
+
     constructor(
         private service: ComboService,
         private loading: LoadingService,
         @Inject(MAT_DIALOG_DATA) public comboType: string
     ) {
-
-    }
-
-    ngOnInit(): void {
-        console.log(this.comboType);
-        let service_name : string = "";
+        this.service_name = "";
 
         switch ( this.comboType ) {
             case "unit": {
-                service_name = "get_unit";
+                this.service_name = "get_unit_list";
             }
             
         }
-        this.service.getData(service_name)
+    }
+
+    ngOnInit(): void {
+
+        this.service.getData(this.service_name)
         .pipe(
             tap(()=>{this.loading.show();}),
             finalize(()=>{this.loading.hide();})
         )
         .subscribe(unit =>{
             this.comboDatas = unit['data'];
-            console.log(this.comboDatas[0]);
         });
 
+    }
+
+    onSearch(): void {
+        let searchValue: string = this.inputForm.get("value_search").value;
+        this.service.getData(this.service_name,searchValue)
+        .pipe(
+            tap( ()      => { this.loading.show(); } ),
+            finalize( () => { this.loading.hide(); } )
+        )
+        .subscribe(data =>{
+            this.comboDatas = data['data'];
+
+        });
     }
   
 }

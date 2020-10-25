@@ -3,7 +3,8 @@ namespace App\Controllers;
 
 use Config\App;
 
-class ComboController extends Origin001{
+class ComboController extends Origin001
+{
 
     public function get_unit() {
         $token     = $this->getAuthHeader();
@@ -20,13 +21,13 @@ class ComboController extends Origin001{
             return $this->respond( $dataDB, TOKEN_NOT_FOUND );
         }
 
-        $query_str = " 
+        $query_str = "
         SELECT unit_code as value_code, unit_name as display_code
         FROM mst_unit
         WHERE active_flag = true AND unit_code = :unit_code:
         ORDER BY unit_code asc";
 
-        $itemn_data = $this->db->query( $query_str,['unit_code' => $data ] )->getResult();
+        $itemn_data = $this->db->query( $query_str, ['unit_code' => $data] )->getResult();
 
         if ( $this->db->error()['message'] !== '' ) {
             $dataDB['status']  = "error";
@@ -58,9 +59,14 @@ class ComboController extends Origin001{
             return $this->respond( $dataDB, TOKEN_NOT_FOUND );
         }
 
-        $query_str = " SELECT unit_code as value_code, unit_name as display_code FROM mst_unit where active_flag = true order by unit_code asc";
+        $query_str = "
+        SELECT unit_code as value_code, unit_name as display_code
+        FROM mst_unit
+        WHERE active_flag = true AND ( unit_code like :unit_code: OR unit_name like :unit_code: )
+        ORDER BY unit_code asc
+        LIMIT 5";
 
-        $itemn_data = $this->db->query( $query_str )->getResult();
+        $itemn_data = $this->db->query( $query_str, ['unit_code' => "%".$data."%"] )->getResult();
 
         if ( $this->db->error()['message'] !== '' ) {
             $dataDB['status']  = "error";
@@ -76,6 +82,5 @@ class ComboController extends Origin001{
 
         return $this->respond( $dataDB, $http_code );
     }
-}
 
-?>
+}
