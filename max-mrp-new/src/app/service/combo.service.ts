@@ -19,8 +19,9 @@ export class ComboService {
         private http:HttpClient
     ) { }
 
-    public getData(service_name){
-        return this.http.post(BASE_URL+'/'+service_name,"",this.httpOptions);
+    public getData(service_name:string,searchData:string = ""){
+        let strJSON:string  = JSON.stringify(searchData);
+        return this.http.post(BASE_URL+'/'+service_name,strJSON,this.httpOptions);
     }
 }
 

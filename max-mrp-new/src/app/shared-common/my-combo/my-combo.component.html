@@ -1,7 +1,9 @@
-<p>my-combo works!</p>
-<input type="text" (blur)="onBlur($event.target.value)" [style.width]="widthText"/>
-<button style="margin-right: 5px;" (click)="onClick()"><i class="fa fa-bars" aria-hidden="true"></i></button>
-<label [style.width]="widthDis">{{displayValue}}</label>
+
+<form [formGroup]="inputForm">
+    <input type="text" (blur)="onBlur($event.target.value)" [style.width]="widthText" formControlName="value_search"/>
+    <button style="margin-right: 5px;" (click)="onClick()"><i class="fa fa-bars" aria-hidden="true"></i></button>
+    <label [style.width]="widthDis">{{displayValue}}</label>
+</form>
 
 <div id="loading" style="position: fixed;display: none;left:0;top:0;z-index: 9999;width:100%;height:100%;background-color:white; 
     filter: alpha(opacity=50);

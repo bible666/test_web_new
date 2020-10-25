@@ -20,6 +20,11 @@ export class MyComboComponent implements OnInit {
     displayValue : string = "";
     widthText    : string = "30%";
     widthDis     : string = "60%";
+    service_name : string = "";
+
+    inputForm = new FormGroup({
+        'value_search'     : new FormControl('')
+    });
 
     constructor(
         private service: ComboService,
@@ -30,37 +35,41 @@ export class MyComboComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        let service_name : string = "";
 
         switch ( this.comboType ) {
             case "unit": {
-                service_name = "get_unit";
+                this.service_name = "get_unit";
             }
             
         }
-        this.service.getData(service_name)
-        .pipe(
-            tap(()=>{this.loading.show();}),
-            finalize(()=>{this.loading.hide();})
-        )
-        .subscribe(unit =>{
-            this.comboDatas = unit['data'];
-            console.log(this.comboDatas[0]);
-        });
         
         this.widthText = this.width + '%';
         this.widthDis  = ( 90 - this.width) + '%';
     }
 
     onBlur(value: string){
-
-        for (let row = 0 ; row < this.comboDatas.length ; row++){
-            if ( value == this.comboDatas[row].value_code ) {
-                console.log(this.comboDatas[row]);
-                this.displayValue = this.comboDatas[row].display_code;
+        let searchValue: string = this.inputForm.get("value_search").value;
+        this.service.getData(this.service_name,searchValue)
+        .pipe(
+            tap(()=>{this.loading.show();}),
+            finalize(()=>{this.loading.hide();})
+        )
+        .subscribe(data =>{
+            this.displayValue = "";
+            if ( data['data'][0] ) {
+                this.displayValue = data['data'][0].display_code;
             }
+            //this.comboDatas = data['data'];
 
-        }
+            //console.log(this.comboDatas[0]);
+        });
+        // for (let row = 0 ; row < this.comboDatas.length ; row++){
+        //     if ( value == this.comboDatas[row].value_code ) {
+        //         console.log(this.comboDatas[row]);
+        //         this.displayValue = this.comboDatas[row].display_code;
+        //     }
+
+        // }
     }
 
     onClick(){

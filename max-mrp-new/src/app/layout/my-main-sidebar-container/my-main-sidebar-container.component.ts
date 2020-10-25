@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../service/user.service';
-
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'my-main-sidebar-container',
@@ -13,10 +13,14 @@ export class MyMainSidebarContainerComponent implements OnInit {
 
     constructor(
         public user    : UserService,
+        private router : Router
     ) { }
 
     ngOnInit() {
         let menu_datas = JSON.parse(localStorage.getItem('menu_data'));
+        if ( !menu_datas ) {
+            this.router.navigate(['/login']);
+        }
         this.menu_datas = this.getMenuData('-1',menu_datas);
     }
 
