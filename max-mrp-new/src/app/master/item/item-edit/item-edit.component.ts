@@ -136,27 +136,6 @@ export class ItemEditComponent implements OnInit {
         });
     }
 
-    // onBlurUnitCode(){
-    //     let unit_code:string = '';
-    //     let old_unit_code:string = this.inputForm.get("unit_code").value;
-    //     this.Service.getUnitCode(old_unit_code)
-    //     .pipe(
-    //     tap(()=>{this.loading.show();}),
-    //     finalize(()=>{this.loading.hide();})
-    //     )
-    //     .subscribe(data=>{
-    //     if (data['status']== 'success'){
-    //         unit_code = data['data'];
-    //     } 
-        
-    //     if (old_unit_code != unit_code){
-    //         this.inputForm.patchValue({
-    //         'unit_code'             : unit_code
-    //         });
-    //     }
-    //     });
-    // }
-
     displayFn(value:string){
         if (value && this.filteredUnit.length > 0 ) {
             return this.filteredUnit.find(x => x.unit_code == value).unit_name;

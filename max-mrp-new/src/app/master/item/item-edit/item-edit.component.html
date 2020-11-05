@@ -48,27 +48,55 @@
 
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-5">
                                 <label>หน่วยวัตถุดิบ</label>
                                 <my-combo [comboType] = comboType [width] = 20 [value] = "unitCode$" (selectEvent)="onUnitSelect($event)"></my-combo>
                             </div>
-                            <div class="col-sm-8">
-                                <label></label>
+                            <div class="col-sm-7">
+                                <label>เงื่อนไขการผลิต</label>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="lot_flag" formControlName="lot_flag">
                                     <label class="form-check-label" for="lot_flag">ควบคุม lot</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mrp_flag" formControlName="mrp_flag">
+                                    <label class="form-check-label" for="mrp_flag">ใช้ในการผลิต</label>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        
-                        <label>รูปภาพ</label>
-                        <img [src]="imgURL" height="200" *ngIf="imgURL">
-                        <input type="file" (change)="onFileSelected($event,itemImage)" #itemImage >
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>เวลาที่ใช้ในการผลิตหรือขนส่ง(วัน)</label>
+                                <input type="number" [ngClass]="inputForm.controls['production_lead_time'].invalid?'form-control is-invalid': 'form-control'" formControlName="production_lead_time" >
+                                <div *ngIf="inputForm.controls['production_lead_time'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['production_lead_time'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                    <span class="help" *ngIf="inputForm.controls['production_lead_time'].hasError('maxlength')">ใส่ได้ไม่เกิน 10 ตัวอักษร</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label>รูปภาพ</label>
+                                <br/>
+                                <img [src]="imgURL" height="200" *ngIf="imgURL" >
+                                <input type="file" (change)="onFileSelected($event,itemImage)" #itemImage class="form-control">
+                            </div>
+
+                            <div class="col-sm-8">
+                                <label>หมายเหตุ</label>
+                                <textarea rows="5" class="form-control" formControlName="remark">
+
+                                </textarea>
+                                
+                            </div>
+                        </div>
+                    </div>
                     
                 </div> 
                 <div class="card-footer">
