@@ -4,8 +4,9 @@ import { MessageService, MessageClass } from '../../../service/message.service';
 import { ItemService, cSearch, cData } from '../../../service/item.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoadingService } from '../../../service/loading.service';
+import { UserService } from '../../../service/user.service';
 import { ConfirmDialogComponent } from '../../../shared-common/confirm-dialog/confirm-dialog.component';
-import {switchMap,debounceTime, tap, finalize,map} from 'rxjs/operators';
+import { tap, finalize } from 'rxjs/operators';
 
 @Component({
     selector: 'app-item-list',
@@ -32,6 +33,7 @@ export class ItemListComponent implements OnInit {
         private service: ItemService,
         public dialog: MatDialog,
         private messageService: MessageService,
+        private userData        : UserService ,
         private loading: LoadingService
     ) {
         //set inital value when open form
@@ -39,6 +41,8 @@ export class ItemListComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.userData.main_menu_selected = 8;
+        this.userData.sub_menu_selected  = 43;
         window.scroll(0,0);
         this.onSearch();
     }

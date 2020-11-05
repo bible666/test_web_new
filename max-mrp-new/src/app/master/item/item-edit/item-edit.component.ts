@@ -1,14 +1,13 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { FormControl, FormControlDirective, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService, MessageClass } from '../../../service/message.service';
 import { cInput, ItemService } from '../../../service/item.service';
-import { ComboService } from '../../../service/combo.service';
+import { ComboData, ComboService } from '../../../service/combo.service';
 import { LoadingService } from '../../../service/loading.service';
 import { UploadService } from '../../../service/upload.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import {switchMap,debounceTime, tap, finalize,map} from 'rxjs/operators';
-import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/template';
 
 export interface User {
     name: string;
@@ -35,6 +34,8 @@ export class ItemEditComponent implements OnInit {
     comboType: string = "unit";
 
     selected_file: File = null;
+
+    public unitCode$ :  Observable<string>;
 
     options: User[] = [
         {name: 'Mary', value: 'Mary'},
@@ -76,8 +77,7 @@ export class ItemEditComponent implements OnInit {
         private ServiceMessage: MessageService,
         private router: Router,
         private loading: LoadingService,
-        private upload: UploadService,
-        private comboService: ComboService
+        private upload: UploadService
     ) { 
 
     }
@@ -87,42 +87,40 @@ export class ItemEditComponent implements OnInit {
         
         this.old_item_code    = this.param.snapshot.params.item_code;
 
-
-
         if (this.old_item_code != '-1') {
             //get data from database
             
             this.Service.getDataById(this.old_item_code)
             .pipe(
                 tap(()=>{this.loading.show();}),
-                finalize(()=>{this.loading.hide();})
+                finalize(() => {
+                    this.loading.hide();
+                }),
+                map( data => {
+                    if (data['status']== 'success'){
+                        this.inputForm.patchValue({
+                            'item_code'             : data['data'].item_code,
+                            'item_name'             : data['data'].item_name,
+                            'item_type'             : data['data'].item_type,
+                            'lot_flag'              : data['data'].lot_flag == 1 ?true:false,
+                            'unit_code'             : data['data'].unit_code,
+                            'standard_location'     : data['data'].standard_location,
+                            'production_lead_time'  : data['data'].production_lead_time,
+                            'request_decimal'       : data['data'].request_decimal,
+                            'mrp_flag'              : data['data'].mrp_flag == 1 ? true:false,
+                            'remark'                : data['data'].remark
+                        });
+                        this.unitCode$ = data['data'].unit_code;
+                    } else {
+                        this.ServiceMessage.setError(data['message']);
+                        this.message = this.ServiceMessage.getMessage();
+                    }
+                })
             )
             .subscribe(data=>{
-                
-                if (data['status']== 'success'){
-                
-                let isDefault = true;
-                
-                this.inputForm.patchValue({
-                    'item_code'             : data['data'].item_code,
-                    'item_name'             : data['data'].item_name,
-                    'item_type'             : data['data'].item_type,
-                    'lot_flag'              : data['data'].lot_flag == 1 ?true:false,
-                    'unit_code'             : data['data'].unit_code,
-                    'standard_location'     : data['data'].standard_location,
-                    'production_lead_time'  : data['data'].production_lead_time,
-                    'request_decimal'       : data['data'].request_decimal,
-                    'mrp_flag'              : data['data'].mrp_flag == 1 ? true:false,
-                    'remark'                : data['data'].remark
-                });
-                } else {
-                this.ServiceMessage.setError(data['message']);
-                this.message = this.ServiceMessage.getMessage();
-                }
 
-                
             },
-            error=>{
+            error => {
                 this.ServiceMessage.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
                 this.message = this.ServiceMessage.getMessage();
                 
@@ -131,26 +129,33 @@ export class ItemEditComponent implements OnInit {
         
     }
 
-    onBlurUnitCode(){
-        let unit_code:string = '';
-        let old_unit_code:string = this.inputForm.get("unit_code").value;
-        this.Service.getUnitCode(old_unit_code)
-        .pipe(
-        tap(()=>{this.loading.show();}),
-        finalize(()=>{this.loading.hide();})
-        )
-        .subscribe(data=>{
-        if (data['status']== 'success'){
-            unit_code = data['data'];
-        } 
-        
-        if (old_unit_code != unit_code){
-            this.inputForm.patchValue({
-            'unit_code'             : unit_code
-            });
-        }
+    onUnitSelect(data: ComboData){
+        console.log(2);
+        this.inputForm.patchValue({
+            'unit_code'             : data.value_code
         });
     }
+
+    // onBlurUnitCode(){
+    //     let unit_code:string = '';
+    //     let old_unit_code:string = this.inputForm.get("unit_code").value;
+    //     this.Service.getUnitCode(old_unit_code)
+    //     .pipe(
+    //     tap(()=>{this.loading.show();}),
+    //     finalize(()=>{this.loading.hide();})
+    //     )
+    //     .subscribe(data=>{
+    //     if (data['status']== 'success'){
+    //         unit_code = data['data'];
+    //     } 
+        
+    //     if (old_unit_code != unit_code){
+    //         this.inputForm.patchValue({
+    //         'unit_code'             : unit_code
+    //         });
+    //     }
+    //     });
+    // }
 
     displayFn(value:string){
         if (value && this.filteredUnit.length > 0 ) {

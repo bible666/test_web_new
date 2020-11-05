@@ -16,44 +16,65 @@ export class CompanyService {
         })
     };
 
-    constructor(
+    private setAuth() {
+        this.httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type'  : 'application/json',
+                'Authorization' : localStorage.getItem('token')
+            })
+        };
+    }
+
+    constructor (
         private http:HttpClient
     ) { }
 
-    public getListData(search_data:cSearch){
-        let strJSON:string = JSON.stringify(search_data);
-        return this.http.post(BASE_URL+'/get_data_list',strJSON,this.httpOptions);
+    public getListData( search_data : cSearch ) {
+        this.setAuth();
+
+        let strJSON : string = JSON.stringify(search_data);
+        return this.http.post( BASE_URL+'/get_data_list' , strJSON , this.httpOptions );
     }
 
-    public deleteById(id:string){
-        let inputData = new cInput();
+    public deleteById( id : string ) {
+        this.setAuth();
+
+        let inputData          = new cInput();
         inputData.company_code = id;
-        let strJSON:string  = JSON.stringify(inputData);
-        return this.http.post(BASE_URL+'/delete_data_by_id',strJSON,this.httpOptions);
+        let strJSON:string     = JSON.stringify( inputData );
+
+        return this.http.post( BASE_URL+'/delete_data_by_id' , strJSON , this.httpOptions );
     }
 
-    public getDataById(id:string){
-        let inputData = new cInput();
+    public getDataById( id : string ) {
+        this.setAuth();
+
+        let inputData          = new cInput();
         inputData.company_code = id;
         inputData.id           = id;
-        let strJSON:string  = JSON.stringify(inputData);
-        return this.http.post(BASE_URL+'/get_data_by_id',strJSON,this.httpOptions);
+        let strJSON:string     = JSON.stringify( inputData );
+
+        return this.http.post( BASE_URL+'/get_data_by_id' , strJSON , this.httpOptions );
     }
 
-    public updateById(inputData:cInput){
+    public updateById( inputData:cInput ) {
+        this.setAuth();
+
         let strJSON:string  = JSON.stringify(inputData);
-        return this.http.post(BASE_URL+'/update_data',strJSON,this.httpOptions);
+        return this.http.post( BASE_URL+'/update_data' , strJSON , this.httpOptions );
     }
 
-    public getCalendar(){
+    public getCalendar() {
+        this.setAuth();
+
         let strJSON:string  = '';
-        return this.http.post(BASE_URL+'/get_calendar',strJSON,this.httpOptions);
+        return this.http.post( BASE_URL+'/get_calendar' , strJSON , this.httpOptions );
     }
 }
 
 
-export class cSearch{
-    page_index  :number;
+export class cSearch {
+    page_index    :number;
     rowsPerpage   :number;
 
     //manual search condition
@@ -63,12 +84,12 @@ export class cSearch{
     phone          : string;
     remark         : string;
 
-    public constructor(init?: Partial<cSearch>){
-        Object.assign(this,init);
+    public constructor(init?: Partial<cSearch>) {
+        Object.assign( this , init );
     }
 }
 
-export class cData{
+export class cData {
     company_code  : string;
     company_name  : string;
     addr_1        : string;
@@ -82,9 +103,9 @@ export class cData{
     remark        : string;
 }
 
-export class cInput{
+export class cInput {
     token         : string;
-    id  			: string;
+    id            : string;
 
     company_code  : string;
     company_name  : string;
@@ -99,6 +120,6 @@ export class cInput{
     remark        : string;
 
     public constructor(init?: Partial<cInput>){
-        Object.assign(this,init);
+        Object.assign( this , init );
     }
 }

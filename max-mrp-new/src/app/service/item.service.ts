@@ -22,16 +22,29 @@ export class ItemService {
         })
     };
 
+    private setAuth(){
+        this.httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type'  : 'application/json',
+                'Authorization' : localStorage.getItem('token')
+            })
+        };
+    }
+
     constructor(
         private http:HttpClient
     ) { }
 
     public getListData(search_data:cSearch){
+        this.setAuth();
+
         let strJSON:string = JSON.stringify(search_data);
         return this.http.post(BASE_URL+'/get_data_list',strJSON,this.httpOptions);
     }
 
     public deleteById(item_code:string){
+        this.setAuth();
+
         let inputData = new cInput();
         
         inputData.item_code = item_code;
@@ -40,6 +53,8 @@ export class ItemService {
     }
 
     public getDataById(item_code:string){
+        this.setAuth();
+
         let inputData         = new cInput();
         inputData.item_code   = item_code;
         let strJSON:string    = JSON.stringify(inputData);
@@ -47,11 +62,15 @@ export class ItemService {
     }
 
     public updateById(inputData:cInput){
+        this.setAuth();
+
         let strJSON:string  = JSON.stringify(inputData);
         return this.http.post(BASE_URL+'/update_data',strJSON,this.httpOptions);
     }
 
     public getUnit(unit_name:string){
+        this.setAuth();
+
         let inputData = new unitSearch();
         inputData.unit_name = unit_name;
 
@@ -60,6 +79,8 @@ export class ItemService {
     }
 
     public getUnitCode(unit_name:string){
+        this.setAuth();
+
         let inputData = new unitSearch();
         inputData.unit_name = unit_name;
 
@@ -68,6 +89,8 @@ export class ItemService {
     }
 
     public getItemListByLocation(location_code:string,item_name:string){
+        this.setAuth();
+
         let inputData = new cGetDataList();
         inputData.location_code          = location_code;
         inputData.item_name              = item_name;
@@ -77,6 +100,8 @@ export class ItemService {
     }
 
     public getReceiveDate ( location_code: string , item_code: string , lot_no: string){
+        this.setAuth();
+
         let inputData = new cGetReceiveDate();
         inputData.location_code          = location_code;
         inputData.item_code              = item_code;
