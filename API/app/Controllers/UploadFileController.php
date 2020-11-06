@@ -5,10 +5,6 @@ use Config\App;
 
 class UploadFileController extends Origin001
 {
-    protected $format = 'json';
-
-    protected $mst_unit;
-    protected $mst_item;
 
     /**
      * Constructure class
@@ -26,20 +22,30 @@ class UploadFileController extends Origin001
         // $this->session = \Config\Services::session();
 
     }
-    
+
     /**
-     * delete data by id
+     * upload file
      */
     public function upload_file()
     {
-        $file = $this->request->getFile('file');
-        $folder = $this->request->getPost('feature');
+        $file   = $this->request->getFile( 'file' );
+        if ( !isset ( $file ) ) {
+            $dataDB['status']       = "success";
+            $dataDB['message']      = "";
+            $dataDB['file_name']    = "";
+            //$dataDB['data']    = $data;
+    
+            return $this->respond( $dataDB, 200 );
+        }
+        $folder = $this->request->getPost( 'feature' );
         //print_r($file);
         //print_r(WRITEPATH);
-        $file->move(WRITEPATH.'uploads/'.$folder);
+        $newName = $file->getRandomName();
+        $file->move( WRITEPATH . 'uploads/' . $folder,$newName );
         //exit;
-        $dataDB['status']  = "success";
-        $dataDB['message'] = "";
+        $dataDB['status']       = "success";
+        $dataDB['message']      = "";
+        $dataDB['file_name']    = $newName;
         //$dataDB['data']    = $data;
 
         return $this->respond( $dataDB, 200 );

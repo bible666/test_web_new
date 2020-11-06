@@ -20,7 +20,7 @@ class viewFileController extends Controller
     public function index()
     {
 
-        $filepath = WRITEPATH.'/uploads/item/images.png';
+        $filepath = WRITEPATH.'/uploads/item/1604671597_0c0528245dcd1df62fc5.jpeg';
         if(file_exists($filepath)){ 
             $mime = mime_content_type($filepath); //<-- detect file type
             header('Content-Length: '.filesize($filepath)); //<-- sends filesize header

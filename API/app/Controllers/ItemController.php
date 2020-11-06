@@ -98,7 +98,7 @@ class ItemController extends Origin001
         $query_str = "
         SELECT mst_item.*,mst_unit.unit_name
         FROM mst_item
-            INNER JOIN mst_unit on mst_item.unit_code = mst_unit.unit_code
+            LEFT JOIN mst_unit on mst_item.unit_code = mst_unit.unit_code
         WHERE item_code = :item_code:
             AND mst_item.active_flag = true
         ";
@@ -409,19 +409,17 @@ class ItemController extends Origin001
         //init data
         $old_item_code = isset( $data->old_item_code ) ? trim( $data->old_item_code ) : '';
 
-        $item_code = isset( $data->item_code ) ? trim( $data->item_code ) : '';
-        $item_name = isset( $data->item_name ) ? trim( $data->item_name ) : '';
-        $item_type = isset( $data->item_type ) ? trim( $data->item_type ) : '';
-
+        $item_code            = isset( $data->item_code ) ? trim( $data->item_code ) : '';
+        $item_name            = isset( $data->item_name ) ? trim( $data->item_name ) : '';
+        $item_type            = isset( $data->item_type ) ? trim( $data->item_type ) : '';
         $lot_flag             = isset( $data->lot_flag ) ? $data->lot_flag : -1;
         $unit_code            = isset( $data->unit_code ) ? trim( $data->unit_code ) : '';
         $production_lead_time = isset( $data->production_lead_time ) ? trim( $data->production_lead_time ) : 0;
         $request_decimal      = isset( $data->request_decimal ) ? $data->request_decimal : 0;
-
-        $mrp_flag          = isset( $data->mrp_flag ) ? $data->mrp_flag : false;
-        $standard_location = isset( $data->standard_location ) ? trim( $data->standard_location ) : '';
-
-        $remark = isset( $data->remark ) ? trim( $data->remark ) : '';
+        $mrp_flag             = isset( $data->mrp_flag ) ? $data->mrp_flag : false;
+        $standard_location    = isset( $data->standard_location ) ? trim( $data->standard_location ) : '';
+        $image_file           = isset( $data->image_file ) ? trim( $data->image_file ) : '';
+        $remark               = isset( $data->remark ) ? trim( $data->remark ) : '';
 
         //Validation Data
         if ( $item_name == '' ) {
@@ -480,9 +478,9 @@ class ItemController extends Origin001
         $insert_data['production_lead_time'] = $production_lead_time;
         $insert_data['request_decimal']      = $request_decimal;
         $insert_data['mrp_flag']             = $mrp_flag;
-
-        $insert_data['remark']      = $remark;
-        $insert_data['active_flag'] = true;
+        $insert_data['remark']               = $remark;
+        $insert_data['image_file']           = $image_file;
+        $insert_data['active_flag']          = true;
 
         $this->db->transStart();
 
@@ -671,5 +669,20 @@ class ItemController extends Origin001
         $dataDB['data']    = $unit_code;
 
         return $this->respond( $dataDB, $http_code );
+    }
+
+    public function img($item_code) {
+
+        $filepath = WRITEPATH.'/uploads/item/1604671597_0c0528245dcd1df62fc5.jpeg';
+        if(file_exists($filepath)){ 
+            $mime = mime_content_type($filepath); //<-- detect file type
+            header('Content-Length: '.filesize($filepath)); //<-- sends filesize header
+            header("Content-Type: $mime"); //<-- send mime-type header
+            header('Content-Disposition: inline; filename="'.$filepath.'";'); //<-- sends filename header
+            readfile($filepath); //<--reads and outputs the file onto the output buffer
+            die(); //<--cleanup
+            exit; //and exit
+            }
+    
     }
 }

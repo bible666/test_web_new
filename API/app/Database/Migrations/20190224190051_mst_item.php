@@ -18,6 +18,7 @@ class Migration_mst_item extends \CodeIgniter\Database\Migration {
                 mrp_flag                int,
                 remark                  varchar(200) DEFAULT '',
                 active_flag             int NOT NULL,
+                image_file              varchar(500) NOT NULL DEFAULT '',
 
                 create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 update_date DATETIME ,

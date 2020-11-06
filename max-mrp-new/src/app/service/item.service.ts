@@ -163,6 +163,7 @@ export class cInput{
     mrp_flag             : boolean;
     standard_location    : boolean;
     remark               : string;
+    image_file           : string;
 
     public constructor(init?: Partial<cInput>){
         Object.assign(this,init);
