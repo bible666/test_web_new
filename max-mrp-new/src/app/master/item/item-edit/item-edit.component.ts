@@ -82,7 +82,7 @@ export class ItemEditComponent implements OnInit {
                             'image_file'            : data['data'].image_file
                         });
                         this.unitCode$ = data['data'].unit_code;
-                        this.imgURL = 'http://localhost/test_web_new/API/public/ItemController/img/1';
+                        this.imgURL = 'http://localhost/test_web_new/API/public/ItemController/img/'+data['data'].item_code;
                     } else {
                         this.ServiceMessage.setError( data['message'] );
                         this.message = this.ServiceMessage.getMessage();

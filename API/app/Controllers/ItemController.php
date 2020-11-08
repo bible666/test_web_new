@@ -462,6 +462,13 @@ class ItemController extends Origin001
             if ( isset( $old_data ) ) {
                 $old_item_code = $old_data->item_code;
             }
+        } else {
+            $old_data = $this->mst_item->getWhere( ['item_code' => $old_item_code] )->getRow();
+            if ( $old_data->image_file != $image_file ) {
+                if ( file_exists (WRITEPATH.'/uploads/item/'.$old_data->image_file) ) {
+                    unlink(WRITEPATH.'/uploads/item/'.$old_data->image_file);
+                }
+            }
         }
 
         $insert_data = [];
@@ -672,8 +679,8 @@ class ItemController extends Origin001
     }
 
     public function img($item_code) {
-
-        $filepath = WRITEPATH.'/uploads/item/1604671597_0c0528245dcd1df62fc5.jpeg';
+        $item_data = $this->mst_item->getWhere( ['item_code' => $item_code, 'active_flag' => true] )->getRow();
+        $filepath = WRITEPATH.'/uploads/item/'.$item_data->image_file;
         if(file_exists($filepath)){ 
             $mime = mime_content_type($filepath); //<-- detect file type
             header('Content-Length: '.filesize($filepath)); //<-- sends filesize header
