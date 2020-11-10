@@ -5,6 +5,7 @@ import { cInput, ItemService } from '../../../service/item.service';
 import { ComboData } from '../../../service/combo.service';
 import { LoadingService } from '../../../service/loading.service';
 import { UploadService } from '../../../service/upload.service';
+import { UserService } from '../../../service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap, finalize,map } from 'rxjs/operators';
@@ -48,6 +49,7 @@ export class ItemEditComponent implements OnInit {
         private ServiceMessage: MessageService,
         private router: Router,
         private loading: LoadingService,
+        private userData        : UserService ,
         private upload: UploadService
     ) { 
 
@@ -55,6 +57,9 @@ export class ItemEditComponent implements OnInit {
 
     ngOnInit() {
         window.scroll(0,0);
+
+        this.userData.main_menu_selected = 8;
+        this.userData.sub_menu_selected  = 43;
         
         this.old_item_code    = this.param.snapshot.params.item_code;
 

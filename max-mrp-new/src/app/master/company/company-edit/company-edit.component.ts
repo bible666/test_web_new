@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService, MessageClass } from '../../../service/message.service';
 import { cInput, CompanyService } from '../../../service/company.service';
+import { UserService } from '../../../service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -36,11 +37,16 @@ export class CompanyEditComponent implements OnInit {
         private param           : ActivatedRoute,
         private Service         : CompanyService,
         private ServiceMessage  : MessageService,
+        private userData        : UserService ,
         private router          : Router
     ) { }
 
     ngOnInit() {
         window.scroll(0,0);
+        
+        this.userData.main_menu_selected = 8;
+        this.userData.sub_menu_selected  = 37;
+
         this.id   = this.param.snapshot.params.id;
 
         this.Service.getCalendar().subscribe(

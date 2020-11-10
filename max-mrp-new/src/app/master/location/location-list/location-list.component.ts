@@ -4,6 +4,7 @@ import { MessageService, MessageClass } from '../../../service/message.service';
 import { LocationService, cSearch, cData } from '../../../service/location.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared-common/confirm-dialog/confirm-dialog.component';
+import { UserService } from '../../../service/user.service';
 
 @Component( {
     selector    : 'app-location-list',
@@ -31,13 +32,17 @@ export class LocationListComponent implements OnInit {
     constructor(
         private service         : LocationService,
         public dialog           : MatDialog,
-        private messageService  : MessageService
+        private messageService  : MessageService,
+        private userData        : UserService
     ) {
         //set inital value when open form
         this.onInitValue();
     }
 
     ngOnInit() {
+        this.userData.main_menu_selected = 8;
+        this.userData.sub_menu_selected  = 39;
+
         window.scroll(0,0);
         this.onSearch();
     }

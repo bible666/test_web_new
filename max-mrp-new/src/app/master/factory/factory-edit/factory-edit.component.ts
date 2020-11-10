@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService, MessageClass } from '../../../service/message.service';
 import { cInput, FactoryService } from '../../../service/factory.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../../../service/user.service';
 
 @Component( {
     selector    : 'app-factory-edit',
@@ -40,10 +41,14 @@ export class FactoryEditComponent implements OnInit {
         private param           : ActivatedRoute,
         private Service         : FactoryService,
         private ServiceMessage  : MessageService,
+        private userData        : UserService,
         private router          : Router
     ) { }
 
     ngOnInit() {
+        this.userData.main_menu_selected = 8;
+        this.userData.sub_menu_selected  = 38;
+        
         window.scroll(0,0);
         this.old_company_code   = this.param.snapshot.params.company_code;
         this.old_factory_code   = this.param.snapshot.params.factory_code;

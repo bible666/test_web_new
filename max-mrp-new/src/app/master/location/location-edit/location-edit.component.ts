@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService, MessageClass } from '../../../service/message.service';
 import { cInput, LocationService } from '../../../service/location.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../../../service/user.service';
 
 @Component( {
     selector    : 'app-location-edit',
@@ -36,10 +37,14 @@ export class LocationEditComponent implements OnInit {
         private param           : ActivatedRoute,
         private Service         : LocationService,
         private ServiceMessage  : MessageService,
-        private router          : Router
+        private router          : Router,
+        private userData        : UserService
     ) { }
 
     ngOnInit() {
+        this.userData.main_menu_selected = 8;
+        this.userData.sub_menu_selected  = 39;
+        
         window.scroll(0,0);
 
         this.old_factory_code     = this.param.snapshot.params.factory_code;
