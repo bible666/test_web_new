@@ -1,8 +1,21 @@
+# .gitignore 
 max-mrp-new/public/*
-max-mrp-new/node_modules/*
+max-mrp-new/node_modules
 API/writable/debugbar/*
 API/writable/logs/*
-max-mrp-new/node_modules/.bin/ansi-html
 API/writable/uploads/*
-API/writable/debugbar/*
-API/writable/debugbar/debugbar_1597032614.json
+
+max-mrp-new/node_modules/@angular-devkit/
+max-mrp-new/node_modules/@angular-devkit/build-angular/*
+
+max-mrp-new/node_modules/worker-plugin/dist/*.js
+max-mrp-new/node_modules/worker-plugin/*.md
+max-mrp-new/node_modules/terser/dist/bundle.min.js.map
+max-mrp-new/node_modules/stylus/lib/lexer.js
+max-mrp-new/node_modules/regexpu-core/rewrite-pattern.js
+max-mrp-new/node_modules/parse5/LICENSE
+max-mrp-new/node_modules/parse5/lib/parser/open_element_stack.js
+max-mrp-new/node_modules/object-is/CHANGELOG.md
+max-mrp-new/node_modules/@angular-devkit/build-angular/*.json
+max-mrp-new/node_modules/@angular-devkit/build-angular/plugins/webpack/*.js
+max-mrp-new/node_modules/@angular-devkit/build-angular/src/extract-i18n/index.js

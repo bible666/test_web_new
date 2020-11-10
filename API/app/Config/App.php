@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://localhost/my_app/API/';
+	public $baseURL = 'http://localhost/test_web_new/test_web_new/API/';
 
 	/*
 	|--------------------------------------------------------------------------
