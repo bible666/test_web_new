@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-const BASE_URL = environment.api_url+'/FactoryController';
+const BASE_URL = environment.api_url + '/FactoryController';
 
 @Injectable({
     providedIn: 'root'
@@ -10,50 +10,65 @@ const BASE_URL = environment.api_url+'/FactoryController';
 export class FactoryService {
 
     httpOptions = {
-        headers: new HttpHeaders({
+        headers: new HttpHeaders ( {
         'Content-Type'  : 'application/json',
-        'Authorization' : localStorage.getItem('token')
-        })
+        'Authorization' : localStorage.getItem( 'token' )
+        } )
     };
+
+    private setAuth( ) {
+        this.httpOptions = {
+            headers: new HttpHeaders( {
+                'Content-Type'  : 'application/json',
+                'Authorization' : localStorage.getItem( 'token' )
+            } )
+        };
+    }
 
     constructor(
         private http:HttpClient
     ) { }
 
-    public getListData(search_data:cSearch){
-        let strJSON:string = JSON.stringify(search_data);
-        return this.http.post(BASE_URL+'/get_data_list',strJSON,this.httpOptions);
+    public getListData( search_data : cSearch ) {
+        this.setAuth( );
+        let strJSON:string = JSON.stringify( search_data );
+        return this.http.post( BASE_URL + '/get_data_list' , strJSON , this.httpOptions );
     }
 
-    public deleteById(company_code:string,factory_code:string){
-        let inputData = new cInput();
+    public deleteById( company_code : string , factory_code : string ) {
+        this.setAuth( );
+        let inputData = new cInput( );
         inputData.company_code = company_code;
-        inputData.factory_code = factory_code;console.log(inputData);
-        let strJSON:string  = JSON.stringify(inputData);
-        return this.http.post(BASE_URL+'/delete_data_by_id',strJSON,this.httpOptions);
+        inputData.factory_code = factory_code;
+        let strJSON:string  = JSON.stringify( inputData );
+        return this.http.post( BASE_URL + '/delete_data_by_id' , strJSON , this.httpOptions );
     }
 
-    public getDataById(company_code:string,factory_code:string){
-        let inputData = new cInput();
+    public getDataById( company_code : string , factory_code : string ) {
+        this.setAuth( );
+        let inputData = new cInput( );
         inputData.company_code = company_code;
-        inputData.factory_code           = factory_code;
-        let strJSON:string  = JSON.stringify(inputData);
-        return this.http.post(BASE_URL+'/get_data_by_id',strJSON,this.httpOptions);
+        inputData.factory_code = factory_code;
+        let strJSON:string  = JSON.stringify( inputData );
+        return this.http.post( BASE_URL + '/get_data_by_id' , strJSON , this.httpOptions );
     }
 
-    public updateById(inputData:cInput){
-        let strJSON:string  = JSON.stringify(inputData);
-        return this.http.post(BASE_URL+'/update_data',strJSON,this.httpOptions);
+    public updateById( inputData : cInput ) {
+        this.setAuth( );
+        let strJSON:string  = JSON.stringify( inputData );
+        return this.http.post( BASE_URL + '/update_data' , strJSON , this.httpOptions );
     }
 
-    public getCalendar(){
+    public getCalendar( ) {
+        this.setAuth( );
         let strJSON:string  = '';
-        return this.http.post(BASE_URL+'/get_calendar',strJSON,this.httpOptions);
+        return this.http.post( BASE_URL + '/get_calendar' , strJSON , this.httpOptions );
     }
 
-    public getCompany(){
+    public getCompany( ) {
+        this.setAuth( );
         let strJSON:string  = '';
-        return this.http.post(BASE_URL+'/get_company',strJSON,this.httpOptions);
+        return this.http.post( BASE_URL + '/get_company' , strJSON , this.httpOptions );
     }
 }
 

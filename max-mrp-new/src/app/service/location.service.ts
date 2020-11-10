@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-const BASE_URL = environment.api_url+'/LocationController';
+const BASE_URL = environment.api_url + '/LocationController';
 
 @Injectable({
   providedIn: 'root'
