@@ -9,6 +9,8 @@ import { LocationEditComponent } from './location/location-edit/location-edit.co
 import { LocationListComponent } from './location/location-list/location-list.component';
 import { ItemListComponent } from './item/item-list/item-list.component';
 import { ItemEditComponent } from './item/item-edit/item-edit.component';
+import { UnitListComponent } from './unit/unit-list/unit-list.component';
+import { UnitEditComponent } from './unit/unit-edit/unit-edit.component';
 
 
 const routes: Routes = [
@@ -19,7 +21,9 @@ const routes: Routes = [
     { path: 'location' ,                                    component: LocationListComponent },
     { path: 'location/edit/:factory_code/:location_code' ,  component: LocationEditComponent },
     { path: 'item' ,                                        component: ItemListComponent },
-    { path: 'item/edit/:item_code',                         component: ItemEditComponent }
+    { path: 'item/edit/:item_code',                         component: ItemEditComponent },
+    { path: 'unit' ,                                        component: UnitListComponent },
+    { path: 'unit/edit/:unit_code',                         component: UnitEditComponent }
 ];
 
 @NgModule({

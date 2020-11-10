@@ -13,10 +13,23 @@ import { LocationListComponent } from './location/location-list/location-list.co
 import { LocationEditComponent } from './location/location-edit/location-edit.component';
 import { ItemListComponent } from './item/item-list/item-list.component';
 import { ItemEditComponent } from './item/item-edit/item-edit.component';
+import { UnitListComponent } from './unit/unit-list/unit-list.component';
+import { UnitEditComponent } from './unit/unit-edit/unit-edit.component';
 
 
 @NgModule({
-    declarations: [CompanyListComponent, CompanyEditComponent, FactoryListComponent, FactoryEditComponent, LocationListComponent, LocationEditComponent, ItemListComponent, ItemEditComponent],
+    declarations: [
+        CompanyListComponent,
+        CompanyEditComponent,
+        FactoryListComponent,
+        FactoryEditComponent,
+        LocationListComponent,
+        LocationEditComponent,
+        ItemListComponent,
+        ItemEditComponent,
+        UnitListComponent,
+        UnitEditComponent
+    ],
     imports: [
         CommonModule,
         MasterRoutingModule,
