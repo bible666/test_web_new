@@ -27,13 +27,29 @@ export class UserService {
 
     Menu_Data: MenuNode[] = [];
     public menu_datas;
-    public main_menu_selected : number = -1;
-    public sub_menu_selected  : number = -1;
     public is_Collapse        : boolean = false;
     public main_menu_open     : string[] = [''];
 
     private MenuDataSource = new BehaviorSubject(this.Menu_Data);
     currentMenuDataSource = this.MenuDataSource.asObservable();
+
+    get main_menu_selected() : number {
+        return +sessionStorage.getItem('main_menu_selected');//this._main_menu_selected;
+    }
+
+    set main_menu_selected(value : number) {
+        sessionStorage.setItem('main_menu_selected', value.toString());
+        //this._main_menu_selected = value;
+    }
+
+    get sub_menu_selected() : number {
+        return +sessionStorage.getItem('sub_menu_selected');//this._main_menu_selected;
+    }
+
+    set sub_menu_selected(value : number) {
+        sessionStorage.setItem('sub_menu_selected', value.toString());
+        //this._main_menu_selected = value;
+    }
 
     constructor(
         private http:HttpClient
