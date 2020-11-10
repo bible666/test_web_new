@@ -1,1 +1,69 @@
-<p>unit-edit works!</p>
+<div class="content-wrapper">
+    <show-message [message]="message"></show-message>
+        <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">ข้อมูลหน่วยวัตถุดิบ(แก้ไข)</h1>
+                    
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a routerLink ="/master/location">ข้อมูลหน่วยวัตถุดิบ</a></li>
+                        <li class="breadcrumb-item active">แก้ไข</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <form [formGroup]="inputForm" (ngSubmit)="onSubmit()" >
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>รหัสหน่วยวัตถุดิบ</label>
+                                <input type="text" [ngClass]="inputForm.controls['unit_code'].invalid?'form-control is-invalid': 'form-control'" formControlName="unit_code" placeholder="กรุณาใส่รหัสพื้นที่เก็บของ">
+                                <div *ngIf="inputForm.controls['unit_code'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['unit_code'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                    <span class="help" *ngIf="inputForm.controls['unit_code'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <label>ชื่อหน่วยวัตถุดิบ</label>
+                                <input type="text" [ngClass]="inputForm.controls['unit_name'].invalid?'form-control is-invalid': 'form-control'" formControlName="unit_name" placeholder="กรุณาใส่ชื่อพื้นที่เก็บของ">
+                                <div *ngIf="inputForm.controls['unit_name'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['unit_name'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                    <span class="help" *ngIf="inputForm.controls['unit_name'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>หมายเหตุ</label>
+                                <textarea class="form-control" rows="3" formControlName="remark"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="card-footer">
+                    <a [routerLink]="['/master/unit']" class="btn btn-info">กลับ</a>
+                    <button type="submit" class="btn btn-primary float-right">ยืนยัน</button>
+                </div>
+            </form>
+        </div>
+        
+    </section>
+    <!-- /.content -->
+
+</div>
+
