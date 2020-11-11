@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-const BASE_URL = environment.api_url + '/LocationController';
+const BASE_URL = environment.api_url + '/staffController';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn : 'root'
 })
-export class LocationService {
+export class StaffService {
 
     httpOptions = {
         headers: new HttpHeaders({
@@ -25,7 +25,7 @@ export class LocationService {
         };
     }
 
-    constructor (
+    constructor(
         private http : HttpClient
     ) { }
 
@@ -35,23 +35,21 @@ export class LocationService {
         return this.http.post( BASE_URL + '/get_data_list' , strJSON , this.httpOptions );
     }
 
-    public deleteById( factory_code : string , location_code : string ) {
+    public deleteById( staff_code : string ) {
         this.setAuth();
 
         let inputData = new cInput();
         
-        inputData.factory_code  = factory_code;
-        inputData.location_code = location_code;
+        inputData.staff_code  = staff_code;
         let strJSON : string    = JSON.stringify( inputData );
         return this.http.post( BASE_URL + '/delete_data_by_id' , strJSON , this.httpOptions );
     }
 
-    public getDataById( factory_code : string , location_code : string ) {
+    public getDataById( staff_code : string ) {
         this.setAuth();
 
         let inputData = new cInput();
-        inputData.factory_code      = factory_code;
-        inputData.location_code     = location_code;
+        inputData.staff_code      = staff_code;
         let strJSON : string        = JSON.stringify( inputData );
         return this.http.post( BASE_URL + '/get_data_by_id' , strJSON , this.httpOptions );
     }
@@ -62,25 +60,15 @@ export class LocationService {
         return this.http.post( BASE_URL + '/update_data' , strJSON , this.httpOptions );
     }
 
-    public getFactory() {
-        this.setAuth();
-
-        let strJSON : string  = '';
-        return this.http.post( BASE_URL + '/get_factory' , strJSON , this.httpOptions );
-    }
 }
-
 
 export class cSearch {
     page_index    :number;
     rowsPerpage   :number;
 
     //manual search condition
-    factory_code   : string;
-    location_code  : string;
-    location_name  : string;
-    mrp_flag       : boolean;
-    expire_flag    : boolean;
+    staff_code   : string;
+    staff_name  : string;
 
     public constructor( init? : Partial< cSearch >) {
         Object.assign( this , init );
@@ -88,25 +76,16 @@ export class cSearch {
 }
 
 export class cData {
-    factory_code  : string;
-    location_code : string;
-    location_name : string;
-    mrp_flag      : boolean;
-    expire_flag   : boolean;
+    staff_code    : string;
+    staff_name    : string;
     remark        : string;
 }
 
 export class cInput {
-    token         : string;
-    old_factory   : string;
-    old_location  : string;
-
-    factory_code  : string;
-    location_code : string;
-    location_name : string;
-    mrp_flag      : boolean;
-    expire_flag   : boolean;
-    remark        : string;
+    old_staff_code : string;
+    staff_code     : string;
+    staff_name     : string;
+    remark         : string;
 
     public constructor( init? : Partial< cInput >) {
         Object.assign( this , init );

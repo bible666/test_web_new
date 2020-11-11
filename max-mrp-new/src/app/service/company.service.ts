@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-const BASE_URL = environment.api_url+'/CompanyController';
+const BASE_URL = environment.api_url + '/CompanyController';
 
-@Injectable({
-  providedIn: 'root'
+@Injectable( {
+  providedIn : 'root'
 })
 export class CompanyService {
 
@@ -32,8 +32,8 @@ export class CompanyService {
     public getListData( search_data : cSearch ) {
         this.setAuth();
 
-        let strJSON : string = JSON.stringify(search_data);
-        return this.http.post( BASE_URL+'/get_data_list' , strJSON , this.httpOptions );
+        let strJSON : string = JSON.stringify( search_data );
+        return this.http.post( BASE_URL + '/get_data_list' , strJSON , this.httpOptions );
     }
 
     public deleteById( id : string ) {
@@ -43,7 +43,7 @@ export class CompanyService {
         inputData.company_code = id;
         let strJSON:string     = JSON.stringify( inputData );
 
-        return this.http.post( BASE_URL+'/delete_data_by_id' , strJSON , this.httpOptions );
+        return this.http.post( BASE_URL + '/delete_data_by_id' , strJSON , this.httpOptions );
     }
 
     public getDataById( id : string ) {
@@ -54,21 +54,21 @@ export class CompanyService {
         inputData.id           = id;
         let strJSON:string     = JSON.stringify( inputData );
 
-        return this.http.post( BASE_URL+'/get_data_by_id' , strJSON , this.httpOptions );
+        return this.http.post( BASE_URL + '/get_data_by_id' , strJSON , this.httpOptions );
     }
 
     public updateById( inputData:cInput ) {
         this.setAuth();
 
-        let strJSON:string  = JSON.stringify(inputData);
-        return this.http.post( BASE_URL+'/update_data' , strJSON , this.httpOptions );
+        let strJSON:string  = JSON.stringify( inputData );
+        return this.http.post( BASE_URL + '/update_data' , strJSON , this.httpOptions );
     }
 
     public getCalendar() {
         this.setAuth();
 
         let strJSON:string  = '';
-        return this.http.post( BASE_URL+'/get_calendar' , strJSON , this.httpOptions );
+        return this.http.post( BASE_URL + '/get_calendar' , strJSON , this.httpOptions );
     }
 }
 

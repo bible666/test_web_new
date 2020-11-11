@@ -4,19 +4,19 @@ import { environment } from '../../environments/environment';
 
 const BASE_URL = environment.api_url + '/FactoryController';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable( {
+    providedIn : 'root'
+} )
 export class FactoryService {
 
     httpOptions = {
         headers: new HttpHeaders ( {
-        'Content-Type'  : 'application/json',
-        'Authorization' : localStorage.getItem( 'token' )
+            'Content-Type'  : 'application/json',
+            'Authorization' : localStorage.getItem( 'token' )
         } )
     };
 
-    private setAuth( ) {
+    private setAuth() {
         this.httpOptions = {
             headers: new HttpHeaders( {
                 'Content-Type'  : 'application/json',
@@ -30,13 +30,13 @@ export class FactoryService {
     ) { }
 
     public getListData( search_data : cSearch ) {
-        this.setAuth( );
+        this.setAuth();
         let strJSON:string = JSON.stringify( search_data );
         return this.http.post( BASE_URL + '/get_data_list' , strJSON , this.httpOptions );
     }
 
     public deleteById( company_code : string , factory_code : string ) {
-        this.setAuth( );
+        this.setAuth();
         let inputData = new cInput( );
         inputData.company_code = company_code;
         inputData.factory_code = factory_code;
@@ -45,7 +45,7 @@ export class FactoryService {
     }
 
     public getDataById( company_code : string , factory_code : string ) {
-        this.setAuth( );
+        this.setAuth();
         let inputData = new cInput( );
         inputData.company_code = company_code;
         inputData.factory_code = factory_code;
@@ -54,19 +54,19 @@ export class FactoryService {
     }
 
     public updateById( inputData : cInput ) {
-        this.setAuth( );
+        this.setAuth();
         let strJSON:string  = JSON.stringify( inputData );
         return this.http.post( BASE_URL + '/update_data' , strJSON , this.httpOptions );
     }
 
-    public getCalendar( ) {
-        this.setAuth( );
+    public getCalendar() {
+        this.setAuth();
         let strJSON:string  = '';
         return this.http.post( BASE_URL + '/get_calendar' , strJSON , this.httpOptions );
     }
 
-    public getCompany( ) {
-        this.setAuth( );
+    public getCompany() {
+        this.setAuth();
         let strJSON:string  = '';
         return this.http.post( BASE_URL + '/get_company' , strJSON , this.httpOptions );
     }
@@ -74,7 +74,7 @@ export class FactoryService {
 
 
 export class cSearch{
-    page_index  :number;
+    page_index    :number;
     rowsPerpage   :number;
 
     //manual search condition
@@ -85,8 +85,8 @@ export class cSearch{
     telno          : string;
     remark         : string;
 
-    public constructor(init?: Partial<cSearch>){
-        Object.assign(this,init);
+    public constructor( init? : Partial< cSearch > ) {
+        Object.assign( this , init );
     }
 }
 
@@ -122,7 +122,7 @@ export class cInput{
     cal_no        : number;
     remark        : string;
 
-    public constructor(init?: Partial<cInput>){
-        Object.assign(this,init);
+    public constructor( init? : Partial< cInput > ) {
+        Object.assign( this , init );
     }
 }
