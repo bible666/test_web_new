@@ -49,7 +49,7 @@ class Migration_sys_menu_data extends \CodeIgniter\Database\Migration {
 		(8,'S','บริษัท','บริษัท','/master/company',1,''),
 		(8,'S','โรงงาน','โรงงาน','/master/factory',2,''),
 		(8,'S','พื้นที่จัดเก็บ','พื้นที่จัดเก็บ','/master/location/list',3,''),
-		(8,'S','สกุลเงิน','สกุลเงิน','/currency/list',4,''),
+		(8,'S','สกุลเงิน','สกุลเงิน','/master/currency',4,''),
 		(8,'S','หน่วยวัตถุดิบ','หน่วยวัตถุดิบ','/master/unit',5,''),
 		(8,'S','ปฏิทิน','ปฏิทิน','/calendar/list',6,''),
 		(8,'S','วัตถุดิบ','วัตถุดิบ','/master/item',1,''),

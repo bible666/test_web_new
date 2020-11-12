@@ -65,7 +65,7 @@ export class cSearch{
 
     //manual search condition
     currency_code   :string;
-    description     :string;
+    currency_name   :string;
 
     public constructor( init? : Partial< cSearch > ){
         Object.assign( this , init );
@@ -73,15 +73,14 @@ export class cSearch{
 }
 
 export class cData{
-    currency_code : string;
-    description   : string;
+    currency_code   : string;
+    currency_name   : string;
 }
 
 export class cInput{
     token         : string;
     id            : string;
 
-    currency_id       : string;
     currency_code     : string;
     currency_name     : string;
     default_currency  : boolean;

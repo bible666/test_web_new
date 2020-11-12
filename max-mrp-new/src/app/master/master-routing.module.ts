@@ -11,6 +11,8 @@ import { ItemListComponent } from './item/item-list/item-list.component';
 import { ItemEditComponent } from './item/item-edit/item-edit.component';
 import { UnitListComponent } from './unit/unit-list/unit-list.component';
 import { UnitEditComponent } from './unit/unit-edit/unit-edit.component';
+import { CurrencyListComponent } from './currency/currency-list/currency-list.component';
+import { CurrencyEditComponent } from './currency/currency-edit/currency-edit.component';
 
 
 const routes: Routes = [
@@ -23,7 +25,9 @@ const routes: Routes = [
     { path: 'item' ,                                        component: ItemListComponent },
     { path: 'item/edit/:item_code',                         component: ItemEditComponent },
     { path: 'unit' ,                                        component: UnitListComponent },
-    { path: 'unit/edit/:unit_code',                         component: UnitEditComponent }
+    { path: 'unit/edit/:unit_code',                         component: UnitEditComponent },
+    { path: 'currency' ,                                    component: CurrencyListComponent },
+    { path: 'currenct/edit/:currency_code',                 component: CurrencyEditComponent }
 ];
 
 @NgModule({
