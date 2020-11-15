@@ -27,7 +27,7 @@ const routes: Routes = [
     { path: 'unit' ,                                        component: UnitListComponent },
     { path: 'unit/edit/:unit_code',                         component: UnitEditComponent },
     { path: 'currency' ,                                    component: CurrencyListComponent },
-    { path: 'currenct/edit/:currency_code',                 component: CurrencyEditComponent }
+    { path: 'currency/edit/:currency_code',                 component: CurrencyEditComponent }
 ];
 
 @NgModule({

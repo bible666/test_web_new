@@ -81,6 +81,7 @@ export class cInput{
     token         : string;
     id            : string;
 
+    old_currency_code : string;
     currency_code     : string;
     currency_name     : string;
     default_currency  : boolean;

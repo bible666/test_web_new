@@ -260,11 +260,11 @@ class CurrencyController extends Origin001
         $data  = $this->request->getJSON();
 
         //init data
-        $id               = isset( $data->id ) ? $data->id : -1;
-        $currency_code    = isset( $data->currency_code ) ? trim( $data->currency_code ) : '';
-        $currency_name    = isset( $data->currency_name ) ? trim( $data->currency_name ) : '';
-        $default_currency = isset( $data->default_currency ) ? $data->default_currency : false;
-        $remark           = isset( $data->remark ) ? trim( $data->remark ) : '';
+        $old_currency_code = isset( $data->old_currency_code ) ? $data->old_currency_code : -1;
+        $currency_code     = isset( $data->currency_code ) ? trim( $data->currency_code ) : '';
+        $currency_name     = isset( $data->currency_name ) ? trim( $data->currency_name ) : '';
+        $default_currency  = isset( $data->default_currency ) ? $data->default_currency : false;
+        $remark            = isset( $data->remark ) ? trim( $data->remark ) : '';
 
         //Validation Data
 
@@ -295,57 +295,32 @@ class CurrencyController extends Origin001
             return $this->respond( $dataDB, TOKEN_NOT_FOUND );
         }
 
-        if ( $result->user_id > 0 ) {
+        if ( $this->chk_currency_code( $currency_code, $old_currency_code ) ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = "รหัสนี้มีการใช้งานแล้ว";
+            $dataDB['data']    = "";
 
-            if ( $this->chk_currency_code( $result->company_id, $currency_code, $id ) ) {
-                $dataDB['status']  = "error";
-                $dataDB['message'] = "รหัสนี้มีการใช้งานแล้ว";
-                $dataDB['data']    = "";
+            return $this->respond( $dataDB, 200 );
 
-                return $this->respond( $dataDB, 200 );
+        }
 
-            }
+        $insert_data = [];
 
-            $insert_data = [];
+        //set data to array for add or update
+        $insert_data['currency_code']    = $currency_code;
+        $insert_data['currency_name']    = $currency_name;
+        $insert_data['default_currency'] = $default_currency;
+        $insert_data['active_flag']      = true;
+        $insert_data['remark']           = $remark;
 
-            //$insert_data['m_company_id']    = $result->company_id;
+        $this->db->transStart();
 
-            //set data to array for add or update
-            $insert_data['currency_code']    = $currency_code;
-            $insert_data['currency_name']    = $currency_name;
-            $insert_data['default_currency'] = $default_currency;
-            $insert_data['active_flag']      = true;
-            $insert_data['remark']           = $remark;
+        if ( $default_currency == true ) {
+            $update_data['update_date']      = date( "Y-m-d H:i:s" );
+            $update_data['update_user']      = $result->user_id;
+            $update_data['default_currency'] = false;
 
-            $this->db->transStart();
-
-            if ( $default_currency == true ) {
-                $update_data['update_date']      = date( "Y-m-d H:i:s" );
-                $update_data['update_user']      = $result->user_id;
-                $update_data['default_currency'] = false;
-
-                $this->mst_currency->update( $update_data );
-
-                if ( $this->db->error()['message'] !== '' ) {
-                    $dataDB['status']  = "error";
-                    $dataDB['message'] = $this->db->error()['message'];
-                    $dataDB['data']    = "";
-
-                    return $this->respond( $dataDB, 200 );
-                }
-            }
-            if ( $id == '-1' ) {
-                $insert_data['create_date'] = date( "Y-m-d H:i:s" );
-                $insert_data['create_user'] = $result->user_id;
-
-                $this->mst_currency->insert( $insert_data );
-            } else {
-                $insert_data['update_date'] = date( "Y-m-d H:i:s" );
-                $insert_data['update_user'] = $result->user_id;
-
-                $this->mst_currency->where( 'currency_code', $id );
-                $this->mst_currency->update( $insert_data );
-            }
+            $this->mst_currency->update( $update_data );
 
             if ( $this->db->error()['message'] !== '' ) {
                 $dataDB['status']  = "error";
@@ -354,17 +329,35 @@ class CurrencyController extends Origin001
 
                 return $this->respond( $dataDB, 200 );
             }
-
-            $this->db->transComplete();
-
-            $dataDB['status']  = "success";
-            $dataDB['message'] = "";
-            $dataDB['data']    = $insert_data;
-        } else {
-            $dataDB['status']  = "error";
-            $dataDB['message'] = "token not found";
-            $dataDB['data']    = "";
         }
+
+        if ( $old_currency_code == '-1' ) {
+            $insert_data['create_date'] = date( "Y-m-d H:i:s" );
+            $insert_data['create_user'] = $result->user_id;
+
+            $this->mst_currency->insert( $insert_data );
+        } else {
+            $insert_data['update_date'] = date( "Y-m-d H:i:s" );
+            $insert_data['update_user'] = $result->user_id;
+
+            $this->mst_currency->where( 'currency_code', $old_currency_code );
+            $this->mst_currency->update( $insert_data );
+        }
+
+        if ( $this->db->error()['message'] !== '' ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, 200 );
+        }
+
+        $this->db->transComplete();
+
+        $dataDB['status']  = "success";
+        $dataDB['message'] = "";
+        $dataDB['data']    = $insert_data;
+
 
         return $this->respond( $dataDB, 200 );
     }
@@ -385,11 +378,11 @@ class CurrencyController extends Origin001
             return false; // OK data
         }
 
-        $currency_data = $this->mst_currency->get_where( [
+        $currency_data = $this->mst_currency->getWhere( [
             'currency_code' => $currency_code,
             'active_flag'   => true,
         ] )->getRow();
-
+        
         if ( isset( $currency_data ) ) {
 
         } else {
