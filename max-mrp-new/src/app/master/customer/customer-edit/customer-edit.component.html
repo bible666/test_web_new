@@ -1,1 +1,156 @@
-<p>customer-edit works!</p>
+<div class="content-wrapper">
+    <show-message [message]="message"></show-message>
+        <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">ข้อมูลลูกค้า(แก้ไข)</h1>
+                    
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a routerLink ="/master/customer">ข้อมูลลูกค้า</a></li>
+                        <li class="breadcrumb-item active">แก้ไข</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <form [formGroup]="inputForm" (ngSubmit)="onSubmit()" >
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label>รหัสลูกค้า/label>
+                                <input type="text" [ngClass]="inputForm.controls['customerCode'].invalid?'form-control is-invalid': 'form-control'" formControlName="customerCode" placeholder="กรุณาใส่รหัส">
+                                <div *ngIf="inputForm.controls['customerCode'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['customerCode'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                    <span class="help" *ngIf="inputForm.controls['customerCode'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <label>ชื่อลูกค้า</label>
+                                <input type="text" [ngClass]="inputForm.controls['customerName'].invalid?'form-control is-invalid': 'form-control'" formControlName="customerName" placeholder="กรุณาใส่ชื่อ">
+                                <div *ngIf="inputForm.controls['customerName'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['customerName'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                    <span class="help" *ngIf="inputForm.controls['customerName'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>ที่อยู่</label>
+                                <textarea class="form-control" rows="3" formControlName="address"></textarea>
+                                <div *ngIf="inputForm.controls['address'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['address'].hasError('maxlength')">ใส่ได้ไม่เกิน 200 ตัวอักษร</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>รหัสไปรษณีย์</label>
+                                <input type="text" class="form-control" formControlName="postCode">
+                                <div *ngIf="inputForm.controls['postCode'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['postCode'].hasError('maxlength')">ใส่ได้ไม่เกิน 10 ตัวอักษร</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>เบอร์โทร</label>
+                                <input type="text" class="form-control" formControlName="telNo">
+                                <div *ngIf="inputForm.controls['telNo'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['telNo'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>FAX</label>
+                                <input type="text" class="form-control" formControlName="faxNo">
+                                <div *ngIf="inputForm.controls['faxNo'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['faxNo'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>E-Mail</label>
+                                <input type="text" class="form-control" formControlName="e_mail">
+                                <div *ngIf="inputForm.controls['e_mail'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['e_mail'].hasError('maxlength')">ใส่ได้ไม่เกิน 100 ตัวอักษร</span>
+                                    <mat-error *ngIf="inputForm.controls['e_mail'].hasError('email')">ใส่ Email ไม่ถูกต้อง</mat-error>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>ชื่อคนติดต่อ</label>
+                                <input type="text" class="form-control" formControlName="contact">
+                                <div *ngIf="inputForm.controls['contact'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['contact'].hasError('maxlength')">ใส่ได้ไม่เกิน 100 ตัวอักษร</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>ระยะเวลาขนส่ง</label>
+                                <input type="text" class="form-control" formControlName="deliveryTime">
+                                <div *ngIf="inputForm.controls['deliveryTime'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['deliveryTime'].hasError('max')">ห้ามใส่ค่าเกิน 999</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>เลขที่ภาษี</label>
+                                <input type="text" class="form-control" formControlName="tax_id">
+                                <div *ngIf="inputForm.controls['tax_id'].hasError">
+                                    <span class="help" *ngIf="inputForm.tax_id['contact'].hasError('maxlength')">ใส่ได้ไม่เกิน 20 ตัวอักษร</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>รายละเอียดการจ่ายเงิน</label>
+                                <input type="text" class="form-control" formControlName="paymentTearm">
+                                <div *ngIf="inputForm.controls['paymentTearm'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['paymentTearm'].hasError('maxlength')">ใส่ได้ไม่เกิน 200 ตัวอักษร</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>หมายเหตุ</label>
+                                <textarea class="form-control" rows="3" formControlName="remark"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="card-footer">
+                    <a [routerLink]="['/master/customer']" class="btn btn-info">กลับ</a>
+                    <button type="submit" class="btn btn-primary float-right">ยืนยัน</button>
+                </div>
+            </form>
+        </div>
+        
+    </section>
+    <!-- /.content -->
+
+</div>
+

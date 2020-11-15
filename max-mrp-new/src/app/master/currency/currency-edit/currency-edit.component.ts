@@ -91,7 +91,7 @@ export class CurrencyEditComponent implements OnInit {
 
         let input_data	: cInput = new cInput(this.inputForm.value);
         input_data.old_currency_code = this.old_currency_code;
-console.log(input_data);
+
         //upload image
 
         this.Service.updateById(input_data)

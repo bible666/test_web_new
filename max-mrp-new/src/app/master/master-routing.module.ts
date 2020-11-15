@@ -13,6 +13,8 @@ import { UnitListComponent } from './unit/unit-list/unit-list.component';
 import { UnitEditComponent } from './unit/unit-edit/unit-edit.component';
 import { CurrencyListComponent } from './currency/currency-list/currency-list.component';
 import { CurrencyEditComponent } from './currency/currency-edit/currency-edit.component';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
+import { CustomerEditComponent } from './customer/customer-edit/customer-edit.component';
 
 
 const routes: Routes = [
@@ -27,7 +29,9 @@ const routes: Routes = [
     { path: 'unit' ,                                        component: UnitListComponent },
     { path: 'unit/edit/:unit_code',                         component: UnitEditComponent },
     { path: 'currency' ,                                    component: CurrencyListComponent },
-    { path: 'currency/edit/:currency_code',                 component: CurrencyEditComponent }
+    { path: 'currency/edit/:currency_code',                 component: CurrencyEditComponent },
+    { path: 'customer' ,                                    component: CustomerListComponent },
+    { path: 'customer/edit/:currencyCode',                  component: CustomerEditComponent }
 ];
 
 @NgModule({
