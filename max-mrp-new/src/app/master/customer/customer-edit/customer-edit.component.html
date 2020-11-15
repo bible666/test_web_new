@@ -28,8 +28,8 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-4">
-                                <label>รหัสลูกค้า/label>
-                                <input type="text" [ngClass]="inputForm.controls['customerCode'].invalid?'form-control is-invalid': 'form-control'" formControlName="customerCode" placeholder="กรุณาใส่รหัส">
+                                <label>รหัสลูกค้า</label>
+                                <input type="text" [ngClass]="inputForm.controls['customerCode'].invalid?'form-control is-invalid': 'form-control'" formControlName="customerCode" placeholder="กรุณาใส่รหัส"/>
                                 <div *ngIf="inputForm.controls['customerCode'].hasError">
                                     <span class="help" *ngIf="inputForm.controls['customerCode'].hasError('required')">กรุณาใส่ข้อมูล</span>
                                     <span class="help" *ngIf="inputForm.controls['customerCode'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <label>ชื่อลูกค้า</label>
-                                <input type="text" [ngClass]="inputForm.controls['customerName'].invalid?'form-control is-invalid': 'form-control'" formControlName="customerName" placeholder="กรุณาใส่ชื่อ">
+                                <input type="text" [ngClass]="inputForm.controls['customerName'].invalid?'form-control is-invalid': 'form-control'" formControlName="customerName" placeholder="กรุณาใส่ชื่อ"/>
                                 <div *ngIf="inputForm.controls['customerName'].hasError">
                                     <span class="help" *ngIf="inputForm.controls['customerName'].hasError('required')">กรุณาใส่ข้อมูล</span>
                                     <span class="help" *ngIf="inputForm.controls['customerName'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
@@ -117,7 +117,7 @@
                                 <label>เลขที่ภาษี</label>
                                 <input type="text" class="form-control" formControlName="tax_id">
                                 <div *ngIf="inputForm.controls['tax_id'].hasError">
-                                    <span class="help" *ngIf="inputForm.tax_id['contact'].hasError('maxlength')">ใส่ได้ไม่เกิน 20 ตัวอักษร</span>
+                                    <span class="help" *ngIf="inputForm.controls['tax_id'].hasError('maxlength')">ใส่ได้ไม่เกิน 20 ตัวอักษร</span>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="card-footer">
                     <a [routerLink]="['/master/customer']" class="btn btn-info">กลับ</a>
                     <button type="submit" class="btn btn-primary float-right">ยืนยัน</button>
