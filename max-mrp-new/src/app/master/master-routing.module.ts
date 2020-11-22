@@ -31,7 +31,7 @@ const routes: Routes = [
     { path: 'currency' ,                                    component: CurrencyListComponent },
     { path: 'currency/edit/:currency_code',                 component: CurrencyEditComponent },
     { path: 'customer' ,                                    component: CustomerListComponent },
-    { path: 'customer/edit/:currencyCode',                  component: CustomerEditComponent }
+    { path: 'customer/edit/:customerCode',                  component: CustomerEditComponent }
 ];
 
 @NgModule({

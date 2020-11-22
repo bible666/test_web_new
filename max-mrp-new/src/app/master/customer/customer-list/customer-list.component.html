@@ -112,7 +112,7 @@
                                         <tbody>
                                             <tr *ngFor="let gridData of gridDatas">
                                                 <td>
-                                                    <a [routerLink]="['/master/customer/edit',gridData.currency_code]" class="btn btn-primary btn-sm" >
+                                                    <a [routerLink]="['/master/customer/edit',gridData.customer_code]" class="btn btn-primary btn-sm" >
                                                         <i class="far fa-edit"></i> แก้ไข
                                                     </a>
                                                     <a (click)="onDelete(gridData.customer_code)" class="btn btn-danger btn-sm">

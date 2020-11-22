@@ -98,39 +98,27 @@ class CustomerController extends Origin001
             return $this->respond( $dataDB, TOKEN_NOT_FOUND );
         }
 
-        if ( $result->user_id > 0 ) {
-            $query_str = "
-            SELECT *
-            FROM mst_customer
-            WHERE customer_code = :customer_code:
-                AND active_flag = true
-            ";
 
-            $db_data = $this->db->query( $query_str, ['customer_code' => $customer_code] )->getRow();
+        $query_str = "
+        SELECT *
+        FROM mst_customer
+        WHERE customer_code = :customer_code:
+            AND active_flag = true
+        ";
 
-            if ( $this->db->error()['message'] !== '' ) {
-                $dataDB['status']  = "error";
-                $dataDB['message'] = $this->db->error()['message'];
-                $dataDB['data']    = "";
+        $db_data = $this->db->query( $query_str, ['customer_code' => $customer_code] )->getRow();
 
-                return $this->respond( $dataDB, 200 );
-            }
-
-            if ( isset( $db_data ) ) {
-                $dataDB['status']  = "success";
-                $dataDB['message'] = $query_str;
-                $dataDB['data']    = $db_data;
-            } else {
-                $dataDB['status']  = "error";
-                $dataDB['message'] = "data not found";
-                $dataDB['data']    = "";
-            }
-
-        } else {
+        if ( $this->db->error()['message'] !== '' ) {
             $dataDB['status']  = "error";
-            $dataDB['message'] = "token not found";
+            $dataDB['message'] = $this->db->error()['message'];
             $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, 200 );
         }
+
+        $dataDB['status']  = "success";
+        $dataDB['message'] = $query_str;
+        $dataDB['data']    = $db_data;
 
         return $this->respond( $dataDB, 200 );
     }
@@ -269,15 +257,15 @@ class CustomerController extends Origin001
         //init data
         $old_customer_code = isset( $data->old_customer_code ) ? $data->old_customer_code : -1;
 
-        $customer_code = isset( $data->customer_code ) ? trim( $data->customer_code ) : '';
-        $customer_name = isset( $data->customer_name ) ? trim( $data->customer_name ) : '';
+        $customer_code = isset( $data->customerCode ) ? trim( $data->customerCode ) : '';
+        $customer_name = isset( $data->customerName ) ? trim( $data->customerName ) : '';
         $address       = isset( $data->address ) ? trim( $data->address ) : '';
-        $post_code     = isset( $data->post_code ) ? trim( $data->post_code ) : '';
-        $tel_no        = isset( $data->tel_no ) ? trim( $data->tel_no ) : '';
-        $fax_no        = isset( $data->fax_no ) ? trim( $data->fax_no ) : '';
+        $post_code     = isset( $data->postCode ) ? trim( $data->postCode ) : '';
+        $tel_no        = isset( $data->telNo ) ? trim( $data->telNo ) : '';
+        $fax_no        = isset( $data->faxNo ) ? trim( $data->faxNo ) : '';
         $e_mail        = isset( $data->e_mail ) ? trim( $data->e_mail ) : '';
         $contact       = isset( $data->contact ) ? trim( $data->contact ) : '';
-        $delivery_time = isset( $data->delivery_time ) ? $data->delivery_time : 0;
+        $delivery_time = isset( $data->deliveryTime ) ? $data->deliveryTime : 0;
         $tax_id        = isset( $data->tax_id ) ? trim( $data->tax_id ) : '';
         $payment_tearm = isset( $data->payment_tearm ) ? trim( $data->payment_tearm ) : '';
 
