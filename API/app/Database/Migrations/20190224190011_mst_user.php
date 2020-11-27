@@ -35,6 +35,13 @@ class Migration_mst_user extends \CodeIgniter\Database\Migration {
                 reference_phone   varchar(50) DEFAULT '',
                 bank_name         varchar(100) DEFAULT '',
                 bank_account      varchar(50) DEFAULT '',
+
+                position_name     varchar(200) NOT NULL DEFAULT '',
+                salary            decimal(18,5) NOT NULL DEFAULT 0.00,
+                ot_1              decimal(18,5) NOT NULL DEFAULT 0.00,
+                ot_2              decimal(18,5) NOT NULL DEFAULT 0.00,
+                ot_3              decimal(18,5) NOT NULL DEFAULT 0.00,
+
                 remark            varchar(200) DEFAULT '',
                 active_flag       int,
                 last_login_time   DATETIME,
