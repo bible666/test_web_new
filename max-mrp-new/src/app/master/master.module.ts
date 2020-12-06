@@ -19,6 +19,8 @@ import { CurrencyListComponent } from './currency/currency-list/currency-list.co
 import { CurrencyEditComponent } from './currency/currency-edit/currency-edit.component';
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { CustomerEditComponent } from './customer/customer-edit/customer-edit.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { CustomerEditComponent } from './customer/customer-edit/customer-edit.co
         CurrencyListComponent,
         CurrencyEditComponent,
         CustomerListComponent,
-        CustomerEditComponent
+        CustomerEditComponent,
+        UserListComponent,
+        UserEditComponent
     ],
     imports: [
         CommonModule,

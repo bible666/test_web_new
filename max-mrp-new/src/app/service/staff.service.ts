@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-const BASE_URL = environment.api_url + '/staffController';
+const BASE_URL = environment.api_url + '/userController';
 
 @Injectable({
   providedIn : 'root'
@@ -78,6 +78,7 @@ export class cSearch {
 export class cData {
     staff_code    : string;
     staff_name    : string;
+    dpt_code      : string;
     remark        : string;
 }
 

@@ -314,7 +314,7 @@ class UserController extends Origin001
         ";
         //print_r($query_str);exit;
         $query_count = "
-        SELECT count(item_code) as my_count
+        SELECT count(user_id) as my_count
         FROM mst_user
         WHERE " . $strCond . " active_flag = true
         ORDER BY user_id
