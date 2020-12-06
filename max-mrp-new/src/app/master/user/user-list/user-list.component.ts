@@ -95,7 +95,7 @@ export class UserListComponent implements OnInit {
         this.getData();
     }
 
-    onDelete(customer_code:string){
+    onDelete(customer_code:number){
 
         const dialogRef = this.dialog.open(ConfirmDialogComponent,{
             width: '350px',

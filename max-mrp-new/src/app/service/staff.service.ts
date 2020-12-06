@@ -35,21 +35,21 @@ export class StaffService {
         return this.http.post( BASE_URL + '/get_data_list' , strJSON , this.httpOptions );
     }
 
-    public deleteById( staff_code : string ) {
+    public deleteById( userId : number ) {
         this.setAuth();
 
         let inputData = new cInput();
         
-        inputData.staff_code  = staff_code;
+        inputData.userId  = userId;
         let strJSON : string    = JSON.stringify( inputData );
         return this.http.post( BASE_URL + '/delete_data_by_id' , strJSON , this.httpOptions );
     }
 
-    public getDataById( staff_code : string ) {
+    public getDataById( userId : number ) {
         this.setAuth();
 
         let inputData = new cInput();
-        inputData.staff_code      = staff_code;
+        inputData.userId      = userId;
         let strJSON : string        = JSON.stringify( inputData );
         return this.http.post( BASE_URL + '/get_data_by_id' , strJSON , this.httpOptions );
     }
@@ -83,10 +83,36 @@ export class cData {
 }
 
 export class cInput {
-    old_staff_code : string;
-    staff_code     : string;
-    staff_name     : string;
-    remark         : string;
+    oldUserId       : number;
+    userId          : number;
+    title           : number;
+    firstName       : string;
+    lastName        : string;
+    gender          : string;
+    joinDate        : Date;
+    birthday        : Date;
+    employeeId      : string;
+    loginId         : string;
+    userPassword    : string;
+    userGroupId     : number;
+    idCard          : string;
+    taxId           : string;
+    socialId        : string;
+    educationLevel  : string;
+    fieldOfStudy    : string;
+    institution     : string;
+    gpa             : string;
+    address         : string;
+    province        : string;
+    postCode        : string;
+    phone           : string;
+    mobile          : string;
+    eMail           : string;
+    referenceName   : string;
+    referencePhone  : string;
+    bankName        : string;
+    bankAccount     : string;
+    remark          : string;
 
     public constructor( init? : Partial< cInput >) {
         Object.assign( this , init );
