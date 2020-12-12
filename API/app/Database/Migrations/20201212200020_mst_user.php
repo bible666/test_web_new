@@ -8,7 +8,7 @@ class Migration_mst_user extends \CodeIgniter\Database\Migration {
         $this->db->query("
             CREATE TABLE mst_user(
                 user_id           INT AUTO_INCREMENT PRIMARY KEY,
-                title             INT not null,
+                title_code        varchar(3) REFERENCES mst_title ( title_code ),
                 first_name        varchar(200) DEFAULT '',
                 last_name         varchar(200) DEFAULT '',
                 gender            varchar(1) DEFAULT '' ,

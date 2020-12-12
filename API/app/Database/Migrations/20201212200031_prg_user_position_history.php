@@ -7,7 +7,7 @@ class Migration_prg_user_position_history extends \CodeIgniter\Database\Migratio
     {
         $this->db->query("
         CREATE TABLE prg_user_position_history(
-            INT AUTO_INCREMENT PRIMARY KEY,
+            id                 INT AUTO_INCREMENT PRIMARY KEY,
             position_date      DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
             user_id            INT REFERENCES mst_user (user_id),
             position_name      varchar(200) NOT NULL DEFAULT '',
