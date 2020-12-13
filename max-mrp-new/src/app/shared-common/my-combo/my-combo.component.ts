@@ -44,6 +44,9 @@ export class MyComboComponent implements OnInit, OnChanges {
             case "unit": {
                 this.service_name = "get_unit";
             }
+            case "title": {
+                this.service_name = "get_title";
+            }
             
         }
         
@@ -173,6 +176,9 @@ export class DialogComboDialog implements OnInit {
         switch ( this.comboType ) {
             case "unit": {
                 this.service_name = "get_unit_list";
+            }
+            case "title": {
+                this.service_name = "get_title_list";
             }
             
         }

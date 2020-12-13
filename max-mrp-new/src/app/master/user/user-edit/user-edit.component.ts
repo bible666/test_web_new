@@ -7,6 +7,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { tap, finalize,map } from 'rxjs/operators';
 import { cInput, StaffService } from '../../../service/staff.service';
 
+import { ComboData } from '../../../service/combo.service';
+
 @Component({
     selector    : 'app-customer-edit',
     templateUrl : './user-edit.component.html',
@@ -15,6 +17,8 @@ import { cInput, StaffService } from '../../../service/staff.service';
 export class UserEditComponent implements OnInit {
 
     public message :       MessageClass[] = [];
+
+    public comboType:     string         = "title";
 
     //----------------------------------------------------------------
     // set local Valiable

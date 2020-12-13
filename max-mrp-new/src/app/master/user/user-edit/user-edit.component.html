@@ -48,7 +48,7 @@
                                     <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
                                         <div class="form-group">
                                             <div class="row">
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-12">
                                                     <label>รหัสพนักงาน</label>
                                                     <input type="text" [ngClass]="inputForm.controls['employeeId'].invalid?'form-control is-invalid': 'form-control'" formControlName="employeeId" placeholder="กรุณาใส่รหัส"/>
                                                     <div *ngIf="inputForm.controls['employeeId'].hasError">
@@ -60,8 +60,20 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <div class="col-sm-6">
-                                                    <label>รหัสพนักงาน</label>
+                                                <div class="col-sm-3">
+                                                    <label>คำนำหน้าชื่อ</label>
+                                                    <my-combo [comboType] = comboType [width] = 30 [value] = "unitCode$" (selectEvent)="onUnitSelect($event)"></my-combo>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label>ชื่อ</label>
+                                                    <input type="text" [ngClass]="inputForm.controls['employeeId'].invalid?'form-control is-invalid': 'form-control'" formControlName="employeeId" placeholder="กรุณาใส่รหัส"/>
+                                                    <div *ngIf="inputForm.controls['employeeId'].hasError">
+                                                        <span class="help" *ngIf="inputForm.controls['employeeId'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                                        <span class="help" *ngIf="inputForm.controls['employeeId'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <label>นามสกุล</label>
                                                     <input type="text" [ngClass]="inputForm.controls['employeeId'].invalid?'form-control is-invalid': 'form-control'" formControlName="employeeId" placeholder="กรุณาใส่รหัส"/>
                                                     <div *ngIf="inputForm.controls['employeeId'].hasError">
                                                         <span class="help" *ngIf="inputForm.controls['employeeId'].hasError('required')">กรุณาใส่ข้อมูล</span>
