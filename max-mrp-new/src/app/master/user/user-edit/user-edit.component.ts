@@ -27,7 +27,7 @@ export class UserEditComponent implements OnInit {
     
     inputForm = new FormGroup({
         'userId'            : new FormControl(-1),
-        'title'             : new FormControl(-1),
+        'titleCode'         : new FormControl(''),
         'firstName'         : new FormControl('', [ Validators.required, Validators.maxLength(200) ]),
         'lastName'          : new FormControl('', [ Validators.maxLength(200) ]),
         'gender'            : new FormControl('', [ Validators.maxLength(1) ]),
@@ -88,7 +88,7 @@ export class UserEditComponent implements OnInit {
                     data => {
                         if ( data['status'] == 'success' ){
                             this.inputForm.patchValue({
-                                'title'             : data['data'].title,
+                                'titleCode'         : data['data'].title_code,
                                 'firstName'         : data['data'].first_name,
                                 'lastName'          : data['data'].last_name,
                                 'gender'            : data['data'].gender,
@@ -170,6 +170,12 @@ export class UserEditComponent implements OnInit {
             }
         );
 
+    }
+
+    onTitleSelect( data: ComboData ){
+        this.inputForm.patchValue({
+            'titleCode'             : data.value_code
+        });
     }
 
 }

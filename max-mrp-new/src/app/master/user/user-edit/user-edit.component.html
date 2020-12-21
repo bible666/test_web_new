@@ -36,7 +36,7 @@
                                         <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">ข้อมูลเงินเดือน</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Messages</a>
+                                        <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">ข้อมูลการศึกษา</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="custom-tabs-one-settings-tab" data-toggle="pill" href="#custom-tabs-one-settings" role="tab" aria-controls="custom-tabs-one-settings" aria-selected="false">Settings</a>
@@ -48,12 +48,20 @@
                                     <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
                                         <div class="form-group">
                                             <div class="row">
-                                                <div class="col-sm-12">
+                                                <div class="col-sm-6">
                                                     <label>รหัสพนักงาน</label>
                                                     <input type="text" [ngClass]="inputForm.controls['employeeId'].invalid?'form-control is-invalid': 'form-control'" formControlName="employeeId" placeholder="กรุณาใส่รหัส"/>
                                                     <div *ngIf="inputForm.controls['employeeId'].hasError">
                                                         <span class="help" *ngIf="inputForm.controls['employeeId'].hasError('required')">กรุณาใส่ข้อมูล</span>
                                                         <span class="help" *ngIf="inputForm.controls['employeeId'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>บัตรประชาขน/Passport</label>
+                                                    <input type="text" [ngClass]="inputForm.controls['idCard'].invalid?'form-control is-invalid': 'form-control'" formControlName="idCard" placeholder="กรุณาใส่รหัส"/>
+                                                    <div *ngIf="inputForm.controls['idCard'].hasError">
+                                                        <span class="help" *ngIf="inputForm.controls['idCard'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                                        <span class="help" *ngIf="inputForm.controls['idCard'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -62,7 +70,7 @@
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                     <label>คำนำหน้าชื่อ</label>
-                                                    <my-combo [comboType] = comboType [width] = 30 [value] = "unitCode$" (selectEvent)="onUnitSelect($event)"></my-combo>
+                                                    <my-combo [comboType] = comboType [width] = 30 [value] = "titleCode$" (selectEvent)="onTitleSelect($event)"></my-combo>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <label>ชื่อ</label>
@@ -78,6 +86,47 @@
                                                     <div *ngIf="inputForm.controls['employeeId'].hasError">
                                                         <span class="help" *ngIf="inputForm.controls['employeeId'].hasError('required')">กรุณาใส่ข้อมูล</span>
                                                         <span class="help" *ngIf="inputForm.controls['employeeId'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>วันเกิด</label>
+                                                    <input type="date"
+                                                        formControlName="birthday"
+                                                        max="3000-12-31" 
+                                                        min="1900-01-01" 
+                                                        class="form-control"
+                                                    >
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>วันที่เริ่มงาน</label>
+                                                    <input type="date"
+                                                        formControlName="joinDate"
+                                                        max="3000-12-31" 
+                                                        min="1900-01-01" 
+                                                        class="form-control"
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>Login</label>
+                                                    <input type="text" [ngClass]="inputForm.controls['loginId'].invalid?'form-control is-invalid': 'form-control'" formControlName="loginId" placeholder="กรุณาใส่รหัส"/>
+                                                    <div *ngIf="inputForm.controls['loginId'].hasError">
+                                                        <span class="help" *ngIf="inputForm.controls['loginId'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                                        <span class="help" *ngIf="inputForm.controls['loginId'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Password</label>
+                                                    <input type="text" [ngClass]="inputForm.controls['userPassword'].invalid?'form-control is-invalid': 'form-control'" formControlName="userPassword" placeholder="ไม่ใส่ข้อมูลคือใช้รหัสเก่า"/>
+                                                    <div *ngIf="inputForm.controls['userPassword'].hasError">
+                                                        <span class="help" *ngIf="inputForm.controls['userPassword'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -103,10 +152,11 @@
                     <button type="submit" class="btn btn-primary float-right">ยืนยัน</button>
                 </div>
             </form>
+
         </div>
         
     </section>
     <!-- /.content -->
-
+    {{inputForm.value | json}}
 </div>
 
