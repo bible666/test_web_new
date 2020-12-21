@@ -159,4 +159,82 @@ class ComboController extends Origin001
 
         return $this->respond( $dataDB, $http_code );
     }
+
+    public function get_gender() {
+        $token     = $this->getAuthHeader();
+        $data      = $this->request->getJSON();
+        $http_code = 200;
+
+        $result = $this->_checkToken( $token );
+
+        if ( !isset( $result ) ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, TOKEN_NOT_FOUND );
+        }
+
+        $query_str = "
+        SELECT gender_code as value_code, gender_name_th as display_code
+        FROM mst_gender
+        WHERE gender_code = :gender_code:
+        ORDER BY title_code asc";
+
+        $itemn_data = $this->db->query( $query_str, ['gender_code' => $data] )->getResult();
+
+        if ( $this->db->error()['message'] !== '' ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, $http_code );
+        }
+
+        $dataDB['status']  = "success";
+        $dataDB['message'] = "";
+        $dataDB['data']    = $itemn_data;
+
+        return $this->respond( $dataDB, $http_code );
+    }
+
+    public function get_gender_list() {
+        $token     = $this->getAuthHeader();
+        $data      = $this->request->getJSON();
+        $http_code = 200;
+
+        $result = $this->_checkToken( $token );
+
+        if ( !isset( $result ) ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, TOKEN_NOT_FOUND );
+        }
+
+        $query_str = "
+        SELECT gender_code as value_code, gender_name_th as display_code
+        FROM mst_gender
+        WHERE ( gender_code like :gender_code: OR gender_name_th like :gender_code: )
+        ORDER BY title_name_th asc
+        LIMIT 5";
+
+        $itemn_data = $this->db->query( $query_str, ['gender_code' => "%".$data."%"] )->getResult();
+
+        if ( $this->db->error()['message'] !== '' ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, $http_code );
+        }
+
+        $dataDB['status']  = "success";
+        $dataDB['message'] = "";
+        $dataDB['data']    = $itemn_data;
+
+        return $this->respond( $dataDB, $http_code );
+    }
+
 }

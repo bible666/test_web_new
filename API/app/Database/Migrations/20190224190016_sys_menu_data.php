@@ -58,7 +58,7 @@ class Migration_sys_menu_data extends \CodeIgniter\Database\Migration {
 		(8,'S','ราคาขาย','ราคาขาย','/',4,''),
 		(8,'S','ราคาซื้อ','ราคาซื้อ','/',5,''),
 		(8,'S','ผู้ผลิต','ผู้ผลิต','/system/supplier/list',6,''),
-		(8,'S','พนักงาน','พนักงาน','/',1,'')
+		(8,'S','พนักงาน','พนักงาน','/master/user',1,'')
 
         ");
     }
