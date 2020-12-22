@@ -17,6 +17,8 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { CustomerEditComponent } from './customer/customer-edit/customer-edit.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
+import { SupplierEditComponent } from './supplier/supplier-edit/supplier-edit.component';
 
 
 const routes: Routes = [
@@ -35,7 +37,9 @@ const routes: Routes = [
     { path: 'customer' ,                                    component: CustomerListComponent },
     { path: 'customer/edit/:customerCode',                  component: CustomerEditComponent },
     { path: 'user' ,                                        component: UserListComponent },
-    { path: 'user/edit/:userId',                            component: UserEditComponent }
+    { path: 'user/edit/:userId',                            component: UserEditComponent },
+    { path: 'supplier' ,                                    component: SupplierListComponent },
+    { path: 'supplier/edit/:supplierCode',                  component: SupplierEditComponent }
 ];
 
 @NgModule({
