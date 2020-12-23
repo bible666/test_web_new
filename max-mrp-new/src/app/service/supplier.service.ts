@@ -36,21 +36,21 @@ export class SupplierService {
         return this.http.post( BASE_URL + '/get_data_list' , strJSON , this.httpOptions );
     }
 
-    public deleteById( item_code : string ) {
+    public deleteById( supplier_code : string ) {
         this.setAuth();
 
         let inputData = new cInput();
         
-        inputData.item_code = item_code;
+        inputData.supplier_code = supplier_code;
         let strJSON : string  = JSON.stringify( inputData );
         return this.http.post( BASE_URL + '/delete_data_by_id' , strJSON , this.httpOptions );
     }
 
-    public getDataById( item_code : string ) {
+    public getDataById( supplier_code : string ) {
         this.setAuth();
 
         let inputData         = new cInput();
-        inputData.item_code   = item_code;
+        inputData.supplier_code   = supplier_code;
         let strJSON : string  = JSON.stringify( inputData );
         return this.http.post( BASE_URL + '/get_data_by_id' , strJSON , this.httpOptions );
     }
@@ -89,19 +89,21 @@ export class cData {
 }
 
 export class cInput {
-    token                : string;
-    old_item_code        : string;
+    token               : string;
+    old_supplier_code    : string;
 
-    item_code            : string;
-    item_name            : string;
-    item_type            : string;
-    lot_flag             : boolean;
-    production_lead_time : number;
-    request_decimal      : number;
-    mrp_flag             : boolean;
-    standard_location    : boolean;
-    remark               : string;
-    image_file           : string;
+    supplier_code   : string;
+    supplier_name   : string;
+    address         : string;
+    post_code       : string;
+    tel_no          : string;
+    fax_no          : string;
+    e_mail          : string;
+    contact         : string;
+    delivery_time   : number;
+    tax_id          : string;
+    payment_tearm   : string;
+    remark          : string;
 
     public constructor( init? : Partial< cInput >){
         Object.assign( this , init );
