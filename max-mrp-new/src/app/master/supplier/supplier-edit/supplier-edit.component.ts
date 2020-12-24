@@ -66,7 +66,7 @@ export class SupplierEditComponent implements OnInit {
         this.userData.sub_menu_selected  = 48;
         
         this.old_supplier_code    = this.param.snapshot.params.supplier_code;
-
+        console.log(this.old_supplier_code);
         if ( this.old_supplier_code != '-1' ) {
             //get data from database
             this.Service.getDataById( this.old_supplier_code )

@@ -91,39 +91,27 @@ class SupplierController extends Origin001
             return $this->respond( $dataDB, TOKEN_NOT_FOUND );
         }
 
-        if ( $result->user_id > 0 ) {
-            $query_str = "
-			SELECT *
-			FROM mst_supplier
-			WHERE supplier_code = :supplier_code:
-				AND active_flag = true
-			";
 
-            $db_data = $this->db->query( $query_str, ['supplier_code' => $supplier_code] )->getRow();
+        $query_str = "
+        SELECT *
+        FROM mst_supplier
+        WHERE supplier_code = :supplier_code:
+            AND active_flag = true
+        ";
 
-            if ( $this->db->error()['message'] !== '' ) {
-                $dataDB['status']  = "error";
-                $dataDB['message'] = $this->db->error()['message'];
-                $dataDB['data']    = "";
+        $db_data = $this->db->query( $query_str, ['supplier_code' => $supplier_code] )->getRow();
 
-                return $this->respond( $dataDB, 200 );
-            }
-
-            if ( isset( $db_data ) ) {
-                $dataDB['status']  = "success";
-                $dataDB['message'] = $query_str;
-                $dataDB['data']    = $db_data;
-            } else {
-                $dataDB['status']  = "error";
-                $dataDB['message'] = "data not found";
-                $dataDB['data']    = "";
-            }
-
-        } else {
+        if ( $this->db->error()['message'] !== '' ) {
             $dataDB['status']  = "error";
-            $dataDB['message'] = "token not found";
+            $dataDB['message'] = $this->db->error()['message'];
             $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, 200 );
         }
+
+        $dataDB['status']  = "success";
+        $dataDB['message'] = $query_str;
+        $dataDB['data']    = $db_data;
 
         return $this->respond( $dataDB, 200 );
     }

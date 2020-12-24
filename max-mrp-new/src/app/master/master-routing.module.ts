@@ -39,7 +39,7 @@ const routes: Routes = [
     { path: 'user' ,                                        component: UserListComponent },
     { path: 'user/edit/:userId',                            component: UserEditComponent },
     { path: 'supplier' ,                                    component: SupplierListComponent },
-    { path: 'supplier/edit/:supplierCode',                  component: SupplierEditComponent }
+    { path: 'supplier/edit/:supplier_code',                  component: SupplierEditComponent }
 ];
 
 @NgModule({

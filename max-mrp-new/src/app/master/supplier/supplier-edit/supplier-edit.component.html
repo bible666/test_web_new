@@ -45,10 +45,38 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>หมายเหตุ</label>
+                                <textarea rows="5" class="form-control" formControlName="address">
+
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>รหัสไปรษณีย์</label>
+                                <input type="text" [ngClass]="inputForm.controls['post_code'].invalid?'form-control is-invalid': 'form-control'" formControlName="post_code" placeholder="กรุณาใส่รหัส">
+                                <div *ngIf="inputForm.controls['post_code'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['post_code'].hasError('maxlength')">ใส่ได้ไม่เกิน 10 ตัวอักษร</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>เบอร์โทร</label>
+                                <input type="text" [ngClass]="inputForm.controls['tel_no'].invalid?'form-control is-invalid': 'form-control'" formControlName="tel_no" placeholder="กรุณาใส่รหัส">
+                                <div *ngIf="inputForm.controls['tel_no'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['tel_no'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div> 
                 <div class="card-footer">
-                    <a [routerLink]="['/master/item']" class="btn btn-info">กลับ</a>
+                    <a [routerLink]="['/master/supplier']" class="btn btn-info">กลับ</a>
                     <button type="submit" class="btn btn-primary float-right">ยืนยัน</button>
                 </div>
             </form>
