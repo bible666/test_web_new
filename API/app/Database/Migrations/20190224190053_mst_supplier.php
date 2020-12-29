@@ -9,6 +9,7 @@ class Migration_mst_supplier extends \CodeIgniter\Database\Migration {
             CREATE TABLE mst_supplier(
                 supplier_code   varchar(50) PRIMARY KEY,
                 supplier_name   varchar(200) NOT NULL,
+                branch_name     varchar(100) DEFAULT '',
                 address         text         DEFAULT '',
                 post_code       varchar(10)  DEFAULT '',
                 tel_no          varchar(50)  DEFAULT '',
@@ -19,11 +20,11 @@ class Migration_mst_supplier extends \CodeIgniter\Database\Migration {
                 tax_id          varchar(20)  DEFAULT '',
                 payment_tearm   varchar(200) DEFAULT '',
                 remark          varchar(200) DEFAULT '',
-                active_flag     int NOT NULL,
+                active_flag     int NOT NULL DEFAULT 1,
 
                 create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 update_date DATETIME ,
-                create_user INT NOT NULL,
+                create_user INT NOT NULL DEFAULT 1,
                 update_user INT 
                 
             );

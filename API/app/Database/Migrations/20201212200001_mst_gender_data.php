@@ -1,7 +1,7 @@
 <?php
 namespace App\Database\Migrations;
 
-class Migration_mst_gender extends \CodeIgniter\Database\Migration {
+class Migration_mst_gender_data extends \CodeIgniter\Database\Migration {
 
     public function up()
     {
@@ -20,5 +20,5 @@ class Migration_mst_gender extends \CodeIgniter\Database\Migration {
         $this->db->query("
         DELETE FROM mst_gender ;
         ");
-    }}
+    }
 ?>
