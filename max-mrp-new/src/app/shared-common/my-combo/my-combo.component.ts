@@ -50,11 +50,19 @@ export class MyComboComponent implements OnInit, OnChanges {
             case "gender": {
                 this.service_name = "get_gender";
             }
+            case "department": {
+                this.service_name = "get_department";
+            }
             
         }
         
         this.widthText = this.width + '%';
         this.widthDis  = ( 80 - this.width) + '%';
+        
+        console.log(this.value);
+        //this.value.subscribe( val => {
+        //    console.log(val);
+        //})
     }
 
     ngOnChanges(changes) {
@@ -179,15 +187,23 @@ export class DialogComboDialog implements OnInit {
         switch ( this.comboType ) {
             case "unit": {
                 this.service_name = "get_unit_list";
+                break;
             }
             case "title": {
                 this.service_name = "get_title_list";
+                break;
             }
             case "gender": {
                 this.service_name = "get_gender_list";
+                break;
+            }
+            case "department": {
+                this.service_name = "get_department_list";
+                break;
             }
             
         }
+
     }
 
     ngOnInit(): void {

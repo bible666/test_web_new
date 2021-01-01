@@ -5,6 +5,8 @@ import { LoadingService } from '../../../service/loading.service';
 import { UserService } from '../../../service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { tap, finalize,map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 import { cInput, StaffService } from '../../../service/staff.service';
 
 import { ComboData } from '../../../service/combo.service';
@@ -18,7 +20,11 @@ export class UserEditComponent implements OnInit {
 
     public message :       MessageClass[] = [];
 
-    public comboType:     string         = "title";
+    public comboType:           string  = "title";
+    public departmentComboType: string  = "department";
+
+    public titleCode$:          Observable<string>;
+    public departmentCode$:     Observable<string>;
 
     //----------------------------------------------------------------
     // set local Valiable
@@ -30,12 +36,14 @@ export class UserEditComponent implements OnInit {
         'titleCode'         : new FormControl(''),
         'firstName'         : new FormControl('', [ Validators.required, Validators.maxLength(200) ]),
         'lastName'          : new FormControl('', [ Validators.maxLength(200) ]),
-        'gender'            : new FormControl('', [ Validators.maxLength(1) ]),
+        'gender'            : new FormControl('002', [ Validators.maxLength(3) ]),
         'joinDate'          : new FormControl(''),
         'birthday'          : new FormControl(''),
         'employeeId'        : new FormControl('', [ Validators.maxLength(50) ]),
-        'loginId'           : new FormControl('', [ Validators.required, Validators.maxLength(100) ]),
-        'userPassword'      : new FormControl('', [ Validators.required, Validators.maxLength(200) ]),
+        'loginId'           : new FormControl('', [ Validators.required, Validators.maxLength(30) ]),
+        'userPassword'      : new FormControl('', [ Validators.required, Validators.maxLength(50) ]),
+        'retryPassword'     : new FormControl('', [ Validators.required, Validators.maxLength(50) ]),
+        'department_code'   : new FormControl('PRODUCTION', [ Validators.maxLength(20) ]),
         'userGroupId'       : new FormControl(-1),
         'idCard'            : new FormControl('', [ Validators.maxLength(20) ]),
         'taxId'             : new FormControl('', [ Validators.maxLength(20) ]),
@@ -75,7 +83,7 @@ export class UserEditComponent implements OnInit {
         this.userData.sub_menu_selected  = 45;
         
         this.oldUserId    = this.param.snapshot.params.userId;
-
+        
         if ( this.oldUserId != -1 ) {
             //get data from database
             this.Service.getDataById( this.oldUserId )
@@ -88,7 +96,7 @@ export class UserEditComponent implements OnInit {
                     data => {
                         if ( data['status'] == 'success' ){
                             this.inputForm.patchValue({
-                                'titleCode'         : data['data'].title_code,
+                                'userId'            : data['data'].user_id,
                                 'firstName'         : data['data'].first_name,
                                 'lastName'          : data['data'].last_name,
                                 'gender'            : data['data'].gender,
@@ -116,8 +124,8 @@ export class UserEditComponent implements OnInit {
                                 'bankName'          : data['data'].bank_name,
                                 'bankAccount'       : data['data'].bank_account,
                                 'remark'            : data['data'].remark
-
                             });
+                            this.titleCode$ = data['data'].title_code;
                         } else {
                             this.ServiceMessage.setError( data['message'] );
                             this.message = this.ServiceMessage.getMessage();
@@ -176,6 +184,10 @@ export class UserEditComponent implements OnInit {
         this.inputForm.patchValue({
             'titleCode'             : data.value_code
         });
+    }
+
+    onDepartmentSelect( data: ComboData ){
+        
     }
 
 }

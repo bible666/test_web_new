@@ -199,7 +199,7 @@ class UserController extends Origin001
         $http_code = 200;
 
         //init data
-        $user_id = isset( $data->user_id ) ? $data->user_id : -1;
+        $user_id = isset( $data->userId ) ? $data->userId : -1;
 
         $result = $this->_checkToken( $token );
 
@@ -215,7 +215,7 @@ class UserController extends Origin001
         SELECT mst_user.*
         FROM mst_user
         WHERE user_id = :user_id:
-            AND mst_item.active_flag = true
+            AND active_flag = true
         ";
 
         $itemn_data = $this->db->query( $query_str, ['user_id' => $user_id] )->getRow();

@@ -21,4 +21,5 @@ class Migration_mst_gender_data extends \CodeIgniter\Database\Migration {
         DELETE FROM mst_gender ;
         ");
     }
+}
 ?>

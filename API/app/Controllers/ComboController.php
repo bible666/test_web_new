@@ -237,4 +237,81 @@ class ComboController extends Origin001
         return $this->respond( $dataDB, $http_code );
     }
 
+    public function get_department() {
+        $token     = $this->getAuthHeader();
+        $data      = $this->request->getJSON();
+        $http_code = 200;
+
+        $result = $this->_checkToken( $token );
+
+        if ( !isset( $result ) ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, TOKEN_NOT_FOUND );
+        }
+
+        $query_str = "
+        SELECT department_code as value_code, department_name as display_code
+        FROM mst_department
+        WHERE department_code = :department_code:
+        ORDER BY department_name asc";
+
+        $itemn_data = $this->db->query( $query_str, ['department_code' => $data] )->getResult();
+
+        if ( $this->db->error()['message'] !== '' ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, $http_code );
+        }
+
+        $dataDB['status']  = "success";
+        $dataDB['message'] = "";
+        $dataDB['data']    = $itemn_data;
+
+        return $this->respond( $dataDB, $http_code );
+    }
+
+    public function get_department_list() {
+        $token     = $this->getAuthHeader();
+        $data      = $this->request->getJSON();
+        $http_code = 200;
+
+        $result = $this->_checkToken( $token );
+
+        if ( !isset( $result ) ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, TOKEN_NOT_FOUND );
+        }
+
+        $query_str = "
+        SELECT department_code as value_code, department_name as display_code
+        FROM mst_department
+        WHERE ( department_code like :department_code: OR department_name like :department_code: )
+        ORDER BY department_name asc
+        LIMIT 5";
+
+        $itemn_data = $this->db->query( $query_str, ['department_code' => "%".$data."%"] )->getResult();
+
+        if ( $this->db->error()['message'] !== '' ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, $http_code );
+        }
+
+        $dataDB['status']  = "success";
+        $dataDB['message'] = "";
+        $dataDB['data']    = $itemn_data;
+
+        return $this->respond( $dataDB, $http_code );
+    }
+
 }

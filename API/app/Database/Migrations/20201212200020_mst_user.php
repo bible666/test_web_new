@@ -8,21 +8,22 @@ class Migration_mst_user extends \CodeIgniter\Database\Migration {
         $this->db->query("
             CREATE TABLE mst_user(
                 user_id           INT AUTO_INCREMENT PRIMARY KEY,
-                title_code        varchar(3) REFERENCES mst_title ( title_code ),
-                first_name        varchar(200) DEFAULT '',
-                last_name         varchar(200) DEFAULT '',
-                gender            varchar(1) DEFAULT '' ,
-                join_date         date ,
-                birthday          date ,
-                employee_id       VARCHAR(50) DEFAULT '',
+                title_code        varchar(3) REFERENCES mst_title ( title_code ) COMMENT 'รหัสคำนำหน้าชื่อ',
+                first_name        varchar(200) DEFAULT '' COMMENT 'ชื่อ',
+                last_name         varchar(200) DEFAULT '' COMMENT 'นามสกุล',
+                gender            varchar(1) DEFAULT '' COMMENT 'เพศ 001 ชาย, 002 หญิง',
+                join_date         date COMMENT 'วันที่เริ่มงาน',
+                birthday          date COMMENT 'วันเกิด',
+                employee_id       VARCHAR(50) DEFAULT '' COMMENT 'รหัสพนักงาน',
                 login_id	      VARCHAR(100) NOT NULL,
                 user_password     VARCHAR(200) NOT NULL,
-                user_group_id     int not null REFERENCES mst_user_group (user_group_id),
-                id_card           varchar(20) DEFAULT '' ,
-                tax_id            varchar(20) DEFAULT '' ,
-                social_id         varchar(20) DEFAULT '' ,
-                education_level   varchar(20) DEFAULT '' ,
-                field_of_study    varchar(50) DEFAULT '' ,
+                department_code   VARCHAR(50) REFERENCE mst_department (department_code) COMMENT 'รหัสแผนก',
+                user_group_id     int not null REFERENCES mst_user_group (user_group_id) COMMENT 'รหัสกลุ่มพนักงาน',
+                id_card           varchar(20) DEFAULT '' COMMENT 'เลขที่บัตรประชาชน',
+                tax_id            varchar(20) DEFAULT '' COMMENT 'รหัสผู้เสียภาษี',
+                social_id         varchar(20) DEFAULT '' COMMENT 'รหัสประกันสังคม',
+                education_level   varchar(20) DEFAULT '' COMMENT 'ระดับการศึกษา',
+                field_of_study    varchar(50) DEFAULT '' COMMENT 'คณะ หรือ วิชา',
                 institution       varchar(100) DEFAULT '' ,
                 gpa               varchar(10) DEFAULT '',
                 address           varchar(1000) DEFAULT '',
@@ -53,7 +54,8 @@ class Migration_mst_user extends \CodeIgniter\Database\Migration {
                 update_date DATETIME ,
                 create_user INT NOT NULL,
                 update_user INT 
-            );
+            )
+            COMMENT 'ข้อมูลพนักงาน';
         ");
     }
 
