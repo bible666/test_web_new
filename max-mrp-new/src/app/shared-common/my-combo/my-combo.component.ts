@@ -43,15 +43,19 @@ export class MyComboComponent implements OnInit, OnChanges {
         switch ( this.comboType ) {
             case "unit": {
                 this.service_name = "get_unit";
+                break;
             }
             case "title": {
                 this.service_name = "get_title";
+                break;
             }
             case "gender": {
                 this.service_name = "get_gender";
+                break;
             }
             case "department": {
                 this.service_name = "get_department";
+                break;
             }
             
         }
@@ -59,7 +63,6 @@ export class MyComboComponent implements OnInit, OnChanges {
         this.widthText = this.width + '%';
         this.widthDis  = ( 80 - this.width) + '%';
         
-        console.log(this.value);
         //this.value.subscribe( val => {
         //    console.log(val);
         //})
@@ -67,7 +70,6 @@ export class MyComboComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes) {
         if ( changes.value.currentValue ) {
-    
             let searchValue: string = changes.value.currentValue;
             this.service.getData(this.service_name,searchValue)
             .pipe(
