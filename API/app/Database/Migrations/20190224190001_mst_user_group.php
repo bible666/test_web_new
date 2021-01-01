@@ -11,7 +11,7 @@ class Migration_mst_user_group extends \CodeIgniter\Database\Migration {
                 user_group_name varchar(100) not null COMMENT 'ชื่อกลุ่มลูกค้า',
                 remark varchar(200) COMMENT 'หมายเหตุ',
                 active_flag int COMMENT '1 = true , 0 = false',
-                department_code varchar(50) REFERENCES mst_department(department_code) COMMENT 'รหัสแผนก อ้างอิง table mst_department',
+                department_code varchar(50) REFERENCES mst_department(department_code) ,
 
                 create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 update_date DATETIME ,
