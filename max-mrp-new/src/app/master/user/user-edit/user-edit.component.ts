@@ -36,14 +36,14 @@ export class UserEditComponent implements OnInit {
         'titleCode'         : new FormControl(''),
         'firstName'         : new FormControl('', [ Validators.required, Validators.maxLength(200) ]),
         'lastName'          : new FormControl('', [ Validators.maxLength(200) ]),
-        'gender'            : new FormControl('002', [ Validators.maxLength(3) ]),
+        'gender'            : new FormControl('', [ Validators.maxLength(3) ]),
         'joinDate'          : new FormControl(''),
         'birthday'          : new FormControl(''),
         'employeeId'        : new FormControl('', [ Validators.maxLength(50) ]),
         'loginId'           : new FormControl('', [ Validators.required, Validators.maxLength(30) ]),
         'userPassword'      : new FormControl('', [ Validators.required, Validators.maxLength(50) ]),
         'retryPassword'     : new FormControl('', [ Validators.required, Validators.maxLength(50) ]),
-        'department_code'   : new FormControl('PRODUCTION', [ Validators.maxLength(20) ]),
+        'department_code'   : new FormControl('', [ Validators.maxLength(20) ]),
         'userGroupId'       : new FormControl(-1),
         'idCard'            : new FormControl('', [ Validators.maxLength(20) ]),
         'taxId'             : new FormControl('', [ Validators.maxLength(20) ]),
@@ -125,7 +125,9 @@ export class UserEditComponent implements OnInit {
                                 'bankAccount'       : data['data'].bank_account,
                                 'remark'            : data['data'].remark
                             });
-                            this.titleCode$ = data['data'].title_code;
+                            this.titleCode$         = data['data'].title_code;
+                            this.departmentCode$    = data['data'].department_code;
+                            console.log(this.departmentCode$);
                         } else {
                             this.ServiceMessage.setError( data['message'] );
                             this.message = this.ServiceMessage.getMessage();

@@ -171,9 +171,9 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-5">
                                             <label>แผนก</label>
-                                            <my-combo [comboType] = departmentComboType [width] = 30 [value] = "department_code$" (selectEvent)="onDepartmentSelect($event)"></my-combo>
+                                            <my-combo [comboType] = departmentComboType [width] = 30 [value] = "departmentCode$" (selectEvent)="onDepartmentSelect($event)"></my-combo>
                                         </div>
                                     </div>
                                 </div>
@@ -223,6 +223,6 @@
     </section>
     <!-- /.content -->
     {{inputForm.value | json}}
-
     {{titleCode$}}
+    {{departmentCode$}}
 </div>
