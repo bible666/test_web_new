@@ -91,24 +91,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-sm-2">
-                                            <label>เพศ</label>
-                                            
-                                            <div class="form-check">
-                                                <label style="margin-right: 30px;">
-                                                    <input class="form-check-input" type="radio" name="gender" value = "001" formControlName="gender">
-                                                    ชาย
-                                                </label>
-                                            
-                                                <label>
-                                                    <input class="form-check-input" type="radio" name="gender" value = "002" formControlName="gender">
-                                                    หญิง
-                                                </label>
-                                            </div>
-
-
-                                        </div>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-4">
                                             <label>วันเกิด</label>
                                             <input type="date"
                                                 formControlName="birthday"
@@ -116,7 +99,7 @@
                                                 class="form-control"
                                             >
                                         </div>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-4">
                                             <label>วันที่เริ่มงาน</label>
                                             <input type="date"
                                                 formControlName="joinDate"
@@ -145,7 +128,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <label>Retry Password</label>
-                                            <input type="text" [ngClass]="inputForm.controls['retryPassword'].invalid?'form-control is-invalid': 'form-control'" formControlName="retryPassword" placeholder="กรุณาใส่รหัส"/>
+                                            <input type="text" [ngClass]="inputForm.controls['retryPassword'].invalid?'form-control is-invalid': 'form-control'" formControlName="retryPassword" placeholder="ไม่ใส่ข้อมูลคือใช้รหัสเก่า"/>
                                         </div>
                                         
                                     </div>
@@ -154,14 +137,14 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label>เลขที่ผู้เสียภาษี</label>
-                                            <input type="text" [ngClass]="inputForm.controls['taxId'].invalid?'form-control is-invalid': 'form-control'" formControlName="taxId" placeholder="ไม่ใส่ข้อมูลคือใช้รหัสเก่า"/>
+                                            <input type="text" [ngClass]="inputForm.controls['taxId'].invalid?'form-control is-invalid': 'form-control'" formControlName="taxId" placeholder="กรุณาใส่เลขที่ผู้เสียภาษี"/>
                                             <div *ngIf="inputForm.controls['taxId'].hasError">
                                                 <span class="help" *ngIf="inputForm.controls['taxId'].hasError('maxlength')">ใส่ได้ไม่เกิน 20 ตัวอักษร</span>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <label>เลขที่ประกันสังคม</label>
-                                            <input type="text" [ngClass]="inputForm.controls['socialId'].invalid?'form-control is-invalid': 'form-control'" formControlName="socialId" placeholder="กรุณาใส่รหัส"/>
+                                            <input type="text" [ngClass]="inputForm.controls['socialId'].invalid?'form-control is-invalid': 'form-control'" formControlName="socialId" placeholder="กรุณาใส่เลขที่ประกันสังคม"/>
                                             <div *ngIf="inputForm.controls['socialId'].hasError">
                                                 <span class="help" *ngIf="inputForm.controls['socialId'].hasError('maxlength')">ใส่ได้ไม่เกิน 20 ตัวอักษร</span>
                                             </div>
@@ -169,6 +152,9 @@
                                         
                                     </div>
                                 </div>
+                            </div>
+                            <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                                <!-- ข้อมูลเงินเดือน -->
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-5">
@@ -177,9 +163,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-                                <!-- ข้อมูลเงินเดือน -->
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -205,7 +188,45 @@
                             </div>
                             <div class="tab-pane fade" id="custom-tabs-one-settings" role="tabpanel" aria-labelledby="custom-tabs-one-settings-tab">
                                 <!-- ข้อมูลการติดต่อ -->
-                                Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
+                                <div class="form-group">
+                                    <div class="row">
+            
+                                        <div class="col-sm-12">
+                                            <label>ที่อยู่</label>
+                                            <textarea rows="5" class="form-control" formControlName="address">
+            
+                                            </textarea>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label>เบอร์บ้าน</label>
+                                            <input type="text" [ngClass]="inputForm.controls['phone'].invalid?'form-control is-invalid': 'form-control'" formControlName="phone" placeholder="กรุณาใส่เบอร์บ้าน"/>
+                                            <div *ngIf="inputForm.controls['phone'].hasError">
+                                                <span class="help" *ngIf="inputForm.controls['phone'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label>เบอร์มือถือ</label>
+                                            <input type="text" [ngClass]="inputForm.controls['mobile'].invalid?'form-control is-invalid': 'form-control'" formControlName="mobile" placeholder="กรุณาใส่เบอร์มือถือ"/>
+                                            <div *ngIf="inputForm.controls['mobile'].hasError">
+                                                <span class="help" *ngIf="inputForm.controls['mobile'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label>E-Mail</label>
+                                            <input type="text" [ngClass]="inputForm.controls['eMail'].invalid?'form-control is-invalid': 'form-control'" formControlName="eMail" placeholder="กรุณาใส่ E-Mail"/>
+                                            <div *ngIf="inputForm.controls['eMail'].hasError">
+                                                <span class="help" *ngIf="inputForm.controls['eMail'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>

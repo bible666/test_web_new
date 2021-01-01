@@ -37,7 +37,6 @@ class Migration_mst_user extends \CodeIgniter\Database\Migration {
                 bank_name         varchar(100) DEFAULT '' COMMENT '',
                 bank_account      varchar(50) DEFAULT '' COMMENT '',
 
-                position_name     varchar(200) NOT NULL DEFAULT '' COMMENT '',
                 salary            decimal(18,5) NOT NULL DEFAULT 0.00 COMMENT '',
                 ot_1              decimal(18,5) NOT NULL DEFAULT 0.00 COMMENT '',
                 ot_2              decimal(18,5) NOT NULL DEFAULT 0.00 COMMENT '',
