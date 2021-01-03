@@ -25,7 +25,8 @@ import { ComboPositionComponent } from './combo-position/combo-position.componen
         ShowMessageComponent,
         MatDialogModule,
         MyComboComponent,
-        DialogComboDialog
+        DialogComboDialog,
+        ComboPositionComponent
     ]
 })
 export class SharedCommonModule { }

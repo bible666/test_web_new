@@ -1,0 +1,90 @@
+
+<div mat-dialog-content>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- ↓↓===== Search area ===================================================↓↓ -->
+            <form [formGroup]="inputForm">
+                <div class="search card mb-4 p-0"><!-- /search -->
+                    <div class="card-body d-sm-flex justify-content-between"><!-- /card-body -->
+                        <!-- ↓↓Search Item Area----------------------↓↓ -->
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" formControlName="value_search" placeholder="ใส่คำค้นหา">
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary btn-search btn-sm w-100 p-3" (click)="onSearch()">ค้นหา</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- ↑↑Search Item Area----------------------↑↑ -->
+
+                    </div><!-- /card-body -->
+                </div><!-- /search -->
+                
+            </form>
+            <!-- ↑↑===== Search area ===================================================↑↑ -->
+
+            <!-- ↓↓===== List Area= =====================================================↓↓ -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body table-responsive p-0" style="height: 300px;">
+                                    <table class="table table-head-fixed text-nowrap">
+                                        <thead>
+                                        <tr>
+                                            <th>รหัส</th>
+                                            <th>ชื่อ</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let gridData of comboDatas" (click)="onClick(gridData)"
+                                            [ngClass]="selectedItem == gridData?'selected': ''"
+                                            >
+                                                <td>{{gridData.value_code}}</td>
+                                                <td>{{gridData.display_code}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+
+                
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </section>
+            
+            <!-- ↑↑===== List Area= =====================================================↑↑ -->
+            
+        </div>
+    </section>
+    <!-- /.content -->
+    
+
+</div>
+<div class="card-footer">
+    <button type="submit" class="btn btn-info" (click)="onCloseClick()" >ยกเลิก</button>
+    <button mat-button cdkFocusInitial  class="btn btn-default float-right" (click)="onSaveClick()">ยืนยัน</button>
+</div>
+
+<div id="loading" style="position: fixed;display: none;left:0;top:0;z-index: 9999;width:100%;height:100%;background-color:white; 
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;overflow-y: scroll;
+    opacity: 0.5;">
+    <div style="position: absolute;left:40%;top:40%;">
+        <img src="assets/img/loading.gif" border="0">
+    </div>
+</div>

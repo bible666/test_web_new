@@ -314,4 +314,84 @@ class ComboController extends Origin001
         return $this->respond( $dataDB, $http_code );
     }
 
+    public function get_position() {
+        $token     = $this->getAuthHeader();
+        $data      = $this->request->getJSON();
+        $http_code = 200;
+
+        $result = $this->_checkToken( $token );
+
+        if ( !isset( $result ) ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, TOKEN_NOT_FOUND );
+        }
+
+        $query_str = "
+        SELECT user_group_id as value_code ,user_group_name as display_code
+        FROM mst_user_group mug
+        WHERE department_code = :department_code: AND user_group_id = :user_group_id:
+        ORDER BY user_group_name ";
+
+        $itemn_data = $this->db->query( $query_str, [
+            'department_code'   => $data,
+            'user_group_id'     => $data
+        ] )->getResult();
+
+        if ( $this->db->error()['message'] !== '' ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, $http_code );
+        }
+
+        $dataDB['status']  = "success";
+        $dataDB['message'] = "";
+        $dataDB['data']    = $itemn_data;
+
+        return $this->respond( $dataDB, $http_code );
+    }
+
+    public function get_position_list() {
+        $token     = $this->getAuthHeader();
+        $data      = $this->request->getJSON();
+        $http_code = 200;
+
+        $result = $this->_checkToken( $token );
+
+        if ( !isset( $result ) ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, TOKEN_NOT_FOUND );
+        }
+
+        $query_str = "
+        SELECT user_group_id as value_code, user_group_name as display_code
+        FROM mst_user_group mug
+        WHERE ( user_group_name like :user_group_name: )
+        ORDER BY user_group_name asc
+        LIMIT 5";
+
+        $itemn_data = $this->db->query( $query_str, ['user_group_name' => "%".$data."%"] )->getResult();
+
+        if ( $this->db->error()['message'] !== '' ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['data']    = "";
+
+            return $this->respond( $dataDB, $http_code );
+        }
+
+        $dataDB['status']  = "success";
+        $dataDB['message'] = "";
+        $dataDB['data']    = $itemn_data;
+
+        return $this->respond( $dataDB, $http_code );
+    }
+
 }

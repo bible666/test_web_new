@@ -67,7 +67,6 @@ export class MyComboComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes) {
         if ( changes.value.currentValue ) {
-            console.log(this.service_name);
             let searchValue: string = changes.value.currentValue;
             this.service.getData(this.service_name,searchValue)
             .pipe(
@@ -75,7 +74,6 @@ export class MyComboComponent implements OnInit, OnChanges {
                 finalize( () => { this.loading.hide(); } )
             )
             .subscribe(data =>{
-                console.log(data);
                 this.displayValue = "";
                 let returnData : ComboData = new ComboData();
                 if ( data['data'][0] ) {
