@@ -330,14 +330,13 @@ class ComboController extends Origin001
         }
 
         $query_str = "
-        SELECT user_group_id as value_code ,user_group_name as display_code
-        FROM mst_user_group mug
-        WHERE department_code = :department_code: AND user_group_id = :user_group_id:
-        ORDER BY user_group_name ";
+        SELECT position_code as value_code ,position_name as display_code
+        FROM mst_position mug
+        WHERE position_code = :position_code:
+        ORDER BY position_name ";
 
         $itemn_data = $this->db->query( $query_str, [
-            'department_code'   => $data,
-            'user_group_id'     => $data
+            'position_code'   => $data
         ] )->getResult();
 
         if ( $this->db->error()['message'] !== '' ) {
@@ -371,10 +370,10 @@ class ComboController extends Origin001
         }
 
         $query_str = "
-        SELECT user_group_id as value_code, user_group_name as display_code
-        FROM mst_user_group mug
-        WHERE ( user_group_name like :user_group_name: )
-        ORDER BY user_group_name asc
+        SELECT position_code as value_code, position_name as display_code
+        FROM mst_position mug
+        WHERE ( position_code like :user_group_name: OR position_name like :user_group_name:)
+        ORDER BY position_name asc
         LIMIT 5";
 
         $itemn_data = $this->db->query( $query_str, ['user_group_name' => "%".$data."%"] )->getResult();

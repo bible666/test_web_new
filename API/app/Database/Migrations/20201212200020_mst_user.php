@@ -17,7 +17,7 @@ class Migration_mst_user extends \CodeIgniter\Database\Migration {
                 login_id	      VARCHAR(100) NOT NULL,
                 user_password     VARCHAR(200) NOT NULL,
                 department_code   VARCHAR(50) COMMENT 'แผนกที่สังกัด อ้างอิง mst_department' REFERENCES mst_department (department_code),
-                user_group_id     int COMMENT 'ตำแหน่ง อ้างอิง mst_user_group' REFERENCES mst_user_group (user_group_id),
+                position_code     VARCHAR(5)  COMMENT 'ตำแหน่ง อ้างอิง mst_position' REFERENCES mst_position (position_code),
                 id_card           varchar(20) DEFAULT '' COMMENT 'เลขที่บัตรประชาชน',
                 tax_id            varchar(20) DEFAULT '' COMMENT 'รหัสผู้เสียภาษี',
                 social_id         varchar(20) DEFAULT '' COMMENT 'รหัสประกันสังคม',
