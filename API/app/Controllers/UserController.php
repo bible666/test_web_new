@@ -119,9 +119,10 @@ class UserController extends Origin001
         $sql = "
         SELECT sm.*,mmp.permission_flag
         FROM mst_menu_permission mmp inner join sys_menu sm on mmp.menu_id  =  sm.menu_id
-        WHERE mmp.user_group_id = :user_group_id:";
+            INNER JOIN mst_user_group mug on mmp.user_group_id = mug.user_group_id
+        WHERE mug.department_code = :department_code: and mug.position_code = :position_code:";
 
-        $menu_data = $this->db->query( $sql, ['user_group_id' => $row->user_group_id] )->getResult();
+        $menu_data = $this->db->query( $sql, ['department_code' => $row->department_code, 'position_code' => $row->position_code] )->getResult();
 
         $result['token']     = $token;
         $result['user_name'] = $row->first_name . ' ' . $row->last_name;

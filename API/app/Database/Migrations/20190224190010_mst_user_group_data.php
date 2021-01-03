@@ -8,26 +8,26 @@ class Migration_mst_user_group_data extends \CodeIgniter\Database\Migration {
         $this->db->query("
 
             INSERT mst_user_group 
-            (user_group_code,user_group_name,department_code) 
+            (position_code,department_code) 
             VALUES 
-            ('001','ผู้จัดการ', 'IT'),
-			('002','พนักงาน', 'IT'),
-			('001','ผู้จัดการ', 'PURCHASE'),
-			('002','พนักงาน', 'PURCHASE'),
-			('001','ผู้จัดการ', 'PLANNING'),
-			('002','พนักงาน', 'PLANNING'),
-			('001','ผู้จัดการ', 'SALES'),
-			('002','พนักงาน', 'SALES'),
-			('001','ผู้จัดการ', 'TRANSPORT'),
-			('002','พนักงาน', 'TRANSPORT'),
-			('001','ผู้จัดการ', 'WH'),
-			('002','พนักงาน', 'WH'),
-			('001','ผู้จัดการ', 'STORE'),
-			('002','พนักงาน', 'STORE'),
-			('001','ผู้จัดการ', 'PLANNING'),
-			('002','พนักงาน', 'PLANNING'),
-			('001','ผู้จัดการ', 'QA'),
-			('002','พนักงาน', 'QA')
+            ('001', 'IT'),
+			('002', 'IT'),
+			('001', 'PURCHASE'),
+			('002', 'PURCHASE'),
+			('001', 'PLANNING'),
+			('002', 'PLANNING'),
+			('001', 'SALES'),
+			('002', 'SALES'),
+			('001', 'TRANSPORT'),
+			('002', 'TRANSPORT'),
+			('001', 'WH'),
+			('002', 'WH'),
+			('001', 'STORE'),
+			('002', 'STORE'),
+			('001', 'PLANNING'),
+			('002', 'PLANNING'),
+			('001', 'QA'),
+			('002', 'QA')
         ");
     }
 
