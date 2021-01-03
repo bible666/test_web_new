@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowMessageComponent } from './show-message/show-message.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MyComboComponent, DialogComboDialog } from './my-combo/my-combo.component';
+import { ComboPositionComponent } from './combo-position/combo-position.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { MyComboComponent, DialogComboDialog } from './my-combo/my-combo.compone
         ShowMessageComponent,
         ConfirmDialogComponent,
         MyComboComponent,
-        DialogComboDialog
+        DialogComboDialog,
+        ComboPositionComponent
     ],
     imports: [
         CommonModule,
