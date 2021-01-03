@@ -25,6 +25,7 @@ export class UserEditComponent implements OnInit {
 
     public titleCode$:          Observable<string>;
     public departmentCode$:     Observable<string>;
+    public positionCode$:       Observable<string>;
 
     //----------------------------------------------------------------
     // set local Valiable
@@ -125,6 +126,7 @@ export class UserEditComponent implements OnInit {
                             });
                             this.titleCode$         = data['data'].title_code;
                             this.departmentCode$    = data['data'].department_code;
+                            this.positionCode$      = data['data'].title_code;
                             console.log(this.departmentCode$);
                         } else {
                             this.ServiceMessage.setError( data['message'] );

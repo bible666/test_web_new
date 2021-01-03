@@ -1,0 +1,31 @@
+<?php
+namespace App\Database\Migrations;
+
+class Migration_mst_user_group extends \CodeIgniter\Database\Migration {
+
+    public function up()
+    {
+        $this->db->query("
+            CREATE TABLE mst_user_group(
+                user_group_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'รหัสกลุ่มลูกค้า',
+                user_group_code varchar(5) not null DEFAULT '' COMMENT 'รหัสตำแหน่ง',
+                user_group_name varchar(100) not null COMMENT 'ชื่อตำแหน่ง',
+                remark varchar(200) not null DEFAULT '' COMMENT 'หมายเหตุ',
+                active_flag int DEFAULT 1 COMMENT '1 = true , 0 = false',
+                department_code varchar(50) COMMENT 'รหัสแผนก อ้างอิง mst_department' REFERENCES mst_department(department_code) ,
+
+                create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                update_date DATETIME ,
+                create_user INT NOT NULL DEFAULT 1,
+                update_user INT 
+            )
+            COMMENT 'ข้อมูลตำแหน่ง';
+        ");
+    }
+
+    public function down()
+    {
+        $this->dbforge->drop_table('mst_user_group');
+    }
+}
+?>

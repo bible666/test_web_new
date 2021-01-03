@@ -24,7 +24,6 @@ export class ComboPositionComponent implements OnInit {
     displayValue : string = "";
     widthText    : string = "30%";
     widthDis     : string = "60%";
-    _department_code : string = "";
 
     inputForm = new FormGroup({
         'value_search'     : new FormControl('')
@@ -39,21 +38,23 @@ export class ComboPositionComponent implements OnInit {
     ngOnInit(): void {
         this.widthText = this.width + '%';
         this.widthDis  = ( 80 - this.width) + '%';
-        this.department_code.subscribe( data=> {
-            this._department_code = data;
-        });
+        //this.department_code.subscribe( data=> {
+        //    this._department_code = data;
+        //});
     }
 
     ngOnChanges(changes) {
-        if ( changes.value.currentValue ) {
-
-            this.service.getPosition(this._department_code,changes)
-            .pipe(
-                tap( ()      => { this.loading.show(); } ),
-                finalize( () => { this.loading.hide(); } )
-            )
-            .subscribe(data =>{
-                this.displayValue = "";
+        //if ( changes.value.currentValue ) {
+console.log(changes);
+console.log(changes.department_code.currentValue);
+console.log(changes.position_code.currentValue);
+            //this.service.getPosition(changes.department_code,changes.position_code)
+            //.pipe(
+            //    tap( ()      => { this.loading.show(); } ),
+            //    finalize( () => { this.loading.hide(); } )
+            //)
+            //.subscribe(data =>{
+            //    this.displayValue = "";
             //     let returnData : ComboData = new ComboData();
             //     if ( data['data'][0] ) {
             //         this.displayValue       = data['data'][0].display_code;
@@ -71,8 +72,8 @@ export class ComboPositionComponent implements OnInit {
             //         this.selectEvent.emit(returnData);
             //     }
     
-            });
-        }
+            //});
+        //}
         
     }
 
