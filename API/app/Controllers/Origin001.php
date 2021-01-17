@@ -70,10 +70,12 @@ class Origin001 extends ResourceController
 
         $query_str = "
             SELECT s.*,t.id as token_code,t.active_flag,
-                CASE WHEN t.update_date IS NULL THEN t.create_date ELSE t.update_date END as token_update
+                CASE WHEN t.update_date IS NULL THEN t.create_date ELSE t.update_date END as token_update,
+                mug.user_group_id 
             FROM prg_token t INNER JOIN mst_user s ON t.user_id = s.user_id
+                INNER JOIN mst_user_group mug on s.department_code = mug.department_code and s.position_code = mug.position_code            
             WHERE t.token_code = :token:
-                AND t.active_flag = true
+                AND t.active_flag = true and mug.active_flag = TRUE and s.active_flag = TRUE
         ";
 
         $staff_data = $this->db->query( $query_str, ['token' => $token] )->getRow();
