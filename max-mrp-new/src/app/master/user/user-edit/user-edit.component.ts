@@ -22,6 +22,7 @@ export class UserEditComponent implements OnInit {
 
     public comboType:           string  = "title";
     public departmentComboType: string  = "department";
+    public positionComboType:   string  = "position";
 
     public titleCode$:          Observable<string>;
     public departmentCode$:     Observable<string>;
@@ -44,7 +45,6 @@ export class UserEditComponent implements OnInit {
         'userPassword'      : new FormControl('', [ Validators.maxLength(50) ]),
         'retryPassword'     : new FormControl('', [ Validators.maxLength(50) ]),
         'department_code'   : new FormControl('', [ Validators.maxLength(20) ]),
-        'userGroupId'       : new FormControl(-1),
         'idCard'            : new FormControl('', [ Validators.maxLength(20) ]),
         'taxId'             : new FormControl('', [ Validators.maxLength(20) ]),
         'socialId'          : new FormControl('', [ Validators.maxLength(20) ]),
@@ -53,7 +53,6 @@ export class UserEditComponent implements OnInit {
         'institution'       : new FormControl('', [ Validators.maxLength(100) ]),
         'gpa'               : new FormControl('', [ Validators.maxLength(10) ]),
         'address'           : new FormControl('', [ Validators.maxLength(1000) ]),
-        'province'          : new FormControl('', [ Validators.maxLength(100) ]),
         'postCode'          : new FormControl('', [ Validators.maxLength(50) ]),
         'phone'             : new FormControl('', [ Validators.maxLength(50) ]),
         'mobile'            : new FormControl('', [ Validators.maxLength(50) ]),
@@ -62,7 +61,8 @@ export class UserEditComponent implements OnInit {
         'referencePhone'    : new FormControl('', [ Validators.maxLength(50) ]),
         'bankName'          : new FormControl('', [ Validators.maxLength(100) ]),
         'bankAccount'       : new FormControl('', [ Validators.maxLength(50) ]),
-        'remark'            : new FormControl('', [ Validators.maxLength(200) ])
+        'remark'            : new FormControl('', [ Validators.maxLength(200) ]),
+        'position_code'     : new FormControl('')
     });
 
     constructor(
@@ -104,7 +104,6 @@ export class UserEditComponent implements OnInit {
                                 'employeeId'        : data['data'].employee_id,
                                 'loginId'           : data['data'].login_id,
                                 'department_code'   : data['data'].department_code,
-                                'userGroupId'       : data['data'].user_group_id,
                                 'idCard'            : data['data'].id_card,
                                 'taxId'             : data['data'].tax_id,
                                 'socialId'          : data['data'].social_id,
@@ -113,7 +112,6 @@ export class UserEditComponent implements OnInit {
                                 'institution'       : data['data'].institution,
                                 'gpa'               : data['data'].gpa,
                                 'address'           : data['data'].address,
-                                'province'          : data['data'].province,
                                 'postCode'          : data['data'].post_code,
                                 'phone'             : data['data'].phone,
                                 'mobile'            : data['data'].mobile,
@@ -122,7 +120,8 @@ export class UserEditComponent implements OnInit {
                                 'referencePhone'    : data['data'].reference_phone,
                                 'bankName'          : data['data'].bank_name,
                                 'bankAccount'       : data['data'].bank_account,
-                                'remark'            : data['data'].remark
+                                'remark'            : data['data'].remark,
+                                'position_code'     : data['data'].position_code
                             });
                             this.titleCode$         = data['data'].title_code;
                             this.departmentCode$    = data['data'].department_code;
@@ -189,7 +188,15 @@ export class UserEditComponent implements OnInit {
     }
 
     onDepartmentSelect( data: ComboData ){
-        
+        this.inputForm.patchValue({
+            'department_code'             : data.value_code
+        });
+    }
+
+    onPositionSelect( data: ComboData ){
+        this.inputForm.patchValue({
+            'position_code'             : data.value_code
+        });
     }
 
 }

@@ -163,7 +163,7 @@
                                         </div>
                                         <div class="col-sm-5">
                                             <label>ตำแหน่ง</label>
-                                            <combo-position [department_code] = "departmentCode$" [position_code] = "positionCode$"></combo-position>
+                                            <my-combo [comboType] = positionComboType [width] = 30 [value] = "positionCode$" (selectEvent)="onPositionSelect($event)"></my-combo>
                                         </div>
                                     </div>
                                 </div>
