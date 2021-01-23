@@ -366,40 +366,42 @@ class UserController extends Origin001
         }
 
         //init data
-        $user_id            = isset( $data->user_id ) ? trim( $data->user_id ) : '';
-        $employee_id        = isset( $data->employee_id ) ? $data->employee_id : '';
-        $title              = isset( $data->title ) ? trim( $data->title ) : -1;
-        $first_name         = isset( $data->first_name ) ? trim( $data->first_name ) : '';
-        $last_name          = isset( $data->last_name ) ? $data->last_name : '';
-        $gender             = isset( $data->gender ) ? trim( $data->gender ) : -1;
-        $join_date          = isset( $data->join_date ) ? trim( $data->join_date ) : '';
-        $birthday           = isset( $data->birthday ) ? $data->birthday : '';
-        $login_id           = isset( $data->login_id ) ? trim( $data->login_id ) : '';
-        $user_password      = isset( $data->user_password ) ? trim( $data->user_password ) : '';
-        $user_group_id      = isset( $data->user_group_id ) ? trim( $data->user_group_id ) : -1;
-        $id_card            = isset( $data->id_card ) ? trim( $data->id_card ) : '';
-        $tax_id             = isset( $data->tax_id ) ? trim( $data->tax_id ) : '';
-        $social_id          = isset( $data->social_id ) ? trim( $data->social_id ) : '';
-        $education_level    = isset( $data->education_level ) ? trim( $data->education_level ) : '';
-        $field_of_study     = isset( $data->field_of_study ) ? trim( $data->field_of_study ) : '';
-        $institution        = isset( $data->institution ) ? trim( $data->institution ) : '';
-        $gpa                = isset( $data->gpa ) ? trim( $data->gpa ) : '';
         $address            = isset( $data->address ) ? trim( $data->address ) : '';
-        $province           = isset( $data->province ) ? trim( $data->province ) : '';
-        $post_code          = isset( $data->post_code ) ? trim( $data->post_code ) : '';
-        $phone              = isset( $data->phone ) ? trim( $data->phone ) : '';
+        $bank_account       = isset( $data->bankAccount ) ? trim( $data->bankAccount ) : '';
+        $bank_name          = isset( $data->bankName ) ? trim( $data->bankName ) : '';
+        $birthday           = isset( $data->birthday ) ? $data->birthday : '';
+        $department_code    = isset( $data->department_code ) ? trim( $data->department_code ) : '';
+        $e_mail             = isset( $data->eMail ) ? trim( $data->eMail ) : '';
+        $education_level    = isset( $data->educationLevel ) ? trim( $data->educationLevel ) : '';
+        $employee_id        = isset( $data->employeeId ) ? trim( $data->employeeId ) : '';
+        $field_of_study     = isset( $data->fieldOfStudy ) ? trim( $data->fieldOfStudy ) : '';
+        $first_name         = isset( $data->firstName ) ? trim( $data->firstName ) : '';
+        $gpa                = isset( $data->gpa ) ? trim( $data->gpa ) : '';
+        $id_card            = isset( $data->idCard ) ? trim( $data->idCard ) : '';
+        $institution        = isset( $data->institution ) ? trim( $data->institution ) : '';
+        $join_date          = isset( $data->joinDate ) ? trim( $data->joinDate ) : '';
+        $last_name          = isset( $data->lastName ) ? $data->lastName : '';
+        $login_id           = isset( $data->loginId ) ? trim( $data->loginId ) : '';
         $mobile             = isset( $data->mobile ) ? trim( $data->mobile ) : '';
-        $e_mail             = isset( $data->e_mail ) ? trim( $data->e_mail ) : '';
-        $reference_name     = isset( $data->reference_name ) ? trim( $data->reference_name ) : '';
-        $reference_phone    = isset( $data->reference_phone ) ? trim( $data->reference_phone ) : '';
-        $bank_name          = isset( $data->bank_name ) ? trim( $data->bank_name ) : '';
-        $bank_account       = isset( $data->bank_account ) ? trim( $data->bank_account ) : '';
-        $position_name      = isset( $data->position_name ) ? trim( $data->position_name ) : '';
-        $salary             = isset( $data->salary ) ? trim( $data->salary ) : 0.00;
+        $old_user_id         = isset ( $data->oldUserId ) ? trim( $data->oldUserId ) : 0;
         $ot1                = isset( $data->ot1 ) ? trim( $data->ot1 ) : 0.00;
         $ot2                = isset( $data->ot2 ) ? trim( $data->ot2 ) : 0.00;
         $ot3                = isset( $data->ot3 ) ? trim( $data->ot3 ) : 0.00;
-        $remark             = isset( $data->remark ) ? trim( $data->remark ) : 0.00;
+        $phone              = isset( $data->phone ) ? trim( $data->phone ) : '';
+        $position_code      = isset( $data->position_code ) ? trim( $data->position_code ) : '';
+        $reference_name     = isset( $data->referenceName ) ? trim( $data->referenceName ) : '';
+        $reference_phone    = isset( $data->referencePhone ) ? trim( $data->referencePhone ) : '';
+        $remark             = isset( $data->remark ) ? trim( $data->remark ) : '';
+        $retry_Password     = isset( $data->retryPassword ) ? trim( $data->retryPassword ) : '';
+        $salary             = isset( $data->salary ) ? trim( $data->salary ) : 0.00;
+        $social_id          = isset( $data->socialId ) ? trim( $data->socialId ) : '';
+        $tax_id             = isset( $data->taxId ) ? trim( $data->taxId ) : '';
+        $title_code         = isset( $data->titleCode ) ? trim( $data->titleCode ) : -1;
+        $user_id            = isset( $data->userId ) ? trim( $data->userId ) : '';
+        $user_password      = isset( $data->userPassword ) ? trim( $data->userPassword ) : '';
+        
+        
+
 
         //Validation Data
         if ( $first_name == '' ) {

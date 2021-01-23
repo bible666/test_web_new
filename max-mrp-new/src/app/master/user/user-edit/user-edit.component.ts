@@ -40,7 +40,7 @@ export class UserEditComponent implements OnInit {
         'lastName'          : new FormControl('', [ Validators.maxLength(200) ]),
         'joinDate'          : new FormControl(''),
         'birthday'          : new FormControl(''),
-        'employeeId'        : new FormControl('', [ Validators.maxLength(50) ]),
+        'employeeId'        : new FormControl('', [ Validators.required, Validators.maxLength(50) ]),
         'loginId'           : new FormControl('', [ Validators.required, Validators.maxLength(30) ]),
         'userPassword'      : new FormControl('', [ Validators.maxLength(50) ]),
         'retryPassword'     : new FormControl('', [ Validators.maxLength(50) ]),
@@ -62,7 +62,11 @@ export class UserEditComponent implements OnInit {
         'bankName'          : new FormControl('', [ Validators.maxLength(100) ]),
         'bankAccount'       : new FormControl('', [ Validators.maxLength(50) ]),
         'remark'            : new FormControl('', [ Validators.maxLength(200) ]),
-        'position_code'     : new FormControl('')
+        'position_code'     : new FormControl(''),
+        'salary'            : new FormControl(0),
+        'ot_1'              : new FormControl(0),
+        'ot_2'              : new FormControl(0),
+        'ot_3'              : new FormControl(0)
     });
 
     constructor(
@@ -121,7 +125,11 @@ export class UserEditComponent implements OnInit {
                                 'bankName'          : data['data'].bank_name,
                                 'bankAccount'       : data['data'].bank_account,
                                 'remark'            : data['data'].remark,
-                                'position_code'     : data['data'].position_code
+                                'position_code'     : data['data'].position_code,
+                                'salary'            : data['data'].salary,
+                                'ot_1'              : data['data'].ot_1,
+                                'ot_2'              : data['data'].ot_2,
+                                'ot_3'              : data['data'].ot_3
                             });
                             this.titleCode$         = data['data'].title_code;
                             this.departmentCode$    = data['data'].department_code;
