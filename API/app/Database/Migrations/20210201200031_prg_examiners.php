@@ -17,6 +17,7 @@ class Migration_prg_examiners extends \CodeIgniter\Database\Migration {
             prefectures         INT         NOT NULL                        COMMENT 'จังหวัด',
             address             text        NOT NULL DEFAULT ''             COMMENT 'ที่อยู่',
             remarks             text        NOT NULL DEFAULT ''             COMMENT 'หมายเหตุ',
+            active_flag         int DEFAULT 1 COMMENT '1 = true , 0 = false',
             create_date         DATETIME    NOT NULL DEFAULT                CURRENT_TIMESTAMP,
             update_date         DATETIME ,
             create_user         INT         NOT NULL,

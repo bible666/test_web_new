@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { HealthCheckRoutingModule } from './health-check-routing.module';
 import { MmseComponent } from './mmse/mmse.component';
+import { ExaminersComponent } from './examiners/examiners.component';
 
 
 @NgModule({
-  declarations: [MmseComponent],
+  declarations: [MmseComponent, ExaminersComponent],
   imports: [
     CommonModule,
     HealthCheckRoutingModule
