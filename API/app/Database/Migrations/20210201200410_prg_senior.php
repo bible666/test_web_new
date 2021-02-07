@@ -8,7 +8,7 @@ class Migration_prg_senior extends \CodeIgniter\Database\Migration {
         $this->db->query("
             CREATE TABLE prg_examiners_senior(
                 id                  INT AUTO_INCREMENT PRIMARY KEY,
-                examiner_id         INT    NOT NULL REFERENCES examiners(id)    COMMENT 'id คนทดสอบ',
+                examiner_id         INT    NOT NULL                             COMMENT 'id คนทดสอบ' REFERENCES examiners(id),
                 exam_date           date   NOT NULL                             COMMENT 'วันที่ทดสอบ',
                 healt_condition_01  INT NOT NULL DEFAULT 0,
                 mental_help_01      INT NOT NULL DEFAULT 0,

@@ -8,7 +8,7 @@ class Migration_prg_qol_sf8 extends \CodeIgniter\Database\Migration {
         $this->db->query("
             CREATE TABLE prg_examiners_qol_sf8(
                 id              INT AUTO_INCREMENT PRIMARY KEY,
-                examiner_id     INT    NOT NULL REFERENCES examiners(id)    COMMENT 'id คนทดสอบ',
+                examiner_id     INT    NOT NULL                             COMMENT 'id คนทดสอบ' REFERENCES examiners(id),
                 exam_date       date   NOT NULL                             COMMENT 'วันที่ทดสอบ',
                 question_1      INT    NOT NULL DEFAULT 0                   COMMENT 'คำถาม 1',
                 question_2      INT    NOT NULL DEFAULT 0                   COMMENT 'คำถาม 2',
