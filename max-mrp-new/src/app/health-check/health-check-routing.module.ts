@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MmseComponent } from './mmse/mmse.component'
 import { ExaminersComponent } from './examiners/examiners.component';
+import { ExaminersEditComponent } from './examiners-edit/examiners-edit.component';
 
 const routes: Routes = [
-    { path: 'mmse' ,          component: MmseComponent },
-    { path: 'examiners' ,     component: ExaminersComponent}
+    { path: 'mmse' ,                      component: MmseComponent },
+    { path: 'examiners' ,                 component: ExaminersComponent},
+    { path: 'examinerEdit:examiner_id' ,  component: ExaminersEditComponent}
 ];
 
 @NgModule({
