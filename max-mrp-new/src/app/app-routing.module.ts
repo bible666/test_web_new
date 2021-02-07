@@ -9,6 +9,7 @@ import { MasterModule } from './master/master.module';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HealthCheckModule } from './health-check/health-check.module';
 
 
 const routes: Routes = [
@@ -21,6 +22,11 @@ const routes: Routes = [
         path: 'master',
         component: AppLayoutComponent,
         loadChildren: () => MasterModule
+    },
+    {
+        path: 'health',
+        component: AppLayoutComponent,
+        loadChildren: () => HealthCheckModule
     },
     { path: 'login',                      component:LoginComponent},
     { path: 'logout',                     component:LogoutComponent},

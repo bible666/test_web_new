@@ -1,0 +1,54 @@
+<div class="content-wrapper">
+    <!-- <show-message [message]="message"></show-message> -->
+        <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">ข้อมูล mmse</h1>
+                    
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a routerLink ="/master/company">ข้อมูลบริษัท</a></li>
+                        <li class="breadcrumb-item active">แก้ไข</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+            <form> <!--[formGroup]="inputForm" (ngSubmit)="onSubmit()" > -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            ปีนี้ ปีอะไร？
+                        </div>
+                        <div class="col-4">
+                            <div class="label_area">
+                                <input type="radio" name="faq01" id="faq01_0" value="0" class="radio-input">
+                                <label for="faq01_0" class="radio-label ">
+                                不正解</label>
+                                </div>
+
+                                <div class="label_area">
+                                    <input type="radio" name="faq01" id="faq01_1" value="1" class="radio-input">
+                                    <label for="faq01_1" class="radio-label ">
+                                    正解</label>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </form></div>
+        </div>
+    </section>
+    <!-- /.content -->
+
+</div>
+
