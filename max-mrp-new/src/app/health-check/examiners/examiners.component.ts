@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../shared-common/confirm-dialog/confirm-dialog.component';
 import { UserService } from '../../service/user.service';
 
+import { ExaminersService, cSearch, cData } from '../../service/examiners.service';
 
 @Component({
   selector: 'app-examiners',
@@ -18,8 +19,8 @@ export class ExaminersComponent implements OnInit {
     public CountData      : number = 20;
     public CurrentPage    : number = 1;
     public AllPage        : number = 13;
-    //public gridDatas      : cData[] = [];
-    //public frmSearchData  : cSearch;
+    public gridDatas      : cData[] = [];
+    public frmSearchData  : cSearch;
 
     inputForm = new FormGroup( {
         'unit_code'     : new FormControl(''),
@@ -30,8 +31,8 @@ export class ExaminersComponent implements OnInit {
     constructor(
         public dialog           : MatDialog,
         private messageService  : MessageService,
-        private userData        : UserService
-        //private service         : UnitService,
+        private userData        : UserService,
+        private service         : ExaminersService,
     ) {
         //set inital value when open form
         this.onInitValue();
@@ -57,25 +58,25 @@ export class ExaminersComponent implements OnInit {
         this.CurrentPage  = 1;
 
         //set form value to class search
-        // this.frmSearchData = new cSearch(this.inputForm.value);
+        this.frmSearchData = new cSearch(this.inputForm.value);
 
-        // this.frmSearchData.page_index   = this.CurrentPage;
-        // this.frmSearchData.rowsPerpage  = this.inputForm.value.rowsPerpage;
+        this.frmSearchData.page_index   = this.CurrentPage;
+        this.frmSearchData.rowsPerpage  = this.inputForm.value.rowsPerpage;
         this.getData();
         this.message = this.messageService.getMessage();
     }
 
     getData() {
-        // this.frmSearchData.page_index = this.CurrentPage;
-        // this.service.getListData(this.frmSearchData).subscribe(
-        //     data => {
-        //         if (data['status'] == 'success'){
-        //             this.CountData    = data['max_rows'];
-        //             this.AllPage      = Math.ceil(this.CountData / this.inputForm.value.rowsPerpage);
-        //             this.gridDatas     = data['data'];
-        //         }
-        //     }
-        // );
+        this.frmSearchData.page_index = this.CurrentPage;
+        this.service.getListData(this.frmSearchData).subscribe(
+            data => {
+                if (data['status'] == 'success'){
+                    this.CountData    = data['max_rows'];
+                    this.AllPage      = Math.ceil(this.CountData / this.inputForm.value.rowsPerpage);
+                    this.gridDatas     = data['data'];
+                }
+            }
+        );
     }
 
     onClear() {

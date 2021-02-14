@@ -73,7 +73,7 @@
             <div class="row wow">
                 <!-- ↓↓ 新規追加ボタン↓↓ -->
                 <div class="col-sm-6 mb-0">
-                    <a [routerLink]="['/master/unit/edit',-1]" class="btn btn-success btn-add btn-sm" name="btnAdd">
+                    <a [routerLink]="['/health/examiners/edit',-1]" class="btn btn-success btn-add btn-sm" name="btnAdd">
                         <i class="fa fa-plus"></i>
                         เพิ่ม
                     </a>
@@ -112,14 +112,14 @@
                                         <tbody>
                                             <tr *ngFor="let gridData of gridDatas">
                                                 <td>
-                                                    <a [routerLink]="['/master/unit/edit',gridData.unit_code]" class="btn btn-primary btn-sm" >
+                                                    <a [routerLink]="['/health/examiners/edit',gridData.id]" class="btn btn-primary btn-sm" >
                                                         <i class="far fa-edit"></i> แก้ไข
                                                     </a>
-                                                    <a (click)="onDelete(gridData.unit_code)" class="btn btn-danger btn-sm">
+                                                    <a (click)="onDelete(gridData.id)" class="btn btn-danger btn-sm">
                                                         <i class="fas fa-trash"></i> ลบ
                                                     </a>
                                                 </td>
-                                                <td>{{gridData.unit_code}}</td>
+                                                <td>{{gridData.examiner_code}}</td>
                                                 <td class="c">{{gridData.unit_name}}</td>
                                             </tr>
                                         </tbody>

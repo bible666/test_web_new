@@ -77,7 +77,7 @@ class ExaminersController extends Origin001
         $http_code = 200;
 
         //init data
-        $examiner_id = isset( $data->examiner_id ) ? $data->examiner_id : -1;
+        $examiner_id = isset( $data->id ) ? $data->id : -1;
 
         $result = $this->_checkToken( $token );
 
@@ -243,6 +243,7 @@ class ExaminersController extends Origin001
         }
 
         //init data
+        $id             = isset( $data->id )            ? $data->id                  : -1;
         $area_id        = isset( $data->area_id )       ? $data->area_id             : 0;
         $examiner_code  = isset( $data->examiner_code ) ? trim($data->examiner_code) : '';
         $first_name     = isset( $data->first_name )    ? trim($data->first_name)    : '';
@@ -262,13 +263,13 @@ class ExaminersController extends Origin001
             return $this->respond( $dataDB, $http_code );
         }
 
-        if ( $examiner_code == '-1' ) {
-            $old_data = $this->mst_item->getWhere( ['examiner_code' => $item_code, 'active_flag' => false] )->getRow();
+        if ( $id == -1 ) {
+            $old_data = $this->prg_examiners_table->getWhere( ['examiner_code' => $examiner_code, 'active_flag' => false] )->getRow();
             if ( isset( $old_data ) ) {
                 $old_examiner_code = $old_data->examiner_code;
             }
         } else {
-            $old_data = $this->mst_item->getWhere( ['examiner_code' => $old_item_code] )->getRow();
+            $old_data = $this->prg_examiners_table->getWhere( ['examiner_code' => $examiner_code] )->getRow();
         }
 
         $insert_data = [];
@@ -276,7 +277,10 @@ class ExaminersController extends Origin001
         //$insert_data['m_company_id']    = $result->company_id;
 
         //set data to array for add or update
-        $insert_data['area_id']         = $area_id;
+        if ( $area_id != 0) {
+            $insert_data['area_id']         = $area_id;
+        }
+        
         $insert_data['examiner_code']   = $examiner_code;
         $insert_data['first_name']      = $first_name;
         $insert_data['last_name']       = $last_name;
@@ -289,10 +293,10 @@ class ExaminersController extends Origin001
 
         $this->db->transStart();
 
-        if ( $old_item_code == '-1' ) {
+        if ( $id == '-1' ) {
             $insert_data['create_date'] = date( "Y-m-d H:i:s" );
             $insert_data['create_user'] = $result->user_id;
-            $this->mst_item->insert( $insert_data );
+            $this->prg_examiners_table->insert( $insert_data );
 
             if ( $this->db->error()['message'] !== '' ) {
                 $dataDB['status']  = "error";
@@ -305,7 +309,7 @@ class ExaminersController extends Origin001
             $insert_data['update_date'] = date( "Y-m-d H:i:s" );
             $insert_data['update_user'] = $result->user_id;
 
-            $this->mst_item->update( $insert_data, ['item_code' => $old_item_code] );
+            $this->prg_examiners_table->update( $insert_data, ['id' => $id] );
 
             if ( $this->db->error()['message'] !== '' ) {
                 $dataDB['status']  = "error";

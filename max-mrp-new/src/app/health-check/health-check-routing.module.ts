@@ -6,9 +6,9 @@ import { ExaminersComponent } from './examiners/examiners.component';
 import { ExaminersEditComponent } from './examiners-edit/examiners-edit.component';
 
 const routes: Routes = [
-    { path: 'mmse' ,                      component: MmseComponent },
-    { path: 'examiners' ,                 component: ExaminersComponent},
-    { path: 'examinerEdit:examiner_id' ,  component: ExaminersEditComponent}
+    { path: 'mmse' ,                         component: MmseComponent },
+    { path: 'examiners' ,                    component: ExaminersComponent},
+    { path: 'examiners/edit/:examiner_id' ,  component: ExaminersEditComponent}
 ];
 
 @NgModule({

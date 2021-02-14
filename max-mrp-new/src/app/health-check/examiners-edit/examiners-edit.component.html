@@ -1,6 +1,6 @@
 <div class="content-wrapper">
     <show-message [message]="message"></show-message>
-        <!-- Content Header (Page header) -->
+    <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -27,45 +27,73 @@
                 <div class="card-body">
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <label>รหัส</label>
-                                <input type="text" [ngClass]="inputForm.controls['unit_code'].invalid?'form-control is-invalid': 'form-control'" formControlName="unit_code" placeholder="กรุณาใส่รหัสพื้นที่เก็บของ">
-                                <div *ngIf="inputForm.controls['unit_code'].hasError">
-                                    <span class="help" *ngIf="inputForm.controls['unit_code'].hasError('required')">กรุณาใส่ข้อมูล</span>
-                                    <span class="help" *ngIf="inputForm.controls['unit_code'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                <input type="text" [ngClass]="inputForm.controls['examiner_code'].invalid?'form-control is-invalid': 'form-control'" formControlName="examiner_code" placeholder="กรุณาใส่รหัส">
+                                <div *ngIf="inputForm.controls['examiner_code'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['examiner_code'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                    <span class="help" *ngIf="inputForm.controls['examiner_code'].hasError('maxlength')">ใส่ได้ไม่เกิน 10 ตัวอักษร</span>
                                 </div>
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-5">
                                 <label>ชื่อ</label>
-                                <input type="text" [ngClass]="inputForm.controls['unit_name'].invalid?'form-control is-invalid': 'form-control'" formControlName="unit_name" placeholder="กรุณาใส่ชื่อพื้นที่เก็บของ">
-                                <div *ngIf="inputForm.controls['unit_name'].hasError">
-                                    <span class="help" *ngIf="inputForm.controls['unit_name'].hasError('required')">กรุณาใส่ข้อมูล</span>
-                                    <span class="help" *ngIf="inputForm.controls['unit_name'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                <input type="text" [ngClass]="inputForm.controls['first_name'].invalid?'form-control is-invalid': 'form-control'" formControlName="first_name" placeholder="กรุณาใส่ชื่อ">
+                                <div *ngIf="inputForm.controls['first_name'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['first_name'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                    <span class="help" *ngIf="inputForm.controls['first_name'].hasError('maxlength')">ใส่ได้ไม่เกิน 200 ตัวอักษร</span>
                                 </div>
                             </div>
 
-                            <div class="col-sm-9">
+                            <div class="col-sm-5">
                                 <label>นามสกุล</label>
-                                <input type="text" [ngClass]="inputForm.controls['unit_name'].invalid?'form-control is-invalid': 'form-control'" formControlName="unit_name" placeholder="กรุณาใส่ชื่อพื้นที่เก็บของ">
-                                <div *ngIf="inputForm.controls['unit_name'].hasError">
-                                    <span class="help" *ngIf="inputForm.controls['unit_name'].hasError('required')">กรุณาใส่ข้อมูล</span>
-                                    <span class="help" *ngIf="inputForm.controls['unit_name'].hasError('maxlength')">ใส่ได้ไม่เกิน 50 ตัวอักษร</span>
+                                <input type="text" [ngClass]="inputForm.controls['last_name'].invalid?'form-control is-invalid': 'form-control'" formControlName="last_name" placeholder="กรุณาใส่นามสกุล">
+                                <div *ngIf="inputForm.controls['last_name'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['last_name'].hasError('maxlength')">ใส่ได้ไม่เกิน 200 ตัวอักษร</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>เพศ</label>
+                                <my-combo [comboType] = genderType [width] = 30 [value] = "genderCode$" (selectEvent)="onGenderSelect($event)"></my-combo>
+                            </div>
+                            <div class="col-sm-3">
+                                <label>วันเกิด</label>
+                                <input type="date"
+                                    formControlName="birthdate"
+                                    min="1900-01-01" max="2100-12-31"
+                                    [ngClass]="inputForm.controls['birthdate'].invalid?'form-control is-invalid': 'form-control'"
+                                >
+                                <div *ngIf="inputForm.controls['birthdate'].hasError">
+                                    <span class="help" *ngIf="inputForm.controls['birthdate'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+    
+                            <div class="col-sm-12">
+                                <label>ที่อยู่</label>
+                                <textarea rows="5" class="form-control" formControlName="address">
+
+                                </textarea>
+                                
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <label>หมายเหตุ</label>
-                                <textarea class="form-control" rows="3" formControlName="remark"></textarea>
+                                <textarea class="form-control" rows="3" formControlName="remarks"></textarea>
                             </div>
                         </div>
+
                     </div>
                 </div> 
                 <div class="card-footer">
-                    <a [routerLink]="['/master/unit']" class="btn btn-info">กลับ</a>
+                    <a [routerLink]="['/health/examiners']" class="btn btn-info">กลับ</a>
                     <button type="submit" class="btn btn-primary float-right">ยืนยัน</button>
                 </div>
             </form>

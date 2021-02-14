@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService, MessageClass } from '../../service/message.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ComboData } from '../../service/combo.service';
 import { UserService } from '../../service/user.service';
+
+import { ExaminersService, cInput } from '../../service/examiners.service';
 
 //import { cInput, UnitService } from '../../service/unit.service';
 
@@ -18,20 +22,28 @@ export class ExaminersEditComponent implements OnInit {
     //----------------------------------------------------------------
     // set local Valiable
     //----------------------------------------------------------------
-    public id                : string;
-    public old_examiner_id  : number;
+    public genderType         : string         = "gender";
+    public genderCode$        : Observable<string>;
+    public examiner_id        : number;
 
     inputForm = new FormGroup( {
-        'unit_code'     : new FormControl( '' , [ Validators.required, Validators.maxLength(10) ]),
-        'unit_name'     : new FormControl( '' , [ Validators.required, Validators.maxLength(50) ]),
-        'remark'        : new FormControl( '' , [ Validators.maxLength(200) ])
+        'area_id'       : new FormControl( '' , [  ]),
+        'examiner_code' : new FormControl( '' , [ Validators.required, Validators.maxLength(10) ]),
+        'first_name'    : new FormControl( '' , [ Validators.required, Validators.maxLength(200) ]),
+        'last_name'     : new FormControl( '' , [ Validators.maxLength(200) ]),
+        'birthdate'     : new FormControl( '' , [ Validators.required, Validators.maxLength(50) ]),
+        'gender'        : new FormControl( '' , [ ]),
+        'prefectures'   : new FormControl( '' , [ ]),
+        'address'       : new FormControl( '' , [ ]),
+        'remarks'       : new FormControl( '' , [ Validators.maxLength(400) ])
     } );
 
     constructor(
         private param           : ActivatedRoute,
         private ServiceMessage  : MessageService,
         private router          : Router,
-        private userData        : UserService
+        private userData        : UserService,
+        private service         : ExaminersService
 
         // private Service         : UnitService,
     ) { }
@@ -42,31 +54,30 @@ export class ExaminersEditComponent implements OnInit {
         
         window.scroll(0,0);
 
-        this.old_examiner_id    = this.param.snapshot.params.examiner_id;
+        this.examiner_id    = this.param.snapshot.params.examiner_id;
 
-
-        if ( this.old_examiner_id != -1 ) {
+        if ( this.examiner_id != -1 ) {
             //get data from database
-            // this.Service.getDataById( this.old_unit_code ).subscribe(
-            //     data => {
-
-            //         if ( data['status'] == 'success' ) {
-
-            //             this.inputForm.patchValue( {
-            //                 'unit_code'   : data['data'].unit_code,
-            //                 'unit_name'   : data['data'].unit_name,
-            //                 'remark'          : data['data'].remark
-            //             });
-            //         } else {
-            //             this.ServiceMessage.setError(data['message']);
-            //             this.message = this.ServiceMessage.getMessage();
-            //         }
-            //     },
-            //     error => {
-            //         this.ServiceMessage.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
-            //         this.message = this.ServiceMessage.getMessage();
-            //     }
-            // );
+            this.service.getDataById( this.examiner_id ).subscribe(
+                data => {
+console.log(data['data']);
+                    if ( data['status'] == 'success' ) {
+                        this.inputForm.patchValue( {
+                            'examiner_code'  : data['data'].examiner_code,
+                            'first_name'     : data['data'].first_name,
+                            'last_name'      : data['data'].last_name,
+                            'birthdate'      : data['data'].birthdate
+                        });
+                    } else {
+                        this.ServiceMessage.setError(data['message']);
+                        this.message = this.ServiceMessage.getMessage();
+                    }
+                },
+                error => {
+                    this.ServiceMessage.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
+                    this.message = this.ServiceMessage.getMessage();
+                }
+            );
         }
 
     }
@@ -77,25 +88,31 @@ export class ExaminersEditComponent implements OnInit {
             return;
         }
 
-        // let input_data  : cInput = new cInput(this.inputForm.value);
-        // input_data.old_unit_code = this.old_unit_code;
+        let input_data  : cInput = new cInput(this.inputForm.value);
+        input_data.id = this.examiner_id;
 
-        // this.Service.updateById( input_data ).subscribe(
-        //     data => {
-        //         if (data['status']== 'success'){
-        //             this.ServiceMessage.setSuccess('บันทึกสำเร็จ');
+        this.service.updateById( input_data ).subscribe(
+            data => {
+                if (data['status']== 'success'){
+                    this.ServiceMessage.setSuccess('บันทึกสำเร็จ');
                 
-        //             this.router.navigateByUrl('/master/unit');
-        //         } else {
-        //             this.ServiceMessage.setError(data['message']);
-        //             this.message = this.ServiceMessage.getMessage();
-        //         }
-        //     },
-        //     error => {
-        //         this.ServiceMessage.setError('บันทึกผิดพลาด');
-        //         this.message = this.ServiceMessage.getMessage();
-        //     }
-        // );
+                    this.router.navigateByUrl('/health/examiners');
+                } else {
+                    this.ServiceMessage.setError(data['message']);
+                    this.message = this.ServiceMessage.getMessage();
+                }
+            },
+            error => {
+                this.ServiceMessage.setError('บันทึกผิดพลาด');
+                this.message = this.ServiceMessage.getMessage();
+            }
+        );
+    }
+
+    onGenderSelect( data: ComboData ){
+        this.inputForm.patchValue({
+            'gender'             : data.value_code
+        });
     }
 
 }
