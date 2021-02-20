@@ -90,7 +90,7 @@ class ExaminersController extends Origin001
         }
 
         $query_str = "
-        SELECT prg_examiners.*
+        SELECT *
         FROM prg_examiners
         WHERE id = :examiner_id:
             AND active_flag = true
