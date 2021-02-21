@@ -9,10 +9,13 @@ import { MmseComponent } from './mmse/mmse.component';
 import { ExaminersComponent } from './examiners/examiners.component';
 import { ExaminersEditComponent } from './examiners-edit/examiners-edit.component';
 import { CheckMenuComponent } from './check-menu/check-menu.component';
+import { FlailIndexComponent } from './flail-a/flail-index/flail-index.component';
+import { FlailEditComponent } from './flail-a/flail-edit/flail-edit.component';
+import { FlailReportComponent } from './flail-a/flail-report/flail-report.component';
 
 
 @NgModule({
-  declarations: [MmseComponent, ExaminersComponent, ExaminersEditComponent, CheckMenuComponent],
+  declarations: [MmseComponent, ExaminersComponent, ExaminersEditComponent, CheckMenuComponent, FlailIndexComponent, FlailEditComponent, FlailReportComponent],
   imports: [
     CommonModule,
     SharedCommonModule,
