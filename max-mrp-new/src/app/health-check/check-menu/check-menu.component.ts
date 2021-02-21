@@ -40,8 +40,8 @@ export class CheckMenuComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.userData.main_menu_selected = 8;
-        this.userData.sub_menu_selected  = 41;
+        this.userData.main_menu_selected = 50;
+        this.userData.sub_menu_selected  = 51;
 
         window.scroll(0,0);
 
