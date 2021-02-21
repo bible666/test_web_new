@@ -1,4 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MessageService, MessageClass } from '../../service/message.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ComboData } from '../../service/combo.service';
+import { UserService } from '../../service/user.service';
+
+//Manual import
+import { ExaminersService, cSearch, cData } from '../../service/examiners.service';
+
 
 @Component({
   selector: 'app-check-menu',
@@ -7,9 +17,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckMenuComponent implements OnInit {
 
-  constructor() { }
+    public message: MessageClass[] = [];
 
-  ngOnInit(): void {
-  }
+    public CountData      : number = 20;
+    public CurrentPage    : number = 1;
+    public AllPage        : number = 13;
+
+    //----------------------------------------------------------------
+    // set local Valiable
+    //----------------------------------------------------------------
+    public examiner_id        : number;
+
+    constructor(
+        private param           : ActivatedRoute,
+        private ServiceMessage  : MessageService,
+        private router          : Router,
+        private userData        : UserService,
+        private service         : ExaminersService
+    ) {
+        //set inital value when open form
+
+    }
+
+    ngOnInit(): void {
+        this.userData.main_menu_selected = 8;
+        this.userData.sub_menu_selected  = 41;
+
+        window.scroll(0,0);
+
+        this.examiner_id    = this.param.snapshot.params.examiner_id;
+
+        if ( this.examiner_id != -1 ) {
+            //get data from database
+            this.service.getDataById( this.examiner_id ).subscribe(
+                data => {
+                    //get data success
+                },
+                error => {
+                    this.ServiceMessage.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
+                    this.message = this.ServiceMessage.getMessage();
+                }
+            );
+        }
+    }
+
 
 }

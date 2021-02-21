@@ -60,7 +60,6 @@ export class ExaminersEditComponent implements OnInit {
             //get data from database
             this.service.getDataById( this.examiner_id ).subscribe(
                 data => {
-console.log(data['data']);
                     if ( data['status'] == 'success' ) {
                         this.inputForm.patchValue( {
                             'examiner_code'  : data['data'].examiner_code,
