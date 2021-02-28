@@ -2,3 +2,173 @@
     color:#fff;
     margin:1px;
 }
+
+.ml-2, .mx-2 {
+    margin-left: 0.5rem !important;
+}
+
+.card-body.card-checklist .column_area01, .card-body.card-checklist .edit_area01, .card-body.card-checklist .column_number01, .card-body.card-checklist .column_area, .card-body.card-checklist .edit_area, .card-body.card-checklist .column_number {
+    border-bottom: 2px solid #DCEAF2!important;
+}
+
+.card-body.card-checklist .column_number {
+    background-color: #fff;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1.7rem;
+    vertical-align: middle!important;
+    color: #1078CB;
+    padding-top: 26px;
+}
+
+.column_area {
+    padding: .75rem 0.5rem;
+    margin-bottom: 0;
+}
+
+.card-body.card-checklist .column_area {
+    font-size: 1.25rem;
+    line-height: 1.7rem;
+    vertical-align: middle!important;
+    color: #333;
+    background-color: #fff;
+    padding-top: 26px;
+}
+
+.f_22 {
+    font-size: 22px!important;
+    line-height: 130%!important;
+}
+
+.card-body.card-checklist .edit_area {
+    font-size: 1.4rem;
+    line-height: 1.5rem;
+}
+
+.card-checklist .edit_area {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.edit_area {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0,0,0,.125) !important;
+}
+
+.label_area {
+    width: 40%;
+    float: left;
+}
+
+.card-body.card-checklist .edit_area {
+    font-size: 1.4rem;
+    line-height: 1.5rem;
+}
+
+input[type=radio].radio-input {
+    display: none;
+}
+
+input[type=radio] {
+    vertical-align: middle;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+    margin-right: 4px;
+    border: 2px solid #979797;
+    border-radius: 50%;
+    box-sizing: border-box;
+    margin-top: -3px;
+}
+
+input, input.form-control, input[type="password"], input[type="text"], textarea, .form-control {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin-left: 2px;
+    margin-right: 2px;
+    vertical-align: middle;
+}
+
+.card-body.card-checklist .edit_area label {
+    margin-bottom: 0px;
+    color: #59564f;
+}
+
+.radio-label:hover {
+    background-color: #FF7E00;
+    border: 2px solid #FF7E00;
+    color: #ffffff !important;
+    transition-duration: 0.4s;
+}
+
+.radio-label {
+    display: block;
+    float: left;
+    margin: 5px 10px;
+    width: 85%;
+    min-height: 45px;
+    text-align: center;
+    line-height: 120%;
+    padding: 5px 5px;
+    cursor: pointer;
+    color: #333;
+    border: 2px solid #E8E8E8;
+    background-color: #E8E8E8;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    min-height: 40px;
+    font-size: 95%;
+}
+
+label {
+    color: #333!important;
+}
+
+
+.footer_btn_area {
+    padding: 0px;
+    margin: 0px;
+    background-color: #fff;
+}
+
+.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+
+.btn.btn-sm, .btn-group-sm > .btn, .btn-group-sm .btn {
+    padding: 0.1rem 0.6rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+
+
+/*Card Footer Fixed*/
+@supports (box-shadow: 2px 2px 2px black){
+    .cart-panel-foo-fix{
+      position: sticky;
+      bottom: 0;
+      z-index: 9;
+    }
+  }
+  
