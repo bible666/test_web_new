@@ -2,3 +2,130 @@
     color:#fff;
     margin:1px;
 }
+
+.table > tbody > tr > th.th_result, .table th.th_result, .table01 tr th.th_result {
+    border-color: #1778BA!important;
+    border: 1px solid #1778BA!important;
+    font-weight: bold;
+}
+
+.table.table01 > tbody > tr > td, .table.table01 th, .table.table01 td {
+    border-bottom-color: #A0A0A0!important;
+}
+
+.table01 tr.tr_kou th {
+    border-color: #00599B!important;
+    border: 1px #00599B solid;
+    border-bottom: 1px #00599B solid;
+    background: #D4E1EB;
+    color: #333!important;
+    font-weight: normal!important;
+}
+
+.table .th_kou TH, .table TH.th_kou {
+    border-color: #82C0DF!important;
+    border: 1px #82C0DF solid;
+    border-bottom: 1px #82C0DF solid;
+    background: #1778BA;
+    color: #fff!important;
+    font-weight: normal!important;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 6px 4px;
+    vertical-align: middle;
+}
+
+.table TH, .table TD {
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.f_12 {
+    font-size: 12px!important;
+    line-height: 16px!important;
+}
+
+.f_16 {
+    font-size: 16px!important;
+    line-height: 22px!important;
+}
+
+.c {
+    text-align: center!important;
+}
+
+.table > tbody > tr > td.td_result, .table td.td_result, .table01 tr td.td_result {
+    border-color: #1778BA!important;
+    border: 1px solid #1778BA!important;
+    padding: 6px 15px;
+    font-weight: bold;
+    background-color: #fff;
+}
+
+.table > tbody > tr > td, .table td {
+    border-color: #E2E2E2!important;
+    border-left-color: #cecece!important;
+    border-right-color: #cecece!important;
+    word-wrap: break-word!important;
+    word-break: break-all;
+}
+
+.flail_report_meyasu01_waku {
+    border-top: 2px #E1E1E2 dotted;
+    padding: 2px 0px 0px 0px;
+}
+
+.table thead th, .table TH {
+    border-color: #BDBDBD!important;
+    border: 1px #eee solid;
+    background: #eee;
+    color: #342B4A!important;
+    font-weight: normal!important;
+    text-align: center;
+}
+
+.table.table01 > tbody > tr > td, .table.table01 th, .table.table01 td {
+    border-bottom-color: #A0A0A0!important;
+}
+
+.table > tbody > tr > td, .table td {
+    border-color: #E2E2E2!important;
+    border-left-color: #cecece!important;
+    border-right-color: #cecece!important;
+    word-wrap: break-word!important;
+    word-break: break-all;
+}
+
+.table.table01 > tbody > tr > td, .table.table01 th, .table.table01 td {
+    border-bottom-color: #A0A0A0!important;
+}
+
+
+.btn.flailReport {
+    width: 70% !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.btn.btn-sm, .btn-group-sm > .btn, .btn-group-sm .btn {
+    padding: 0.1rem 0.6rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+
+.btn {
+    position: relative;
+    margin: 0rem 1px 0.125rem 1px;
+    font-weight: 400;
+    line-height: 1.428571;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    border-radius: 0.2rem;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #fff;
+    background-color: #0371BA;
+    border-color: #0371BA;
+    box-shadow: 0 2px 2px 0 rgb(153 153 153 / 14%), 0 3px 1px -2px rgb(153 153 153 / 20%), 0 1px 5px 0 rgb(153 153 153 / 12%);
+}
