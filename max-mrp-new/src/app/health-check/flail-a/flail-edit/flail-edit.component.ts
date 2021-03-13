@@ -17,7 +17,7 @@ import { ExaminersService, cInput } from '../../../service/examiners.service';
     styleUrls: ['./flail-edit.component.css']
 })
 export class FlailEditComponent implements OnInit {
-      public message      : MessageClass[] = [];
+    public message      : MessageClass[] = [];
     public submitted    : boolean = false;
 
     //----------------------------------------------------------------
@@ -44,6 +44,7 @@ export class FlailEditComponent implements OnInit {
         private ServiceMessage  : MessageService,
         private router          : Router,
         private userData        : UserService,
+        private examinerService : ExaminersService,
         private service         : ExaminersService
 
         // private Service         : UnitService,
@@ -57,6 +58,32 @@ export class FlailEditComponent implements OnInit {
 
         this.examiner_id    = this.param.snapshot.params.examiner_id;
 
+        //get examiner data
+        this.examinerService.getDataById(this.examiner_id).subscribe(
+            data=>{
+                console.log(data);
+                // if ( data['status'] == 'success' ) {
+                //     this.inputForm.patchValue({
+                //         'company_code'    : data['data'].company_code,
+                //         'company_name'    : data['data'].company_name,
+                //         'address'         : data['data'].address,
+                //         'zip'             : data['data'].zip,
+                //         'telno'           : data['data'].telno,
+                //         'faxno'           : data['data'].faxno,
+                //         'email'           : data['data'].email,
+                //         'cal_no'          : data['data'].cal_no,
+                //         'remark'          : data['data'].remark
+                //     });
+                // } else {
+                //     this.ServiceMessage.setError(data['message']);
+                //     this.message = this.ServiceMessage.getMessage();
+                // }
+            },
+            error=>{
+                this.ServiceMessage.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
+                this.message = this.ServiceMessage.getMessage();
+            }
+        );
         if ( this.examiner_id != -1 ) {
             //get data from database
             this.service.getDataById( this.examiner_id ).subscribe(
