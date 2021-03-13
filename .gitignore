@@ -1,5 +1,6 @@
 # .gitignore 
 max-mrp-new/public/*
+max-mrp-new/dist/*
 max-mrp-new/node_modules
 API/writable/debugbar/*
 API/writable/logs/*
