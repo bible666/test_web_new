@@ -24,25 +24,7 @@
     <section class="content">
         <div class="container-fluid">
             <!-- ↓↓===== Search area ===================================================↓↓ -->
-            <div class="search card mb-4 p-0"><!-- /search -->
-                <div class="card-body d-sm-flex justify-content-between"><!-- /card-body -->
-                    <div class="col-sm-10">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <!-- text input -->
-                                <div class="form-group">
-                                <label>รหัสผู้เข้าทดสอบ : 11111111</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                <label>ชื่อ-นามสกุล : นายทดสอบ ได้ทั้งหมด</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- /card-body -->
-            </div><!-- /search -->
+            <examiner-header [examiner_id]="examiner_id"></examiner-header>
             <!-- ↑↑===== Search area ===================================================↑↑ -->
             <div class="card">
                 <form [formGroup]="inputForm" (ngSubmit)="onSubmit()" >

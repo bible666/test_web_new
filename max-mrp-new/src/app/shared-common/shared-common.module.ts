@@ -7,6 +7,7 @@ import { ShowMessageComponent } from './show-message/show-message.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MyComboComponent, DialogComboDialog } from './my-combo/my-combo.component';
 import { ComboPositionComponent } from './combo-position/combo-position.component';
+import { ExaminerHeaderComponent } from './examiner-header/examiner-header.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ComboPositionComponent } from './combo-position/combo-position.componen
         ConfirmDialogComponent,
         MyComboComponent,
         DialogComboDialog,
-        ComboPositionComponent
+        ComboPositionComponent,
+        ExaminerHeaderComponent
     ],
     imports: [
         CommonModule,
@@ -26,7 +28,8 @@ import { ComboPositionComponent } from './combo-position/combo-position.componen
         MatDialogModule,
         MyComboComponent,
         DialogComboDialog,
-        ComboPositionComponent
+        ComboPositionComponent,
+        ExaminerHeaderComponent
     ]
 })
 export class SharedCommonModule { }
