@@ -4,6 +4,7 @@ import { MessageService, MessageClass } from '../../../service/message.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared-common/confirm-dialog/confirm-dialog.component';
 import { UserService } from '../../../service/user.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 //Manual Service for this page
 import { ExaminersService, cSearch, cData } from '../../../service/examiners.service';
@@ -24,6 +25,11 @@ export class FlailIndexComponent implements OnInit {
     public gridDatas      : cData[] = [];
     public frmSearchData  : cSearch;
 
+    //----------------------------------------------------------------
+    // set local Valiable
+    //----------------------------------------------------------------
+    public examiner_id        : number;
+
     inputForm = new FormGroup( {
         'unit_code'     : new FormControl(''),
         'unit_name'     : new FormControl(''),
@@ -32,6 +38,7 @@ export class FlailIndexComponent implements OnInit {
 
     constructor(
         public dialog           : MatDialog,
+        private param           : ActivatedRoute,
         private messageService  : MessageService,
         private userData        : UserService,
         private service         : ExaminersService,
@@ -44,6 +51,7 @@ export class FlailIndexComponent implements OnInit {
         this.userData.main_menu_selected = 50;
         this.userData.sub_menu_selected  = 51;
 
+        this.examiner_id    = this.param.snapshot.params.examiner_id;
         window.scroll(0,0);
         this.onSearch();
     }
