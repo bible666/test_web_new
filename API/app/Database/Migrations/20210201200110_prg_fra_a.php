@@ -36,6 +36,7 @@ class Migration_prg_fra_a extends \CodeIgniter\Database\Migration {
                 question_24     INT    NOT NULL DEFAULT 0                   COMMENT 'คำถาม 24',
                 question_25     INT    NOT NULL DEFAULT 0                   COMMENT 'คำถาม 25',
                 remark          text,
+                active_flag     int,
                 create_date     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 update_date     DATETIME ,
                 create_user     INT NOT NULL,
