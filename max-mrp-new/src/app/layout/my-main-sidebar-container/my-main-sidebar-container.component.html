@@ -32,13 +32,13 @@
                 <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
                 <li [ngClass]="user.main_menu_open.indexOf(menu_data.menu_id) !== -1 ? 'nav-item menu-open' : 'nav-item'" *ngFor="let menu_data of menu_datas">
-                    <a href="#" [ngClass]="menu_data.menu_id == user.main_menu_selected ? 'nav-link active' : 'nav-link'" (click)="onMainMenuClick(menu_data.menu_id)">
+                    <ul [ngClass]="menu_data.menu_id == user.main_menu_selected ? 'nav-link active' : 'nav-link'" (click)="onMainMenuClick(menu_data.menu_id)">
                         <i class="nav-icon {{menu_data.menu_icon}}"></i>
                         <p>
                             {{menu_data.menu_name}}
                             <i class="right fas fa-angle-left"></i>
                         </p>
-                    </a>
+                    </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item" *ngFor="let sub_menu of menu_data.child_menu">
                             <a routerLink = "{{sub_menu.screen_url}}" [ngClass]="sub_menu.menu_id == user.sub_menu_selected ? 'nav-link active' : 'nav-link'">
