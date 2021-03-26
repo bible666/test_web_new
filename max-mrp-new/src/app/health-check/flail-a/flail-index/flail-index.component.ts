@@ -7,7 +7,7 @@ import { UserService } from '../../../service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 //Manual Service for this page
-import { ExaminersService, cSearch, cData } from '../../../service/examiners.service';
+import { PrgExaminersFraA, cData, cSearch } from '../../../service/prgExaminersFraA.service';
 
 
 @Component({
@@ -41,7 +41,7 @@ export class FlailIndexComponent implements OnInit {
         private param           : ActivatedRoute,
         private messageService  : MessageService,
         private userData        : UserService,
-        private service         : ExaminersService,
+        private service         : PrgExaminersFraA,
     ) {
         //set inital value when open form
         this.onInitValue();
@@ -72,6 +72,7 @@ export class FlailIndexComponent implements OnInit {
 
         this.frmSearchData.page_index   = this.CurrentPage;
         this.frmSearchData.rowsPerpage  = this.inputForm.value.rowsPerpage;
+        this.examiner_id                = this.examiner_id;
         this.getData();
         this.message = this.messageService.getMessage();
     }
@@ -129,6 +130,5 @@ export class FlailIndexComponent implements OnInit {
                 }
         });
     }
-
 
 }

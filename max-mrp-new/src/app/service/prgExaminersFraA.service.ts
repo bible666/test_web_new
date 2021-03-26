@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-const BASE_URL = environment.api_url+'/ExaminersController';
+const BASE_URL = environment.api_url+'/PrgExaminersFraAController';
 
 @Injectable({
     providedIn: 'root'
 })
-export class FraAService {
+export class PrgExaminersFraAService {
 
     httpOptions = {
         headers: new HttpHeaders({
