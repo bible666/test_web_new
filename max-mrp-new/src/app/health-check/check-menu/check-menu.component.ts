@@ -47,18 +47,6 @@ export class CheckMenuComponent implements OnInit {
 
         this.examiner_id    = this.param.snapshot.params.examiner_id;
 
-        if ( this.examiner_id != -1 ) {
-            //get data from database
-            this.service.getDataById( this.examiner_id ).subscribe(
-                data => {
-                    //get data success
-                },
-                error => {
-                    this.ServiceMessage.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
-                    this.message = this.ServiceMessage.getMessage();
-                }
-            );
-        }
     }
 
 

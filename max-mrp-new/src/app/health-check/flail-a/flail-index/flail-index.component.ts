@@ -11,9 +11,9 @@ import { ExaminersService, cSearch, cData } from '../../../service/examiners.ser
 
 
 @Component({
-  selector: 'app-flail-index',
-  templateUrl: './flail-index.component.html',
-  styleUrls: ['./flail-index.component.css']
+    selector: 'app-flail-index',
+    templateUrl: './flail-index.component.html',
+    styleUrls: ['./flail-index.component.css']
 })
 export class FlailIndexComponent implements OnInit {
 
