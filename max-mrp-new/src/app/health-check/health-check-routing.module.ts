@@ -10,13 +10,13 @@ import { FlailEditComponent } from './flail-a/flail-edit/flail-edit.component';
 import { FlailReportComponent } from './flail-a/flail-report/flail-report.component';
 
 const routes: Routes = [
-    { path: 'mmse' ,                                component: MmseComponent },
-    { path: 'examiners' ,                           component: ExaminersComponent},
-    { path: 'examiners/edit/:examiner_id' ,         component: ExaminersEditComponent},
-    { path: 'check-menu/:examiner_id',              component: CheckMenuComponent},
-    { path: 'flail-a/index/:examiner_id',           component: FlailIndexComponent},
-    { path: 'flail-a/edit/:examiner_id/:test_id',   component: FlailEditComponent},
-    { path: 'flail-a/report/:examiner_id/:test_id', component: FlailReportComponent}
+    { path: 'mmse' ,                            component: MmseComponent },
+    { path: 'examiners' ,                       component: ExaminersComponent},
+    { path: 'examiners/edit/:examiner_id' ,     component: ExaminersEditComponent},
+    { path: 'check-menu/:examiner_id',          component: CheckMenuComponent},
+    { path: 'flail-a/index/:examiner_id',       component: FlailIndexComponent},
+    { path: 'flail-a/edit/:test_id',            component: FlailEditComponent},
+    { path: 'flail-a/report/:test_id',          component: FlailReportComponent}
 ];
 
 @NgModule({
