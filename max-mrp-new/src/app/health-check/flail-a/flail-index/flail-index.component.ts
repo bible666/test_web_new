@@ -7,7 +7,7 @@ import { UserService } from '../../../service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 //Manual Service for this page
-import { PrgExaminersFraA, cData, cSearch } from '../../../service/prgExaminersFraA.service';
+import { PrgExaminersFraAService, cData, cSearch } from '../../../service/prgExaminersFraA.service';
 
 
 @Component({
@@ -31,8 +31,7 @@ export class FlailIndexComponent implements OnInit {
     public examiner_id        : number;
 
     inputForm = new FormGroup( {
-        'unit_code'     : new FormControl(''),
-        'unit_name'     : new FormControl(''),
+        'examiner_id'   : new FormControl(0),
         'rowsPerpage'   : new FormControl('20')
     } );
 
@@ -41,9 +40,10 @@ export class FlailIndexComponent implements OnInit {
         private param           : ActivatedRoute,
         private messageService  : MessageService,
         private userData        : UserService,
-        private service         : PrgExaminersFraA,
+        private service         : PrgExaminersFraAService,
     ) {
         //set inital value when open form
+        this.examiner_id    = this.param.snapshot.params.examiner_id;
         this.onInitValue();
     }
 
@@ -51,15 +51,13 @@ export class FlailIndexComponent implements OnInit {
         this.userData.main_menu_selected = 50;
         this.userData.sub_menu_selected  = 51;
 
-        this.examiner_id    = this.param.snapshot.params.examiner_id;
         window.scroll(0,0);
         this.onSearch();
     }
 
     onInitValue() {
         this.inputForm.patchValue({
-            'unit_code'    : '',
-            'unit_name'    : ''
+            'examiner_id'    : this.examiner_id
         });
     }
 

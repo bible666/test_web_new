@@ -64,25 +64,23 @@
                                         <thead>
                                         <tr>
                                             <th width="20px"></th>
-                                            <th>รหัส</th>
-                                            <th>ชื่อ-นามสกุล</th>
+                                            <th>วันที่ทำการทดสอบ</th>
                                             <th>การทดสอบ</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let gridData of gridDatas">
                                                 <td>
-                                                    <a [routerLink]="['/health/flail-a/edit/',gridData.id,gridData.id]" class="btn btn-link btn-sm" >
+                                                    <a [routerLink]="['/health/flail-a/edit/',gridData.id]" class="btn btn-link btn-sm" >
                                                         <img src="./assets/img/edit.png"> แก้ไข
                                                     </a>
                                                     <a (click)="onDelete(gridData.id)" class="btn btn-danger btn-sm">
                                                         <i class="fas fa-trash"></i> ลบ
                                                     </a>
                                                 </td>
-                                                <td>{{gridData.examiner_code}}</td>
-                                                <td class="c">{{gridData.first_name}} {{gridData.last_name}}</td>
+                                                <td>{{gridData.exam_date}}</td>
                                                 <td>
-                                                    <a [routerLink]="['/health/flail-a/report/',2,gridData.id]" class="btn btn-link btn-sm" >
+                                                    <a [routerLink]="['/health/flail-a/report/',gridData.id]" class="btn btn-link btn-sm" >
                                                         <img src="./assets/img/analysis.png"> รายงาน
                                                     </a>
                                                 </td>
@@ -120,4 +118,5 @@
         </div>
     </section>
     <!-- /.content -->
+    {{inputForm.value|json}}
 </div>
