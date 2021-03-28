@@ -32,7 +32,7 @@
             <div class="row wow">
                 <!-- ↓↓ 新規追加ボタン↓↓ -->
                 <div class="col-sm-6 mb-0">
-                    <a [routerLink]="['/health/examiners/edit',-1]" class="btn btn-success btn-add btn-sm" name="btnAdd">
+                    <a [routerLink]="['/health/examiners/edit',examiner_id,-1]" class="btn btn-success btn-add btn-sm" name="btnAdd">
                         <i class="fa fa-plus"></i>
                         เพิ่ม
                     </a>
@@ -71,7 +71,7 @@
                                         <tbody>
                                             <tr *ngFor="let gridData of gridDatas">
                                                 <td>
-                                                    <a [routerLink]="['/health/flail-a/edit/',gridData.id]" class="btn btn-link btn-sm" >
+                                                    <a [routerLink]="['/health/flail-a/edit/',examiner_id,gridData.id]" class="btn btn-link btn-sm" >
                                                         <img src="./assets/img/edit.png"> แก้ไข
                                                     </a>
                                                     <a (click)="onDelete(gridData.id)" class="btn btn-danger btn-sm">

@@ -29,6 +29,32 @@ export class FlailEditComponent implements OnInit {
     public examiner_id  : number;
 
     inputForm = new FormGroup( {
+        'exam_date'     : new FormControl(''),
+        'question_1'    : new FormControl(false),
+        'question_2'    : new FormControl(false),
+        'question_3'    : new FormControl(false),
+        'question_4'    : new FormControl(false),
+        'question_5'    : new FormControl(false),
+        'question_6'    : new FormControl(false),
+        'question_7'    : new FormControl(false),
+        'question_8'    : new FormControl(false),
+        'question_9'    : new FormControl(false),
+        'question_10'   : new FormControl(false),
+        'question_11'   : new FormControl(false),
+        'question_12'   : new FormControl(false),
+        'question_13'   : new FormControl(false),
+        'question_14'   : new FormControl(false),
+        'question_15'   : new FormControl(false),
+        'question_16'   : new FormControl(false),
+        'question_17'   : new FormControl(false),
+        'question_18'   : new FormControl(false),
+        'question_19'   : new FormControl(false),
+        'question_20'   : new FormControl(false),
+        'question_21'   : new FormControl(false),
+        'question_22'   : new FormControl(false),
+        'question_23'   : new FormControl(false),
+        'question_24'   : new FormControl(false),
+        'question_25'   : new FormControl(false),
         'remarks'       : new FormControl( '' , [ Validators.maxLength(400) ])
     } );
 
