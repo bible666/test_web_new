@@ -32,7 +32,7 @@
                         <div class="row input text">
                             <div class="col-md-12 edit_area form-inline">
                                 実施日 : 
-                                <input type="text" name="check_date" class="datepicker hasDatepicker" placeholder="" formControlName="exam_date"></div>
+                                <input type="text" class="datepicker hasDatepicker" placeholder="" formControlName="exam_date"></div>
                             </div>
                             <!-- ↓== 入力項目01 ここから==↓ -->
                             <div class="row input ml-2">
@@ -46,14 +46,15 @@
                                 </div><!-- /col-md-7 column_area f_22 -->
                         
                                 <div class="col-md-4 edit_area clearfix">
+                                   
                                     <div class="label_area">
-                                        <input type="radio" name="faq01" id="faq01_0" value="0" class="radio-input">
+                                        <input type="radio" class="radio-input" name="question_1" id="faq01_0" value="true" formContr olName="question_1">
                                         <label for="faq01_0" class="radio-label ">
                                             はい
                                         </label>
                                     </div><!-- /label_area -->
                                     <div class="label_area">
-                                        <input type="radio" name="faq01" id="faq01_1" value="1" class="radio-input">
+                                        <input type="radio" name="question_1" id="faq01_1" value="false" class="radio-input" formControlName="question_1">
                                         <label for="faq01_1" class="radio-label ">
                                             いいえ
                                         </label>
@@ -898,5 +899,5 @@
         
     </section>
     <!-- /.content -->
-
+    {{inputForm.value|json}}
 </div>
