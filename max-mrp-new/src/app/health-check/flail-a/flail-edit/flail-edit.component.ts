@@ -29,7 +29,7 @@ export class FlailEditComponent implements OnInit {
     public examiner_id  : number;
 
     inputForm = new FormGroup( {
-        'exam_date'     : new FormControl(''),
+        'exam_date'     : new FormControl('2021-03-29'),
         'question_1'    : new FormControl(false),
         'question_2'    : new FormControl(false),
         'question_3'    : new FormControl(false),
