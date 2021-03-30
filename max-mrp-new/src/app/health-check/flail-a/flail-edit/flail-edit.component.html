@@ -48,13 +48,13 @@
                                 <div class="col-md-4 edit_area clearfix">
                                    
                                     <div class="label_area">
-                                        <input type="radio" class="radio-input" name="question_1" id="faq01_0" value="true" formContr olName="question_1">
+                                        <input type="radio" class="radio-input" name="question_1" id="faq01_0" value="true" formControlName="question_1">
                                         <label for="faq01_0" class="radio-label ">
                                             はい
                                         </label>
                                     </div><!-- /label_area -->
                                     <div class="label_area">
-                                        <input type="radio" name="question_1" id="faq01_1" value="false" class="radio-input" formControlName="question_1">
+                                        <input type="radio" class="radio-input" name="question_1" id="faq01_1" value="false"  formControlName="question_1">
                                         <label for="faq01_1" class="radio-label ">
                                             いいえ
                                         </label>
@@ -65,453 +65,514 @@
                             <!-- ↓== 入力項目02 ここから==↓ -->
                             <div class="row input ml-2">
                         
-                            <div class="col-md-1 column_area column_number background_senior">
-                                02
-                            </div><!-- /col-md-1 column_area column_number -->
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    02
+                                </div><!-- /col-md-1 column_area column_number -->
                         
-                            <div class="col-md-7 column_area f_22 background_senior">
-                                <div class="fra_slide_q">
-                                    <span class="q_number">②</span>日用品の買い物を<span class="fra_list_q_none"><br></span>していますか
-                                </div>
-                            </div><!-- /col-md-7 column_area f_22 -->
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">②</span>日用品の買い物を<span class="fra_list_q_none"><br></span>していますか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
                         
-                            <div class="col-md-4 edit_area clearfix">
-                                <div class="label_area">
-                                    <input type="radio" name="faq02" id="faq02_0" value="0" class="radio-input">
-                                    <label for="faq02_0" class="radio-label ">
-                                        はい
-                                    </label>
-                                </div><!-- /label_area -->
-                                <div class="label_area">
-                                    <input type="radio" name="faq02" id="faq02_1" value="1" class="radio-input">
-                        <label for="faq02_1" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_2" id="faq02_0" value="true" class="radio-input" formControlName="question_2">
+                                        <label for="faq02_0" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_2" id="faq02_1" value="false" class="radio-input" formControlName="question_2">
+                                        <label for="faq02_1" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
+
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq02_text" onclick="openbox('faq02_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq02_text" onclick="openbox('faq02_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                </div><!-- /col-md-4 edit_area clearfix -->
+                        
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目03 ここから==↓ -->
+                            <div class="row input ml-2">
+                        
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    03
+                                </div><!-- /col-md-1 column_area column_number -->
+                        
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">③</span>預貯金の出し入れをして<span class="fra_list_q_none"><br></span>いますか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
+                        
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_3" id="faq03_0" value="true" class="radio-input" formControlName="question_3">
+                                        <label for="faq03_0" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_3" id="faq03_1" value="false" class="radio-input" formControlName="question_3">
+                                        <label for="faq03_1" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
-                        
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目03 ここから==↓ -->
-                        <div class="row input ml-2">
-                        
-                        <div class="col-md-1 column_area column_number background_senior">
-                        03</div><!-- /col-md-1 column_area column_number -->
-                        
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">③</span>預貯金の出し入れをして<span class="fra_list_q_none"><br></span>いますか</div></div><!-- /col-md-7 column_area f_22 -->
-                        
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq03" id="faq03_0" value="0" class="radio-input">
-                        <label for="faq03_0" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq03" id="faq03_1" value="1" class="radio-input">
-                        <label for="faq03_1" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq03_text" onclick="openbox('faq03_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq03_text" onclick="openbox('faq03_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                </div><!-- /col-md-4 edit_area clearfix -->
+                        
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目04 ここから==↓ -->
+                            <div class="row input ml-2">
+                        
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    04
+                                </div><!-- /col-md-1 column_area column_number -->
+                        
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q"><span class="q_number">④</span>友人の家を訪ねていますか</div>
+                                </div><!-- /col-md-7 column_area f_22 -->
+                        
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_4" id="faq04_0" value="true" class="radio-input" formControlName="question_4">
+                                        <label for="faq04_0" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_4" id="faq04_1" value="false" class="radio-input" formControlName="question_4">
+                                        <label for="faq04_1" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
-                        
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目04 ここから==↓ -->
-                        <div class="row input ml-2">
-                        
-                        <div class="col-md-1 column_area column_number background_senior">
-                        04</div><!-- /col-md-1 column_area column_number -->
-                        
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">④</span>友人の家を訪ねていますか</div></div><!-- /col-md-7 column_area f_22 -->
-                        
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq04" id="faq04_0" value="0" class="radio-input">
-                        <label for="faq04_0" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq04" id="faq04_1" value="1" class="radio-input">
-                        <label for="faq04_1" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq04_text" onclick="openbox('faq04_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq04_text" onclick="openbox('faq04_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                </div><!-- /col-md-4 edit_area clearfix -->
+                        
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目05 ここから==↓ -->
+                            <div class="row input ml-2">
+                        
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    05
+                                </div><!-- /col-md-1 column_area column_number -->
+                        
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q"><span class="q_number">⑤</span>家族や友人の相談にのって<span class="fra_list_q_none"><br></span>いますか</div>
+                                </div><!-- /col-md-7 column_area f_22 -->
+                        
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_5" id="faq05_0" value="0" class="radio-input" formControlName="question_5">
+                                        <label for="faq05_0" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_5" id="faq05_1" value="1" class="radio-input" formControlName="question_5">
+                                        <label for="faq05_1" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
-                        
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目05 ここから==↓ -->
-                        <div class="row input ml-2">
-                        
-                        <div class="col-md-1 column_area column_number background_senior">
-                        05</div><!-- /col-md-1 column_area column_number -->
-                        
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑤</span>家族や友人の相談にのって<span class="fra_list_q_none"><br></span>いますか</div></div><!-- /col-md-7 column_area f_22 -->
-                        
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq05" id="faq05_0" value="0" class="radio-input">
-                        <label for="faq05_0" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq05" id="faq05_1" value="1" class="radio-input">
-                        <label for="faq05_1" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq05_text" onclick="openbox('faq05_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq05_text" onclick="openbox('faq05_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                </div><!-- /col-md-4 edit_area clearfix -->
+                        
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目06 ここから==↓ -->
+                            <div class="row input ml-2">
+                        
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    06
+                                </div><!-- /col-md-1 column_area column_number -->
+                        
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q"><span class="q_number">⑥</span>階段を手すりや壁を<span class="fra_list_q_none"><br></span>つたわらずに昇っていますか</div>
+                                </div><!-- /col-md-7 column_area f_22 -->
+                        
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_6" id="faq06_0" value="0" class="radio-input" formControlName="question_6">
+                                        <label for="faq06_0" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_6" id="faq06_1" value="1" class="radio-input" formControlName="question_6">
+                                        <label for="faq06_1" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
-                        
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目06 ここから==↓ -->
-                        <div class="row input ml-2">
-                        
-                        <div class="col-md-1 column_area column_number background_senior">
-                        06</div><!-- /col-md-1 column_area column_number -->
-                        
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑥</span>階段を手すりや壁を<span class="fra_list_q_none"><br></span>つたわらずに昇っていますか</div></div><!-- /col-md-7 column_area f_22 -->
-                        
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq06" id="faq06_0" value="0" class="radio-input">
-                        <label for="faq06_0" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq06" id="faq06_1" value="1" class="radio-input">
-                        <label for="faq06_1" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq06_text" onclick="openbox('faq06_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq06_text" onclick="openbox('faq06_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                </div><!-- /col-md-4 edit_area clearfix -->
+                        
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目07 ここから==↓ -->
+                            <div class="row input ml-2">
+                        
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    07
+                                </div><!-- /col-md-1 column_area column_number -->
+                        
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">⑦</span>椅子に座った状態から<span class="fra_list_q_none"><br></span>何もつかまらずに立ち上がって<span class="fra_list_q_none"><br></span>いますか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
+                        
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_7" id="faq07_0" value="0" class="radio-input" formControlName="question_7">
+                                        <label for="faq07_0" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_7" id="faq07_1" value="1" class="radio-input" formControlName="question_7">
+                                        <label for="faq07_1" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
-                        
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目07 ここから==↓ -->
-                        <div class="row input ml-2">
-                        
-                        <div class="col-md-1 column_area column_number background_senior">
-                        07</div><!-- /col-md-1 column_area column_number -->
-                        
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑦</span>椅子に座った状態から<span class="fra_list_q_none"><br></span>何もつかまらずに立ち上がって<span class="fra_list_q_none"><br></span>いますか</div></div><!-- /col-md-7 column_area f_22 -->
-                        
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq07" id="faq07_0" value="0" class="radio-input">
-                        <label for="faq07_0" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq07" id="faq07_1" value="1" class="radio-input">
-                        <label for="faq07_1" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq07_text" onclick="openbox('faq07_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq07_text" onclick="openbox('faq07_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                </div><!-- /col-md-4 edit_area clearfix -->
+                        
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目08 ここから==↓ -->
+                            <div class="row input ml-2">
+                        
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    08
+                                </div><!-- /col-md-1 column_area column_number -->
+                        
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">⑧</span>15分くらい続けて歩いて<span class="fra_list_q_none"><br></span>いますか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
+                        
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_8" id="faq08_0" value="0" class="radio-input" formControlName="question_8">
+                                        <label for="faq08_0" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_8" id="faq08_1" value="1" class="radio-input" formControlName="question_8">
+                                        <label for="faq08_1" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
-                        
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目08 ここから==↓ -->
-                        <div class="row input ml-2">
-                        
-                        <div class="col-md-1 column_area column_number background_senior">
-                        08</div><!-- /col-md-1 column_area column_number -->
-                        
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑧</span>15分くらい続けて歩いて<span class="fra_list_q_none"><br></span>いますか</div></div><!-- /col-md-7 column_area f_22 -->
-                        
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq08" id="faq08_0" value="0" class="radio-input">
-                        <label for="faq08_0" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq08" id="faq08_1" value="1" class="radio-input">
-                        <label for="faq08_1" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq08_text" onclick="openbox('faq08_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq08_text" onclick="openbox('faq08_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                </div><!-- /col-md-4 edit_area clearfix -->
+                        
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目09 ここから==↓ -->
+                            <div class="row input ml-2">
+                        
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    09
+                                </div><!-- /col-md-1 column_area column_number -->
+                        
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">⑨</span>この１年間に転んだことが<span class="fra_list_q_none"><br></span>ありますか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
+                        
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_9" id="faq09_1" value="1" class="radio-input" formControlName="question_9">
+                                        <label for="faq09_1" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_9" id="faq09_0" value="0" class="radio-input" formControlName="question_9">
+                                        <label for="faq09_0" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
-                        
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目09 ここから==↓ -->
-                        <div class="row input ml-2">
-                        
-                        <div class="col-md-1 column_area column_number background_senior">
-                        09</div><!-- /col-md-1 column_area column_number -->
-                        
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑨</span>この１年間に転んだことが<span class="fra_list_q_none"><br></span>ありますか</div></div><!-- /col-md-7 column_area f_22 -->
-                        
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq09" id="faq09_1" value="1" class="radio-input">
-                        <label for="faq09_1" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq09" id="faq09_0" value="0" class="radio-input">
-                        <label for="faq09_0" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq09_text" onclick="openbox('faq09_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq09_text" onclick="openbox('faq09_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                </div><!-- /col-md-4 edit_area clearfix -->
+                        
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目10 ここから==↓ -->
+                            <div class="row input ml-2">
+                        
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    10
+                                </div><!-- /col-md-1 column_area column_number -->
+                        
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">⑩</span>転倒に対する不安は大きい<span class="fra_list_q_none"><br></span>ですか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
+                        
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_10" id="faq10_1" value="1" class="radio-input" formControlName="question_10">
+                                        <label for="faq10_1" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_10" id="faq10_0" value="0" class="radio-input" formControlName="question_10">
+                                        <label for="faq10_0" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
-                        
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目10 ここから==↓ -->
-                        <div class="row input ml-2">
-                        
-                        <div class="col-md-1 column_area column_number background_senior">
-                        10</div><!-- /col-md-1 column_area column_number -->
-                        
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑩</span>転倒に対する不安は大きい<span class="fra_list_q_none"><br></span>ですか</div></div><!-- /col-md-7 column_area f_22 -->
-                        
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq10" id="faq10_1" value="1" class="radio-input">
-                        <label for="faq10_1" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq10" id="faq10_0" value="0" class="radio-input">
-                        <label for="faq10_0" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq10_text" onclick="openbox('faq10_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq10_text" onclick="openbox('faq10_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                </div><!-- /col-md-4 edit_area clearfix -->
+                        
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目11 ここから==↓ -->
+                            <div class="row input ml-2">
+                        
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    11
+                                </div><!-- /col-md-1 column_area column_number -->
+                        
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">⑪</span>６ヶ月間で２～３㎏以上の<span class="fra_list_q_none"><br></span>体重減少がありましたか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
+                        
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_11" id="faq11_1" value="1" class="radio-input" formControlName="question_11">
+                                        <label for="faq11_1" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_11" id="faq11_0" value="0" class="radio-input" formControlName="question_11">
+                                            <label for="faq11_0" class="radio-label ">
+                                                いいえ
+                                            </label>
+                                    </div><!-- /label_area -->
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
-                        
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目11 ここから==↓ -->
-                        <div class="row input ml-2">
-                        
-                        <div class="col-md-1 column_area column_number background_senior">
-                        11</div><!-- /col-md-1 column_area column_number -->
-                        
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑪</span>６ヶ月間で２～３㎏以上の<span class="fra_list_q_none"><br></span>体重減少がありましたか</div></div><!-- /col-md-7 column_area f_22 -->
-                        
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq11" id="faq11_1" value="1" class="radio-input">
-                        <label for="faq11_1" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq11" id="faq11_0" value="0" class="radio-input">
-                        <label for="faq11_0" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq11_text" onclick="openbox('faq11_text')" type="button" value="解説" >
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq11_text" onclick="openbox('faq11_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                </div><!-- /col-md-4 edit_area clearfix -->
+                        
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目12 ここから==↓ -->
+                            <div class="row input ml-2">
+                        
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    12
+                                </div><!-- /col-md-1 column_area column_number -->
+                        
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="form-group bmd-form-group">
+                                        <div style="margin-bottom: 1rem">身長と体重を入力して下さい</div>
+                                        <table border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td>身長 <input type="text" name="cm" id="cm" min="100" max="200" class="form-control number-only" style="width:4em!important; margin-right: 3px;" required="required" value="">cm、</td>
+                                                    <td>体重 <input type="text" name="kg" id="kg" min="20" max="200" class="form-control number-only" style="width:4em!important; margin-right: 3px;" required="required" value="">kg</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="number_pad">
+                                                        <div class="mx-auto p-0 " style="width: 180px;">
+                                                            <div class="row mb-1 mt-2">
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('1', 'cm')">1</button></div>
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('2', 'cm')">2</button></div>
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('3', 'cm')">3</button></div>
+                                                            </div><!-- //row -->
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
-                        
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目12 ここから==↓ -->
-                        <div class="row input ml-2">
-                        
-                        <div class="col-md-1 column_area column_number background_senior">
-                        12</div><!-- /col-md-1 column_area column_number -->
-                        
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="form-group bmd-form-group">
-                        <div style="margin-bottom: 1rem">身長と体重を入力して下さい</div>
-                        <table border="0">
-                        <tbody><tr>
-                        <td>身長 <input type="text" name="cm" id="cm" min="100" max="200" class="form-control number-only" style="width:4em!important; margin-right: 3px;" required="required" value="">cm、</td>
-                        <td>体重 <input type="text" name="kg" id="kg" min="20" max="200" class="form-control number-only" style="width:4em!important; margin-right: 3px;" required="required" value="">kg</td>
-                        </tr>
-                        <tr>
-                        <td class="number_pad">
-                        <div class="mx-auto p-0 " style="width: 180px;">
-                            <div class="row mb-1 mt-2">
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('1', 'cm')">1</button></div>
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('2', 'cm')">2</button></div>
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('3', 'cm')">3</button></div>
-                            </div><!-- //row -->
-                        
-                            <div class="row mb-1">
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('4', 'cm')">4</button></div>
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('5', 'cm')">5</button></div>
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('6', 'cm')">6</button></div>
-                            </div><!-- //row -->
-                        
-                            <div class="row mb-1">
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('7', 'cm')">7</button></div>
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('8', 'cm')">8</button></div>
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('9', 'cm')">9</button></div>
-                            </div><!-- //row -->
-                        
-                            <div class="row mb-4">
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('0', 'cm')">0</button></div>
-                                <div class="col-md-2 mr-1">
-                                    <button type="button" onclick="numberPad('.', 'cm')" style="width: 30px;">.</button>
-                                </div>
-                                <div class="col-md-6 m-0 number_pad_clearbutton">
-                                    <button type="button" onclick="numberPad('clear', 'cm')">
-                                        <span class="p-0 m-0">クリア</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div><!-- //col-md-4 -->
-                        </td>
-                        <td class="number_pad">
-                        <div class="mx-auto p-0 " style="width: 180px;">
-                            <div class="row mb-1 mt-2">
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('1', 'kg')">1</button></div>
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('2', 'kg')">2</button></div>
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('3', 'kg')">3</button></div>
-                            </div><!-- //row -->
-                        
-                            <div class="row mb-1">
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('4', 'kg')">4</button></div>
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('5', 'kg')">5</button></div>
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('6', 'kg')">6</button></div>
-                            </div><!-- //row -->
-                        
-                            <div class="row mb-1">
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('7', 'kg')">7</button></div>
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('8', 'kg')">8</button></div>
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('9', 'kg')">9</button></div>
-                            </div><!-- //row -->
-                        
-                            <div class="row mb-4">
-                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('0', 'kg')">0</button></div>
-                                <div class="col-md-2 mr-1">
-                                    <button type="button" onclick="numberPad('.', 'kg')" style="width: 30px;">.</button>
-                                </div>
-                                <div class="col-md-6 m-0 number_pad_clearbutton">
-                                    <button type="button" onclick="numberPad('clear', 'kg')">
-                                        <span class="p-0 m-0">クリア</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div><!-- //col-md-4 -->
-                        </td>
-                        </tr>
-                        </tbody></table>
-                        <input type="hidden" name="bmi" id="bmi" class="form-control number-only" style="width:4em!important; margin-right:1em;">
-                        BMI：<label id="bmi_text" style="display:inline-block; width:4em; vertical-align:middle; height: 1.8rem; margin-top: 6px;margin-right: 6px; padding-top:1px; text-align: center; border-bottom: 2px #DCEAF2 solid; " class="bmd-label-static"></label><span class="f_16 mt-2">※参考：BMI &lt; 18.5が低栄養</span>
-                        
-                        </div></div><!-- /col-md-7 column_area f_22 -->
-                        
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area" style="display: none;">
-                        <input type="radio" name="faq12" id="faq12_1" value="1" class="radio-input" checked="">
-                        <label for="faq12_1" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
+                                                            <div class="row mb-1">
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('4', 'cm')">4</button></div>
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('5', 'cm')">5</button></div>
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('6', 'cm')">6</button></div>
+                                                            </div><!-- //row -->
+                                                        
+                                                            <div class="row mb-1">
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('7', 'cm')">7</button></div>
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('8', 'cm')">8</button></div>
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('9', 'cm')">9</button></div>
+                                                            </div><!-- //row -->
+                                                        
+                                                            <div class="row mb-4">
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('0', 'cm')">0</button></div>
+                                                                <div class="col-md-2 mr-1">
+                                                                    <button type="button" onclick="numberPad('.', 'cm')" style="width: 30px;">.</button>
+                                                                </div>
+                                                                <div class="col-md-6 m-0 number_pad_clearbutton">
+                                                                    <button type="button" onclick="numberPad('clear', 'cm')">
+                                                                        <span class="p-0 m-0">クリア</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- //col-md-4 -->
+                                                    </td>
+                                                    <td class="number_pad">
+                                                        <div class="mx-auto p-0 " style="width: 180px;">
+                                                            <div class="row mb-1 mt-2">
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('1', 'kg')">1</button></div>
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('2', 'kg')">2</button></div>
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('3', 'kg')">3</button></div>
+                                                            </div><!-- //row -->
+                                                        
+                                                            <div class="row mb-1">
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('4', 'kg')">4</button></div>
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('5', 'kg')">5</button></div>
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('6', 'kg')">6</button></div>
+                                                            </div><!-- //row -->
+                                                        
+                                                            <div class="row mb-1">
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('7', 'kg')">7</button></div>
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('8', 'kg')">8</button></div>
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('9', 'kg')">9</button></div>
+                                                            </div><!-- //row -->
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                                            <div class="row mb-4">
+                                                                <div class="col-md-2 mr-3"><button type="button" onclick="numberPad('0', 'kg')">0</button></div>
+                                                                <div class="col-md-2 mr-1">
+                                                                    <button type="button" onclick="numberPad('.', 'kg')" style="width: 30px;">.</button>
+                                                                </div>
+                                                                <div class="col-md-6 m-0 number_pad_clearbutton">
+                                                                    <button type="button" onclick="numberPad('clear', 'kg')">
+                                                                        <span class="p-0 m-0">クリア</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- //col-md-4 -->
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <input type="hidden" name="bmi" id="bmi" class="form-control number-only" style="width:4em!important; margin-right:1em;">
+                                        BMI：<label id="bmi_text" style="display:inline-block; width:4em; vertical-align:middle; height: 1.8rem; margin-top: 6px;margin-right: 6px; padding-top:1px; text-align: center; border-bottom: 2px #DCEAF2 solid; " class="bmd-label-static"></label>
+                                        <span class="f_16 mt-2">※参考：BMI &lt; 18.5が低栄養</span>
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
                         
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目13 ここから==↓ -->
-                        <div class="row input ml-2">
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area" style="display: none;">
+                                        <input type="radio" name="faq12" id="faq12_1" value="1" class="radio-input" checked="">
+                                        <label for="faq12_1" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                
+                                </div><!-- /col-md-4 edit_area clearfix -->
                         
-                        <div class="col-md-1 column_area column_number background_senior">
-                        13</div><!-- /col-md-1 column_area column_number -->
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目13 ここから==↓ -->
+                            <div class="row input ml-2">
                         
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑬</span>半年前に比べて固いものが<span class="fra_list_q_none"><br></span>食べにくくなりましたか</div></div><!-- /col-md-7 column_area f_22 -->
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    13
+                                </div><!-- /col-md-1 column_area column_number -->
                         
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq13" id="faq13_1" value="1" class="radio-input">
-                        <label for="faq13_1" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq13" id="faq13_0" value="0" class="radio-input">
-                        <label for="faq13_0" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
-                            
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq13_text" onclick="openbox('faq13_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
-                            
-                        </div><!-- /col-md-4 edit_area clearfix -->
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">⑬</span>半年前に比べて固いものが<span class="fra_list_q_none"><br></span>食べにくくなりましたか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
                         
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_13" id="faq13_1" value="1" class="radio-input" formControlName="question_13">
+                                        <label for="faq13_1" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_13" id="faq13_0" value="0" class="radio-input" formControlName="question_13">
+                                        <label for="faq13_0" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq13_text" onclick="openbox('faq13_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                    
+                                </div><!-- /col-md-4 edit_area clearfix -->
+                        
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
                         <!-- ↓== 入力項目14 ここから==↓ -->
                         <div class="row input ml-2">
                         
