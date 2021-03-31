@@ -31,7 +31,7 @@
                     <div class="card-body card-checklist normal_question01_waku">
                         <div class="row input text">
                             <div class="col-md-12 edit_area form-inline">
-                                実施日 : 
+                                วันที่ทำการทดสอบ : 
                                 <input type="text" class="datepicker hasDatepicker" placeholder="" formControlName="exam_date"></div>
                             </div>
                             <!-- ↓== 入力項目01 ここから==↓ -->
@@ -41,7 +41,7 @@
                                 </div><!-- /col-md-1 column_area column_number -->
                                 <div class="col-md-7 column_area f_22 background_senior">
                                     <div class="fra_slide_q">
-                                        バスや電車等を使って<span class="fra_list_q_none"><br></span>１人で外出していますか
+                                        คุณสามารถเดินทางคนเดียวโดยรถโดยสารสาธารณะหรือขับรถส่วนตัวได้หรือไม่
                                     </div>
                                 </div><!-- /col-md-7 column_area f_22 -->
                         
@@ -50,13 +50,13 @@
                                     <div class="label_area">
                                         <input type="radio" class="radio-input" name="question_1" id="faq01_0" value="true" formControlName="question_1">
                                         <label for="faq01_0" class="radio-label ">
-                                            はい
+                                            ได้
                                         </label>
                                     </div><!-- /label_area -->
                                     <div class="label_area">
                                         <input type="radio" class="radio-input" name="question_1" id="faq01_1" value="false"  formControlName="question_1">
                                         <label for="faq01_1" class="radio-label ">
-                                            いいえ
+                                            ไม่ได้
                                         </label>
                                     </div><!-- /label_area -->
                                 </div><!-- /col-md-4 edit_area clearfix -->
@@ -71,7 +71,7 @@
                         
                                 <div class="col-md-7 column_area f_22 background_senior">
                                     <div class="fra_slide_q">
-                                        <span class="q_number">②</span>日用品の買い物を<span class="fra_list_q_none"><br></span>していますか
+                                        คุณสามารถซื้อของใช้ในชีวิตประจำวันได้หรือไม่
                                     </div>
                                 </div><!-- /col-md-7 column_area f_22 -->
                         
@@ -79,13 +79,13 @@
                                     <div class="label_area">
                                         <input type="radio" name="question_2" id="faq02_0" value="true" class="radio-input" formControlName="question_2">
                                         <label for="faq02_0" class="radio-label ">
-                                            はい
+                                            ได้
                                         </label>
                                     </div><!-- /label_area -->
                                     <div class="label_area">
                                         <input type="radio" name="question_2" id="faq02_1" value="false" class="radio-input" formControlName="question_2">
                                         <label for="faq02_1" class="radio-label ">
-                                            いいえ
+                                            ไม่ได้
                                         </label>
                                     </div><!-- /label_area -->
 
@@ -573,200 +573,240 @@
                         
                             </div><!-- /row input ml-2 -->
                             <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目14 ここから==↓ -->
-                        <div class="row input ml-2">
+                            <!-- ↓== 入力項目14 ここから==↓ -->
+                            <div class="row input ml-2">
                         
-                        <div class="col-md-1 column_area column_number background_senior">
-                        14</div><!-- /col-md-1 column_area column_number -->
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    14
+                                </div><!-- /col-md-1 column_area column_number -->
                         
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑭</span>お茶や汁物等でむせることが<span class="fra_list_q_none"><br></span>ありますか</div></div><!-- /col-md-7 column_area f_22 -->
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">⑭</span>お茶や汁物等でむせることが<span class="fra_list_q_none"><br></span>ありますか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
                         
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq14" id="faq14_1" value="1" class="radio-input">
-                        <label for="faq14_1" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq14" id="faq14_0" value="0" class="radio-input">
-                        <label for="faq14_0" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_14" id="faq14_1" value="1" class="radio-input" formControlName="question_14">
+                                        <label for="faq14_1" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_14" id="faq14_0" value="0" class="radio-input" formControlName="question_14">
+                                        <label for="faq14_0" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq14_text" onclick="openbox('faq14_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq14_text" onclick="openbox('faq14_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
+                                </div><!-- /col-md-4 edit_area clearfix -->
                         
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目15 ここから==↓ -->
-                        <div class="row input ml-2">
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目15 ここから==↓ -->
+                            <div class="row input ml-2">
                         
-                        <div class="col-md-1 column_area column_number background_senior">
-                        15</div><!-- /col-md-1 column_area column_number -->
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    15
+                                </div><!-- /col-md-1 column_area column_number -->
                         
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑮</span>口の渇きが気になりますか</div></div><!-- /col-md-7 column_area f_22 -->
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">⑮</span>口の渇きが気になりますか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
                         
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq15" id="faq15_1" value="1" class="radio-input">
-                        <label for="faq15_1" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq15" id="faq15_0" value="0" class="radio-input">
-                        <label for="faq15_0" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_15" id="faq15_1" value="1" class="radio-input" formControlName="question_15">
+                                        <label for="faq15_1" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_15" id="faq15_0" value="0" class="radio-input" formControlName="question_15">
+                                        <label for="faq15_0" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq15_text" onclick="openbox('faq15_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq15_text" onclick="openbox('faq15_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
+                                </div><!-- /col-md-4 edit_area clearfix -->
                         
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目16 ここから==↓ -->
-                        <div class="row input ml-2">
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目16 ここから==↓ -->
+                            <div class="row input ml-2">
                         
-                        <div class="col-md-1 column_area column_number background_senior">
-                        16</div><!-- /col-md-1 column_area column_number -->
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    16
+                                </div><!-- /col-md-1 column_area column_number -->
                         
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑯</span>週に１回以上は外出して<span class="fra_list_q_none"><br></span>いますか</div></div><!-- /col-md-7 column_area f_22 -->
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">⑯</span>週に１回以上は外出して<span class="fra_list_q_none"><br></span>いますか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
                         
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq16" id="faq16_0" value="0" class="radio-input">
-                        <label for="faq16_0" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq16" id="faq16_1" value="1" class="radio-input">
-                        <label for="faq16_1" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_16" id="faq16_0" value="0" class="radio-input" formControlName="question_16">
+                                        <label for="faq16_0" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_16" id="faq16_1" value="1" class="radio-input" formControlName="question_16">
+                                        <label for="faq16_1" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
+                                
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq16_text" onclick="openbox('faq16_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq16_text" onclick="openbox('faq16_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                </div><!-- /col-md-4 edit_area clearfix -->
+                        
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目17 ここから==↓ -->
+                            <div class="row input ml-2">
+                        
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    17
+                                </div><!-- /col-md-1 column_area column_number -->
+                        
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">⑰</span>昨年と比べて外出の回数が<span class="fra_list_q_none"><br></span>減っていますか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
+                        
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_17" id="faq17_1" value="1" class="radio-input" formControlName="question_17">
+                                        <label for="faq17_1" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_17" id="faq17_0" value="0" class="radio-input" formControlName="question_17">
+                                        <label for="faq17_0" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
-                        
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目17 ここから==↓ -->
-                        <div class="row input ml-2">
-                        
-                        <div class="col-md-1 column_area column_number background_senior">
-                        17</div><!-- /col-md-1 column_area column_number -->
-                        
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑰</span>昨年と比べて外出の回数が<span class="fra_list_q_none"><br></span>減っていますか</div></div><!-- /col-md-7 column_area f_22 -->
-                        
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq17" id="faq17_1" value="1" class="radio-input">
-                        <label for="faq17_1" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq17" id="faq17_0" value="0" class="radio-input">
-                        <label for="faq17_0" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq17_text" onclick="openbox('faq17_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq17_text" onclick="openbox('faq17_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                </div><!-- /col-md-4 edit_area clearfix -->
+                        
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目18 ここから==↓ -->
+                            <div class="row input ml-2">
+                        
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    18
+                                </div><!-- /col-md-1 column_area column_number -->
+                        
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">⑱</span>周りの人から<span class="fra_list_q_none"><br></span>「いつも同じことを聞く」などの<span class="fra_list_q_none"><br></span>物忘れが あると言われますか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
-                        
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目18 ここから==↓ -->
-                        <div class="row input ml-2">
-                        
-                        <div class="col-md-1 column_area column_number background_senior">
-                        18</div><!-- /col-md-1 column_area column_number -->
-                        
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑱</span>周りの人から<span class="fra_list_q_none"><br></span>「いつも同じことを聞く」などの<span class="fra_list_q_none"><br></span>物忘れが あると言われますか</div></div><!-- /col-md-7 column_area f_22 -->
-                        
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq18" id="faq18_1" value="1" class="radio-input">
-                        <label for="faq18_1" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq18" id="faq18_0" value="0" class="radio-input">
-                        <label for="faq18_0" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_18" id="faq18_1" value="1" class="radio-input" formControlName="question_18">
+                                        <label for="faq18_1" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_18" id="faq18_0" value="0" class="radio-input" formControlName="question_18">
+                                        <label for="faq18_0" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq18_text" onclick="openbox('faq18_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq18_text" onclick="openbox('faq18_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
+                                </div><!-- /col-md-4 edit_area clearfix -->
                         
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目19 ここから==↓ -->
-                        <div class="row input ml-2">
-                        
-                        <div class="col-md-1 column_area column_number background_senior">
-                        19</div><!-- /col-md-1 column_area column_number -->
-                        
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑲</span>自分で電話番号を調べて、<span class="fra_list_q_none"><br></span>電話をかけることをしていますか</div></div><!-- /col-md-7 column_area f_22 -->
-                        
-                        <div class="col-md-4 edit_area clearfix">
-                        <div class="label_area">
-                        <input type="radio" name="faq19" id="faq19_0" value="0" class="radio-input">
-                        <label for="faq19_0" class="radio-label ">
-                        はい</label>
-                        </div><!-- /label_area -->
-                        <div class="label_area">
-                        <input type="radio" name="faq19" id="faq19_1" value="1" class="radio-input">
-                        <label for="faq19_1" class="radio-label ">
-                        いいえ</label>
-                        </div><!-- /label_area -->
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目19 ここから==↓ -->
+                            <div class="row input ml-2">
                             
-                        <!-- ↓↓「解説」ページへリンク↓↓ -->
-                        <div class="come_btn">
-                        <input id="faq19_text" onclick="openbox('faq19_text')" type="button" value="解説">
-                        </div>
-                        <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    19
+                                </div><!-- /col-md-1 column_area column_number -->
+                        
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">⑲</span>自分で電話番号を調べて、<span class="fra_list_q_none"><br></span>電話をかけることをしていますか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
+                        
+                                <div class="col-md-4 edit_area clearfix">
+                                    <div class="label_area">
+                                        <input type="radio" name="question_19" id="faq19_0" value="0" class="radio-input" formControlName="question_19">
+                                        <label for="faq19_0" class="radio-label ">
+                                            はい
+                                        </label>
+                                    </div><!-- /label_area -->
+                                    <div class="label_area">
+                                        <input type="radio" name="question_19" id="faq19_1" value="1" class="radio-input" formControlName="question_19">
+                                        <label for="faq19_1" class="radio-label ">
+                                            いいえ
+                                        </label>
+                                    </div><!-- /label_area -->
                             
-                        </div><!-- /col-md-4 edit_area clearfix -->
+                                    <!-- ↓↓「解説」ページへリンク↓↓ -->
+                                    <div class="come_btn">
+                                        <input id="faq19_text" onclick="openbox('faq19_text')" type="button" value="解説">
+                                    </div>
+                                    <!-- ↑↑「解説」ページへリンク↑↑ -->	
+                            
+                                </div><!-- /col-md-4 edit_area clearfix -->
                         
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目20 ここから==↓ -->
-                        <div class="row input ml-2">
+                            </div><!-- /row input ml-2 -->
+                            <!-- ↑== 入力項目 ここまで==↑ -->
+                            <!-- ↓== 入力項目20 ここから==↓ -->
+                            <div class="row input ml-2">
                         
-                        <div class="col-md-1 column_area column_number background_senior">
-                        20</div><!-- /col-md-1 column_area column_number -->
+                                <div class="col-md-1 column_area column_number background_senior">
+                                    20
+                                </div><!-- /col-md-1 column_area column_number -->
                         
-                        <div class="col-md-7 column_area f_22 background_senior">
-                        <div class="fra_slide_q"><span class="q_number">⑳</span>今日が何月何日か<span class="fra_list_q_none"><br></span>わからない時がありますか</div></div><!-- /col-md-7 column_area f_22 -->
+                                <div class="col-md-7 column_area f_22 background_senior">
+                                    <div class="fra_slide_q">
+                                        <span class="q_number">⑳</span>今日が何月何日か<span class="fra_list_q_none"><br></span>わからない時がありますか
+                                    </div>
+                                </div><!-- /col-md-7 column_area f_22 -->
                         
                         <div class="col-md-4 edit_area clearfix">
                         <div class="label_area">
