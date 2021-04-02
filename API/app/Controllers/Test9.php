@@ -8,23 +8,7 @@ class Test9 extends Controller
     public function index()
     {
         echo "1555";
-        //$userModel = model('App\Models\PrgExaminersFraAModel');
-        //$data = ['examiner_id' => 1];
-        //if ($userModel->save($data)){
-        //    echo "error";
-        //}else {
-        //    echo "errror";
-        //}
-        // $filepath = 'C:\xampp\htdocs\test_web_new\test_web_new\API\writable\uploads\1.jpg';
-        // if(file_exists($filepath)){ 
-        //     $mime = mime_content_type($filepath); //<-- detect file type
-        //     header('Content-Length: '.filesize($filepath)); //<-- sends filesize header
-        //     header("Content-Type: $mime"); //<-- send mime-type header
-        //     header('Content-Disposition: inline; filename="'.$filepath.'";'); //<-- sends filename header
-        //     readfile($filepath); //<--reads and outputs the file onto the output buffer
-        //     die(); //<--cleanup
-        //     exit; //and exit
-        //   }
+
 
     }
 
@@ -32,13 +16,14 @@ class Test9 extends Controller
     {
         echo "1555";
         $userModel = new PrgExaminersFraAModel();
-        
-        $data = ['examiner_id' => 1];
-        //var_dump($userModel);exit;
-        if ($userModel->save($data)){
-           echo "error";
+
+        $data = ['examiner_id' => 'd1515641654165dd','exam_date' => '2021/010'];
+
+        if ($userModel->insert($data) === false){
+            echo "error<br>";
+           var_dump($userModel->errors());
         }else {
-           echo "errror";
+            echo "insert success<br>";
         }
         // $filepath = 'C:\xampp\htdocs\test_web_new\test_web_new\API\writable\uploads\1.jpg';
         // if(file_exists($filepath)){ 
