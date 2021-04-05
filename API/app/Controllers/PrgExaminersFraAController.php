@@ -2,12 +2,14 @@
 namespace App\Controllers;
 
 use Config\App;
+use App\Models\PrgExaminersFraAModel;
 
 class PrgExaminersFraAController extends Origin001
 {
     protected $format = 'json';
 
     protected $prg_examiners_fra_a;
+    protected $prgExaminersFraAModel;
 
     /**
      * Constructure class
@@ -25,7 +27,7 @@ class PrgExaminersFraAController extends Origin001
         // $this->session = \Config\Services::session();
 
         $this->prg_examiners_fra_a = $this->db->table( 'prg_examiners_fra_a' );
-
+        $this->prgExaminersFraAModel = new PrgExaminersFraAModel();
     }
 
     /**

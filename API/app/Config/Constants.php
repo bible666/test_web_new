@@ -79,3 +79,8 @@ defined('EXIT__AUTO_MIN')      || define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 define('DATE_FORMAT_YMDHMS') || define('DATE_FORMAT_YMDHMS','Y-m-d H:i:s');
+define('MAX_LOGIN_COUNT') || define('MAX_LOGIN_COUNT',5);
+define('MAX_LOCK_LOGIN_TIME_MINIUS') || define('MAX_LOCK_LOGIN_TIME_MINIUS',15);
+
+define('HTML_STATUS_SUCCESS') || define('HTML_STATUS_SUCCESS',200);
+define('HTML_STATUS_UNAUTHORIZED') || define('HTML_STATUS_UNAUTHORIZED',401);

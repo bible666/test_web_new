@@ -1,9 +1,6 @@
 <?php
 namespace App\Controllers;
 
-//defined('BASEPATH') OR exit('No direct script access allowed');
-//require('Origin001.php');
-
 class StaffController extends Origin001
 {
 
@@ -30,7 +27,7 @@ class StaffController extends Origin001
         }
 
         $insert_data['del_flag']     = 1;
-        $insert_data['updated_date'] = date( "Y-m-d H:i:s" );
+        $insert_data['updated_date'] = date( DATE_FORMAT_YMDHMS );
         $insert_data['updated']      = $result->user_id;
 
         $this->db->where( [

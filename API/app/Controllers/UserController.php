@@ -3,12 +3,16 @@ namespace App\Controllers;
 
 use Config\App;
 
+use App\Models\MstUserModel;
+
 class UserController extends Origin001
 {
     protected $format = 'json';
 
     protected $mst_user_table;
     protected $prg_token;
+
+    protected $mstUserModel;
 
     public function initController( \CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger )
     {
@@ -24,32 +28,24 @@ class UserController extends Origin001
 
         $this->mst_user_table = $this->db->table( 'mst_user' );
         $this->prg_token      = $this->db->table( 'prg_token' );
+
+        $this->mstUserModel = model('App\Models\MstUserModel',false,$this->db);//new MstUserModel();
     }
 
     public function login() {
-
         $data = $this->request->getJSON();
-
-        $headers = [];
-        foreach ( getallheaders() as $name => $value ) {
-            $headers[$name] = $value;
-        }
-
-        //init data
-        $token = '';
-
-        $dataDB['status']  = "error";
-        $dataDB['message'] = "";
-        $dataDB['data']    = "";
 
         //Get Data From Post
         $user_login    = isset( $data->user_login ) ? $data->user_login : '';
         $user_password = isset( $data->user_password ) ? $data->user_password : '';
 
-        $sql = "SELECT * FROM mst_user WHERE login_id = :login: AND active_flag = true";
+        //init data
 
-        $query = $this->db->query( $sql, ['login' => $user_login] );
-        $row   = $query->getRow();
+        $dataDB['status']  = "error";
+        $dataDB['message'] = "";
+        $dataDB['data']    = "";
+
+        $row = $this->mstUserModel->where(['login_id' => $user_login, 'active_flag' => true])->first();
 
         if ( !isset( $row ) ) {
             $dataDB['status']  = "error";
@@ -59,10 +55,7 @@ class UserController extends Origin001
             return $this->respond( $dataDB, HTML_STATUS_UNAUTHORIZED );
         }
 
-        //$my = $this->encryption->decrypt($row['staff_pwd']);
-        //if ($user_password == $this->encryption->decrypt($row['staff_pwd'])) {
-
-        $nowData   = strtotime( date( "Y-m-d H:i:s" ) );
+        $nowData   = strtotime( date( DATE_FORMAT_YMDHMS ) );
         $diff_time = round( abs( $nowData - strtotime( $row->last_ng_time ) ) / 60, 2 );
 
         if ( $row->ng_count >= MAX_LOGIN_COUNT && $diff_time <= MAX_LOCK_LOGIN_TIME_MINIUS ) {
@@ -75,12 +68,11 @@ class UserController extends Origin001
 
         if ( $user_password != $row->user_password ) {
             $user_update = [
-                'last_ng_time' => date( "Y-m-d H:i:s" ),
-                'update_date'  => date( "Y-m-d H:i:s" ),
+                'last_ng_time' => date( DATE_FORMAT_YMDHMS ),
+                'update_date'  => date( DATE_FORMAT_YMDHMS ),
                 'ng_count'     => $row->ng_count + 1,
             ];
-            $this->mst_user_table->where( 'user_id', $row->user_id );
-            $this->mst_user_table->update( $user_update );
+            $this->mstUserModel->update( $row->user_id,$user_update );
 
             $dataDB['status']  = "error";
             $dataDB['message'] = "ไม่สามารถเข้าใช้งานระบบได้ login หรือ password ผิดพลาด";
@@ -102,18 +94,17 @@ class UserController extends Origin001
         $TokenData['user_id']     = $staff_id;
         $TokenData['token_code']  = $token;
         $TokenData['active_flag'] = true;
-        $TokenData['create_date'] = date( "Y-m-d H:i:s" );
+        $TokenData['create_date'] = date( DATE_FORMAT_YMDHMS );
         $this->prg_token->insert( $TokenData );
 
         //update user table
         $data = [
-            'update_date'     => date( "Y-m-d H:i:s" ),
-            'last_login_time' => date( "Y-m-d H:i:s" ),
+            'update_date'     => date( DATE_FORMAT_YMDHMS ),
+            'last_login_time' => date( DATE_FORMAT_YMDHMS ),
             'last_ng_time'    => null,
             'ng_count'        => 0,
         ];
-        $this->mst_user_table->where( 'user_id', $row->user_id );
-        $this->mst_user_table->update( $data );
+        $this->mstUserModel->update( $row->user_id,$data );
 
         //Get Menu Data
         $sql = "
@@ -139,14 +130,12 @@ class UserController extends Origin001
     private function _getGUID() {
         mt_srand( (double) microtime() * 10000 ); //optional for php 4.2.0 and up.
         $charid = strtoupper( md5( uniqid( rand(), true ) ) );
-        $hyphen = chr( 45 ); // "-"
-        $uuid   = substr( $charid, 0, 8 )
+
+        return substr( $charid, 0, 8 )
         . substr( $charid, 8, 4 )
         . substr( $charid, 12, 4 )
         . substr( $charid, 16, 4 )
-        . substr( $charid, 20, 12 ); // "}"
-
-        return $uuid;
+        . substr( $charid, 20, 12 );
     }
 
         /**
@@ -171,7 +160,7 @@ class UserController extends Origin001
         }
 
         $insert_data['active_flag'] = false;
-        $insert_data['update_date'] = date( "Y-m-d H:i:s" );
+        $insert_data['update_date'] = date( DATE_FORMAT_YMDHMS );
         $insert_data['update_user'] = $result->user_id;
 
         $this->mst_user_table->update( $insert_data, ['user_id' => $user_id] );
@@ -313,7 +302,7 @@ class UserController extends Origin001
         ORDER BY user_id
         LIMIT {$limit} OFFSET {$offset}
         ";
-        //print_r($query_str);exit;
+
         $query_count = "
         SELECT count(user_id) as my_count
         FROM mst_user
@@ -435,8 +424,6 @@ class UserController extends Origin001
         }
 
         $insert_data = [];
-
-        //$insert_data['m_company_id']    = $result->company_id;
 
         //set data to array for add or update
         $insert_data['item_code']            = $item_code;

@@ -148,9 +148,8 @@ class Origin001 extends ResourceController
         $datetime2 = date_create( $date_2 );
 
         $interval   = date_diff( $datetime1, $datetime2 );
-        $diff_value = ($interval->y * 350 * 8 * 60) + ($interval->m * 30 * 8 * 60) + ($interval->d * 8 * 60) + ($interval->h * 60) + $interval->i;
         
-        return $diff_value;
+        return ($interval->y * 350 * 8 * 60) + ($interval->m * 30 * 8 * 60) + ($interval->d * 8 * 60) + ($interval->h * 60) + $interval->i;
 
     }
 
@@ -158,9 +157,8 @@ class Origin001 extends ResourceController
     {
         if ( preg_match( "/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/", $date01 ) ) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -172,32 +170,6 @@ class Origin001 extends ResourceController
      */
     public function Create_PDF( $data )
     {
-
-        // ob_start();
-
-        // $filename = "order.pdf";
-
-        // $namePDF = $data['Booking_No_PDF'];
-        // $html = $this->load->view('PDF',$data,true);
-        // // echo($html);
-        //  ob_end_clean();
-
-        // $this->load->library('M_pdf');
-
-        // $a = new M_pdf();
-
-        // $a->pdf->WriteHTML($html);
-        // // $a->pdf->Output();
-
-        // if($a->pdf->Output("./PDFBooking/".$namePDF,"F")){
-
-        // } else if($data['donotSendmail']<=0){
-        //     // print_r("1");
-        //     return true;
-        //     // $messagex= $this->sendMail($data['reservation_id'],$data['user_id']);
-        //     // print_r("2");
-        // }
-
         return false;
     }
 
@@ -246,6 +218,13 @@ class stock_transaction_type
 }
 
 class db_class
+{
+    public $status  = '';
+    public $message = '';
+    public $data    = [];
+}
+
+class DbClass
 {
     public $status  = '';
     public $message = '';
