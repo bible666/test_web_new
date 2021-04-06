@@ -24,8 +24,6 @@ export class MyComboComponent implements OnInit, OnChanges {
     @Input() comboType: string;
     @Input() width:     number = 20;
 
-    @Output() selectEvent = new EventEmitter<ComboData>();
-
     comboDatas   : ComboData[];
     displayValue : string = "";
     widthText    : string = "30%";
@@ -69,12 +67,10 @@ export class MyComboComponent implements OnInit, OnChanges {
                         'value_search'             : this.comboValue
                     });
                     this.onChange(this.comboValue);
-                    this.selectEvent.emit(returnData);
                 } else {
                     returnData.display_code = '';
                     returnData.value_code   = '';
                     this.onChange('');
-                    this.selectEvent.emit(returnData);
                 }
             });
         }
@@ -165,12 +161,10 @@ export class MyComboComponent implements OnInit, OnChanges {
                 returnData.display_code = data['data'][0].display_code;
                 returnData.value_code   = searchValue;
                 this.onChange(searchValue);
-                this.selectEvent.emit(returnData);
             } else {
                 returnData.display_code = '';
                 returnData.value_code   = '';
                 this.onChange('');
-                this.selectEvent.emit(returnData);
             }
 
         });
@@ -203,8 +197,6 @@ export class MyComboComponent implements OnInit, OnChanges {
             let returnData : ComboData = new ComboData();
             returnData.display_code     = returnDisplay;
             returnData.value_code       = returnCode;
-
-            this.selectEvent.emit(returnData);
 
         });
         
