@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Inject, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Inject, Output, EventEmitter, OnChanges, forwardRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ComboData, ComboService } from '../../service/combo.service';
 import { tap, finalize } from 'rxjs/operators';
 import { LoadingService } from '../../service/loading.service';
@@ -10,13 +10,19 @@ import { Observable } from 'rxjs';
 @Component({
     selector: 'my-combo',
     templateUrl: './my-combo.component.html',
-    styleUrls: ['./my-combo.component.css']
+    styleUrls: ['./my-combo.component.css'],
+    providers: [
+        {
+          provide: NG_VALUE_ACCESSOR,
+          useExisting: forwardRef(() => MyComboComponent),
+          multi: true
+        }
+    ]
 })
 export class MyComboComponent implements OnInit, OnChanges {
 
     @Input() comboType: string;
     @Input() width:     number = 20;
-    @Input() value:     Observable<string>;
 
     @Output() selectEvent = new EventEmitter<ComboData>();
 
@@ -25,6 +31,7 @@ export class MyComboComponent implements OnInit, OnChanges {
     widthText    : string = "30%";
     widthDis     : string = "60%";
     service_name : string = "";
+    comboValue   : string = "";
 
     inputForm = new FormGroup({
         'value_search'     : new FormControl('')
@@ -36,6 +43,47 @@ export class MyComboComponent implements OnInit, OnChanges {
         public dialog: MatDialog
     ) {
         
+    }
+
+    onChange = (comboValue) => {};
+    onTouched = () => { };
+
+    writeValue(value: string): void {
+        this.comboValue = value ? value : ''
+        if ( this.comboValue ) {
+            let searchValue: string = this.comboValue;
+            this.service.getData(this.service_name,searchValue)
+            .pipe(
+                tap( ()      => { this.loading.show(); } ),
+                finalize( () => { this.loading.hide(); } )
+            )
+            .subscribe(data =>{
+                this.displayValue = "";
+                let returnData : ComboData = new ComboData();
+                if ( data['data'][0] ) {
+                    this.displayValue       = data['data'][0].display_code;
+                    returnData.display_code = data['data'][0].display_code;
+                    returnData.value_code   = searchValue;
+    
+                    this.inputForm.patchValue({
+                        'value_search'             : this.comboValue
+                    });
+                    this.onChange(this.comboValue);
+                    this.selectEvent.emit(returnData);
+                } else {
+                    returnData.display_code = '';
+                    returnData.value_code   = '';
+                    this.onChange('');
+                    this.selectEvent.emit(returnData);
+                }
+            });
+        }
+    }
+    registerOnChange(fn: any): void {
+        this.onChange = fn;
+    }
+    registerOnTouched(fn: any): void {
+        this.onTouched = fn;
     }
 
     ngOnInit(): void {
@@ -70,34 +118,35 @@ export class MyComboComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes) {
-        if ( changes.value.currentValue ) {
-            let searchValue: string = changes.value.currentValue;
-            this.service.getData(this.service_name,searchValue)
-            .pipe(
-                tap( ()      => { this.loading.show(); } ),
-                finalize( () => { this.loading.hide(); } )
-            )
-            .subscribe(data =>{
-                this.displayValue = "";
-                let returnData : ComboData = new ComboData();
-                if ( data['data'][0] ) {
-                    this.displayValue       = data['data'][0].display_code;
-                    returnData.display_code = data['data'][0].display_code;
-                    returnData.value_code   = searchValue;
+        console.log(changes);
+        // if ( changes.value.currentValue ) {
+        //     let searchValue: string = changes.value.currentValue;
+        //     this.service.getData(this.service_name,searchValue)
+        //     .pipe(
+        //         tap( ()      => { this.loading.show(); } ),
+        //         finalize( () => { this.loading.hide(); } )
+        //     )
+        //     .subscribe(data =>{
+        //         this.displayValue = "";
+        //         let returnData : ComboData = new ComboData();
+        //         if ( data['data'][0] ) {
+        //             this.displayValue       = data['data'][0].display_code;
+        //             returnData.display_code = data['data'][0].display_code;
+        //             returnData.value_code   = searchValue;
     
-                    this.inputForm.patchValue({
-                        'value_search'             : this.value
-                    });
-    
-                    this.selectEvent.emit(returnData);
-                } else {
-                    returnData.display_code = '';
-                    returnData.value_code   = '';
-                    this.selectEvent.emit(returnData);
-                }
-    
-            });
-        }
+        //             this.inputForm.patchValue({
+        //                 'value_search'             : this.value
+        //             });
+        //             this.onChange(this.value);
+        //             this.selectEvent.emit(returnData);
+        //         } else {
+        //             returnData.display_code = '';
+        //             returnData.value_code   = '';
+        //             this.onChange('');
+        //             this.selectEvent.emit(returnData);
+        //         }
+        //     });
+        // }
         
     }
 
@@ -115,10 +164,12 @@ export class MyComboComponent implements OnInit, OnChanges {
                 this.displayValue = data['data'][0].display_code;
                 returnData.display_code = data['data'][0].display_code;
                 returnData.value_code   = searchValue;
+                this.onChange(searchValue);
                 this.selectEvent.emit(returnData);
             } else {
                 returnData.display_code = '';
                 returnData.value_code   = '';
+                this.onChange('');
                 this.selectEvent.emit(returnData);
             }
 
@@ -138,15 +189,15 @@ export class MyComboComponent implements OnInit, OnChanges {
 
             if( result ) {
                 let data : ComboData = result;
-
                 returnCode      = data.value_code;
                 returnDisplay   = data.display_code;
-
             }
 
             this.inputForm.patchValue({
                 'value_search'             : returnCode
             });
+
+            this.onChange(returnCode);
             this.displayValue = returnDisplay;
 
             let returnData : ComboData = new ComboData();

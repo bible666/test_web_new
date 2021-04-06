@@ -106,11 +106,11 @@ export class ItemEditComponent implements OnInit {
         
     }
 
-    onUnitSelect( data: ComboData ){
-        this.inputForm.patchValue({
-            'unit_code'             : data.value_code
-        });
-    }
+    //onUnitSelect( data: ComboData ){
+    //    this.inputForm.patchValue({
+    //        'unit_code'             : data.value_code
+    //    });
+    //}
 
     onSubmit(){
 
