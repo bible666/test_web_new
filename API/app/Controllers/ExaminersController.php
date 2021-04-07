@@ -3,6 +3,8 @@ namespace App\Controllers;
 
 use Config\App;
 
+use App\Models\PrgExaminersModel;
+
 class ExaminersController extends Origin001
 {
     protected $format = 'json';
@@ -48,7 +50,7 @@ class ExaminersController extends Origin001
         }
 
         $insert_data['active_flag'] = false;
-        $insert_data['update_date'] = date( "Y-m-d H:i:s" );
+        $insert_data['update_date'] = date( DATE_FORMAT_YMDHMS );
         $insert_data['update_user'] = $result->user_id;
 
         $this->mst_user_table->update( $insert_data, ['user_id' => $user_id] );
@@ -190,7 +192,7 @@ class ExaminersController extends Origin001
         ORDER BY first_name
         LIMIT {$limit} OFFSET {$offset}
         ";
-        //print_r($query_str);exit;
+
         $query_count = "
         SELECT count(id) as my_count
         FROM prg_examiners
@@ -274,8 +276,6 @@ class ExaminersController extends Origin001
 
         $insert_data = [];
 
-        //$insert_data['m_company_id']    = $result->company_id;
-
         //set data to array for add or update
         if ( $area_id != 0) {
             $insert_data['area_id']         = $area_id;
@@ -294,7 +294,7 @@ class ExaminersController extends Origin001
         $this->db->transStart();
 
         if ( $id == '-1' ) {
-            $insert_data['create_date'] = date( "Y-m-d H:i:s" );
+            $insert_data['create_date'] = date( DATE_FORMAT_YMDHMS );
             $insert_data['create_user'] = $result->user_id;
             $this->prg_examiners_table->insert( $insert_data );
 
@@ -306,7 +306,7 @@ class ExaminersController extends Origin001
                 return $this->respond( $dataDB, $http_code );
             }
         } else {
-            $insert_data['update_date'] = date( "Y-m-d H:i:s" );
+            $insert_data['update_date'] = date( DATE_FORMAT_YMDHMS );
             $insert_data['update_user'] = $result->user_id;
 
             $this->prg_examiners_table->update( $insert_data, ['id' => $id] );
