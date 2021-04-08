@@ -9,8 +9,7 @@ class ExaminersController extends Origin001
 {
     protected $format = 'json';
 
-    protected $mst_user_table;
-    protected $prg_token;
+    protected $prgExaminersModel;
 
     public function initController( \CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger )
     {
@@ -23,9 +22,7 @@ class ExaminersController extends Origin001
         //--------------------------------------------------------------------
         // E.g.:
         // $this->session = \Config\Services::session();
-
-        $this->prg_examiners_table = $this->db->table( 'prg_examiners' );
-        $this->prg_token           = $this->db->table( 'prg_token' );
+        $this->prgExaminersModel = model('App\Models\PrgExaminersModel',false,$this->db);
     }
 
     /**
@@ -37,7 +34,7 @@ class ExaminersController extends Origin001
 
         //init data
         $token     = $this->getAuthHeader();
-        $user_id   = isset( $data->user_id ) ? $data->user_id : -1;
+        $id   = isset( $data->id ) ? $data->id : -1;
 
         $result = $this->_checkToken( $token );
 
@@ -49,15 +46,16 @@ class ExaminersController extends Origin001
             return $this->respond( $dataDB, TOKEN_NOT_FOUND );
         }
 
-        $insert_data['active_flag'] = false;
-        $insert_data['update_date'] = date( DATE_FORMAT_YMDHMS );
-        $insert_data['update_user'] = $result->user_id;
+        $dbData = $this->prgExaminersModel->find($id);
 
-        $this->mst_user_table->update( $insert_data, ['user_id' => $user_id] );
+        $dbData['active_flag'] = false;
+        $dbData['update_date'] = date( DATE_FORMAT_YMDHMS );
+        $dbData['update_user'] = $result->user_id;
 
-        if ( $this->db->error()['message'] !== '' ) {
+
+        if ( $this->prgExaminersModel->update($id, $dbData) === false ) {
             $dataDB['status']  = "error";
-            $dataDB['message'] = $this->db->error()['message'];
+            $dataDB['message'] = $this->prgExaminersModel->errors();
             $dataDB['data']    = "";
 
             return $this->respond( $dataDB, $http_code );
@@ -202,12 +200,13 @@ class ExaminersController extends Origin001
 
         $itemn_data = $this->db->query( $query_str, [$result->company_id] )->getResult();
 
+        $isDbError = false;
         if ( $this->db->error()['message'] !== '' ) {
             $dataDB['status']  = "error";
             $dataDB['message'] = $this->db->error()['message'];
             $dataDB['data']    = "";
 
-            return $this->respond( $dataDB, $http_code );
+            $isDbError = true;
         }
 
         $itemn_count = $this->db->query( $query_count, [$result->company_id] )->getResult();
@@ -217,6 +216,11 @@ class ExaminersController extends Origin001
             $dataDB['message'] = $this->db->error()['message'];
             $dataDB['data']    = "";
 
+            $isDbError = true;
+            
+        }
+
+        if ( $isDbError ) {
             return $this->respond( $dataDB, $http_code );
         }
 
@@ -231,7 +235,6 @@ class ExaminersController extends Origin001
     public function update_data() {
         $token     = $this->getAuthHeader();
         $data      = $this->request->getJSON();
-        $http_code = 200;
 
         //get data from token
         $result = $this->_checkToken( $token );
@@ -244,87 +247,31 @@ class ExaminersController extends Origin001
             return $this->respond( $dataDB, TOKEN_NOT_FOUND );
         }
 
-        //init data
-        $id             = isset( $data->id )            ? $data->id                  : -1;
-        $area_id        = isset( $data->area_id )       ? $data->area_id             : 0;
-        $examiner_code  = isset( $data->examiner_code ) ? trim($data->examiner_code) : '';
-        $first_name     = isset( $data->first_name )    ? trim($data->first_name)    : '';
-        $last_name      = isset( $data->last_name )     ? trim($data->last_name)     : '';
-        $birthdate      = isset( $data->birthdate )     ? $data->birthdate           : '';
-        $gender         = isset( $data->gender )        ? trim($data->gender)        : '';
-        $prefectures    = isset( $data->prefectures )   ? $data->prefectures         : 0;
-        $address        = isset( $data->address )       ? trim($data->address)       : '';
-        $remarks        = isset( $data->remarks )       ? trim($data->remarks)       : '';
-
-        //Validation Data
-        if ( $first_name == '' ) {
-            $dataDB['status']  = "error";
-            $dataDB['message'] = "กรุณาระบุชื่อ";
-            $dataDB['data']    = "";
-
-            return $this->respond( $dataDB, $http_code );
-        }
-
-        if ( $id == -1 ) {
-            $old_data = $this->prg_examiners_table->getWhere( ['examiner_code' => $examiner_code, 'active_flag' => false] )->getRow();
-            if ( isset( $old_data ) ) {
-                $old_examiner_code = $old_data->examiner_code;
-            }
+        if ( $data->id == '-1' ) {
+            $data->active_flag  = true;
+            $data->create_date  = date( DATE_FORMAT_YMDHMS );
+            $data->create_user  = $result->user_id;
         } else {
-            $old_data = $this->prg_examiners_table->getWhere( ['examiner_code' => $examiner_code] )->getRow();
+            $data->active_flag  = true;
+            $data->update_date  = date( DATE_FORMAT_YMDHMS );
+            $data->update_user  = $result->user_id;
         }
-
-        $insert_data = [];
-
-        //set data to array for add or update
-        if ( $area_id != 0) {
-            $insert_data['area_id']         = $area_id;
-        }
-        
-        $insert_data['examiner_code']   = $examiner_code;
-        $insert_data['first_name']      = $first_name;
-        $insert_data['last_name']       = $last_name;
-        $insert_data['birthdate']       = $birthdate;
-        $insert_data['gender']          = $gender;
-        $insert_data['prefectures']     = $prefectures;
-        $insert_data['address']         = $address;
-        $insert_data['remarks']         = $remarks;
-        $insert_data['active_flag']     = true;
 
         $this->db->transStart();
+        if ( $this->prgExaminersModel->save($data) === false ) {
+            $dataDB['status']  = "error";
+            $dataDB['message'] = $this->prgExaminersModel->errors();
+            $dataDB['data']    = "";
 
-        if ( $id == '-1' ) {
-            $insert_data['create_date'] = date( DATE_FORMAT_YMDHMS );
-            $insert_data['create_user'] = $result->user_id;
-            $this->prg_examiners_table->insert( $insert_data );
-
-            if ( $this->db->error()['message'] !== '' ) {
-                $dataDB['status']  = "error";
-                $dataDB['message'] = $this->db->error()['message'];
-                $dataDB['data']    = "";
-
-                return $this->respond( $dataDB, $http_code );
-            }
-        } else {
-            $insert_data['update_date'] = date( DATE_FORMAT_YMDHMS );
-            $insert_data['update_user'] = $result->user_id;
-
-            $this->prg_examiners_table->update( $insert_data, ['id' => $id] );
-
-            if ( $this->db->error()['message'] !== '' ) {
-                $dataDB['status']  = "error";
-                $dataDB['message'] = $this->db->error()['message'];
-                $dataDB['data']    = "";
-
-                return $this->respond( $dataDB, $http_code );
-            }
+            return $this->respond( $dataDB, HTML_STATUS_DB_ERROR );
         }
+
         $this->db->transComplete();
 
         $dataDB['status']  = "success";
         $dataDB['message'] = "";
-        $dataDB['data']    = $insert_data;
+        $dataDB['data']    = $data;
 
-        return $this->respond( $dataDB, $http_code );
+        return $this->respond( $dataDB, HTML_STATUS_SUCCESS );
     }
 }

@@ -442,7 +442,7 @@ class UserController extends Origin001
         $this->db->transStart();
 
         if ( $old_item_code == '-1' ) {
-            $insert_data['create_date'] = date( "Y-m-d H:i:s" );
+            $insert_data['create_date'] = date( DATE_FORMAT_YMDHMS );
             $insert_data['create_user'] = $result->user_id;
             $this->mst_item->insert( $insert_data );
 

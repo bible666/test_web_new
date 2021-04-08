@@ -86,7 +86,7 @@ class Origin001 extends ResourceController
             return null;
         }
 
-        $minDiff = $this->dateDifference( $staff_data->token_update, date( "Y-m-d H:i:s" ), '%i' );
+        $minDiff = $this->dateDifference( $staff_data->token_update, date( DATE_FORMAT_YMDHMS ), '%i' );
 
         if ( $minDiff >= TOKEN_LIVE_TIME_MINIUS ) {
             //update token data
@@ -105,11 +105,9 @@ class Origin001 extends ResourceController
         $tokenData->staff_cat  = $staff_data->user_group_id;
 
         //update token data
-        $data = ['update_date' => date( "Y-m-d H:i:s" )];
+        $data = ['update_date' => date( DATE_FORMAT_YMDHMS )];
         $this->prg_token_origin->where( ['token_code' => $token] );
         $this->prg_token_origin->update( $data );
-
-        //if ($staff_data->token_update > date("Y-m-d H:i:s"))
 
 
         return $tokenData;
@@ -168,7 +166,7 @@ class Origin001 extends ResourceController
      *
      * @return bool
      */
-    public function Create_PDF( $data )
+    public function createPDF( $data )
     {
         return false;
     }
@@ -210,18 +208,11 @@ class Origin001 extends ResourceController
 
 }
 
-class stock_transaction_type
+class StockTransactionType
 {
     const ISSUE    = 'issue';
     const RECEIVE  = 'receive';
     const TRANSFER = 'transfer';
-}
-
-class db_class
-{
-    public $status  = '';
-    public $message = '';
-    public $data    = [];
 }
 
 class DbClass
@@ -231,7 +222,7 @@ class DbClass
     public $data    = [];
 }
 
-class check_token_class
+class CheckTokenClass
 {
     public $status     = '';
     public $user_id    = '';
@@ -240,15 +231,15 @@ class check_token_class
     public $staff_cat  = -1;
 }
 
-abstract class menuPermission
+abstract class MenuPermission
 {
-    const error = -1;
-    const read  = 1;
-    const write = 2;
+    const ERROR = -1;
+    const READ  = 1;
+    const WRITE = 2;
 }
 
-if ( !function_exists( 'getallheaders' ) ) {
-    function getallheaders()
+if ( !function_exists( 'getAllHeaders' ) ) {
+    function getAllHeaders()
     {
         $headers = [];
         foreach ( $_SERVER as $name => $value ) {

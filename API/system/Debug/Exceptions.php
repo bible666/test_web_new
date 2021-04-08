@@ -320,8 +320,8 @@ class Exceptions
 
 		if ($statusCode < 100 || $statusCode > 599)
 		{
-			$exitStatus = $statusCode + EXIT__AUTO_MIN; // 9 is EXIT__AUTO_MIN
-			if ($exitStatus > EXIT__AUTO_MAX) // 125 is EXIT__AUTO_MAX
+			$exitStatus = $statusCode + EXIT_AUTO_MIN; // 9 is EXIT_AUTO_MIN
+			if ($exitStatus > EXIT_AUTO_MAX) // 125 is EXIT_AUTO_MAX
 			{
 				$exitStatus = EXIT_ERROR; // EXIT_ERROR
 			}

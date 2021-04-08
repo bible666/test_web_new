@@ -75,7 +75,7 @@ defined('EXIT_UNKNOWN_CLASS')  || define('EXIT_UNKNOWN_CLASS', 5); // unknown cl
 defined('EXIT_UNKNOWN_METHOD') || define('EXIT_UNKNOWN_METHOD', 6); // unknown class member
 defined('EXIT_USER_INPUT')     || define('EXIT_USER_INPUT', 7); // invalid user input
 defined('EXIT_DATABASE')       || define('EXIT_DATABASE', 8); // database error
-defined('EXIT__AUTO_MIN')      || define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
+defined('EXIT_AUTO_MIN')      || define('EXIT_AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 define('DATE_FORMAT_YMDHMS','Y-m-d H:i:s');
@@ -84,5 +84,6 @@ define('MAX_LOCK_LOGIN_TIME_MINIUS',15);
 define('TOKEN_LIVE_TIME_MINIUS',30);
 
 define('HTML_STATUS_SUCCESS',200);
-define('HTML_STATUS_UNAUTHORIZED',401);
-define('TOKEN_NOT_FOUND',402);
+define('HTML_STATUS_DB_ERROR',502);
+define('HTML_STATUS_UNAUTHORIZED',501);
+define('TOKEN_NOT_FOUND',501);
