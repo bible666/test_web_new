@@ -56,7 +56,7 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>เพศ</label>
-                                <my-combo [comboType] = genderType [width] = 30 [value] = "genderCode$" (selectEvent)="onGenderSelect($event)"></my-combo>
+                                <my-combo [comboType] = genderType [width] = 30 formControlName="gender"></my-combo>
                             </div>
                             <div class="col-sm-3">
                                 <label>วันเกิด</label>

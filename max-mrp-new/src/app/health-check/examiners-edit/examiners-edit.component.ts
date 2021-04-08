@@ -24,7 +24,6 @@ export class ExaminersEditComponent implements OnInit {
     // set local Valiable
     //----------------------------------------------------------------
     public genderType         : string         = "gender";
-    public genderCode$        : Observable<string>;
     public examiner_id        : number;
 
     inputForm = new FormGroup( {
@@ -108,11 +107,4 @@ export class ExaminersEditComponent implements OnInit {
             }
         );
     }
-
-    onGenderSelect( data: ComboData ){
-        this.inputForm.patchValue({
-            'gender'             : data.value_code
-        });
-    }
-
 }

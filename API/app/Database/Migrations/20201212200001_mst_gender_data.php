@@ -9,8 +9,8 @@ class Migration_mst_gender_data extends \CodeIgniter\Database\Migration {
         INSERT INTO mst_gender 
         (gender_code, gender_name_th, gender_name_en, create_date, create_user) 
         VALUES 
-        ('001','ชาย','male',now(),1),
-        ('002','หญิง','female',now(),1);
+        ('M','ชาย','male',now(),1),
+        ('F','หญิง','female',now(),1);
         ");
 
     }

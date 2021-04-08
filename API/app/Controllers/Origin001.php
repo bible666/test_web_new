@@ -80,7 +80,7 @@ class Origin001 extends ResourceController
 
         $staff_data = $this->db->query( $query_str, ['token' => $token] )->getRow();
 
-        $tokenData = new check_token_class();
+        $tokenData = new CheckTokenClass();
 
         if ( !isset( $staff_data ) ) {
             return null;

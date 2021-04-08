@@ -249,6 +249,7 @@ class ExaminersController extends Origin001
         }
 
         if ( $data->id == '-1' ) {
+            unset($data->id);
             $data->active_flag  = true;
             $data->create_date  = date( DATE_FORMAT_YMDHMS );
             $data->create_user  = $result->user_id;

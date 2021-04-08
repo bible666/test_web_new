@@ -35,11 +35,15 @@ class PrgExaminersModel extends Model {
     protected $updatedField  = 'update_date';
 
     protected $validationRules    = [
-        'first_name'     => 'required'
+        'examiner_code'  => 'is_unique[prg_examiners.examiner_code,id,{id}]',
+        'first_name'     => 'required',
+        'gender'         => 'max_length[1]'
     ];
     
     protected $validationMessages = [
-       
+       'gender' => [
+           'max_length' => 'ห้ามยาวเกิน 1 ตัวอักษร'
+       ]
     ];
     protected $skipValidation     = false;
 

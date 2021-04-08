@@ -7,7 +7,7 @@ class Migration_mst_gender extends \CodeIgniter\Database\Migration {
     {
         $this->db->query("
         CREATE TABLE mst_gender(
-            gender_code        varchar(3) PRIMARY KEY,
+            gender_code        varchar(1) PRIMARY KEY,
             gender_name_th     varchar(200),
             gender_name_en     varchar(200),
             create_date        DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
