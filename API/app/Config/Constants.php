@@ -76,7 +76,7 @@ defined('EXIT_UNKNOWN_METHOD') || define('EXIT_UNKNOWN_METHOD', 6); // unknown c
 defined('EXIT_USER_INPUT')     || define('EXIT_USER_INPUT', 7); // invalid user input
 defined('EXIT_DATABASE')       || define('EXIT_DATABASE', 8); // database error
 defined('EXIT_AUTO_MIN')      || define('EXIT_AUTO_MIN', 9); // lowest automatically-assigned error code
-defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+defined('EXIT_AUTO_MAX')      || define('EXIT_AUTO_MAX', 125); // highest automatically-assigned error code
 
 define('DATE_FORMAT_YMDHMS','Y-m-d H:i:s');
 define('MAX_LOGIN_COUNT',5);
