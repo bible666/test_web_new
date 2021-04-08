@@ -138,7 +138,8 @@ class ExaminersController extends Origin001
                 //    break;
 
                 case "name":
-                    $strCond .= " LOWER(first_name) like '%" . strtolower( $val ) . "%' AND \n"; // placeholders
+                    $strCond .= " LOWER(first_name) like :{$key}: AND \n"; // placeholders
+                    $params["{$key}"] = "%strtolower({$val})%";
                     break;
                 case "rowsPerpage":
                 case "page_index":
@@ -198,7 +199,7 @@ class ExaminersController extends Origin001
         ORDER BY first_name
         ";
 
-        $itemn_data = $this->db->query( $query_str, [$result->company_id] )->getResult();
+        $itemn_data = $this->db->query( $query_str, $params )->getResult();
 
         $isDbError = false;
         if ( $this->db->error()['message'] !== '' ) {
@@ -209,7 +210,7 @@ class ExaminersController extends Origin001
             $isDbError = true;
         }
 
-        $itemn_count = $this->db->query( $query_count, [$result->company_id] )->getResult();
+        $itemn_count = $this->db->query( $query_count, $params )->getResult();
 
         if ( $this->db->error()['message'] !== '' ) {
             $dataDB['status']  = "error";
