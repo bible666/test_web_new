@@ -2,6 +2,7 @@ import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { tap, finalize } from 'rxjs/operators';
 import { MessageService, MessageClass } from '../../service/message.service';
 import { LoadingService } from '../../service/loading.service';
+import { TranslateService } from '@ngx-translate/core';
 
 //Manual add service for this page
 import { ExaminersService } from '../../service/examiners.service';
@@ -23,9 +24,12 @@ export class ExaminerHeaderComponent implements OnInit {
 
     constructor(
         private ServiceMessage  : MessageService,
-        public loading         : LoadingService,
+        public loading          : LoadingService,
+        public translate        : TranslateService,
         private examinerService : ExaminersService
-    ) { }
+    ) {
+        translate.setDefaultLang('th');
+    }
 
     ngOnInit(): void {
         //get examiner data
