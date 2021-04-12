@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService, MessageClass } from '../../service/message.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { ComboData } from '../../service/combo.service';
 import { UserService } from '../../service/user.service';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../service/language.service';
 
 //Manual import
-import { ExaminersService, cSearch, cData } from '../../service/examiners.service';
 
 
 @Component({
@@ -29,12 +27,14 @@ export class CheckMenuComponent implements OnInit {
     public examiner_id        : number;
 
     constructor(
+        public translate        : TranslateService,
+        public lang             : LanguageService,
         private param           : ActivatedRoute,
         private ServiceMessage  : MessageService,
         private router          : Router,
         private userData        : UserService,
-        private service         : ExaminersService
     ) {
+        translate.setDefaultLang(lang.defaultLang);
         //set inital value when open form
 
     }

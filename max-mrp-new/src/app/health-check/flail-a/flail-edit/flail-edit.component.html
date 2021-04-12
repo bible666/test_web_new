@@ -5,13 +5,15 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">ข้อมูลผู้เข้าทดสอบ(แก้ไข)</h1>
+                    <h1 class="m-0 text-dark">{{'PAGE_NAME.FRA_A_EDIT'|translate}}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a routerLink ="/master/location">ข้อมูลผู้เข้าทดสอบ</a></li>
-                        <li class="breadcrumb-item active">แก้ไข</li>
+                        <li class="breadcrumb-item"><a href="#">{{'PAGE_NAME.DASHBOARD'|translate}}</a></li>
+                        <li class="breadcrumb-item"><a routerLink ="/health/examiners">{{'PAGE_NAME.EXAMINERS'|translate}}</a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="['/health/check-menu',examiner_id]">{{'PAGE_NAME.EXAMINERS_MENU'|translate}}</a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="['/health/flail-a/index',examiner_id]">{{'PAGE_NAME.FRA_A'|translate}}</a></li>
+                        <li class="breadcrumb-item">{{'COMMON.EDIT'|translate}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -22,225 +24,171 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- ↓↓===== Search area ===================================================↓↓ -->
+            <!-- ↓↓===== Header area ===================================================↓↓ -->
             <examiner-header [examiner_id]="examiner_id"></examiner-header>
-            <!-- ↑↑===== Search area ===================================================↑↑ -->
+            <!-- ↑↑===== Header area ===================================================↑↑ -->
             <div class="card">
                 <form [formGroup]="inputForm" (ngSubmit)="onSubmit()" >
                     <div class="card-body card-checklist normal_question01_waku">
                         <div class="row input text">
                             <div class="col-md-12 edit_area form-inline">
-                                วันที่ทำการทดสอบ : 
+                                {{'FRA_A.EXAMINER_DATE'|translate}} : 
                                 <input type="text" class="datepicker hasDatepicker" placeholder="" formControlName="exam_date">
                             </div>
                         </div>
-                        <!-- ↓== 入力項目01 ここから==↓ -->
+                        <!-- ↓== Question 01 ==↓ -->
                         <div class="row input ml-2">
-                            <div class="col-md-1 column_area column_number background_senior">
+                            <div class="col-md-1 column_area column_number">
                                 01
-                            </div><!-- /col-md-1 column_area column_number -->
-                            <div class="col-md-7 column_area f_22 background_senior">
-                                <div class="fra_slide_q">
-                                    คุณสามารถเดินทางคนเดียวโดยรถโดยสารสาธารณะหรือขับรถส่วนตัวได้หรือไม่
-                                </div>
-                            </div><!-- /col-md-7 column_area f_22 -->
+                            </div>
+                            <div class="col-md-7 column_area f_22">
+                                {{'FRA_A.QUESTION_01'|translate}}
+                            </div>
                     
                             <div class="col-md-4 edit_area clearfix">
-                                
                                 <div class="label_area">
                                     <input type="radio" class="radio-input" name="question_1" id="faq01_0" value="true" formControlName="question_1">
                                     <label for="faq01_0" class="radio-label ">
-                                        ได้
+                                        {{'COMMON.YES'|translate}}
                                     </label>
-                                </div><!-- /label_area -->
+                                </div>
                                 <div class="label_area">
                                     <input type="radio" class="radio-input" name="question_1" id="faq01_1" value="false"  formControlName="question_1">
                                     <label for="faq01_1" class="radio-label ">
-                                        ไม่ได้
+                                        {{'COMMON.NO'|translate}}
                                     </label>
-                                </div><!-- /label_area -->
-                            </div><!-- /col-md-4 edit_area clearfix -->
-                        </div><!-- /row input ml-2 --> 
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目02 ここから==↓ -->
-                        <div class="row input ml-2">
-                    
-                            <div class="col-md-1 column_area column_number background_senior">
-                                02
-                            </div><!-- /col-md-1 column_area column_number -->
-                    
-                            <div class="col-md-7 column_area f_22 background_senior">
-                                <div class="fra_slide_q">
-                                    คุณสามารถซื้อของใช้ในชีวิตประจำวันได้หรือไม่
                                 </div>
-                            </div><!-- /col-md-7 column_area f_22 -->
-                    
+                            </div>
+                        </div>
+                        <!-- ↑== Question 01 ==↑ -->
+                        <!-- ↓== Question 02==↓ -->
+                        <div class="row input ml-2">
+                            <div class="col-md-1 column_area column_number">
+                                02
+                            </div>
+                            <div class="col-md-7 column_area f_22">
+                                {{'FRA_A.QUESTION_02'|translate}}
+                            </div>
+
                             <div class="col-md-4 edit_area clearfix">
                                 <div class="label_area">
                                     <input type="radio" name="question_2" id="faq02_0" value="true" class="radio-input" formControlName="question_2">
                                     <label for="faq02_0" class="radio-label ">
-                                        ได้
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_2" id="faq02_1" value="false" class="radio-input" formControlName="question_2">
                                     <label for="faq02_1" class="radio-label ">
-                                        ไม่ได้
+                                        {{'COMMON.NO'|translate}}
                                     </label>
-                                </div><!-- /label_area -->
-
-                                <!-- ↓↓「解説」ページへリンク↓↓ -->
-                                <div class="come_btn">
-                                    <input id="faq02_text" onclick="openbox('faq02_text')" type="button" value="解説">
                                 </div>
-                                <!-- ↑↑「解説」ページへリンク↑↑ -->	
                         
-                            </div><!-- /col-md-4 edit_area clearfix -->
+                            </div>
                     
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目03 ここから==↓ -->
+                        </div>
+                        <!-- ↑== Question 02 ==↑ -->
+                        <!-- ↓== Question 03 ==↓ -->
                         <div class="row input ml-2">
-                    
-                            <div class="col-md-1 column_area column_number background_senior">
+                            <div class="col-md-1 column_area column_number">
                                 03
-                            </div><!-- /col-md-1 column_area column_number -->
+                            </div>
                     
-                            <div class="col-md-7 column_area f_22 background_senior">
-                                <div class="fra_slide_q">
-                                    <span class="q_number">③</span>คุณฝากและถอนเงินจากธนาคารได้หรือไม่
-                                </div>
-                            </div><!-- /col-md-7 column_area f_22 -->
+                            <div class="col-md-7 column_area f_22">
+                                {{'FRA_A.QUESTION_03'|translate}}
+                            </div>
                     
                             <div class="col-md-4 edit_area clearfix">
                                 <div class="label_area">
                                     <input type="radio" name="question_3" id="faq03_0" value="true" class="radio-input" formControlName="question_3">
                                     <label for="faq03_0" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
-                                </div><!-- /label_area -->
+                                </div>
                                 <div class="label_area">
                                     <input type="radio" name="question_3" id="faq03_1" value="false" class="radio-input" formControlName="question_3">
                                     <label for="faq03_1" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
-                                </div><!-- /label_area -->
-                        
-                                <!-- ↓↓「解説」ページへリンク↓↓ -->
-                                <div class="come_btn">
-                                    <input id="faq03_text" onclick="openbox('faq03_text')" type="button" value="解説">
                                 </div>
-                                <!-- ↑↑「解説」ページへリンク↑↑ -->	
-                        
-                            </div><!-- /col-md-4 edit_area clearfix -->
-                    
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目04 ここから==↓ -->
+                            </div>
+                        </div>
+                        <!-- ↑== Question 03 ==↑ -->
+                        <!-- ↓== Question 04 ==↓ -->
                         <div class="row input ml-2">
-                    
-                            <div class="col-md-1 column_area column_number background_senior">
+                            <div class="col-md-1 column_area column_number">
                                 04
-                            </div><!-- /col-md-1 column_area column_number -->
+                            </div>
                     
-                            <div class="col-md-7 column_area f_22 background_senior">
-                                <div class="fra_slide_q"><span class="q_number">④</span>คุณสามารถไปบ้านเพื่อนได้หรือไม่</div>
-                            </div><!-- /col-md-7 column_area f_22 -->
+                            <div class="col-md-7 column_area f_22">
+                                {{'FRA_A.QUESTION_04'|translate}}
+                            </div>
                     
                             <div class="col-md-4 edit_area clearfix">
                                 <div class="label_area">
                                     <input type="radio" name="question_4" id="faq04_0" value="true" class="radio-input" formControlName="question_4">
                                     <label for="faq04_0" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
-                                </div><!-- /label_area -->
+                                </div>
                                 <div class="label_area">
                                     <input type="radio" name="question_4" id="faq04_1" value="false" class="radio-input" formControlName="question_4">
                                     <label for="faq04_1" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
-                                </div><!-- /label_area -->
-                        
-                                <!-- ↓↓「解説」ページへリンク↓↓ -->
-                                <div class="come_btn">
-                                    <input id="faq04_text" onclick="openbox('faq04_text')" type="button" value="解説">
                                 </div>
-                                <!-- ↑↑「解説」ページへリンク↑↑ -->	
-                        
-                            </div><!-- /col-md-4 edit_area clearfix -->
-                    
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目05 ここから==↓ -->
+                            </div>
+                        </div>
+                        <!-- ↑== Question 04 ==↑ -->
+                        <!-- ↓== Question 05 ==↓ -->
                         <div class="row input ml-2">
-                    
-                            <div class="col-md-1 column_area column_number background_senior">
+                            <div class="col-md-1 column_area column_number">
                                 05
-                            </div><!-- /col-md-1 column_area column_number -->
+                            </div>
                     
-                            <div class="col-md-7 column_area f_22 background_senior">
-                                <div class="fra_slide_q"><span class="q_number">⑤</span>คุณปรึกษาปัญหากับครอบครัวและเพื่อน ๆ หรือไม่</div>
-                            </div><!-- /col-md-7 column_area f_22 -->
-                    
+                            <div class="col-md-7 column_area f_22">
+                                {{'FRA_A.QUESTION_05'|translate}}
+                            </div>
                             <div class="col-md-4 edit_area clearfix">
                                 <div class="label_area">
                                     <input type="radio" name="question_5" id="faq05_0" value="0" class="radio-input" formControlName="question_5">
                                     <label for="faq05_0" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
-                                </div><!-- /label_area -->
+                                </div>
                                 <div class="label_area">
                                     <input type="radio" name="question_5" id="faq05_1" value="1" class="radio-input" formControlName="question_5">
                                     <label for="faq05_1" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
-                                </div><!-- /label_area -->
-                        
-                                <!-- ↓↓「解説」ページへリンク↓↓ -->
-                                <div class="come_btn">
-                                    <input id="faq05_text" onclick="openbox('faq05_text')" type="button" value="解説">
                                 </div>
-                                <!-- ↑↑「解説」ページへリンク↑↑ -->	
-                        
-                            </div><!-- /col-md-4 edit_area clearfix -->
-                    
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
-                        <!-- ↓== 入力項目06 ここから==↓ -->
+                            </div>
+                        </div>
+                        <!-- ↑== Question 05 ==↑ -->
+                        <!-- ↓== Question 06 ==↓ -->
                         <div class="row input ml-2">
-                    
-                            <div class="col-md-1 column_area column_number background_senior">
+                            <div class="col-md-1 column_area column_number">
                                 06
-                            </div><!-- /col-md-1 column_area column_number -->
-                    
-                            <div class="col-md-7 column_area f_22 background_senior">
-                                <div class="fra_slide_q"><span class="q_number">⑥</span>คุณสามารถเดิมขึ้นบันไดโดยไม่จับราวบันไดหรือกำแพงได้หรือไม่</div>
-                            </div><!-- /col-md-7 column_area f_22 -->
-                    
+                            </div>
+                            <div class="col-md-7 column_area f_22">
+                                {{'FRA_A.QUESTION_06'|translate}}
+                            </div>
                             <div class="col-md-4 edit_area clearfix">
                                 <div class="label_area">
                                     <input type="radio" name="question_6" id="faq06_0" value="0" class="radio-input" formControlName="question_6">
                                     <label for="faq06_0" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
-                                </div><!-- /label_area -->
+                                </div>
                                 <div class="label_area">
                                     <input type="radio" name="question_6" id="faq06_1" value="1" class="radio-input" formControlName="question_6">
                                     <label for="faq06_1" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
-                                </div><!-- /label_area -->
-                        
-                                <!-- ↓↓「解説」ページへリンク↓↓ -->
-                                <div class="come_btn">
-                                    <input id="faq06_text" onclick="openbox('faq06_text')" type="button" value="解説">
                                 </div>
-                                <!-- ↑↑「解説」ページへリンク↑↑ -->	
-                        
-                            </div><!-- /col-md-4 edit_area clearfix -->
-                    
-                        </div><!-- /row input ml-2 -->
-                        <!-- ↑== 入力項目 ここまで==↑ -->
+                            </div>
+                        </div>
+                        <!-- ↑== Question 06 ==↑ -->
                         <!-- ↓== 入力項目07 ここから==↓ -->
                         <div class="row input ml-2">
                     
@@ -250,7 +198,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">⑦</span>คุณสามารถลุกขึ้นจากเก้าอี้โดยไม่จับอะไรเลยได้หรือเปล่า
+                                    คุณสามารถลุกขึ้นจากเก้าอี้โดยไม่จับอะไรเลยได้หรือเปล่า
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -258,13 +206,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_7" id="faq07_0" value="0" class="radio-input" formControlName="question_7">
                                     <label for="faq07_0" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_7" id="faq07_1" value="1" class="radio-input" formControlName="question_7">
                                     <label for="faq07_1" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -287,7 +235,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">⑧</span>คุณสามารถเดินติดต่อกัน 15 นาทีได้หรือเปล่า
+                                    คุณสามารถเดินติดต่อกัน 15 นาทีได้หรือเปล่า
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -295,13 +243,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_8" id="faq08_0" value="0" class="radio-input" formControlName="question_8">
                                     <label for="faq08_0" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_8" id="faq08_1" value="1" class="radio-input" formControlName="question_8">
                                     <label for="faq08_1" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -324,7 +272,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">⑨</span>ภายใน 1 ปีนี้คุณเคยหกล้มหรือเปล่า
+                                    ภายใน 1 ปีนี้คุณเคยหกล้มหรือเปล่า
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -332,13 +280,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_9" id="faq09_1" value="1" class="radio-input" formControlName="question_9">
                                     <label for="faq09_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_9" id="faq09_0" value="0" class="radio-input" formControlName="question_9">
                                     <label for="faq09_0" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -361,7 +309,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">⑩</span>คุณมีความกังวนว่าจะหกล้มหรือเปล่า
+                                    คุณมีความกังวนว่าจะหกล้มหรือเปล่า
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -369,13 +317,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_10" id="faq10_1" value="1" class="radio-input" formControlName="question_10">
                                     <label for="faq10_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_10" id="faq10_0" value="0" class="radio-input" formControlName="question_10">
                                     <label for="faq10_0" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -398,7 +346,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">⑪</span>ภายใน 6 เดือนที่ผ่านมา น้ำหนักคุณลดลง 2 - 3 กิโลกรัมหรือเปล่า
+                                    ภายใน 6 เดือนที่ผ่านมา น้ำหนักคุณลดลง 2 - 3 กิโลกรัมหรือเปล่า
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -406,13 +354,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_11" id="faq11_1" value="1" class="radio-input" formControlName="question_11">
                                     <label for="faq11_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_11" id="faq11_0" value="0" class="radio-input" formControlName="question_11">
                                         <label for="faq11_0" class="radio-label ">
-                                            いいえ
+                                            {{'COMMON.NO'|translate}}
                                         </label>
                                 </div><!-- /label_area -->
                         
@@ -523,7 +471,7 @@
                                 <div class="label_area" style="display: none;">
                                     <input type="radio" name="faq12" id="faq12_1" value="1" class="radio-input" checked="">
                                     <label for="faq12_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                             
@@ -545,7 +493,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">⑬</span>คุณทานอาหารได้ยากขึ้นหรือเปล่าในช่วง 6 เดือนที่ผ่านมา
+                                    คุณทานอาหารได้ยากขึ้นหรือเปล่าในช่วง 6 เดือนที่ผ่านมา
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -553,13 +501,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_13" id="faq13_1" value="1" class="radio-input" formControlName="question_13">
                                     <label for="faq13_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_13" id="faq13_0" value="0" class="radio-input" formControlName="question_13">
                                     <label for="faq13_0" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 
@@ -582,7 +530,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">⑭</span>คุณมีอาการสำลักน้ำบ้างหรือเปล่า
+                                    คุณมีอาการสำลักน้ำบ้างหรือเปล่า
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -590,13 +538,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_14" id="faq14_1" value="1" class="radio-input" formControlName="question_14">
                                     <label for="faq14_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_14" id="faq14_0" value="0" class="radio-input" formControlName="question_14">
                                     <label for="faq14_0" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -619,7 +567,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">⑮</span>คุณกังวนเกี่ยวกับการดื่มน้ำหรือเปล่า
+                                    คุณกังวนเกี่ยวกับการดื่มน้ำหรือเปล่า
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -627,13 +575,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_15" id="faq15_1" value="1" class="radio-input" formControlName="question_15">
                                     <label for="faq15_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_15" id="faq15_0" value="0" class="radio-input" formControlName="question_15">
                                     <label for="faq15_0" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -656,7 +604,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">⑯</span>คุณออกไปเทียวอย่างน้อยสัปดาห์ละครั้ง
+                                    คุณออกไปเทียวอย่างน้อยสัปดาห์ละครั้ง
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -664,13 +612,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_16" id="faq16_0" value="0" class="radio-input" formControlName="question_16">
                                     <label for="faq16_0" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_16" id="faq16_1" value="1" class="radio-input" formControlName="question_16">
                                     <label for="faq16_1" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                             
@@ -693,7 +641,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">⑰</span>คุณออกไปเที่ยวน้อกว่าปีที่แล้วหรือไม่
+                                    คุณออกไปเที่ยวน้อกว่าปีที่แล้วหรือไม่
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -701,13 +649,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_17" id="faq17_1" value="1" class="radio-input" formControlName="question_17">
                                     <label for="faq17_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_17" id="faq17_0" value="0" class="radio-input" formControlName="question_17">
                                     <label for="faq17_0" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -730,7 +678,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">⑱</span>คุณมีอาการย้ำคิดย้ำทำหรือเปล่า
+                                    คุณมีอาการย้ำคิดย้ำทำหรือเปล่า
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                         
@@ -738,13 +686,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_18" id="faq18_1" value="1" class="radio-input" formControlName="question_18">
                                     <label for="faq18_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_18" id="faq18_0" value="0" class="radio-input" formControlName="question_18">
                                     <label for="faq18_0" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -767,7 +715,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">⑲</span>คุณสามารถหาเบอร์โทรศัพท์และโทรออกเองได้หรือเปล่า
+                                    คุณสามารถหาเบอร์โทรศัพท์และโทรออกเองได้หรือเปล่า
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -775,13 +723,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_19" id="faq19_0" value="0" class="radio-input" formControlName="question_19">
                                     <label for="faq19_0" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_19" id="faq19_1" value="1" class="radio-input" formControlName="question_19">
                                     <label for="faq19_1" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -804,7 +752,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">⑳</span>บางครั้งคุณสับสนไม่รู้ว่าวันนี้วันอะไร
+                                    บางครั้งคุณสับสนไม่รู้ว่าวันนี้วันอะไร
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -812,13 +760,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_20" id="faq20_1" value="1" class="radio-input" formControlName="question_20">
                                     <label for="faq20_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_20" id="faq20_0" value="0" class="radio-input" formControlName="question_20">
                                     <label for="faq20_0" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -841,7 +789,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">㉑</span>ใน 2 สัปดาห์ที่ผ่านมา คุณรู้สึกไม่มีความสุขหรือเปล่า
+                                    ใน 2 สัปดาห์ที่ผ่านมา คุณรู้สึกไม่มีความสุขหรือเปล่า
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -849,13 +797,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="faq21" id="faq21_1" value="1" class="radio-input" formControlName="question_21">
                                     <label for="faq21_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_21" id="faq21_0" value="0" class="radio-input" formControlName="question_21">
                                     <label for="faq21_0" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -878,7 +826,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">㉒</span>ใน 2 สัปดาห์ที่ผ่านมา คุณรู้สึกเบื่อกับสิ่งที่เคยทำให้คุณสนุก
+                                    ใน 2 สัปดาห์ที่ผ่านมา คุณรู้สึกเบื่อกับสิ่งที่เคยทำให้คุณสนุก
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -886,13 +834,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_22" id="faq22_1" value="1" class="radio-input" formControlName="question_22">
                                     <label for="faq22_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_22" id="faq22_0" value="0" class="radio-input" formControlName="question_22">
                                     <label for="faq22_0" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -915,7 +863,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">㉓</span>ใน 2 สัปดาห์ที่ผ่านมา อะไรเคยทำได้กลับทำไม่ได้
+                                    ใน 2 สัปดาห์ที่ผ่านมา อะไรเคยทำได้กลับทำไม่ได้
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -923,13 +871,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_23" id="faq23_1" value="1" class="radio-input" formControlName="question_23">
                                     <label for="faq23_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="quetion_23" id="faq23_0" value="0" class="radio-input" formControlName="question_23">
                                     <label for="faq23_0" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -952,7 +900,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">㉔</span>ใน 2 สัปดาห์ที่ผ่านมา คุณรู้สึกว่าตัวเองไม่มีค่า
+                                    ใน 2 สัปดาห์ที่ผ่านมา คุณรู้สึกว่าตัวเองไม่มีค่า
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -960,13 +908,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_24" id="faq24_1" value="1" class="radio-input" formControlName="question_24">
                                     <label for="faq24_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="question_24" id="faq24_0" value="0" class="radio-input" formControlName="question_24">
                                     <label for="faq24_0" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -989,7 +937,7 @@
                     
                             <div class="col-md-7 column_area f_22 background_senior">
                                 <div class="fra_slide_q">
-                                    <span class="q_number">㉕</span>ใน 2 สัปดาห์ที่ผ่านมา คุณรู้สึกเหนื่อยอย่างไม่มีเหตุผล
+                                    ใน 2 สัปดาห์ที่ผ่านมา คุณรู้สึกเหนื่อยอย่างไม่มีเหตุผล
                                 </div>
                             </div><!-- /col-md-7 column_area f_22 -->
                     
@@ -997,13 +945,13 @@
                                 <div class="label_area">
                                     <input type="radio" name="question_25" id="faq25_1" value="1" class="radio-input" formControlName="question_25">
                                     <label for="faq25_1" class="radio-label ">
-                                        はい
+                                        {{'COMMON.YES'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                                 <div class="label_area">
                                     <input type="radio" name="quesstion_25" id="faq25_0" value="0" class="radio-input" formControlName="question_25">
                                     <label for="faq25_0" class="radio-label ">
-                                        いいえ
+                                        {{'COMMON.NO'|translate}}
                                     </label>
                                 </div><!-- /label_area -->
                         
@@ -1023,7 +971,7 @@
 
                     </div>
                     <div class="card-footer border-light cart-panel-foo-fix">
-                        <a [routerLink]="['/health/flail-a/index',2]" class="btn btn-info">กลับ</a>
+                        <a [routerLink]="['/health/flail-a/index',examiner_id]" class="btn btn-info">กลับ</a>
                         <button type="submit" class="btn btn-primary float-right">ยืนยัน</button>
                     </div>
                 </form>
