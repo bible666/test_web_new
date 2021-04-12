@@ -5,14 +5,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">ข้อมูลผู้เข้าทดสอบ(แก้ไข)</h1>
+                    <h1 class="m-0 text-dark">{{'PAGE_NAME.EXAMINERS_EDIT'|translate}}</h1>
                     
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a routerLink ="/master/location">ข้อมูลผู้เข้าทดสอบ</a></li>
-                        <li class="breadcrumb-item active">แก้ไข</li>
+                        <li class="breadcrumb-item"><a href="#">{{'PAGE_NAME.DASHBOARD'|translate}}</a></li>
+                        <li class="breadcrumb-item"><a routerLink ="/health/examiners">{{'PAGE_NAME.EXAMINERS'|translate}}</a></li>
+                        <li class="breadcrumb-item active">{{'COMMON.EDIT'|translate}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -28,24 +28,24 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-2">
-                                <label>รหัส</label>
-                                <input type="text" [ngClass]="inputForm.controls['examiner_code'].invalid?'form-control is-invalid': 'form-control'" formControlName="examiner_code" placeholder="กรุณาใส่รหัส">
+                                <label>{{'COMMON.CODE'|translate}}</label>
+                                <input type="text" [ngClass]="inputForm.controls['examiner_code'].invalid?'form-control is-invalid': 'form-control'" formControlName="examiner_code" placeholder="{{'PLACEHOLDER.PLEASE_INPUT_CODE'|translate}}">
                                 <div *ngIf="inputForm.controls['examiner_code'].hasError">
-                                    <span class="help" *ngIf="inputForm.controls['examiner_code'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                    <span class="help" *ngIf="inputForm.controls['examiner_code'].hasError('required')">{{'ERROR.PLEASE_INPUT_DATA'|translate}}</span>
                                     <span class="help" *ngIf="inputForm.controls['examiner_code'].hasError('maxlength')">ใส่ได้ไม่เกิน 10 ตัวอักษร</span>
                                 </div>
                             </div>
                             <div class="col-sm-5">
-                                <label>ชื่อ</label>
-                                <input type="text" [ngClass]="inputForm.controls['first_name'].invalid?'form-control is-invalid': 'form-control'" formControlName="first_name" placeholder="กรุณาใส่ชื่อ">
+                                <label>{{'COMMON.NAME'|translate}}</label>
+                                <input type="text" [ngClass]="inputForm.controls['first_name'].invalid?'form-control is-invalid': 'form-control'" formControlName="first_name" placeholder="{{'PLACEHOLDER.PLEASE_INPUT_NAME'|translate}}">
                                 <div *ngIf="inputForm.controls['first_name'].hasError">
-                                    <span class="help" *ngIf="inputForm.controls['first_name'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                    <span class="help" *ngIf="inputForm.controls['first_name'].hasError('required')">{{'ERROR.PLEASE_INPUT_DATA'|translate}}</span>
                                     <span class="help" *ngIf="inputForm.controls['first_name'].hasError('maxlength')">ใส่ได้ไม่เกิน 200 ตัวอักษร</span>
                                 </div>
                             </div>
 
                             <div class="col-sm-5">
-                                <label>นามสกุล</label>
+                                <label>{{'COMMON.LAST_NAME'|translate}}</label>
                                 <input type="text" [ngClass]="inputForm.controls['last_name'].invalid?'form-control is-invalid': 'form-control'" formControlName="last_name" placeholder="กรุณาใส่นามสกุล">
                                 <div *ngIf="inputForm.controls['last_name'].hasError">
                                     <span class="help" *ngIf="inputForm.controls['last_name'].hasError('maxlength')">ใส่ได้ไม่เกิน 200 ตัวอักษร</span>
@@ -55,46 +55,41 @@
 
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>เพศ</label>
-                                <my-combo [comboType] = genderType [width] = 30 formControlName="gender"></my-combo>
+                                <label>{{'COMMON.GENDER'|translate}}</label>
+                                <my-combo comboType = "gender" [width] = 30 formControlName="gender"></my-combo>
                             </div>
                             <div class="col-sm-3">
-                                <label>วันเกิด</label>
+                                <label>{{'COMMON.BIRTHDAY'|translate}}</label>
                                 <input type="date"
                                     formControlName="birthdate"
                                     min="1900-01-01" max="2100-12-31"
                                     [ngClass]="inputForm.controls['birthdate'].invalid?'form-control is-invalid': 'form-control'"
                                 >
                                 <div *ngIf="inputForm.controls['birthdate'].hasError">
-                                    <span class="help" *ngIf="inputForm.controls['birthdate'].hasError('required')">กรุณาใส่ข้อมูล</span>
+                                    <span class="help" *ngIf="inputForm.controls['birthdate'].hasError('required')">{{'ERROR.PLEASE_INPUT_DATA'|translate}}</span>
                                 </div>
                             </div>
                         </div>
 
-
                         <div class="row">
-    
                             <div class="col-sm-12">
-                                <label>ที่อยู่</label>
-                                <textarea rows="5" class="form-control" formControlName="address">
-
-                                </textarea>
-                                
+                                <label>{{'COMMON.ADDRESS'|translate}}</label>
+                                <textarea rows="5" class="form-control" formControlName="address"></textarea>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <label>หมายเหตุ</label>
+                                <label>{{'COMMON.REMARKS'|translate}}</label>
                                 <textarea class="form-control" rows="3" formControlName="remarks"></textarea>
                             </div>
                         </div>
 
                     </div>
                 </div> 
-                <div class="card-footer">
-                    <a [routerLink]="['/health/examiners']" class="btn btn-info">กลับ</a>
-                    <button type="submit" class="btn btn-primary float-right">ยืนยัน</button>
+                <div class="card-footer border-light cart-panel-foo-fix">
+                    <a [routerLink]="['/health/examiners']" class="btn btn-info">{{'COMMON.BACK'|translate}}</a>
+                    <button type="submit" class="btn btn-primary float-right">{{'COMMON.CONFIRM'|translate}}</button>
                 </div>
             </form>
         </div>

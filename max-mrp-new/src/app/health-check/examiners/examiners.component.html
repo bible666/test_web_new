@@ -73,7 +73,7 @@
             <div class="row wow">
                 <!-- ↓↓ 新規追加ボタン↓↓ -->
                 <div class="col-sm-6 mb-0">
-                    <a [routerLink]="['/health/examiners/edit',-1]" class="btn btn-success btn-add btn-sm" name="btnAdd">
+                    <a [routerLink]="['/health/examiners/edit',-1]" class="btn btn-success btn-add btn-sm" >
                         <i class="fa fa-plus"></i>
                         เพิ่ม
                     </a>
@@ -102,22 +102,23 @@
                             <div class="card">
                                 <div class="card-body table-responsive p-0" style="height: 300px;">
                                     <table class="table table-head-fixed text-nowrap">
+                                        <caption>New York City Marathon Results 2013</caption>
                                         <thead>
-                                        <tr>
-                                            <th width="20px"></th>
-                                            <th>รหัส</th>
-                                            <th>ชื่อ-นามสกุล</th>
-                                            <th>การทดสอบ</th>
-                                        </tr>
+                                            <tr>
+                                                <th width="20px"></th>
+                                                <th>รหัส</th>
+                                                <th>ชื่อ-นามสกุล</th>
+                                                <th>การทดสอบ</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let gridData of gridDatas">
                                                 <td>
                                                     <a [routerLink]="['/health/examiners/edit',gridData.id]" class="btn btn-link btn-sm" >
-                                                        <img src="./assets/img/edit.png"> แก้ไข
+                                                        <img src="./assets/img/edit.png"> {{'COMMON.EDIT'|translate}}
                                                     </a>
                                                     <a (click)="onDelete(gridData.id)" class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-trash"></i> ลบ
+                                                        <i class="fas fa-trash"></i> {{'COMMON.DELETE'|translate}}
                                                     </a>
                                                 </td>
                                                 <td>{{gridData.examiner_code}}</td>

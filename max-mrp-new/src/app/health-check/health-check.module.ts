@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedTemplateModule } from '../shared-template/template.module';
 import { SharedCommonModule } from '../shared-common/shared-common.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { HealthCheckRoutingModule } from './health-check-routing.module';
 import { MmseComponent } from './mmse/mmse.component';
@@ -18,6 +19,7 @@ import { FlailReportComponent } from './flail-a/flail-report/flail-report.compon
   declarations: [MmseComponent, ExaminersComponent, ExaminersEditComponent, CheckMenuComponent, FlailIndexComponent, FlailEditComponent, FlailReportComponent],
   imports: [
     CommonModule,
+    TranslateModule,
     SharedCommonModule,
     FormsModule,ReactiveFormsModule,
     SharedTemplateModule,

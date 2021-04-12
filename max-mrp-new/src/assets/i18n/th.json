@@ -1,6 +1,31 @@
 {
+    "COMMON": {
+        "ADDRESS"   : "ที่อยู่",
+        "BACK"      : "กลับ",
+        "BIRTHDAY"  : "วันเกิด",
+        "CODE"      : "รหัส",
+        "CONFIRM"   : "ยืนยัน",
+        "DELETE"    : "ลบ",
+        "EDIT"      : "แก้ไข",
+        "GENDER"    : "เพศ",
+        "NAME"      : "ชื่อ",
+        "LAST_NAME" : "นามสกุล",
+        "REMARKS"   : "หมายเหตุ"
+    },
+    "ERROR": {
+        "PLEASE_INPUT_DATA" : "กรุณาใส่ข้อมูล"
+    },
     "EXAMINER_HEADER": {
-        "EXAMINER_CODE" : "รหัสผู้เข้าทดสอบ"
+        "EXAMINER_CODE" : "รหัสผู้เข้าทดสอบ",
+        "NAME_SURNAME"  : "ชื่อ-นามสกุล"
+    },
+    "PAGE_NAME": {
+        "DASHBOARD"      : "Dashboard",
+        "EXAMINERS"      : "ข้อมูลผู้เข้าทดสอบ",
+        "EXAMINERS_EDIT" : "ข้อมูลผู้เข้าทดสอบ(แก้ไข)"
+    },
+    "PLACEHOLDER": {
+        "PLEASE_INPUT_CODE" : "กรุณาใส่รหัส",
+        "PLEASE_INPUT_NAME" : "กรุณาใส่ชื่อ"
     }
-    
 }

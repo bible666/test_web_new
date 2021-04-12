@@ -2,14 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService, MessageClass } from '../../service/message.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { ComboData } from '../../service/combo.service';
 import { UserService } from '../../service/user.service';
+import { TranslateService } from '@ngx-translate/core';
 
 //Manual add service for this page
 import { ExaminersService, cInput } from '../../service/examiners.service';
-
-//import { cInput, UnitService } from '../../service/unit.service';
 
 @Component({
   selector: 'app-examiners-edit',
@@ -23,7 +20,6 @@ export class ExaminersEditComponent implements OnInit {
     //----------------------------------------------------------------
     // set local Valiable
     //----------------------------------------------------------------
-    public genderType         : string         = "gender";
     public examiner_id        : number;
 
     inputForm = new FormGroup( {
@@ -39,18 +35,19 @@ export class ExaminersEditComponent implements OnInit {
     } );
 
     constructor(
+        public translate        : TranslateService,
         private param           : ActivatedRoute,
         private ServiceMessage  : MessageService,
         private router          : Router,
         private userData        : UserService,
         private service         : ExaminersService
-
-        // private Service         : UnitService,
-    ) { }
+    ) {
+        translate.setDefaultLang('th');
+    }
 
     ngOnInit(): void {
-        this.userData.main_menu_selected = 8;
-        this.userData.sub_menu_selected  = 39;
+        this.userData.main_menu_selected = 50;
+        this.userData.sub_menu_selected  = 51;
         
         window.scroll(0,0);
 
@@ -62,10 +59,13 @@ export class ExaminersEditComponent implements OnInit {
                 data => {
                     if ( data['status'] == 'success' ) {
                         this.inputForm.patchValue( {
-                            'examiner_code'  : data['data'].examiner_code,
-                            'first_name'     : data['data'].first_name,
-                            'last_name'      : data['data'].last_name,
-                            'birthdate'      : data['data'].birthdate
+                            examiner_code  : data['data'].examiner_code,
+                            first_name     : data['data'].first_name,
+                            last_name      : data['data'].last_name,
+                            birthdate      : data['data'].birthdate,
+                            gender         : data['data'].gender,
+                            address        : data['data'].address,
+                            remarks        : data['data'].remarks
                         });
                     } else {
                         this.ServiceMessage.setError(data['message']);
@@ -107,4 +107,12 @@ export class ExaminersEditComponent implements OnInit {
             }
         );
     }
+}
+
+export interface InputFormValue {
+    examiner_code : string
+    first_name    : string
+    last_name     : string
+    birthdate     : Date
+    gender        : string
 }
