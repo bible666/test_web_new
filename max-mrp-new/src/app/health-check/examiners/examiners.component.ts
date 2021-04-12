@@ -25,8 +25,8 @@ export class ExaminersComponent implements OnInit {
     public frmSearchData  : cSearch;
 
     inputForm = new FormGroup( {
-        'unit_code'     : new FormControl(''),
-        'unit_name'     : new FormControl(''),
+        'code'          : new FormControl(''),
+        'name'          : new FormControl(''),
         'rowsPerpage'   : new FormControl('20')
     } );
 
@@ -53,8 +53,8 @@ export class ExaminersComponent implements OnInit {
 
     onInitValue() {
         this.inputForm.patchValue({
-            'unit_code'    : '',
-            'unit_name'    : ''
+            'code'    : '',
+            'name'    : ''
         });
     }
 
@@ -78,7 +78,7 @@ export class ExaminersComponent implements OnInit {
                 if (data['status'] == 'success'){
                     this.CountData    = data['max_rows'];
                     this.AllPage      = Math.ceil(this.CountData / this.inputForm.value.rowsPerpage);
-                    this.gridDatas     = data['data'];
+                    this.gridDatas    = data['data'];
                 }
             }
         );
@@ -94,14 +94,14 @@ export class ExaminersComponent implements OnInit {
         this.getData();
     }
 
-    onDelete( unit_code:string ) {
+    onDelete( id:number ) {
 
         const dialogRef = this.dialog.open( ConfirmDialogComponent , {
             width   : '350px',
             height  : '210px',
             data    : {
-                description : 'คุณต้องการลบรายการนี้หรือเปล่า ' ,
-                id          : unit_code
+                description : this.translate.instant('COMMON.DO_YOU_WANT_TO_DELETE') ,
+                id          : id
             }
         })
         
@@ -109,18 +109,18 @@ export class ExaminersComponent implements OnInit {
             result => {
                 if ( !result ) {
                     //cancel delete data
-                    //alert('hiii');
+                    alert('hiii');
                 } else {
-                    // this.service.deleteById( unit_code ).subscribe(
-                    //     data => {
-                    //         this.messageService.setSuccess('ทำการลบเสร็จแล้ว');
-                    //         this.onSearch();
-                    //     },
-                    //     error => {
-                    //         this.messageService.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
-                    //         this.message = this.messageService.getMessage();
-                    //     }
-                    // );
+                    this.service.deleteById( id ).subscribe(
+                        data => {
+                            this.messageService.setSuccess('ทำการลบเสร็จแล้ว');
+                            this.onSearch();
+                        },
+                        error => {
+                            this.messageService.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
+                            this.message = this.messageService.getMessage();
+                        }
+                    );
                 }
         });
     }

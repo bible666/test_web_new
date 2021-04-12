@@ -34,7 +34,7 @@ class ExaminersController extends Origin001
 
         //init data
         $token     = $this->getAuthHeader();
-        $id   = isset( $data->id ) ? $data->id : -1;
+        $id        = isset( $data->id ) ? $data->id : -1;
 
         $result = $this->_checkToken( $token );
 
@@ -48,9 +48,9 @@ class ExaminersController extends Origin001
 
         $dbData = $this->prgExaminersModel->find($id);
 
-        $dbData['active_flag'] = false;
-        $dbData['update_date'] = date( DATE_FORMAT_YMDHMS );
-        $dbData['update_user'] = $result->user_id;
+        $dbData->active_flag = false;
+        $dbData->update_date = date( DATE_FORMAT_YMDHMS );
+        $dbData->update_user = $result->user_id;
 
 
         if ( $this->prgExaminersModel->update($id, $dbData) === false ) {

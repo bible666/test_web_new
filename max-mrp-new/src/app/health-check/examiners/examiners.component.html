@@ -5,13 +5,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">ข้อมูลผู้เข้าทดสอบ</h1>
+                    <h1 class="m-0 text-dark">{{'PAGE_NAME.EXAMINERS'|translate}}</h1>
                     
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                    <li class="breadcrumb-item active">ข้อมูลผู้เข้าทดสอบ</li>
+                    <li class="breadcrumb-item"><a href="#">{{'PAGE_NAME.DASHBOARD'|translate}}</a></li>
+                    <li class="breadcrumb-item active">{{'PAGE_NAME.EXAMINERS'|translate}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -32,14 +32,14 @@
                                 <div class="col-sm-6">
                                   <!-- text input -->
                                   <div class="form-group">
-                                    <label>รหัสผู้เข้าทดสอบ</label>
-                                    <input type="text" class="form-control" formControlName="unit_code" placeholder="Enter ...">
+                                    <label>{{'COMMON.CODE'|translate}}</label>
+                                    <input type="text" class="form-control" formControlName="code" placeholder="Enter ...">
                                   </div>
                                 </div>
                                 <div class="col-sm-6">
                                   <div class="form-group">
-                                    <label>ชื่อ-นามสกุล</label>
-                                    <input type="text" class="form-control" formControlName="unit_name" placeholder="Enter ...">
+                                    <label>{{'COMMON.NAME'|translate}}-{{'COMMON.LAST_NAME'|translate}}</label>
+                                    <input type="text" class="form-control" formControlName="name" placeholder="Enter ...">
                                   </div>
                                 </div>
                             </div>
@@ -50,8 +50,8 @@
                         <!-- ↓↓ Search button area ----------------------↓↓ -->
                         <div class="col-sm-2">
 
-                            <button type="button" class="btn btn-primary btn-search btn-sm w-100 p-3" (click)="onSearch()">ค้นหา</button>
-                            <button type="button" class="btn btn-warning btn-clear btn-sm w-100" (click)="onClear()">ยกเลิก</button>
+                            <button type="button" class="btn btn-primary btn-search btn-sm w-100 p-3" (click)="onSearch()">{{'COMMON.SEARCH'|translate}}</button>
+                            <button type="button" class="btn btn-warning btn-clear btn-sm w-100" (click)="onClear()">{{'COMMON.CLEAR'|translate}}</button>
                             <div class='sort-area'>
                                 <select class="form-control" formControlName="rowsPerpage">
                                     <option value="20">20</option>
@@ -74,7 +74,7 @@
                 <!-- ↓↓ 新規追加ボタン↓↓ -->
                 <div class="col-sm-6 mb-0">
                     <a [routerLink]="['/health/examiners/edit',-1]" class="btn btn-success btn-add btn-sm" >
-                        <i class="fa fa-plus"></i>
+                        <em class="fa fa-plus"></em>
                         เพิ่ม
                     </a>
                 </div>
@@ -102,12 +102,11 @@
                             <div class="card">
                                 <div class="card-body table-responsive p-0" style="height: 300px;">
                                     <table class="table table-head-fixed text-nowrap">
-                                        <caption>New York City Marathon Results 2013</caption>
                                         <thead>
                                             <tr>
                                                 <th width="20px"></th>
-                                                <th>รหัส</th>
-                                                <th>ชื่อ-นามสกุล</th>
+                                                <th>{{'COMMON.CODE'|translate}}</th>
+                                                <th>{{'COMMON.NAME'|translate}}-{{'COMMON.LAST_NAME'|translate}}</th>
                                                 <th>การทดสอบ</th>
                                             </tr>
                                         </thead>
@@ -115,20 +114,20 @@
                                             <tr *ngFor="let gridData of gridDatas">
                                                 <td>
                                                     <a [routerLink]="['/health/examiners/edit',gridData.id]" class="btn btn-link btn-sm" >
-                                                        <img src="./assets/img/edit.png"> {{'COMMON.EDIT'|translate}}
+                                                        <img src="./assets/img/edit.png" alt=""> {{'COMMON.EDIT'|translate}}
                                                     </a>
                                                     <a (click)="onDelete(gridData.id)" class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-trash"></i> {{'COMMON.DELETE'|translate}}
+                                                        <em class="fas fa-trash" alt=""></em> {{'COMMON.DELETE'|translate}}
                                                     </a>
                                                 </td>
                                                 <td>{{gridData.examiner_code}}</td>
                                                 <td class="c">{{gridData.first_name}} {{gridData.last_name}}</td>
                                                 <td>
                                                     <a [routerLink]="['/health/check-menu',gridData.id]" class="btn btn-link btn-sm" >
-                                                        <img src="./assets/img/health-check.png"> ตรวจสุขภาพ
+                                                        <img src="./assets/img/health-check.png" alt=""> ตรวจสุขภาพ
                                                     </a>
                                                     <a [routerLink]="['/health/examiners/edit',gridData.id]" class="btn btn-link btn-sm" >
-                                                        <img src="./assets/img/analysis.png"> รายงาน
+                                                        <img src="./assets/img/analysis.png" alt=""> รายงาน
                                                     </a>
                                                 </td>
                                             </tr>
@@ -141,7 +140,6 @@
                         </div>
                     </div>
 
-                
                     <!-- /.row -->
                 </div><!-- /.container-fluid -->
             </section>

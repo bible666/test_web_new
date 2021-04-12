@@ -1,16 +1,19 @@
 {
     "COMMON": {
-        "ADDRESS"   : "ที่อยู่",
-        "BACK"      : "กลับ",
-        "BIRTHDAY"  : "วันเกิด",
-        "CODE"      : "รหัส",
-        "CONFIRM"   : "ยืนยัน",
-        "DELETE"    : "ลบ",
-        "EDIT"      : "แก้ไข",
-        "GENDER"    : "เพศ",
-        "NAME"      : "ชื่อ",
-        "LAST_NAME" : "นามสกุล",
-        "REMARKS"   : "หมายเหตุ"
+        "ADDRESS"               : "ที่อยู่",
+        "BACK"                  : "กลับ",
+        "BIRTHDAY"              : "วันเกิด",
+        "CLEAR"                 : "ยกเลิก",
+        "CODE"                  : "รหัส",
+        "CONFIRM"               : "ยืนยัน",
+        "DELETE"                : "ลบ",
+        "DO_YOU_WANT_TO_DELETE" : "คุณต้องการลบรายการนี้หรือเปล่า",
+        "EDIT"                  : "แก้ไข",
+        "GENDER"                : "เพศ",
+        "NAME"                  : "ชื่อ",
+        "LAST_NAME"             : "นามสกุล",
+        "SEARCH"                : "ค้นหา",
+        "REMARKS"               : "หมายเหตุ"
     },
     "ERROR": {
         "PLEASE_INPUT_DATA" : "กรุณาใส่ข้อมูล"

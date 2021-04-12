@@ -11,7 +11,7 @@ class PrgExaminersModel extends Model {
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'object';
-    protected $useSoftDeletes = true;
+    protected $useSoftDeletes = false;
 
     protected $allowedFields = [
         'area_id',
