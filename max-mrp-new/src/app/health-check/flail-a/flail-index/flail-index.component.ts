@@ -4,7 +4,9 @@ import { MessageService, MessageClass } from '../../../service/message.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared-common/confirm-dialog/confirm-dialog.component';
 import { UserService } from '../../../service/user.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../../service/language.service';
 
 //Manual Service for this page
 import { PrgExaminersFraAService, cData, cSearch } from '../../../service/prgExaminersFraA.service';
@@ -37,11 +39,14 @@ export class FlailIndexComponent implements OnInit {
 
     constructor(
         public dialog           : MatDialog,
+        public translate        : TranslateService,
+        public lang             : LanguageService,
         private param           : ActivatedRoute,
         private messageService  : MessageService,
         private userData        : UserService,
         private service         : PrgExaminersFraAService,
     ) {
+        translate.setDefaultLang(lang.defaultLang);
         //set inital value when open form
         this.examiner_id    = this.param.snapshot.params.examiner_id;
         this.onInitValue();

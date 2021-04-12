@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ComboData } from '../../../service/combo.service';
 import { UserService } from '../../../service/user.service';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../../service/language.service';
 
 //Manual add service for this page
 import { PrgExaminersFraAService } from '../../../service/prgExaminersFraA.service';
@@ -64,12 +66,14 @@ export class FlailEditComponent implements OnInit {
         private param           : ActivatedRoute,
         private ServiceMessage  : MessageService,
         private router          : Router,
+        public translate        : TranslateService,
+        public lang             : LanguageService,
         private userData        : UserService,
         private service         : PrgExaminersFraAService
 
         // private Service         : UnitService,
     ) {
-        
+        translate.setDefaultLang(lang.defaultLang);
     }
 
     ngOnInit(): void {
@@ -78,7 +82,7 @@ export class FlailEditComponent implements OnInit {
         
         window.scroll(0,0);
 
-        this.id    = this.param.snapshot.params.test_id;
+        this.examiner_id    = this.param.snapshot.params.examiner_id;
 
         //get examiner data
         this.service.getDataById(this.id).subscribe(

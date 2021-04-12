@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../shared-common/confirm-dialog/confirm-dialog.component';
 import { UserService } from '../../service/user.service';
 import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../service/language.service';
 
 //Manual Service for this page
 import { ExaminersService, cSearch, cData } from '../../service/examiners.service';
@@ -33,11 +34,12 @@ export class ExaminersComponent implements OnInit {
     constructor(
         public dialog           : MatDialog,
         public translate        : TranslateService,
+        public lang             : LanguageService,
         private messageService  : MessageService,
         private userData        : UserService,
         private service         : ExaminersService,
     ) {
-        translate.setDefaultLang('th');
+        translate.setDefaultLang(lang.defaultLang);
         
         //set inital value when open form
         this.onInitValue();
