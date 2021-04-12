@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService, MessageClass } from '../../../service/message.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ComboData } from '../../../service/combo.service';
 import { UserService } from '../../../service/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../service/language.service';
@@ -25,8 +24,6 @@ export class FlailEditComponent implements OnInit {
     //----------------------------------------------------------------
     // set local Valiable
     //----------------------------------------------------------------
-    public genderType   : string         = "gender";
-    public genderCode$  : Observable<string>;
     public id           : number;
     public examiner_id  : number;
 
@@ -34,7 +31,7 @@ export class FlailEditComponent implements OnInit {
 
     inputForm = new FormGroup( {
         'exam_date'     : new FormControl(this.DateObj.getFullYear() + '-' + ('0' + (this.DateObj.getMonth() + 1)).slice(-2) + '-' + ('0' + this.DateObj.getDate()).slice(-2), [ Validators.required ]),
-        'question_1'    : new FormControl("false"),
+        'question_1'    : new FormControl('' , [ Validators.required ]),
         'question_2'    : new FormControl('' , [ Validators.required ]),
         'question_3'    : new FormControl('' , [ Validators.required ]),
         'question_4'    : new FormControl('' , [ Validators.required ]),
@@ -111,29 +108,6 @@ export class FlailEditComponent implements OnInit {
                 this.message = this.ServiceMessage.getMessage();
             }
         );
-        if ( this.examiner_id != -1 ) {
-            //get data from database
-            this.service.getDataById( this.examiner_id ).subscribe(
-                data => {
-                    if ( data['status'] == 'success' ) {
-                        //this.inputForm.patchValue( {
-                        //    'examiner_code'  : data['data'].examiner_code,
-                        //    'first_name'     : data['data'].first_name,
-                        //    'last_name'      : data['data'].last_name,
-                        //    'birthdate'      : data['data'].birthdate
-                        //});
-                    } else {
-                        this.ServiceMessage.setError(data['message']);
-                        this.message = this.ServiceMessage.getMessage();
-                    }
-                },
-                error => {
-                    this.ServiceMessage.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
-                    this.message = this.ServiceMessage.getMessage();
-                }
-            );
-        }
-
     }
 
     onSubmit(){
@@ -162,12 +136,5 @@ export class FlailEditComponent implements OnInit {
         //     }
         // );
     }
-
-    onGenderSelect( data: ComboData ){
-        this.inputForm.patchValue({
-            'gender'             : data.value_code
-        });
-    }
-
 }
 
