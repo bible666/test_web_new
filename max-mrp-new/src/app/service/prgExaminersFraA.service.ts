@@ -82,7 +82,7 @@ export class cInput{
     token       : string;
     id          : number;
 
-    examiner_id : string;
+    examiner_id : number;
     exam_date   : Date;
     question_1  : boolean;
     question_2  : boolean;
@@ -110,6 +110,8 @@ export class cInput{
     question_24 : boolean;
     question_25 : boolean;
     remarks     : string;
+    height      : number;
+    weight      : number;
 
     public constructor( init? : Partial< cInput >){
         Object.assign( this , init );

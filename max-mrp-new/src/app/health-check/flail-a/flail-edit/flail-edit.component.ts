@@ -8,9 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../service/language.service';
 
 //Manual add service for this page
-import { PrgExaminersFraAService } from '../../../service/prgExaminersFraA.service';
-
-//import { cInput, UnitService } from '../../service/unit.service';
+import { PrgExaminersFraAService, cInput } from '../../../service/prgExaminersFraA.service';
 
 @Component({
     selector: 'app-flail-edit',
@@ -26,10 +24,12 @@ export class FlailEditComponent implements OnInit {
     //----------------------------------------------------------------
     public id           : number;
     public examiner_id  : number;
+    public bmi          : string;
 
     DateObj = new Date();
 
     inputForm = new FormGroup( {
+        'examiner_id'   : new FormControl(''),
         'exam_date'     : new FormControl(this.DateObj.getFullYear() + '-' + ('0' + (this.DateObj.getMonth() + 1)).slice(-2) + '-' + ('0' + this.DateObj.getDate()).slice(-2), [ Validators.required ]),
         'question_1'    : new FormControl('' , [ Validators.required ]),
         'question_2'    : new FormControl('' , [ Validators.required ]),
@@ -56,7 +56,9 @@ export class FlailEditComponent implements OnInit {
         'question_23'   : new FormControl('' , [ Validators.required ]),
         'question_24'   : new FormControl('' , [ Validators.required ]),
         'question_25'   : new FormControl('' , [ Validators.required ]),
-        'remarks'       : new FormControl( '' , [ Validators.maxLength(400) ])
+        'remarks'       : new FormControl( '' , [ Validators.maxLength(400) ]),
+        'height'        : new FormControl('' , [ Validators.required ]),
+        'weight'        : new FormControl('' , [ Validators.required ])
     } );
 
     constructor(
@@ -68,7 +70,6 @@ export class FlailEditComponent implements OnInit {
         private userData        : UserService,
         private service         : PrgExaminersFraAService
 
-        // private Service         : UnitService,
     ) {
         translate.setDefaultLang(lang.defaultLang);
     }
@@ -116,8 +117,8 @@ export class FlailEditComponent implements OnInit {
             return;
         }
 
-        // let input_data  : cInput = new cInput(this.inputForm.value);
-        // input_data.id = this.examiner_id;
+        let inputData  : cInput = new cInput(this.inputForm.value);
+        inputData.examiner_id   = this.examiner_id;
 
         // this.service.updateById( input_data ).subscribe(
         //     data => {
@@ -135,6 +136,15 @@ export class FlailEditComponent implements OnInit {
         //         this.message = this.ServiceMessage.getMessage();
         //     }
         // );
+    }
+
+    onCalculateBMI() {
+        let inputData  : cInput = new cInput(this.inputForm.value);
+        if ( inputData.weight && inputData.height) {
+            this.bmi = (inputData.weight / Math.pow((inputData.height/100), 2)).toFixed(2);
+
+            
+        }
     }
 }
 

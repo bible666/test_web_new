@@ -83,6 +83,11 @@ input[type=radio] {
     margin-top: -3px;
 }
 
+input[type="number"] {
+    font-size: 22px!important;
+    text-align: right!important;
+}
+
 input, input.form-control, input[type="password"], input[type="text"], textarea, .form-control {
     display: block;
     width: auto;
