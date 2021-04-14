@@ -42,7 +42,7 @@ export class FlailEditComponent implements OnInit {
         'question_9'    : new FormControl('' , [ Validators.required ]),
         'question_10'   : new FormControl('' , [ Validators.required ]),
         'question_11'   : new FormControl('' , [ Validators.required ]),
-        'question_12'   : new FormControl('' , [ Validators.required ]),
+        'question_12'   : new FormControl(''),
         'question_13'   : new FormControl('' , [ Validators.required ]),
         'question_14'   : new FormControl('' , [ Validators.required ]),
         'question_15'   : new FormControl('' , [ Validators.required ]),
@@ -81,6 +81,7 @@ export class FlailEditComponent implements OnInit {
         window.scroll(0,0);
 
         this.examiner_id    = this.param.snapshot.params.examiner_id;
+        this.id             = this.param.snapshot.params.id;
 
         //get examiner data
         this.service.getDataById(this.id).subscribe(
@@ -119,23 +120,24 @@ export class FlailEditComponent implements OnInit {
 
         let inputData  : cInput = new cInput(this.inputForm.value);
         inputData.examiner_id   = this.examiner_id;
+        inputData.id            = this.id;
 
-        // this.service.updateById( input_data ).subscribe(
-        //     data => {
-        //         if (data['status']== 'success'){
-        //             this.ServiceMessage.setSuccess('บันทึกสำเร็จ');
+        this.service.updateById( inputData ).subscribe(
+            data => {
+                if (data['status']== 'success'){
+                    this.ServiceMessage.setSuccess('บันทึกสำเร็จ');
                 
-        //             this.router.navigateByUrl('/health/examiners');
-        //         } else {
-        //             this.ServiceMessage.setError(data['message']);
-        //             this.message = this.ServiceMessage.getMessage();
-        //         }
-        //     },
-        //     error => {
-        //         this.ServiceMessage.setError('บันทึกผิดพลาด');
-        //         this.message = this.ServiceMessage.getMessage();
-        //     }
-        // );
+                    this.router.navigateByUrl('/health/examiners');
+                } else {
+                    this.ServiceMessage.setError(data['message']);
+                    this.message = this.ServiceMessage.getMessage();
+                }
+            },
+            error => {
+                this.ServiceMessage.setError('บันทึกผิดพลาด');
+                this.message = this.ServiceMessage.getMessage();
+            }
+        );
     }
 
     onCalculateBMI() {
