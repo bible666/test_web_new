@@ -193,7 +193,7 @@ class PrgExaminersFraAController extends Origin001
 			ORDER BY exam_date DESC
 			LIMIT {$limit} OFFSET {$offset}
 			";
-            //print_r($query_str);exit;
+
             $query_count = "
 			SELECT count(id) as my_count
 			FROM prg_examiners_fra_a
@@ -264,6 +264,17 @@ class PrgExaminersFraAController extends Origin001
             $data->update_user  = $result->user_id;
         }
 
+        $data->question_12          = ($this->calculateBMI($data->weight,$data->height) < 18.5) ? 1 : 0;
+        $data->living_status        = $this->getLivingStatus($data);
+        $data->hypokinesia          = $this->getHypokinesia($data);
+        $data->decreased_nutrition  = $this->getDecreasedNutrition($data);
+        $data->deterioration_mouth  = $this->getDeteriorationMouth($data);
+        $data->withdrawal           = $this->getWithdrawal($data);
+        $data->forget               = $this->getForget($data);
+        $data->depression           = $this->getDepression($data);
+        $data->total_score          = $this->getTotalScore($data);
+    //'frailty_judgment',
+
         $this->db->transStart();
         if ( $this->prgExaminersFraAModel->save($data) === false ) {
             $dataDB['status']  = "error";
@@ -280,6 +291,62 @@ class PrgExaminersFraAController extends Origin001
         $dataDB['data']    = $data;
 
         return $this->respond( $dataDB, HTML_STATUS_SUCCESS );
+    }
+
+    private function getLivingStatus($data) {
+        return $data->question_1 + $data->question_2 + $data->question_3 + $data->question_4 + $data->question_5;
+    }
+    
+    private function getHypokinesia($data) {
+        return $data->question_6 + $data->question_7 + $data->question_8 + $data->question_9 + $data->question_10;
+    }
+
+    private function getDecreasedNutrition($data) {
+        return $data->question_11 + $data->question_12;
+    }
+
+    private function getDeteriorationMouth($data) {
+        return $data->question_13 + $data->question_14 + $data->question_15;
+    }
+
+    private function getWithdrawal($data) {
+        return $data->question_16 + $data->question_17;
+    }
+
+    private function getForget($data) {
+        return $data->question_18 + $data->question_19 + $data->question_20;
+    }
+
+    private function getDepression($data) {
+        return $data->question_21 + $data->question_22 + $data->question_23 + $data->question_24 + $data->question_25;
+    }
+
+    private function getTotalScore($data) {
+        return $data->question_1 + $data->question_2 + $data->question_3 + $data->question_4 + $data->question_5
+              +$data->question_6 + $data->question_7 + $data->question_8 + $data->question_9 + $data->question_10
+              +$data->question_11 + $data->question_12 + $data->question_13 + $data->question_14 + $data->question_15
+              +$data->question_16 + $data->question_17 + $data->question_18 + $data->question_19 + $data->question_20
+              +$data->question_21 + $data->question_22 + $data->question_23 + $data->question_24 + $data->question_25;
+    }
+
+    private function calculateBMI($weight, $height) {
+        $_bmi = $weight / pow(($height/100), 2);
+        return _round($_bmi, 1);
+    }
+
+    private function getFrailtyJudgment($data){
+        // if (h($AR_data_select['dates']) == date('Y/m/d', strtotime($AR_data_select['dates']))) {
+        //     if (($data_select_total >= 0) && ($data_select_total <= 3)) {
+        //         $AR_data_select['freil_judgment'] =  __dh('flailReport', 'suspected_nodoubt');
+        //     } else if (($data_select_total >= 4) && ($data_select_total <= 7)) {
+        //         $AR_data_select['freil_judgment'] = __dh('flailReport', 'suspected_Preflare');
+        //     } else {
+        //         $AR_data_select['freil_judgment'] = __dh('flailReport', 'suspected_Freir');
+        //     }
+        // } else {
+        //     $AR_data_select['freil_judgment'] = '-----------';
+        // }
+        return 1;
     }
 
 }

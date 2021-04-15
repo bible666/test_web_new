@@ -44,7 +44,16 @@ class PrgExaminersFraAModel extends Model {
         'height',
         'weight',
         'bmi',
-        'remark',
+        'remarks',
+        'living_status',
+        'hypokinesia',
+        'decreased_nutrition',
+        'deterioration_mouth',
+        'withdrawal',
+        'forget',
+        'depression',
+        'frailty_judgment',
+        'total_score',
         'active_flag',
         'create_date',
         'update_date',
@@ -67,6 +76,5 @@ class PrgExaminersFraAModel extends Model {
     protected $skipValidation     = false;
 
     protected $protectFields = false;
-
 }
 ?>

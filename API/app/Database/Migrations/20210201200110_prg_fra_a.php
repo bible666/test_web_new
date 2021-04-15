@@ -47,7 +47,7 @@ class Migration_prg_fra_a extends \CodeIgniter\Database\Migration {
                 depression          int,
                 frailty_judgment    int,
                 total_score         int,
-                remark              text,
+                remarks              text,
                 active_flag         int,
                 create_date         DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 update_date         DATETIME ,
