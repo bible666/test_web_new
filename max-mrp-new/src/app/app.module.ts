@@ -18,6 +18,7 @@ import { MyMainSidebarContainerComponent } from './layout/my-main-sidebar-contai
 import { LogoutComponent } from './logout/logout.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { DataViewModule } from 'primeng/dataview';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -50,6 +51,7 @@ export function HttpLoaderFactory(http:HttpClient) {
         BrowserAnimationsModule,
         MatDialogModule,
         MatNativeDateModule,
+        DataViewModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

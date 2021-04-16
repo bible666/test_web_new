@@ -97,48 +97,36 @@
             <section class="content">
                 <div class="container-fluid">
                     <!-- /.row -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body table-responsive p-0" style="height: 300px;">
-                                    <table class="table table-head-fixed text-nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th width="20px"></th>
-                                                <th>{{'COMMON.CODE'|translate}}</th>
-                                                <th>{{'COMMON.NAME'|translate}}-{{'COMMON.LAST_NAME'|translate}}</th>
-                                                <th>การทดสอบ</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let gridData of gridDatas">
-                                                <td>
-                                                    <a [routerLink]="['/health/examiners/edit',gridData.id]" class="btn btn-link btn-sm" >
-                                                        <img src="./assets/img/edit.png" alt=""> {{'COMMON.EDIT'|translate}}
-                                                    </a>
-                                                    <a (click)="onDelete(gridData.id)" class="btn btn-danger btn-sm">
-                                                        <em class="fas fa-trash" alt=""></em> {{'COMMON.DELETE'|translate}}
-                                                    </a>
-                                                </td>
-                                                <td>{{gridData.examiner_code}}</td>
-                                                <td class="c">{{gridData.first_name}} {{gridData.last_name}}</td>
-                                                <td>
-                                                    <a [routerLink]="['/health/check-menu',gridData.id]" class="btn btn-link btn-sm" >
-                                                        <img src="./assets/img/health-check.png" alt=""> ตรวจสุขภาพ
-                                                    </a>
-                                                    <a [routerLink]="['/health/examiners/edit',gridData.id]" class="btn btn-link btn-sm" >
-                                                        <img src="./assets/img/analysis.png" alt=""> รายงาน
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+
+                    <div class="card">
+                        <p-dataView #dv [value]="gridDatas" [paginator]="true" [rows]="20" [loading]="loading" paginatorPosition="both" [rowsPerPageOptions]="[20,50,100,200]">
+                            <ng-template let-gridData pTemplate="listItem">
+                                <div class="p-col-12">
+                                    <div class="grid-list-item">
+                                        <div class="grid-list-detail">
+                                            <div class="grid-name">{{gridData.first_name}} {{gridData.last_name}}</div>
+                                            <div class="grid-description">description</div>
+                                            <em class="pi pi-tag product-category-icon"></em><span class="grid-category">category</span>
+                                            <a [routerLink]="['/health/check-menu',gridData.id]" class="btn btn-link btn-sm" >
+                                                <em class="pi pi-chart-line"></em> ตรวจสุขภาพ
+                                            </a>
+                                        </div>
+                                        <div class="grid-list-action">
+                                            <a [routerLink]="['/health/examiners/edit',gridData.id]" class="btn btn-info" >
+                                                <em class="pi pi-pencil" alt=""></em> {{'COMMON.EDIT'|translate}}
+                                            </a>
+                                            <a (click)="onDelete(gridData.id)" class="btn btn-danger">
+                                                <em class="pi pi-trash" alt=""></em> {{'COMMON.DELETE'|translate}}
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <!-- /.card -->
-                        </div>
+                            </ng-template>
+                            
+                        </p-dataView>
                     </div>
+                            <!-- /.card -->
+
 
                     <!-- /.row -->
                 </div><!-- /.container-fluid -->

@@ -183,7 +183,7 @@ class ExaminersController extends Origin001
 
         // ???? Condition
         list( $strCond, $params ) = $this->_getCond( $data );
-
+        
         $query_str = "
         SELECT *
         FROM prg_examiners
