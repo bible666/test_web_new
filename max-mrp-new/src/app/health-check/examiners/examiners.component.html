@@ -80,15 +80,6 @@
                 </div>
                 <!-- ↑↑ 新規追加ボタン↑↑ -->
 
-                <div class="col-sm-6 f_13 text-right float-right">
-                    <paginator
-                        [AllPage]       = AllPage
-                        [currentPage]   = CurrentPage
-                        [AllData]       = CountData
-                        (clickEvent)    = "onSelectPage($event)"
-                    >
-                    </paginator>
-                </div>
                 
             </div><!-- /row wow -->
 
@@ -99,7 +90,32 @@
                     <!-- /.row -->
 
                     <div class="card">
-                        <p-dataView #dv [value]="gridDatas" [paginator]="true" [rows]="20" [loading]="loading" paginatorPosition="both" [rowsPerPageOptions]="[20,50,100,200]">
+                        <p-table [value]="gridDatas" styleClass="p-datatable-gridlines p-datatable-striped"
+                            [paginator]="true" [rows]="20" [totalRecords]="totalRecords"
+                            [rowsPerPageOptions]="[20,50,100,200]"
+                            [rowHover]="true"
+                            [loading]="loading"
+                            [lazy]="true" (onLazyLoad)="loadGridData($event)" 
+                            [showCurrentPageReport]="true">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th scope=”col”>รหัส</th>
+                                    <th scope=”col”>ชื่อ</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-gridData>
+                                <tr>
+                                    <td>{{gridData.examiner_code}}</td>
+                                    <td>{{gridData.first_name}}</td>
+                                    <td>
+                                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" ></button>
+                                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" ></button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                        <!-- <p-dataView #dv [value]="gridDatas" [paginator]="true" [rows]="20" [loading]="loading" paginatorPosition="both" [rowsPerPageOptions]="[20,50,100,200]">
                             <ng-template let-gridData pTemplate="listItem">
                                 <div class="p-col-12">
                                     <div class="grid-list-item">
@@ -123,7 +139,7 @@
                                 </div>
                             </ng-template>
                             
-                        </p-dataView>
+                        </p-dataView> -->
                     </div>
                             <!-- /.card -->
 
@@ -134,20 +150,6 @@
            
             <!-- ↑↑===== List Area= =====================================================↑↑ -->
             
-            
-            <!-- ↓↓===== pagenation = ===================================================↓↓ -->
-            <div class="row wow pagenation">
-
-                <div class="col-sm-12 text-right float-right">
-                    <paginator
-                        [AllPage]       = AllPage
-                        [currentPage]   = CurrentPage
-                        [AllData]       = CountData
-                        (clickEvent)    = "onSelectPage($event)"
-                    >
-                    </paginator>
-                </div>
-            </div><!-- /row wow -->
         </div>
     </section>
     <!-- /.content -->

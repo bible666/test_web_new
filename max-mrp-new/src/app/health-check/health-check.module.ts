@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedTemplateModule } from '../shared-template/template.module';
 import { SharedCommonModule } from '../shared-common/shared-common.module';
 import { TranslateModule } from '@ngx-translate/core';
-import { DataViewModule } from 'primeng/dataview';
+import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 
 import { HealthCheckRoutingModule } from './health-check-routing.module';
@@ -22,7 +22,7 @@ import { FlailReportComponent } from './flail-a/flail-report/flail-report.compon
   imports: [
     CommonModule,
     TranslateModule,
-    DataViewModule,ButtonModule,
+    TableModule,ButtonModule,
     SharedCommonModule,
     FormsModule,ReactiveFormsModule,
     SharedTemplateModule,

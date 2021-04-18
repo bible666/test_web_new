@@ -3,6 +3,10 @@
     margin:1px;
 }
 
+.p-mr-2 {
+    margin-right: 0.5rem !important;
+}
+
 :host ::ng-deep .p-dropdown {
     width: 14rem;
     font-weight: normal;

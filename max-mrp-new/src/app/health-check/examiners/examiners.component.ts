@@ -6,6 +6,7 @@ import { ConfirmDialogComponent } from '../../shared-common/confirm-dialog/confi
 import { UserService } from '../../service/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../service/language.service';
+import { LazyLoadEvent, PrimeNGConfig } from 'primeng/api';
 
 //Manual Service for this page
 import { ExaminersService, cSearch, cData } from '../../service/examiners.service';
@@ -22,8 +23,12 @@ export class ExaminersComponent implements OnInit {
     public CountData      : number = 20;
     public CurrentPage    : number = 1;
     public AllPage        : number = 13;
-    public gridDatas      : cData[] = [];
+    public datasource     : cData[];
+    public gridDatas      : cData[];
     public frmSearchData  : cSearch;
+    public loading        : boolean;
+    public totalRecords   : number;
+
 
     inputForm = new FormGroup( {
         'code'          : new FormControl(''),
@@ -38,6 +43,7 @@ export class ExaminersComponent implements OnInit {
         private messageService  : MessageService,
         private userData        : UserService,
         private service         : ExaminersService,
+        private primengConfig: PrimeNGConfig
     ) {
         translate.setDefaultLang(lang.defaultLang);
         
@@ -50,7 +56,23 @@ export class ExaminersComponent implements OnInit {
         this.userData.sub_menu_selected  = 51;
 
         window.scroll(0,0);
-        this.onSearch();
+        //this.onSearch();
+
+        //Load Data From Service
+        this.service.getListData(this.frmSearchData).subscribe(
+            data => {
+                if (data['status'] == 'success'){
+                    this.datasource     = data['data'];
+                    this.totalRecords   = data['data'].length;
+                    //this.CountData    = data['max_rows'];
+                    //this.AllPage      = Math.ceil(this.CountData / this.inputForm.value.rowsPerpage);
+                    //this.gridDatas    = data['data'];
+                }
+            }
+        );
+
+        this.loading              = true;
+        this.primengConfig.ripple = true;
     }
 
     onInitValue() {
@@ -58,6 +80,25 @@ export class ExaminersComponent implements OnInit {
             'code'    : '',
             'name'    : ''
         });
+    }
+
+    loadGridData(event: LazyLoadEvent) {  
+        this.loading = true;
+
+        //in a real application, make a remote request to load data using state metadata from event
+        //event.first = First row offset
+        //event.rows = Number of rows per page
+        //event.sortField = Field name to sort with
+        //event.sortOrder = Sort order as number, 1 for asc and -1 for dec
+        //filters: FilterMetadata object having field as key and filter value, filter matchMode as value
+
+        //imitate db connection over a network
+        setTimeout(() => {
+            if (this.datasource) {
+                this.gridDatas = this.datasource.slice(event.first, (event.first + event.rows));
+                this.loading = false;
+            }
+        }, 1000);
     }
 
     onSearch() {
@@ -69,11 +110,11 @@ export class ExaminersComponent implements OnInit {
 
         this.frmSearchData.page_index   = this.CurrentPage;
         this.frmSearchData.rowsPerpage  = this.inputForm.value.rowsPerpage;
-        this.getData();
+        //this.getData();
         this.message = this.messageService.getMessage();
     }
 
-    getData() {
+    getData(event: LazyLoadEvent) {
         this.frmSearchData.page_index = this.CurrentPage;
         this.service.getListData(this.frmSearchData).subscribe(
             data => {
@@ -93,7 +134,7 @@ export class ExaminersComponent implements OnInit {
 
     onSelectPage( PageNumber:number ) {
         this.CurrentPage = PageNumber;
-        this.getData();
+        //this.getData();
     }
 
     onDelete( id:number ) {
