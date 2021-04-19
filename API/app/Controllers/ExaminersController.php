@@ -138,8 +138,12 @@ class ExaminersController extends Origin001
                 //    break;
 
                 case "name":
-                    $strCond .= " LOWER(first_name) like :{$key}: AND \n"; // placeholders
-                    $params["{$key}"] = "%(".strtolower($val).")%";
+                    $strCond .= " CONCAT(LOWER(first_name),LOWER(last_name)) like :{$key}: AND \n"; // placeholders
+                    $params["{$key}"] = "%".strtolower($val)."%";
+                    break;
+                case "code":
+                    $strCond .= " LOWER(examiner_code) like :{$key}: AND \n"; // placeholders
+                    $params["{$key}"] = "%".strtolower($val)."%";
                     break;
                 case "rowsPerpage":
                 case "page_index":
@@ -148,7 +152,7 @@ class ExaminersController extends Origin001
                 case "direction":
                     break;
                 default:
-                    $strCond .= "{$key}='{$val}' AND \n"; // placeholders        "key" = :key
+                    $strCond .= "{$key}=':{$val}:' AND \n"; // placeholders        "key" = :key
                     $params["{$key}"] = "{$val}"; // bindParam        "key"=>val
                     break;
             }

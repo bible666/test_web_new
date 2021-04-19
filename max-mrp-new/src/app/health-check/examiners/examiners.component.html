@@ -90,6 +90,7 @@
                             [lazy]="true" (onLazyLoad)="getData($event)" 
                             [showCurrentPageReport]="true"
                             [responsive]="true" [first]="firstRecords">
+
                             <ng-template pTemplate="header">
                                 <tr>
                                     <th scope=”col”>{{'COMMON.CODE'|translate}}</th>
@@ -97,48 +98,20 @@
                                     <th scope="col"></th>
                                 </tr>
                             </ng-template>
+                            
                             <ng-template pTemplate="body" let-gridData>
                                 <tr>
                                     <td>{{gridData.examiner_code}}</td>
-                                    <td>{{gridData.first_name}}</td>
+                                    <td>{{gridData.first_name}} {{gridData.last_name}}</td>
                                     <td>
-                                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" ></button>
-                                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" ></button>
+                                        <a pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" pTooltip="{{'COMMON.EDIT'|translate}}"  [routerLink]="['/health/examiners/edit',gridData.id]" ></a>
+                                        <a pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" pTooltip="{{'COMMON.DELETE'|translate}}" (click)="onDelete(gridData.id)"></a>
                                     </td>
                                 </tr>
                             </ng-template>
                         </p-table>
-                        <!-- <p-dataView #dv [value]="gridDatas" [paginator]="true" [rows]="20" [loading]="loading" paginatorPosition="both" [rowsPerPageOptions]="[20,50,100,200]">
-                            <ng-template let-gridData pTemplate="listItem">
-                                <div class="p-col-12">
-                                    <div class="grid-list-item">
-                                        <div class="grid-list-detail">
-                                            <div class="grid-name">{{gridData.first_name}} {{gridData.last_name}}</div>
-                                            <div class="grid-description">description</div>
-                                            <em class="pi pi-tag product-category-icon"></em><span class="grid-category">category</span>
-                                            <a [routerLink]="['/health/check-menu',gridData.id]" class="btn btn-link btn-sm" >
-                                                <em class="pi pi-chart-line"></em> ตรวจสุขภาพ
-                                            </a>
-                                        </div>
-                                        <div class="grid-list-action">
-                                            <a [routerLink]="['/health/examiners/edit',gridData.id]" class="btn btn-info" >
-                                                <em class="pi pi-pencil" alt=""></em> {{'COMMON.EDIT'|translate}}
-                                            </a>
-                                            <a (click)="onDelete(gridData.id)" class="btn btn-danger">
-                                                <em class="pi pi-trash" alt=""></em> {{'COMMON.DELETE'|translate}}
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-template>
-                            
-                        </p-dataView> -->
                     </div>
-                            <!-- /.card -->
-
-
-                    <!-- /.row -->
-                </div><!-- /.container-fluid -->
+                </div>
             </section>
            
             <!-- ↑↑===== List Area= =====================================================↑↑ -->
