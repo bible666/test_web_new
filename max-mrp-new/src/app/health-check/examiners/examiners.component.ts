@@ -20,14 +20,13 @@ export class ExaminersComponent implements OnInit {
 
     public message: MessageClass[] = [];
 
-    public CountData      : number = 20;
-    public CurrentPage    : number = 1;
-    public AllPage        : number = 13;
-    public datasource     : cData[];
     public gridDatas      : cData[];
     public frmSearchData  : cSearch;
     public loading        : boolean;
+
+    public firstRecords   : number;
     public totalRecords   : number;
+    public rowsPerPage    : number = 20;
 
 
     inputForm = new FormGroup( {
@@ -56,20 +55,7 @@ export class ExaminersComponent implements OnInit {
         this.userData.sub_menu_selected  = 51;
 
         window.scroll(0,0);
-        //this.onSearch();
-
-        //Load Data From Service
-        this.service.getListData(this.frmSearchData).subscribe(
-            data => {
-                if (data['status'] == 'success'){
-                    this.datasource     = data['data'];
-                    this.totalRecords   = data['data'].length;
-                    //this.CountData    = data['max_rows'];
-                    //this.AllPage      = Math.ceil(this.CountData / this.inputForm.value.rowsPerpage);
-                    //this.gridDatas    = data['data'];
-                }
-            }
-        );
+        this.onSearch();
 
         this.loading              = true;
         this.primengConfig.ripple = true;
@@ -82,8 +68,15 @@ export class ExaminersComponent implements OnInit {
         });
     }
 
-    loadGridData(event: LazyLoadEvent) {  
-        this.loading = true;
+    onSearch() {
+        //set form value to class search
+        this.getData(null);
+
+        this.message = this.messageService.getMessage();
+    }
+
+    getData(event: LazyLoadEvent) {
+        this.loading              = true;
 
         //in a real application, make a remote request to load data using state metadata from event
         //event.first = First row offset
@@ -93,36 +86,22 @@ export class ExaminersComponent implements OnInit {
         //filters: FilterMetadata object having field as key and filter value, filter matchMode as value
 
         //imitate db connection over a network
-        setTimeout(() => {
-            if (this.datasource) {
-                this.gridDatas = this.datasource.slice(event.first, (event.first + event.rows));
-                this.loading = false;
-            }
-        }, 1000);
-    }
-
-    onSearch() {
-        //set current page to 1
-        this.CurrentPage  = 1;
-
-        //set form value to class search
+        this.firstRecords = 0;
+        if ( event ) {
+            this.firstRecords = event.first;
+            this.rowsPerPage  = event.rows;
+        }
         this.frmSearchData = new cSearch(this.inputForm.value);
 
-        this.frmSearchData.page_index   = this.CurrentPage;
-        this.frmSearchData.rowsPerpage  = this.inputForm.value.rowsPerpage;
-        //this.getData();
-        this.message = this.messageService.getMessage();
-    }
-
-    getData(event: LazyLoadEvent) {
-        this.frmSearchData.page_index = this.CurrentPage;
+        this.frmSearchData.page_index   = this.firstRecords;
+        this.frmSearchData.rowsPerpage  = this.rowsPerPage;
         this.service.getListData(this.frmSearchData).subscribe(
             data => {
                 if (data['status'] == 'success'){
-                    this.CountData    = data['max_rows'];
-                    this.AllPage      = Math.ceil(this.CountData / this.inputForm.value.rowsPerpage);
-                    this.gridDatas    = data['data'];
+                    this.gridDatas      = data['data'];
+                    this.totalRecords   = data['max_rows'];
                 }
+                this.loading              = false;
             }
         );
     }
@@ -132,10 +111,6 @@ export class ExaminersComponent implements OnInit {
         this.onSearch();
     }
 
-    onSelectPage( PageNumber:number ) {
-        this.CurrentPage = PageNumber;
-        //this.getData();
-    }
 
     onDelete( id:number ) {
 

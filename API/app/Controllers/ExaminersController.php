@@ -139,7 +139,7 @@ class ExaminersController extends Origin001
 
                 case "name":
                     $strCond .= " LOWER(first_name) like :{$key}: AND \n"; // placeholders
-                    $params["{$key}"] = "%strtolower({$val})%";
+                    $params["{$key}"] = "%(".strtolower($val).")%";
                     break;
                 case "rowsPerpage":
                 case "page_index":
@@ -165,10 +165,8 @@ class ExaminersController extends Origin001
         $token     = $this->getAuthHeader();
         $http_code = 200;
 
-        //Validate Data
-
-        //$limit  = intval( $data->rowsPerpage );
-        //$offset = ( $data->page_index - 1 ) * $limit;
+        $limit  = intval( $data->rowsPerpage );
+        $offset = $data->page_index;
 
         $result = $this->_checkToken( $token );
 
@@ -182,24 +180,24 @@ class ExaminersController extends Origin001
 
 
         // ???? Condition
-        //list( $strCond, $params ) = $this->_getCond( $data );
+        list( $strCond, $params ) = $this->_getCond( $data );
         
         $query_str = "
         SELECT *
         FROM prg_examiners
-        WHERE active_flag = true
+        WHERE " . $strCond . " active_flag = true
         ORDER BY first_name
-        
+        LIMIT {$limit} OFFSET {$offset}
         ";
-        //LIMIT {$limit} OFFSET {$offset}
+
         $query_count = "
         SELECT count(id) as my_count
         FROM prg_examiners
-        WHERE active_flag = true
+        WHERE " . $strCond . " active_flag = true
         ORDER BY first_name
         ";
 
-        $itemn_data = $this->db->query( $query_str )->getResult();
+        $itemn_data = $this->db->query( $query_str, $params )->getResult();
 
         $isDbError = false;
         if ( $this->db->error()['message'] !== '' ) {
@@ -210,7 +208,7 @@ class ExaminersController extends Origin001
             $isDbError = true;
         }
 
-        $itemn_count = $this->db->query( $query_count )->getResult();
+        $itemn_count = $this->db->query( $query_count, $params )->getResult();
 
         if ( $this->db->error()['message'] !== '' ) {
             $dataDB['status']  = "error";
