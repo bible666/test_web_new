@@ -55,8 +55,12 @@
 
                         <div class="row">
                             <div class="col-sm-3">
-                                <label>{{'COMMON.GENDER'|translate}}</label>
-                                <my-combo comboType = "gender" [width] = 30 formControlName="gender"></my-combo>
+                                <h5>{{'COMMON.GENDER'|translate}}</h5>
+                                <p-autoComplete 
+                                    formControlName="gender" [suggestions]="arGender" (completeMethod)="onGenderChange($event)" 
+                                    dataKey="value_code" field="display_code"
+                                    [dropdown]="true" [forceSelection]="true">
+                                </p-autoComplete>
                             </div>
                             <div class="col-sm-3">
                                 <label>{{'COMMON.BIRTHDAY'|translate}}</label>
@@ -96,5 +100,5 @@
         
     </section>
     <!-- /.content -->
-
+    {{inputForm.value|json}}
 </div>

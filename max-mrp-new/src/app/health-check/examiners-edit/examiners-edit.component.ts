@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 //Manual add service for this page
 import { ExaminersService, cInput } from '../../service/examiners.service';
+import { ComboService, ComboData } from '../../service/combo.service';
 
 @Component({
   selector: 'app-examiners-edit',
@@ -16,6 +17,7 @@ import { ExaminersService, cInput } from '../../service/examiners.service';
 export class ExaminersEditComponent implements OnInit {
     public message      : MessageClass[] = [];
     public submitted    : boolean = false;
+    public arGender     : ComboData[];
 
     //----------------------------------------------------------------
     // set local Valiable
@@ -40,7 +42,8 @@ export class ExaminersEditComponent implements OnInit {
         private ServiceMessage  : MessageService,
         private router          : Router,
         private userData        : UserService,
-        private service         : ExaminersService
+        private service         : ExaminersService,
+        private comboService    : ComboService
     ) {
         translate.setDefaultLang('th');
     }
@@ -58,12 +61,16 @@ export class ExaminersEditComponent implements OnInit {
             this.service.getDataById( this.examiner_id ).subscribe(
                 data => {
                     if ( data['status'] == 'success' ) {
+                        let myGender : ComboData = new ComboData();
+                        myGender.display_code = "ชาย";
+                        myGender.value_code = "M";
+
                         this.inputForm.patchValue( {
                             examiner_code  : data['data'].examiner_code,
                             first_name     : data['data'].first_name,
                             last_name      : data['data'].last_name,
                             birthdate      : data['data'].birthdate,
-                            gender         : data['data'].gender,
+                            gender         : {"value_code": 'M', "display_code": 'ชาย'},
                             address        : data['data'].address,
                             remarks        : data['data'].remarks
                         });
@@ -104,6 +111,17 @@ export class ExaminersEditComponent implements OnInit {
             error => {
                 this.ServiceMessage.setError('บันทึกผิดพลาด');
                 this.message = this.ServiceMessage.getMessage();
+            }
+        );
+    }
+
+    onGenderChange(event) {
+        //event.query = current value in input field
+        console.log(event.query);
+        this.comboService.getData("get_gender_list",event.query).subscribe(
+            data => {
+                this.arGender = data['data'];
+                console.log(this.arGender);
             }
         );
     }
