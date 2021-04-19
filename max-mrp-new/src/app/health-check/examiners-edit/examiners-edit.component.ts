@@ -61,16 +61,12 @@ export class ExaminersEditComponent implements OnInit {
             this.service.getDataById( this.examiner_id ).subscribe(
                 data => {
                     if ( data['status'] == 'success' ) {
-                        let myGender : ComboData = new ComboData();
-                        myGender.display_code = "ชาย";
-                        myGender.value_code = "M";
-
                         this.inputForm.patchValue( {
                             examiner_code  : data['data'].examiner_code,
                             first_name     : data['data'].first_name,
                             last_name      : data['data'].last_name,
                             birthdate      : data['data'].birthdate,
-                            gender         : {"value_code": 'M', "display_code": 'ชาย'},
+                            gender         : data['data'].gender,
                             address        : data['data'].address,
                             remarks        : data['data'].remarks
                         });

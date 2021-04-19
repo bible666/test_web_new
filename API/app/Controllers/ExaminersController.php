@@ -10,6 +10,7 @@ class ExaminersController extends Origin001
     protected $format = 'json';
 
     protected $prgExaminersModel;
+    protected $mstGenderModel;
 
     public function initController( \CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger )
     {
@@ -23,6 +24,7 @@ class ExaminersController extends Origin001
         // E.g.:
         // $this->session = \Config\Services::session();
         $this->prgExaminersModel = model('App\Models\PrgExaminersModel',false,$this->db);
+        $this->mstGenderModel    = model('App\Models\MstGenderModel',false,$this->db);
     }
 
     /**
@@ -96,7 +98,17 @@ class ExaminersController extends Origin001
             AND active_flag = true
         ";
 
-        $itemn_data = $this->db->query( $query_str, ['examiner_id' => $examiner_id] )->getRow();
+        $item_data = $this->db->query( $query_str, ['examiner_id' => $examiner_id] )->getRow();
+
+        if ( $item_data ) {
+            $gender_data   = $this->mstGenderModel->where(['gender_code' => $item_data->gender])->first();
+
+            $gender_select['value_code']   = $gender_data->gender_code;
+            $gender_select['display_code'] = $gender_data->gender_name_th;
+
+            $item_data->gender = $gender_select;
+        }
+        
 
         if ( $this->db->error()['message'] !== '' ) {
             $dataDB['status']  = "error";
@@ -108,7 +120,7 @@ class ExaminersController extends Origin001
 
         $dataDB['status']  = "success";
         $dataDB['message'] = $query_str;
-        $dataDB['data']    = $itemn_data;
+        $dataDB['data']    = $item_data;
 
         return $this->respond( $dataDB, $http_code );
     }
