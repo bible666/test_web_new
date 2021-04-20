@@ -32,7 +32,6 @@ class ExaminersController extends Origin001
      */
     public function delete_data_by_id() {
         $data      = $this->request->getJSON();
-        $http_code = 200;
 
         //init data
         $token     = $this->getAuthHeader();
@@ -60,14 +59,14 @@ class ExaminersController extends Origin001
             $dataDB['message'] = $this->prgExaminersModel->errors();
             $dataDB['data']    = "";
 
-            return $this->respond( $dataDB, $http_code );
+            return $this->respond( $dataDB, HTML_STATUS_SUCCESS );
         }
 
         $dataDB['status']  = "success";
         $dataDB['message'] = "";
         $dataDB['data']    = $data;
 
-        return $this->respond( $dataDB, $http_code );
+        return $this->respond( $dataDB, HTML_STATUS_SUCCESS );
     }
 
         /**
@@ -108,7 +107,6 @@ class ExaminersController extends Origin001
 
             $item_data->gender = $gender_select;
         }
-        
 
         if ( $this->db->error()['message'] !== '' ) {
             $dataDB['status']  = "error";
@@ -179,7 +177,6 @@ class ExaminersController extends Origin001
     public function get_data_list() {
         $data      = $this->request->getJSON();
         $token     = $this->getAuthHeader();
-        $http_code = 200;
 
         $limit  = intval( $data->rowsPerpage );
         $offset = $data->page_index;
@@ -193,7 +190,6 @@ class ExaminersController extends Origin001
 
             return $this->respond( $dataDB, TOKEN_NOT_FOUND );
         }
-
 
         // ???? Condition
         list( $strCond, $params ) = $this->_getCond( $data );
@@ -236,7 +232,7 @@ class ExaminersController extends Origin001
         }
 
         if ( $isDbError ) {
-            return $this->respond( $dataDB, $http_code );
+            return $this->respond( $dataDB, HTML_STATUS_SUCCESS );
         }
 
         $dataDB['status']   = "success";
@@ -244,7 +240,7 @@ class ExaminersController extends Origin001
         $dataDB['data']     = $itemn_data;
         $dataDB['max_rows'] = $itemn_count[0]->my_count;
 
-        return $this->respond( $dataDB, $http_code );
+        return $this->respond( $dataDB, HTML_STATUS_SUCCESS );
     }
 
     public function update_data() {
@@ -272,6 +268,8 @@ class ExaminersController extends Origin001
             $data->update_date  = date( DATE_FORMAT_YMDHMS );
             $data->update_user  = $result->user_id;
         }
+
+        $data->gender = $data->gender->value_code;
 
         $this->db->transStart();
         if ( $this->prgExaminersModel->save($data) === false ) {
