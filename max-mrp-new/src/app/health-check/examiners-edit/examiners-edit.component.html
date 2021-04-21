@@ -63,15 +63,9 @@
                                 </p-autoComplete>
                             </div>
                             <div class="col-sm-3">
-                                <label>{{'COMMON.BIRTHDAY'|translate}}</label>
-                                <input type="date"
-                                    formControlName="birthdate"
-                                    min="1900-01-01" max="2100-12-31"
-                                    [ngClass]="inputForm.controls['birthdate'].invalid?'form-control is-invalid': 'form-control'"
-                                >
-                                <div *ngIf="inputForm.controls['birthdate'].hasError">
-                                    <span class="help" *ngIf="inputForm.controls['birthdate'].hasError('required')">{{'ERROR.PLEASE_INPUT_DATA'|translate}}</span>
-                                </div>
+                                
+                                <h5>{{'COMMON.BIRTHDAY'|translate}}</h5>
+                                <p-calendar formControlName="birthdate" [yearNavigator]="true" [monthNavigator]="true" yearRange="2020:2021" [showIcon]="true" dateFormat="dd/mm/yy" inputId="birthdate"></p-calendar>
                             </div>
                         </div>
 

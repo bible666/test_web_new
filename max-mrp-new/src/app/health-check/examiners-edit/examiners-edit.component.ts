@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService, MessageClass } from '../../service/message.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../service/user.service';
+import { PrimeNGConfig } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
 
 //Manual add service for this page
@@ -37,7 +38,8 @@ export class ExaminersEditComponent implements OnInit {
     } );
 
     constructor(
-        public translate        : TranslateService,
+        public translateService : TranslateService,
+        public config           : PrimeNGConfig,
         private param           : ActivatedRoute,
         private ServiceMessage  : MessageService,
         private router          : Router,
@@ -45,10 +47,12 @@ export class ExaminersEditComponent implements OnInit {
         private service         : ExaminersService,
         private comboService    : ComboService
     ) {
-        translate.setDefaultLang('th');
+        
     }
 
     ngOnInit(): void {
+        this.translateService.setDefaultLang('th');
+
         this.userData.main_menu_selected = 50;
         this.userData.sub_menu_selected  = 51;
         
@@ -61,11 +65,12 @@ export class ExaminersEditComponent implements OnInit {
             this.service.getDataById( this.examiner_id ).subscribe(
                 data => {
                     if ( data['status'] == 'success' ) {
+                        let birthdate = new Date(data['data'].birthdate);
                         this.inputForm.patchValue( {
                             examiner_code  : data['data'].examiner_code,
                             first_name     : data['data'].first_name,
                             last_name      : data['data'].last_name,
-                            birthdate      : data['data'].birthdate,
+                            birthdate      : birthdate,
                             gender         : data['data'].gender,
                             address        : data['data'].address,
                             remarks        : data['data'].remarks
@@ -82,6 +87,12 @@ export class ExaminersEditComponent implements OnInit {
             );
         }
 
+    }
+
+    translate(lang: string) {
+        console.log('test');
+        this.translateService.use(lang);
+        this.translateService.get('primeng').subscribe(res => this.config.setTranslation(res));
     }
 
     onSubmit(){
