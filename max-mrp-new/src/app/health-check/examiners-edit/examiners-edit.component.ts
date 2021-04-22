@@ -52,7 +52,7 @@ export class ExaminersEditComponent implements OnInit {
 
     ngOnInit(): void {
         this.translateService.setDefaultLang('th');
-
+        this.translate('th');
         this.userData.main_menu_selected = 50;
         this.userData.sub_menu_selected  = 51;
         
@@ -90,7 +90,6 @@ export class ExaminersEditComponent implements OnInit {
     }
 
     translate(lang: string) {
-        console.log('test');
         this.translateService.use(lang);
         this.translateService.get('primeng').subscribe(res => this.config.setTranslation(res));
     }

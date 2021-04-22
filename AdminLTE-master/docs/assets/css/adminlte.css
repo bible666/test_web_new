@@ -11546,7 +11546,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 
 .main-header {
   border-bottom: 1px solid #dee2e6;
-  z-index: 1034;
+  z-index: 500;
 }
 
 .main-header .nav-link {
