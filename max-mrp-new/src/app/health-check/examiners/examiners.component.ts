@@ -37,20 +37,21 @@ export class ExaminersComponent implements OnInit {
 
     constructor(
         public dialog           : MatDialog,
-        public translate        : TranslateService,
+        public translateService : TranslateService,
         public lang             : LanguageService,
         private messageService  : MessageService,
         private userData        : UserService,
         private service         : ExaminersService,
         private primengConfig: PrimeNGConfig
     ) {
-        translate.setDefaultLang(lang.defaultLang);
+        translateService.setDefaultLang(lang.defaultLang);
         
         //set inital value when open form
         this.onInitValue();
     }
 
     ngOnInit(): void {
+        this.translate(this.lang.defaultLang);
         this.userData.main_menu_selected = 50;
         this.userData.sub_menu_selected  = 51;
 
@@ -59,6 +60,15 @@ export class ExaminersComponent implements OnInit {
 
         this.loading              = true;
         this.primengConfig.ripple = true;
+
+        // this.primengConfig.setTranslation({
+        //     "monthNames": ["มกราคม","กุมภาพันธ์","March","เมษายน","May","June","July","August","September","October","November","December"],
+        // });
+    }
+
+    translate(lang: string) {
+        this.translateService.use(lang);
+        this.translateService.get('primeng').subscribe(res => this.primengConfig.setTranslation(res));
     }
 
     onInitValue() {
@@ -118,7 +128,7 @@ export class ExaminersComponent implements OnInit {
             width   : '350px',
             height  : '210px',
             data    : {
-                description : this.translate.instant('COMMON.DO_YOU_WANT_TO_DELETE') ,
+                description : this.translateService.instant('COMMON.DO_YOU_WANT_TO_DELETE') ,
                 id          : id
             }
         })
