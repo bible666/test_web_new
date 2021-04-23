@@ -246,7 +246,6 @@ class ExaminersController extends Origin001
     public function update_data() {
         $token     = $this->getAuthHeader();
         $data      = $this->request->getJSON();
-
         //get data from token
         $result = $this->_checkToken( $token );
 
@@ -256,6 +255,12 @@ class ExaminersController extends Origin001
             $dataDB['data']    = "";
 
             return $this->respond( $dataDB, TOKEN_NOT_FOUND );
+        }
+
+        $my_date = explode("/",$data->birthdate);
+
+        if ( count($my_date) == 3 ) {
+            $data->birthdate = $my_date[2]."-".$my_date[1]."-".$my_date[0];
         }
 
         if ( $data->id == '-1' ) {
