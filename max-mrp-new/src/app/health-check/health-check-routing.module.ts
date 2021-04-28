@@ -15,8 +15,8 @@ const routes: Routes = [
     { path: 'examiners/edit/:examiner_id' ,     component: ExaminersEditComponent},
     { path: 'check-menu/:examiner_id',          component: CheckMenuComponent},
     { path: 'flail-a/index/:examiner_id',       component: FlailIndexComponent},
-    { path: 'flail-a/edit/:examiner_id/:id',            component: FlailEditComponent},
-    { path: 'flail-a/report/:test_id',          component: FlailReportComponent}
+    { path: 'flail-a/edit/:examiner_id/:id',    component: FlailEditComponent},
+    { path: 'flail-a/report/:examiner_id/:id',  component: FlailReportComponent}
 ];
 
 @NgModule({

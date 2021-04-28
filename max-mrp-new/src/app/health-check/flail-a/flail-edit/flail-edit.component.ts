@@ -127,7 +127,7 @@ export class FlailEditComponent implements OnInit {
                 if (data['status']== 'success'){
                     this.ServiceMessage.setSuccess('บันทึกสำเร็จ');
                 
-                    this.router.navigateByUrl('/health/examiners');
+                    this.router.navigate(['/health/flail-a/edit',this.examiner_id,this.id]);
                 } else {
                     this.ServiceMessage.setError(data['message']);
                     this.message = this.ServiceMessage.getMessage();

@@ -331,7 +331,7 @@ class PrgExaminersFraAController extends Origin001
 
     private function calculateBMI($weight, $height) {
         $_bmi = $weight / pow(($height/100), 2);
-        return _round($_bmi, 1);
+        return round($_bmi, 1);
     }
 
     private function getFrailtyJudgment($data){

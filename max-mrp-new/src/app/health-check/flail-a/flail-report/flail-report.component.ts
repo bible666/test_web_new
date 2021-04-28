@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService, MessageClass } from '../../../service/message.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../../service/user.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 //Manual Service for this page
 import { ExaminersService, cSearch, cData } from '../../../service/examiners.service';
@@ -25,6 +26,7 @@ export class FlailReportComponent implements OnInit {
 
     constructor(
         public dialog           : MatDialog,
+        private param           : ActivatedRoute,
         private messageService  : MessageService,
         private userData        : UserService,
         private service         : ExaminersService,
@@ -35,6 +37,10 @@ export class FlailReportComponent implements OnInit {
         this.userData.sub_menu_selected  = 51;
 
         window.scroll(0,0);
+
+        this.examiner_id    = this.param.snapshot.params.examiner_id;
+        this.id             = this.param.snapshot.params.id;
+
         this.getData();
     }
 

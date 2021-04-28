@@ -5,15 +5,16 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">รายงาน ภาวะเปราะบางในผู้สูงอายุ</h1>
+                    <h1 class="m-0 text-dark">{{'PAGE_NAME.FRA_A_REPORT'|translate}}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a routerLink ="/health/examiners">ข้อมูลผู้เข้าทดสอบ</a></li>
-                        <li class="breadcrumb-item"><a [routerLink]="['/health/check-menu',2]">ตรวจสุขภาพ</a></li>
-                        <li class="breadcrumb-item"><a [routerLink]="['/health/flail-a/index',2]">FRAIL A</a></li>
-                        <li class="breadcrumb-item">รายงาน</li>
+                        <li class="breadcrumb-item"><a href="#">{{'PAGE_NAME.DASHBOARD'|translate}}</a></li>
+                        <li class="breadcrumb-item"><a routerLink ="/health/examiners">{{'PAGE_NAME.EXAMINERS'|translate}}</a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="['/health/check-menu',examiner_id]">{{'PAGE_NAME.EXAMINERS_MENU'|translate}}</a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="['/health/flail-a/index',examiner_id]">{{'PAGE_NAME.FRA_A'|translate}}</a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="['/health/flail-a/edit',examiner_id,id]">{{'PAGE_NAME.FRA_A_Edit'|translate}}</a></li>
+                        <li class="breadcrumb-item">{{'COMMON.REPORT'|translate}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
