@@ -60,10 +60,6 @@ export class ExaminersComponent implements OnInit {
 
         this.loading              = true;
         this.primengConfig.ripple = true;
-
-        // this.primengConfig.setTranslation({
-        //     "monthNames": ["มกราคม","กุมภาพันธ์","March","เมษายน","May","June","July","August","September","October","November","December"],
-        // });
     }
 
     translate(lang: string) {

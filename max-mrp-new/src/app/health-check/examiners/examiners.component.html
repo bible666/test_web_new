@@ -10,8 +10,8 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">{{'PAGE_NAME.DASHBOARD'|translate}}</a></li>
-                    <li class="breadcrumb-item active">{{'PAGE_NAME.EXAMINERS'|translate}}</li>
+                        <li class="breadcrumb-item"><a href="#">{{'PAGE_NAME.DASHBOARD'|translate}}</a></li>
+                        <li class="breadcrumb-item active">{{'PAGE_NAME.EXAMINERS'|translate}}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -67,7 +67,7 @@
                 <div class="col-sm-6 mb-0">
                     <a [routerLink]="['/health/examiners/edit',-1]" class="btn btn-success btn-add btn-sm" >
                         <em class="fa fa-plus"></em>
-                        เพิ่ม
+                        {{'COMMON.ADD'|translate}}
                     </a>
                 </div>
                 <!-- ↑↑ 新規追加ボタン↑↑ -->
@@ -93,20 +93,20 @@
 
                             <ng-template pTemplate="header">
                                 <tr>
+                                    <th scope="col"></th>
                                     <th scope=”col”>{{'COMMON.CODE'|translate}}</th>
                                     <th scope=”col”>{{'COMMON.NAME'|translate}}</th>
-                                    <th scope="col"></th>
                                 </tr>
                             </ng-template>
                             
                             <ng-template pTemplate="body" let-gridData>
                                 <tr>
-                                    <td>{{gridData.examiner_code}}</td>
-                                    <td>{{gridData.first_name}} {{gridData.last_name}}</td>
                                     <td>
                                         <a pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" pTooltip="{{'COMMON.EDIT'|translate}}"  [routerLink]="['/health/examiners/edit',gridData.id]" ></a>
                                         <a pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" pTooltip="{{'COMMON.DELETE'|translate}}" (click)="onDelete(gridData.id)"></a>
                                     </td>
+                                    <td>{{gridData.examiner_code}}</td>
+                                    <td>{{gridData.first_name}} {{gridData.last_name}}</td>
                                 </tr>
                             </ng-template>
                         </p-table>
