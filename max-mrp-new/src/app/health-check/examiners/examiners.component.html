@@ -96,6 +96,7 @@
                                     <th scope="col"></th>
                                     <th scope=”col”>{{'COMMON.CODE'|translate}}</th>
                                     <th scope=”col”>{{'COMMON.NAME'|translate}}</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </ng-template>
                             
@@ -107,6 +108,11 @@
                                     </td>
                                     <td>{{gridData.examiner_code}}</td>
                                     <td>{{gridData.first_name}} {{gridData.last_name}}</td>
+                                    <td>
+                                        <a [routerLink]="['/health/flail-a/index/',gridData.id]" class="btn btn-link btn-sm" >
+                                            <img src="./assets/img/old-man.png" alt=""> ภาวะเปราะบาง (Frality)
+                                        </a>
+                                    </td>
                                 </tr>
                             </ng-template>
                         </p-table>

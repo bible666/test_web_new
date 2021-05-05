@@ -33,7 +33,10 @@
                         <div class="row input text">
                             <div class="col-md-12 edit_area form-inline">
                                 {{'FRA_A.EXAMINER_DATE'|translate}} : 
-                                <input type="date" class="form-control" placeholder="" formControlName="exam_date">
+                                <p-calendar formControlName="exam_date" 
+                                    dataType="string" [showIcon]="true" dateFormat="dd/mm/yy"
+                                    [maxDate]="DateObj">
+                                </p-calendar>
                             </div>
                         </div>
                         <!-- ↓== Question 01 ==↓ -->
@@ -329,20 +332,18 @@
                             <div class="col-md-11 column_area f_22">
                                 {{'FRA_A.QUESTION_12'|translate}}
                                 <div class="row">
-                                    <div class="col-md-6 column_area f22">
+                                    <div class="col-12 col-md-6 column_area f22">
                                         <label for="height">{{'FRA_A.QUESTION_12_HEIGHT'|translate}}</label>
-                                        <input type="number" class="form-control number-only" id="height" formControlName="height" (input)="onCalculateBMI()">
+                                        <p-inputNumber inputId="integeronly" inputId="height" formControlName="height" (onBlur)="onCalculateBMI()"></p-inputNumber>
                                     </div>
-                                    <div class="col-md-6 column_area f22">
+                                    <div class="col-12 col-md-6 column_area f22">
                                         <label for="weight">{{'FRA_A.QUESTION_12_WEIGHT'|translate}}</label>
-                                        <input type="number" class="form-control number-only" id="weight" formControlName="weight" (input)="onCalculateBMI()">
+                                        <p-inputNumber inputId="integeronly" inputId="weight" formControlName="weight" (onBlur)="onCalculateBMI()"></p-inputNumber>
                                     </div>
                                     <div class="col-md-12 column_area f22">
                                         BMI：<label id="bmi_text" style="display:inline-block; width:4em; vertical-align:middle; height: 1.8rem; margin-top: 6px;margin-right: 6px; padding-top:1px; text-align: center; border-bottom: 2px #DCEAF2 solid; " class="bmd-label-static">{{bmi}}</label>
                                         <span class="f_16 mt-2">{{'FRA_A.QUESTION_12_BMI'|translate}}</span>
                                     </div>
-                                    
-                        
                                 </div>
                             </div>
                         </div>
@@ -705,7 +706,6 @@
                 </form>
             </div>
         </div>
-        
     </section>
     {{inputForm.value|json}}
 </div>

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { UserService } from '../../../service/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../service/language.service';
+import { PrimeNGConfig } from 'primeng/api';
 
 //Manual add service for this page
 import { PrgExaminersFraAService, cInput } from '../../../service/prgExaminersFraA.service';
@@ -30,7 +31,7 @@ export class FlailEditComponent implements OnInit {
 
     inputForm = new FormGroup( {
         'examiner_id'   : new FormControl(''),
-        'exam_date'     : new FormControl(this.DateObj.getFullYear() + '-' + ('0' + (this.DateObj.getMonth() + 1)).slice(-2) + '-' + ('0' + this.DateObj.getDate()).slice(-2), [ Validators.required ]),
+        'exam_date'     : new FormControl(this.DateObj, [ Validators.required ]),
         'question_1'    : new FormControl('' , [ Validators.required ]),
         'question_2'    : new FormControl('' , [ Validators.required ]),
         'question_3'    : new FormControl('' , [ Validators.required ]),
@@ -57,21 +58,22 @@ export class FlailEditComponent implements OnInit {
         'question_24'   : new FormControl('' , [ Validators.required ]),
         'question_25'   : new FormControl('' , [ Validators.required ]),
         'remarks'       : new FormControl( '' , [ Validators.maxLength(400) ]),
-        'height'        : new FormControl('' , [ Validators.required ]),
+        'height'        : new FormControl(0 , [ Validators.required ]),
         'weight'        : new FormControl('' , [ Validators.required ])
     } );
 
     constructor(
+        public translateService : TranslateService,
         private param           : ActivatedRoute,
         private ServiceMessage  : MessageService,
+        public config           : PrimeNGConfig,
         private router          : Router,
-        public translate        : TranslateService,
         public lang             : LanguageService,
         private userData        : UserService,
         private service         : PrgExaminersFraAService
 
     ) {
-        translate.setDefaultLang(lang.defaultLang);
+
     }
 
     ngOnInit(): void {
@@ -83,33 +85,40 @@ export class FlailEditComponent implements OnInit {
         this.examiner_id    = this.param.snapshot.params.examiner_id;
         this.id             = this.param.snapshot.params.id;
 
-        //get examiner data
-        this.service.getDataById(this.id).subscribe(
-            data=>{
-                this.examiner_id = data['data'].examiner_id;
-                console.log(data['data'].examiner_id);
-                // if ( data['status'] == 'success' ) {
-                //     this.inputForm.patchValue({
-                //         'company_code'    : data['data'].company_code,
-                //         'company_name'    : data['data'].company_name,
-                //         'address'         : data['data'].address,
-                //         'zip'             : data['data'].zip,
-                //         'telno'           : data['data'].telno,
-                //         'faxno'           : data['data'].faxno,
-                //         'email'           : data['data'].email,
-                //         'cal_no'          : data['data'].cal_no,
-                //         'remark'          : data['data'].remark
-                //     });
-                // } else {
-                //     this.ServiceMessage.setError(data['message']);
-                //     this.message = this.ServiceMessage.getMessage();
-                // }
-            },
-            error=>{
-                this.ServiceMessage.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
-                this.message = this.ServiceMessage.getMessage();
-            }
-        );
+        this.translateService.setDefaultLang(this.lang.defaultLang);
+        this.translate(this.lang.defaultLang);
+    //     //get examiner data
+    //     this.service.getDataById(this.id).subscribe(
+    //         data=>{
+    //             //this.examiner_id = data['data'].examiner_id;
+    //             //console.log(data['data'].examiner_id);
+    //             // if ( data['status'] == 'success' ) {
+    //             //     this.inputForm.patchValue({
+    //             //         'company_code'    : data['data'].company_code,
+    //             //         'company_name'    : data['data'].company_name,
+    //             //         'address'         : data['data'].address,
+    //             //         'zip'             : data['data'].zip,
+    //             //         'telno'           : data['data'].telno,
+    //             //         'faxno'           : data['data'].faxno,
+    //             //         'email'           : data['data'].email,
+    //             //         'cal_no'          : data['data'].cal_no,
+    //             //         'remark'          : data['data'].remark
+    //             //     });
+    //             // } else {
+    //             //     this.ServiceMessage.setError(data['message']);
+    //             //     this.message = this.ServiceMessage.getMessage();
+    //             // }
+    //         },
+    //         error=>{
+    //             this.ServiceMessage.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
+    //             this.message = this.ServiceMessage.getMessage();
+    //         }
+    //     );
+    }
+
+    translate(lang: string) {
+        this.translateService.use(lang);
+        this.translateService.get('primeng').subscribe(res => this.config.setTranslation(res));
     }
 
     onSubmit(){
