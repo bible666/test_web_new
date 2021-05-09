@@ -27,11 +27,9 @@ export class FlailEditComponent implements OnInit {
     public examiner_id  : number;
     public bmi          : string;
 
-    DateObj = new Date();
-
     inputForm = new FormGroup( {
         'examiner_id'   : new FormControl(''),
-        'exam_date'     : new FormControl(this.DateObj, [ Validators.required ]),
+        'exam_date'     : new FormControl(new Date(), [ Validators.required ]),
         'question_1'    : new FormControl('' , [ Validators.required ]),
         'question_2'    : new FormControl('' , [ Validators.required ]),
         'question_3'    : new FormControl('' , [ Validators.required ]),
@@ -87,33 +85,54 @@ export class FlailEditComponent implements OnInit {
 
         this.translateService.setDefaultLang(this.lang.defaultLang);
         this.translate(this.lang.defaultLang);
-    //     //get examiner data
-    //     this.service.getDataById(this.id).subscribe(
-    //         data=>{
-    //             //this.examiner_id = data['data'].examiner_id;
-    //             //console.log(data['data'].examiner_id);
-    //             // if ( data['status'] == 'success' ) {
-    //             //     this.inputForm.patchValue({
-    //             //         'company_code'    : data['data'].company_code,
-    //             //         'company_name'    : data['data'].company_name,
-    //             //         'address'         : data['data'].address,
-    //             //         'zip'             : data['data'].zip,
-    //             //         'telno'           : data['data'].telno,
-    //             //         'faxno'           : data['data'].faxno,
-    //             //         'email'           : data['data'].email,
-    //             //         'cal_no'          : data['data'].cal_no,
-    //             //         'remark'          : data['data'].remark
-    //             //     });
-    //             // } else {
-    //             //     this.ServiceMessage.setError(data['message']);
-    //             //     this.message = this.ServiceMessage.getMessage();
-    //             // }
-    //         },
-    //         error=>{
-    //             this.ServiceMessage.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
-    //             this.message = this.ServiceMessage.getMessage();
-    //         }
-    //     );
+        //get examiner data
+        this.service.getDataById(this.id).subscribe(
+            data=>{
+                this.examiner_id = data['data'].examiner_id;
+                //console.log(data['data'].examiner_id);
+                if ( data['status'] == 'success' ) {
+                    this.inputForm.patchValue({
+                        'examiner_id'   : data['data'].examiner_id,
+                        'exam_date'     : new Date(data['data'].exam_date),
+                        'question_1'    : data['data'].question_1,
+                        'question_2'    : data['data'].question_2,
+                        'question_3'    : data['data'].question_3,
+                        'question_4'    : data['data'].question_4,
+                        'question_5'    : data['data'].question_5,
+                        'question_6'    : data['data'].question_6,
+                        'question_7'    : data['data'].question_7,
+                        'question_8'    : data['data'].question_8,
+                        'question_9'    : data['data'].question_9,
+                        'question_10'   : data['data'].question_10,
+                        'question_11'   : data['data'].question_11,
+                        'question_12'   : data['data'].question_12,
+                        'question_13'   : data['data'].question_13,
+                        'question_14'   : data['data'].question_14,
+                        'question_15'   : data['data'].question_15,
+                        'question_16'   : data['data'].question_16,
+                        'question_17'   : data['data'].question_17,
+                        'question_18'   : data['data'].question_18,
+                        'question_19'   : data['data'].question_19,
+                        'question_20'   : data['data'].question_20,
+                        'question_21'   : data['data'].question_21,
+                        'question_22'   : data['data'].question_22,
+                        'question_23'   : data['data'].question_23,
+                        'question_24'   : data['data'].question_24,
+                        'question_25'   : data['data'].question_25,
+                        'remarks'       : data['data'].remarks,
+                        'height'        : data['data'].height,
+                        'weight'        : data['data'].weight
+                    });
+                } else {
+                    this.ServiceMessage.setError(data['message']);
+                    this.message = this.ServiceMessage.getMessage();
+                }
+            },
+            error=>{
+                this.ServiceMessage.setError('เกิดข้อผิดพลาดไม่สามารถดึงข้อมูลได้');
+                this.message = this.ServiceMessage.getMessage();
+            }
+        );
     }
 
     translate(lang: string) {
@@ -136,7 +155,7 @@ export class FlailEditComponent implements OnInit {
                 if (data['status']== 'success'){
                     this.ServiceMessage.setSuccess('บันทึกสำเร็จ');
                 
-                    this.router.navigate(['/health/flail-a/edit',this.examiner_id,this.id]);
+                    this.router.navigate(['/health/flail-a/index/',this.examiner_id]);
                 } else {
                     this.ServiceMessage.setError(data['message']);
                     this.message = this.ServiceMessage.getMessage();

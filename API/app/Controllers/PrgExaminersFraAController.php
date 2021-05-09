@@ -264,6 +264,11 @@ class PrgExaminersFraAController extends Origin001
             $data->update_user  = $result->user_id;
         }
 
+        $my_date = explode("/",$data->exam_date);
+
+        if ( count($my_date) == 3 ) {
+            $data->exam_date = $my_date[2]."-".$my_date[1]."-".$my_date[0];
+        }
         $data->question_12          = ($this->calculateBMI($data->weight,$data->height) < 18.5) ? 1 : 0;
         $data->living_status        = $this->getLivingStatus($data);
         $data->hypokinesia          = $this->getHypokinesia($data);
