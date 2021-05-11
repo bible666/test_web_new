@@ -278,7 +278,7 @@ class PrgExaminersFraAController extends Origin001
         $data->forget               = $this->getForget($data);
         $data->depression           = $this->getDepression($data);
         $data->total_score          = $this->getTotalScore($data);
-    //'frailty_judgment',
+        $data->frailty_judgment     = $this->getFrailtyJudgment($data->total_score);
 
         $this->db->transStart();
         if ( $this->prgExaminersFraAModel->save($data) === false ) {
@@ -339,19 +339,17 @@ class PrgExaminersFraAController extends Origin001
         return round($_bmi, 1);
     }
 
-    private function getFrailtyJudgment($data){
-        // if (h($AR_data_select['dates']) == date('Y/m/d', strtotime($AR_data_select['dates']))) {
-        //     if (($data_select_total >= 0) && ($data_select_total <= 3)) {
-        //         $AR_data_select['freil_judgment'] =  __dh('flailReport', 'suspected_nodoubt');
-        //     } else if (($data_select_total >= 4) && ($data_select_total <= 7)) {
-        //         $AR_data_select['freil_judgment'] = __dh('flailReport', 'suspected_Preflare');
-        //     } else {
-        //         $AR_data_select['freil_judgment'] = __dh('flailReport', 'suspected_Freir');
-        //     }
-        // } else {
-        //     $AR_data_select['freil_judgment'] = '-----------';
-        // }
-        return 1;
+    private function getFrailtyJudgment(int $total_score){
+        $return_value = 0;
+        if (($total_score >= 0) && ($total_score <= 3)) {
+            $return_value = 1;
+        } else if (($total_score >= 4) && ($total_score <= 7)) {
+            $return_value = 2;
+        } else {
+            $return_value = 3;
+        }
+        
+        return $return_value;
     }
 
 }

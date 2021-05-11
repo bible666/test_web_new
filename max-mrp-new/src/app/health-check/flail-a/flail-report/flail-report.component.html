@@ -25,7 +25,7 @@
     <!-- Main content -->
 
     <div class="container-fluid">
-        <examiner-header></examiner-header>
+        <examiner-header [examiner_id]="examiner_id"></examiner-header>
 
         <!-- ↓↓===== List Area= =====================================================↓↓ -->
         <div class="card col-12">
@@ -34,28 +34,22 @@
                     <table class="table table-bordered table-striped w-100">
                         <tbody>
                             <tr>
-                                <td rowspan="2" class="c f_16 th_kou th_result" style="width:190px;">フレイル判定結果</td>
+                                <td rowspan="2" class="c f_16 th_kou th_result" style="width:190px;">{{'FRA_A_REPORT.RESULT'|translate}}</td>
                                 <td rowspan="2" class="f_20 td_result" style="min-width:330px;">フレイルになる一歩手前です（プレフレイル）</td>
-                                <td class="c th_kou">総合評価</td>
+                                <td class="c th_kou">{{'FRA_A_REPORT.TOTAL_SCORE'|translate}}</td>
                                 <td rowspan="2" class="pb-1 pt-1">
                                     <div class="clearfix f_12">
-                                        【 総合評価の目安 】
+                                        {{'FRA_A_REPORT.SCORE_DESC'|translate}}
                                         <div class="clearfix flail_report_meyasu01_waku">
-                                            <span style="" class="flail_report_meyasu01_left">8/25以上 </span>
-                                            <span style="" class="">:</span>
-                                            <span>フレイルの疑いがあります</span>
+                                            <span>{{'FRA_A_REPORT.TOTAL_DESC1'|translate}}</span>
                                         </div>
-                                    
+
                                         <div class="clearfix flail_report_meyasu01_waku">
-                                            <span style="" class="flail_report_meyasu01_left">4～7/25 </span>
-                                            <span style="" class="">:</span>
-                                            <span>フレイルになる一歩手前です（プレフレイル） </span>
+                                            <span>{{'FRA_A_REPORT.TOTAL_DESC2'|translate}}</span>
                                         </div>
-                                    
+
                                         <div class="clearfix flail_report_meyasu01_waku">
-                                            <span style="" class="flail_report_meyasu01_left">3/25以下</span>
-                                            <span style="" class="">:</span>
-                                            <span>フレイルの可能性は低いです</span>
+                                            <span>{{'FRA_A_REPORT.TOTAL_DESC3'|translate}}</span>
                                         </div>
                                     
                                     </div>
@@ -72,13 +66,13 @@
                     <table class="table table-bordered table-striped w-100 mb-1 print_m_2 table01">
                         <thead>
                             <tr class="tr_kou">
-                                <th class="c" style="width:180px;">項目</th>
-                                <th class="c f_16" style="width:130px;"><b>今回判定</b><div class="f_11">[2021/02/21]</div></th>
-                                <th class="c" style="width:120px;">前回判定<div class="f_11">[2021/01/29]</div></th>
-                                <th class="c" style="width:120px;">前々回判定<div class="f_11">[2021/01/19]</div></th>
-                                <th class="c" style="width:120px;">初回判定<div class="f_11">[1999/02/15]</div></th>
-                                <th class="c">手引き</th>
-                                <th class="c print_none" style="width:100px;">詳細<br>評価</th>
+                                <th class="c" style="width:180px;" scope="col">項目</th>
+                                <th class="c f_16" style="width:130px;" scope="col"><b>今回判定</b><div class="f_11">[2021/02/21]</div></th>
+                                <th class="c" style="width:120px;" scope="col">前回判定<div class="f_11">[2021/01/29]</div></th>
+                                <th class="c" style="width:120px;" scope="col">前々回判定<div class="f_11">[2021/01/19]</div></th>
+                                <th class="c" style="width:120px;" scope="col">初回判定<div class="f_11">[1999/02/15]</div></th>
+                                <th class="c" scope="col">手引き</th>
+                                <th class="c print_none" style="width:100px;" scope="col">詳細<br>評価</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -172,14 +166,14 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-bordered table-striped print_w100">
+                    <table class="table table-bordered table-striped print_w100" aria-describedby="test result history">
                         <tbody>
                             <tr>
-                                <th rowspan="2" class="c th_kou" style="width:180px;">フレイル判定</th>
-                                <th class="c th_kou">今回判定<div class="f_11">[2021/02/21]</div></th>
-                                <th class="c th_kou">前回判定<div class="f_11">[2021/01/29]</div></th>
-                                <th class="c th_kou">前々回判定<div class="f_11">[2021/01/19]</div></th>
-                                <th class="c th_kou">初回判定<div class="f_11">[1999/02/15]</div></th>
+                                <th rowspan="2" class="c th_kou" style="width:180px;" scope="col">フレイル判定</th>
+                                <th class="c th_kou" scope="col">今回判定<div class="f_11">[2021/02/21]</div></th>
+                                <th class="c th_kou" scope="col">前回判定<div class="f_11">[2021/01/29]</div></th>
+                                <th class="c th_kou" scope="col">前々回判定<div class="f_11">[2021/01/19]</div></th>
+                                <th class="c th_kou" scope="col">初回判定<div class="f_11">[1999/02/15]</div></th>
                             </tr>
                             <tr>
                                 <td class="f_16 th_alert" style="padding: 10px;">フレイルになる一歩手前です（プレフレイル）</td>
