@@ -66,13 +66,13 @@
                     <table class="table table-bordered table-striped w-100 mb-1 print_m_2 table01">
                         <thead>
                             <tr class="tr_kou">
-                                <th class="c" style="width:180px;" scope="col">項目</th>
-                                <th class="c f_16" style="width:130px;" scope="col"><b>今回判定</b><div class="f_11">[2021/02/21]</div></th>
-                                <th class="c" style="width:120px;" scope="col">前回判定<div class="f_11">[2021/01/29]</div></th>
-                                <th class="c" style="width:120px;" scope="col">前々回判定<div class="f_11">[2021/01/19]</div></th>
-                                <th class="c" style="width:120px;" scope="col">初回判定<div class="f_11">[1999/02/15]</div></th>
-                                <th class="c" scope="col">手引き</th>
-                                <th class="c print_none" style="width:100px;" scope="col">詳細<br>評価</th>
+                                <th class="c" style="width:180px;" scope="col">{{'FRA_A_REPORT.RESULT'|translate}}</th>
+                                <th class="c f_16" style="width:130px;" scope="col"><strong>{{'FRA_A_REPORT.THIS_TIME'|translate}}</strong><div class="f_11">[2021/02/21]</div></th>
+                                <th class="c" style="width:120px;" scope="col">{{'FRA_A_REPORT.LAST_TIME'|translate}}<div class="f_11">[2021/01/29]</div></th>
+                                <th class="c" style="width:120px;" scope="col">{{'FRA_A_REPORT.TWO_TIME_BEFORE'|translate}}<div class="f_11">[2021/01/19]</div></th>
+                                <th class="c" style="width:120px;" scope="col">{{'FRA_A_REPORT.FIRST_TIME'|translate}}<div class="f_11">[1999/02/15]</div></th>
+                                <th class="c" scope="col">{{'FRA_A_REPORT.GUIDANCE'|translate}}</th>
+                                <th class="c print_none" style="width:100px;" scope="col">{{'FRA_A_REPORT.DETAIL'|translate}}<br>{{'FRA_A_REPORT.EVALUATION'|translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -170,10 +170,10 @@
                         <tbody>
                             <tr>
                                 <th rowspan="2" class="c th_kou" style="width:180px;" scope="col">フレイル判定</th>
-                                <th class="c th_kou" scope="col">今回判定<div class="f_11">[2021/02/21]</div></th>
-                                <th class="c th_kou" scope="col">前回判定<div class="f_11">[2021/01/29]</div></th>
-                                <th class="c th_kou" scope="col">前々回判定<div class="f_11">[2021/01/19]</div></th>
-                                <th class="c th_kou" scope="col">初回判定<div class="f_11">[1999/02/15]</div></th>
+                                <th class="c th_kou" scope="col">{{'FRA_A_REPORT.THIS_TIME'|translate}}<div class="f_11">[2021/02/21]</div></th>
+                                <th class="c th_kou" scope="col">{{'FRA_A_REPORT.LAST_TIME'|translate}}<div class="f_11">[2021/01/29]</div></th>
+                                <th class="c th_kou" scope="col">{{'FRA_A_REPORT.TWO_TIME_BEFORE'|translate}}<div class="f_11">[2021/01/19]</div></th>
+                                <th class="c th_kou" scope="col">{{'FRA_A_REPORT.FIRST_TIME'|translate}}<div class="f_11">[1999/02/15]</div></th>
                             </tr>
                             <tr>
                                 <td class="f_16 th_alert" style="padding: 10px;">フレイルになる一歩手前です（プレフレイル）</td>
@@ -210,7 +210,7 @@
 
         <!-- ↑↑===== List Area= =====================================================↑↑ -->
         <div class="card-footer border-light cart-panel-foo-fix">
-            <a [routerLink]="['/health/flail-a/index',2]" class="btn btn-info">กลับ</a>
+            <a [routerLink]="['/health/flail-a/index',examiner_id]" class="btn btn-info">{{'COMMON.BACK'|translate}}</a>
         </div>
     </div>
 

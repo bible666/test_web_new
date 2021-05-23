@@ -3,9 +3,10 @@ import { MessageService, MessageClass } from '../../../service/message.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../../service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { constants } from '../../../my-lib/constants';
 
 //Manual Service for this page
-import { ExaminersService, cSearch, cData } from '../../../service/examiners.service';
+import { PrgExaminersFraAService, GetDataById, cData } from '../../../service/prgExaminersFraA.service';
 
 
 @Component({
@@ -29,11 +30,11 @@ export class FlailReportComponent implements OnInit {
         private param           : ActivatedRoute,
         private messageService  : MessageService,
         private userData        : UserService,
-        private service         : ExaminersService,
+        private service         : PrgExaminersFraAService
     ) {}
 
     ngOnInit(): void {
-        this.userData.main_menu_selected = 50;
+        this.userData.main_menu_selected = 50; constants.SCHOOL_CODE.next
         this.userData.sub_menu_selected  = 51;
 
         window.scroll(0,0);
@@ -45,14 +46,13 @@ export class FlailReportComponent implements OnInit {
     }
 
     getData() {
-        //this.frmSearchData.page_index = this.CurrentPage;
-        // this.service.getListData(this.frmSearchData).subscribe(
-        //     data => {
-        //         if (data['status'] == 'success'){
+        this.service.getDataById(this.id).subscribe(
+            data => {
+                if (data['status'] == 'success'){
         //             this.gridDatas     = data['data'];
-        //         }
-        //     }
-        // );
+                }
+            }
+        );
     }
 
 }

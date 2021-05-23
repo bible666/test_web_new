@@ -63,7 +63,14 @@
         "SCORE_DESC"        : "【 รายละเอียดคะแนน 】",
         "TOTAL_DESC1"       : "8 คะแนนขึ้นไป:ส่งสัยว่ามีความผิดปกติ",
         "TOTAL_DESC2"       : "4-7 คะแนน  :น่าสงสัยว่าจะผิดปกติ",
-        "TOTAL_DESC3"       : "1-3 คะแนน  :สถานะปกติ"
+        "TOTAL_DESC3"       : "1-3 คะแนน  :สถานะปกติ",
+        "THIS_TIME"         : "ครั้งนี้",
+        "LAST_TIME"         : "ครั้งที่แล้ว",
+        "TWO_TIME_BEFORE"   : "สองครั้งก่อนหน้า",
+        "FIRST_TIME"        : "ครั้งแรก",
+        "GUIDANCE"          : "คำแนะนำ",
+        "DETAIL"            : "รายละเอียด",
+        "EVALUATION"        : "การประเมิน"
     },
     "PAGE_NAME": {
         "DASHBOARD"      : "Dashboard",

@@ -89,7 +89,6 @@ export class FlailEditComponent implements OnInit {
         this.service.getDataById(this.id).subscribe(
             data=>{
                 this.examiner_id = data['data'].examiner_id;
-                //console.log(data['data'].examiner_id);
                 if ( data['status'] == 'success' ) {
                     this.inputForm.patchValue({
                         'examiner_id'   : data['data'].examiner_id,

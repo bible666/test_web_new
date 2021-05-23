@@ -55,7 +55,7 @@ class PrgExaminersFraAController extends Origin001
         $insert_data['update_date'] = date( "Y-m-d H:i:s" );
         $insert_data['update_user'] = $result->user_id;
 
-        $this->prg_examiners_fra_a( $insert_data, ['id' => $id] );
+        //$this->prg_examiners_fra_a( $insert_data, ['id' => $id] );
 
         if ( $this->db->error()['message'] !== '' ) {
             $dataDB['status']  = "error";
@@ -117,6 +117,7 @@ class PrgExaminersFraAController extends Origin001
 
         return $this->respond( $dataDB, 200 );
     }
+
 
     private function _getCond( $s )
     {
