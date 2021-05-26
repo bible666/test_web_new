@@ -87,3 +87,108 @@ define('HTML_STATUS_SUCCESS',200);
 define('HTML_STATUS_DB_ERROR',502);
 define('HTML_STATUS_UNAUTHORIZED',401);
 define('TOKEN_NOT_FOUND',401);
+define('YES','ได้');
+define('NO','ไม่ได้');
+
+define('AR_FRAA_ANS',[
+    'faq01_answers' => [
+        '0' => YES,
+        '1' => NO
+    ],
+    'faq02_answers' => [
+        '0' => YES,
+        '1' => NO
+    ],
+    'faq03_answers' => [
+        '0' => YES,
+        '1' => NO
+    ],
+    'faq04_answers' => [
+        '0' => YES,
+        '1' => NO
+    ],
+    'faq05_answers' => [
+        '0' => YES,
+        '1' => NO
+    ],
+    'faq06_answers' => [
+        '0' => YES,
+        '1' => NO
+    ],
+    'faq07_answers' => [
+        '0' => YES,
+        '1' => NO
+    ],
+    'faq08_answers' => [
+        '0' => YES,
+        '1' => NO
+    ],
+    'faq09_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq10_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq11_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq12_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq13_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq14_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq15_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq16_answers' => [
+        '0' => YES,
+        '1' => NO
+    ],
+    'faq17_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq18_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq19_answers' => [
+        '0' => YES,
+        '1' => NO
+    ],
+    'faq20_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq21_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq22_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq23_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq24_answers' => [
+        '1' => YES,
+        '0' => NO
+    ],
+    'faq25_answers' => [
+        '1' => YES,
+        '0' => NO
+    ]
+]);

@@ -3,7 +3,7 @@ import { MessageService, MessageClass } from '../../../service/message.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../../service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { constants } from '../../../my-lib/constants';
+import { CONSTANTS } from '../../../my-lib/constants';
 
 //Manual Service for this page
 import { PrgExaminersFraAService, GetDataById, cData } from '../../../service/prgExaminersFraA.service';
@@ -34,8 +34,8 @@ export class FlailReportComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.userData.main_menu_selected = 50; constants.SCHOOL_CODE.next
-        this.userData.sub_menu_selected  = 51;
+        this.userData.main_menu_selected = CONSTANTS.HEALTH_MENU.MAIN_MENU;
+        this.userData.sub_menu_selected  = CONSTANTS.HEALTH_MENU.SUB_MENU.HEALTH_CHECK;
 
         window.scroll(0,0);
 
@@ -49,7 +49,7 @@ export class FlailReportComponent implements OnInit {
         this.service.getDataById(this.id).subscribe(
             data => {
                 if (data['status'] == 'success'){
-        //             this.gridDatas     = data['data'];
+                    this.gridDatas     = data['data'];
                 }
             }
         );
