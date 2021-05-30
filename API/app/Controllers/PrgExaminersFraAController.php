@@ -111,7 +111,7 @@ class PrgExaminersFraAController extends Origin001
             return $this->respond( $dataDB, 200 );
         }
 
-        $db_data->decreased_nutrition_desc  = "5555";
+        $db_data->decreased_nutrition_desc  = $this->getDecreasedNutritionDesc($db_data->decreased_nutrition);
         $db_data->depression_desc           = "";
         $db_data->deterioration_mouth_desc  = "3";
         $db_data->getForget_desc            = "";
@@ -197,8 +197,7 @@ class PrgExaminersFraAController extends Origin001
     /**
      * get list data
      */
-    public function get_data_list()
-    {
+    public function get_data_list() {
         $data  = $this->request->getJSON();
         $token = $this->getAuthHeader();
 
@@ -386,6 +385,42 @@ class PrgExaminersFraAController extends Origin001
         }
         
         return $return_value;
+    }
+
+    private function getDecreasedNutritionDesc(int $decresedNutrionValue) {
+        return ($decresedNutrionValue >= 2) ? 'suspected' : 'nodoubt';;
+    }
+
+    private function get_status(string $type, int $value) {
+        $_txt = '--';
+        switch ($type) {
+            case 'living_status':
+                $_txt = ($value >= 3) ? 'suspected' : 'nodoubt';
+                break;
+            case 'hypokinesia_status':
+                $_txt = ($value >= 3) ? 'suspected' : 'nodoubt';
+                break;
+            case 'deterioration_mouth_status':
+                $_txt = ($value >= 2) ? 'suspected' : 'nodoubt';
+                break;
+            case 'withdrawal_status':
+                $_txt = ($value >= 2) ? 'suspected' : 'nodoubt';
+                break;
+            case 'forget_status':
+                $_txt = ($value >= 1) ? 'suspected' : 'nodoubt';
+                break;
+            case 'depression_status':
+                $_txt = ($value >= 2) ? 'suspected' : 'nodoubt';
+                break;
+            default:
+                break;
+        }
+
+        if($_txt != '--'){
+            $_txt = __($_txt);
+        }
+
+        return $_txt;
     }
 
 }
