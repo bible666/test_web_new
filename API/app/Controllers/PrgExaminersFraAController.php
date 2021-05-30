@@ -388,7 +388,11 @@ class PrgExaminersFraAController extends Origin001
     }
 
     private function getDecreasedNutritionDesc(int $decresedNutrionValue) {
-        return ($decresedNutrionValue >= 2) ? 'suspected' : 'nodoubt';;
+        return ($decresedNutrionValue >= 2) ? 'suspected' : 'nodoubt';
+//        msgid "Nopossibility"
+//msgstr "可能性なし"
+//msgid "Suspected"
+//msgstr "可能性あり"
     }
 
     private function get_status(string $type, int $value) {
