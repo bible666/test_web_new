@@ -28,7 +28,6 @@ export class FlailEditComponent implements OnInit {
     public bmi          : string;
 
     inputForm = new FormGroup( {
-        'examiner_id'   : new FormControl(''),
         'exam_date'     : new FormControl(new Date(), [ Validators.required ]),
         'question_1'    : new FormControl('' , [ Validators.required ]),
         'question_2'    : new FormControl('' , [ Validators.required ]),
@@ -88,40 +87,41 @@ export class FlailEditComponent implements OnInit {
         //get examiner data
         this.service.getDataById(this.id).subscribe(
             data=>{
-                this.examiner_id = data['data'].examiner_id;
                 if ( data['status'] == 'success' ) {
-                    this.inputForm.patchValue({
-                        'examiner_id'   : data['data'].examiner_id,
-                        'exam_date'     : new Date(data['data'].exam_date),
-                        'question_1'    : data['data'].question_1,
-                        'question_2'    : data['data'].question_2,
-                        'question_3'    : data['data'].question_3,
-                        'question_4'    : data['data'].question_4,
-                        'question_5'    : data['data'].question_5,
-                        'question_6'    : data['data'].question_6,
-                        'question_7'    : data['data'].question_7,
-                        'question_8'    : data['data'].question_8,
-                        'question_9'    : data['data'].question_9,
-                        'question_10'   : data['data'].question_10,
-                        'question_11'   : data['data'].question_11,
-                        'question_12'   : data['data'].question_12,
-                        'question_13'   : data['data'].question_13,
-                        'question_14'   : data['data'].question_14,
-                        'question_15'   : data['data'].question_15,
-                        'question_16'   : data['data'].question_16,
-                        'question_17'   : data['data'].question_17,
-                        'question_18'   : data['data'].question_18,
-                        'question_19'   : data['data'].question_19,
-                        'question_20'   : data['data'].question_20,
-                        'question_21'   : data['data'].question_21,
-                        'question_22'   : data['data'].question_22,
-                        'question_23'   : data['data'].question_23,
-                        'question_24'   : data['data'].question_24,
-                        'question_25'   : data['data'].question_25,
-                        'remarks'       : data['data'].remarks,
-                        'height'        : data['data'].height,
-                        'weight'        : data['data'].weight
-                    });
+                    if ( data['data'] ) {
+                        this.inputForm.patchValue({
+                            'exam_date'     : new Date(data['data'].exam_date),
+                            'question_1'    : data['data'].question_1,
+                            'question_2'    : data['data'].question_2,
+                            'question_3'    : data['data'].question_3,
+                            'question_4'    : data['data'].question_4,
+                            'question_5'    : data['data'].question_5,
+                            'question_6'    : data['data'].question_6,
+                            'question_7'    : data['data'].question_7,
+                            'question_8'    : data['data'].question_8,
+                            'question_9'    : data['data'].question_9,
+                            'question_10'   : data['data'].question_10,
+                            'question_11'   : data['data'].question_11,
+                            'question_12'   : data['data'].question_12,
+                            'question_13'   : data['data'].question_13,
+                            'question_14'   : data['data'].question_14,
+                            'question_15'   : data['data'].question_15,
+                            'question_16'   : data['data'].question_16,
+                            'question_17'   : data['data'].question_17,
+                            'question_18'   : data['data'].question_18,
+                            'question_19'   : data['data'].question_19,
+                            'question_20'   : data['data'].question_20,
+                            'question_21'   : data['data'].question_21,
+                            'question_22'   : data['data'].question_22,
+                            'question_23'   : data['data'].question_23,
+                            'question_24'   : data['data'].question_24,
+                            'question_25'   : data['data'].question_25,
+                            'remarks'       : data['data'].remarks,
+                            'height'        : data['data'].height,
+                            'weight'        : data['data'].weight
+                        });
+                    }
+                    
                 } else {
                     this.ServiceMessage.setError(data['message']);
                     this.message = this.ServiceMessage.getMessage();
@@ -171,8 +171,6 @@ export class FlailEditComponent implements OnInit {
         let inputData  : cInput = new cInput(this.inputForm.value);
         if ( inputData.weight && inputData.height) {
             this.bmi = (inputData.weight / Math.pow((inputData.height/100), 2)).toFixed(2);
-
-            
         }
     }
 }

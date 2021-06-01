@@ -111,40 +111,43 @@ class PrgExaminersFraAController extends Origin001
             return $this->respond( $dataDB, 200 );
         }
 
-        $db_data->decreased_nutrition_desc  = $this->getDecreasedNutritionDesc($db_data->decreased_nutrition);
-        $db_data->depression_desc           = "";
-        $db_data->deterioration_mouth_desc  = "3";
-        $db_data->getForget_desc            = "";
-        $db_data->frailty_judgment_desc     = "3";
-        $db_data->hypokinesia_desc          = "2";
-        $db_data->living_status_desc        = "0";
-        $db_data->withdrawal_desc           = "1";
-
-        $db_data->question_1_desc           = AR_FRAA_ANS['faq01_answers'][$db_data->question_1];
-        $db_data->question_2_desc           = AR_FRAA_ANS['faq02_answers'][$db_data->question_2];
-        $db_data->question_3_desc           = AR_FRAA_ANS['faq03_answers'][$db_data->question_3];
-        $db_data->question_4_desc           = AR_FRAA_ANS['faq04_answers'][$db_data->question_4];
-        $db_data->question_5_desc           = AR_FRAA_ANS['faq05_answers'][$db_data->question_5];
-        $db_data->question_6_desc           = AR_FRAA_ANS['faq06_answers'][$db_data->question_6];
-        $db_data->question_7_desc           = AR_FRAA_ANS['faq07_answers'][$db_data->question_7];
-        $db_data->question_8_desc           = AR_FRAA_ANS['faq08_answers'][$db_data->question_8];
-        $db_data->question_9_desc           = AR_FRAA_ANS['faq09_answers'][$db_data->question_9];
-        $db_data->question_10_desc          = AR_FRAA_ANS['faq10_answers'][$db_data->question_10];
-        $db_data->question_11_desc          = AR_FRAA_ANS['faq11_answers'][$db_data->question_11];
-        $db_data->question_12_desc          = AR_FRAA_ANS['faq12_answers'][$db_data->question_12];
-        $db_data->question_13_desc          = AR_FRAA_ANS['faq13_answers'][$db_data->question_13];
-        $db_data->question_14_desc          = AR_FRAA_ANS['faq14_answers'][$db_data->question_14];
-        $db_data->question_15_desc          = AR_FRAA_ANS['faq15_answers'][$db_data->question_15];
-        $db_data->question_16_desc          = AR_FRAA_ANS['faq16_answers'][$db_data->question_16];
-        $db_data->question_17_desc          = AR_FRAA_ANS['faq17_answers'][$db_data->question_17];
-        $db_data->question_18_desc          = AR_FRAA_ANS['faq18_answers'][$db_data->question_18];
-        $db_data->question_19_desc          = AR_FRAA_ANS['faq19_answers'][$db_data->question_19];
-        $db_data->question_20_desc          = AR_FRAA_ANS['faq20_answers'][$db_data->question_20];
-        $db_data->question_21_desc          = AR_FRAA_ANS['faq21_answers'][$db_data->question_21];
-        $db_data->question_22_desc          = AR_FRAA_ANS['faq22_answers'][$db_data->question_22];
-        $db_data->question_23_desc          = AR_FRAA_ANS['faq23_answers'][$db_data->question_23];
-        $db_data->question_24_desc          = AR_FRAA_ANS['faq24_answers'][$db_data->question_24];
-        $db_data->question_25_desc          = AR_FRAA_ANS['faq25_answers'][$db_data->question_25];
+        if ( !empty($db_data) ) {
+            $db_data->decreased_nutrition_desc  = $this->getDecreasedNutritionDesc($db_data->decreased_nutrition);
+            $db_data->depression_desc           = "";
+            $db_data->deterioration_mouth_desc  = "3";
+            $db_data->getForget_desc            = "";
+            $db_data->frailty_judgment_desc     = "3";
+            $db_data->hypokinesia_desc          = "2";
+            $db_data->living_status_desc        = "0";
+            $db_data->withdrawal_desc           = "1";
+    
+            $db_data->question_1_desc           = AR_FRAA_ANS['faq01_answers'][$db_data->question_1];
+            $db_data->question_2_desc           = AR_FRAA_ANS['faq02_answers'][$db_data->question_2];
+            $db_data->question_3_desc           = AR_FRAA_ANS['faq03_answers'][$db_data->question_3];
+            $db_data->question_4_desc           = AR_FRAA_ANS['faq04_answers'][$db_data->question_4];
+            $db_data->question_5_desc           = AR_FRAA_ANS['faq05_answers'][$db_data->question_5];
+            $db_data->question_6_desc           = AR_FRAA_ANS['faq06_answers'][$db_data->question_6];
+            $db_data->question_7_desc           = AR_FRAA_ANS['faq07_answers'][$db_data->question_7];
+            $db_data->question_8_desc           = AR_FRAA_ANS['faq08_answers'][$db_data->question_8];
+            $db_data->question_9_desc           = AR_FRAA_ANS['faq09_answers'][$db_data->question_9];
+            $db_data->question_10_desc          = AR_FRAA_ANS['faq10_answers'][$db_data->question_10];
+            $db_data->question_11_desc          = AR_FRAA_ANS['faq11_answers'][$db_data->question_11];
+            $db_data->question_12_desc          = AR_FRAA_ANS['faq12_answers'][$db_data->question_12];
+            $db_data->question_13_desc          = AR_FRAA_ANS['faq13_answers'][$db_data->question_13];
+            $db_data->question_14_desc          = AR_FRAA_ANS['faq14_answers'][$db_data->question_14];
+            $db_data->question_15_desc          = AR_FRAA_ANS['faq15_answers'][$db_data->question_15];
+            $db_data->question_16_desc          = AR_FRAA_ANS['faq16_answers'][$db_data->question_16];
+            $db_data->question_17_desc          = AR_FRAA_ANS['faq17_answers'][$db_data->question_17];
+            $db_data->question_18_desc          = AR_FRAA_ANS['faq18_answers'][$db_data->question_18];
+            $db_data->question_19_desc          = AR_FRAA_ANS['faq19_answers'][$db_data->question_19];
+            $db_data->question_20_desc          = AR_FRAA_ANS['faq20_answers'][$db_data->question_20];
+            $db_data->question_21_desc          = AR_FRAA_ANS['faq21_answers'][$db_data->question_21];
+            $db_data->question_22_desc          = AR_FRAA_ANS['faq22_answers'][$db_data->question_22];
+            $db_data->question_23_desc          = AR_FRAA_ANS['faq23_answers'][$db_data->question_23];
+            $db_data->question_24_desc          = AR_FRAA_ANS['faq24_answers'][$db_data->question_24];
+            $db_data->question_25_desc          = AR_FRAA_ANS['faq25_answers'][$db_data->question_25];
+        }
+        
 
         $dataDB['status']  = "success";
         $dataDB['message'] = "";
