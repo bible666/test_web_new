@@ -31,6 +31,55 @@
         <div class="card col-12">
             <div class="card-body">
                 <div class="row m-0">
+                    <p-dataView [value]="gridDatas" [lazy]="true" (onLazyLoad)="onLoading($event)" [loading]="loading"
+                        class="view_data">
+                        <ng-template pTemplate="header">
+                            <table class="table table-bordered table-striped w-100">
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="2" class="c f_16 th_kou th_result" style="width:190px;">{{'FRA_A_REPORT.RESULT'|translate}}</td>
+                                        <td rowspan="2" class="f_20 td_result" style="min-width:330px;">フレイルになる一歩手前です（プレフレイル）</td>
+                                        <td class="c th_kou">{{'FRA_A_REPORT.TOTAL_SCORE'|translate}}</td>
+                                        <td rowspan="2" class="pb-1 pt-1">
+                                            <div class="clearfix f_12">
+                                                {{'FRA_A_REPORT.SCORE_DESC'|translate}}
+                                                <div class="clearfix flail_report_meyasu01_waku">
+                                                    <span>{{'FRA_A_REPORT.TOTAL_DESC1'|translate}}</span>
+                                                </div>
+        
+                                                <div class="clearfix flail_report_meyasu01_waku">
+                                                    <span>{{'FRA_A_REPORT.TOTAL_DESC2'|translate}}</span>
+                                                </div>
+        
+                                                <div class="clearfix flail_report_meyasu01_waku">
+                                                    <span>{{'FRA_A_REPORT.TOTAL_DESC3'|translate}}</span>
+                                                </div>
+                                            
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="c td_result_ten">
+                                            <div style="font-size:28px; line-height:30px;">{{totalScore}}<span class="f_18"> /25</span></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </ng-template>
+                        <ng-template let-data pTemplate="listItem">
+                            <div>
+                                9899
+                            </div>
+                        </ng-template>
+                        
+                    
+                    </p-dataView>
+                </div>
+            </div>
+        </div>
+        <div class="card col-12">
+            <div class="card-body">
+                <div class="row m-0">
                     <table class="table table-bordered table-striped w-100">
                         <tbody>
                             <tr>
@@ -57,7 +106,7 @@
                             </tr>
                             <tr>
                                 <td class="c td_result_ten">
-                                    <div style="font-size:28px; line-height:30px;">4<span class="f_18"> /25</span></div>
+                                    <div style="font-size:28px; line-height:30px;">5<span class="f_18"> /25</span></div>
                                 </td>
                             </tr>
                         </tbody>
@@ -215,4 +264,5 @@
     </div>
 
     <!-- /.content -->
+    {{gridDatas|json}}
 </div>

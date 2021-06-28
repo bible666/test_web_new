@@ -119,39 +119,40 @@ export class cInput{
 }
 
 export class GetDataById{
-    token       : string;
-    id          : number;
+    token           : string;
+    id              : number;
 
-    examiner_id : number;
-    exam_date   : Date;
-    question_1  : boolean;
-    question_2  : boolean;
-    question_3  : boolean;
-    question_4  : boolean;
-    question_5  : boolean;
-    question_6  : boolean;
-    question_7  : boolean;
-    question_8  : boolean;
-    question_9  : boolean;
-    question_10 : boolean;
-    question_11 : boolean;
-    question_12 : boolean;
-    question_13 : boolean;
-    question_14 : boolean;
-    question_15 : boolean;
-    question_16 : boolean;
-    question_17 : boolean;
-    question_18 : boolean;
-    question_19 : boolean;
-    question_20 : boolean;
-    question_21 : boolean;
-    question_22 : boolean;
-    question_23 : boolean;
-    question_24 : boolean;
-    question_25 : boolean;
-    remarks     : string;
-    height      : number;
-    weight      : number;
+    examiner_id     : number;
+    exam_date       : Date;
+    question_1      : boolean;
+    question_2      : boolean;
+    question_3      : boolean;
+    question_4      : boolean;
+    question_5      : boolean;
+    question_6      : boolean;
+    question_7      : boolean;
+    question_8      : boolean;
+    question_9      : boolean;
+    question_10     : boolean;
+    question_11     : boolean;
+    question_12     : boolean;
+    question_13     : boolean;
+    question_14     : boolean;
+    question_15     : boolean;
+    question_16     : boolean;
+    question_17     : boolean;
+    question_18     : boolean;
+    question_19     : boolean;
+    question_20     : boolean;
+    question_21     : boolean;
+    question_22     : boolean;
+    question_23     : boolean;
+    question_24     : boolean;
+    question_25     : boolean;
+    remarks         : string;
+    height          : number;
+    weight          : number;
+    total_score     : number;
 
     public constructor( init? : Partial< cInput >){
         Object.assign( this , init );

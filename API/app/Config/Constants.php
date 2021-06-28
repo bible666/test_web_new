@@ -89,6 +89,8 @@ define('HTML_STATUS_UNAUTHORIZED',401);
 define('TOKEN_NOT_FOUND',401);
 define('YES','ได้');
 define('NO','ไม่ได้');
+define('SUSPECTED','มีโอกาศ');
+define('NODOUBT','ปกติ');
 
 define('AR_FRAA_ANS',[
     'faq01_answers' => [
@@ -191,4 +193,5 @@ define('AR_FRAA_ANS',[
         '1' => YES,
         '0' => NO
     ]
+    
 ]);

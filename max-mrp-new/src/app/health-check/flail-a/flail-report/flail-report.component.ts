@@ -4,9 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../../service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CONSTANTS } from '../../../my-lib/constants';
-
+import { LoadingService } from '../../../service/loading.service';
+import { tap, finalize } from 'rxjs/operators';
+import { LazyLoadEvent, PrimeNGConfig } from 'primeng/api';
 //Manual Service for this page
-import { PrgExaminersFraAService, GetDataById, cData } from '../../../service/prgExaminersFraA.service';
+import { PrgExaminersFraAService, GetDataById } from '../../../service/prgExaminersFraA.service';
 
 
 @Component({
@@ -17,13 +19,15 @@ import { PrgExaminersFraAService, GetDataById, cData } from '../../../service/pr
 export class FlailReportComponent implements OnInit {
 
     public message: MessageClass[] = [];
-    public gridDatas      : cData[] = [];
+    public gridDatas      : GetDataById[] = [];
+    public loading        : boolean;
 
     //----------------------------------------------------------------
     // set local Valiable
     //----------------------------------------------------------------
     public id           : number;
     public examiner_id  : number;
+    public totalScore   : number = 0;
 
     constructor(
         public dialog           : MatDialog,
@@ -41,15 +45,20 @@ export class FlailReportComponent implements OnInit {
 
         this.examiner_id    = this.param.snapshot.params.examiner_id;
         this.id             = this.param.snapshot.params.id;
-
-        this.getData();
+        this.loading              = true;
+        
     }
 
-    getData() {
-        this.service.getDataById(this.id).subscribe(
+    onLoading(event: LazyLoadEvent) {
+        console.log('hi load');
+        this.loading              = true;
+        this.service.getDataById(this.id)
+        .subscribe(
             data => {
+                this.loading              = false;
                 if (data['status'] == 'success'){
                     this.gridDatas     = data['data'];
+                    this.totalScore    = this.gridDatas[0].total_score;
                 }
             }
         );

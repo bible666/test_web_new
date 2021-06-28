@@ -10,6 +10,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { DataViewModule } from 'primeng/dataview';
 
 import { HealthCheckRoutingModule } from './health-check-routing.module';
 import { MmseComponent } from './mmse/mmse.component';
@@ -27,7 +28,7 @@ import { FlailReportComponent } from './flail-a/flail-report/flail-report.compon
     CommonModule,
     TranslateModule,AutoCompleteModule,
     TableModule,ButtonModule,TooltipModule,
-    CalendarModule,InputNumberModule,
+    CalendarModule,InputNumberModule, DataViewModule,
     SharedCommonModule,
     FormsModule,ReactiveFormsModule,
     SharedTemplateModule,

@@ -77,8 +77,9 @@ class PrgExaminersFraAController extends Origin001
      */
     public function get_data_by_id()
     {
-        $token = $this->getAuthHeader();
-        $data  = $this->request->getJSON();
+        $token      = $this->getAuthHeader();
+        $data       = $this->request->getJSON();
+        $ret_data   = [];
 
         //init data
         $id = isset( $data->id ) ? $data->id : -1;
@@ -93,15 +94,7 @@ class PrgExaminersFraAController extends Origin001
             return $this->respond( $dataDB, TOKEN_NOT_FOUND );
         }
 
-
-        $query_str = "
-        SELECT *
-        FROM prg_examiners_fra_a
-        WHERE id = :id:
-            AND active_flag = true
-        ";
-
-        $db_data = $this->db->query( $query_str, ['id' => $id] )->getRow();
+        $db_data = $this->_getCurrentData($id);
 
         if ( $this->db->error()['message'] !== '' ) {
             $dataDB['status']  = "error";
@@ -112,48 +105,92 @@ class PrgExaminersFraAController extends Origin001
         }
 
         if ( !empty($db_data) ) {
-            $db_data->decreased_nutrition_desc  = $this->getDecreasedNutritionDesc($db_data->decreased_nutrition);
-            $db_data->depression_desc           = "";
-            $db_data->deterioration_mouth_desc  = "3";
-            $db_data->getForget_desc            = "";
-            $db_data->frailty_judgment_desc     = "3";
-            $db_data->hypokinesia_desc          = "2";
-            $db_data->living_status_desc        = "0";
-            $db_data->withdrawal_desc           = "1";
-    
-            $db_data->question_1_desc           = AR_FRAA_ANS['faq01_answers'][$db_data->question_1];
-            $db_data->question_2_desc           = AR_FRAA_ANS['faq02_answers'][$db_data->question_2];
-            $db_data->question_3_desc           = AR_FRAA_ANS['faq03_answers'][$db_data->question_3];
-            $db_data->question_4_desc           = AR_FRAA_ANS['faq04_answers'][$db_data->question_4];
-            $db_data->question_5_desc           = AR_FRAA_ANS['faq05_answers'][$db_data->question_5];
-            $db_data->question_6_desc           = AR_FRAA_ANS['faq06_answers'][$db_data->question_6];
-            $db_data->question_7_desc           = AR_FRAA_ANS['faq07_answers'][$db_data->question_7];
-            $db_data->question_8_desc           = AR_FRAA_ANS['faq08_answers'][$db_data->question_8];
-            $db_data->question_9_desc           = AR_FRAA_ANS['faq09_answers'][$db_data->question_9];
-            $db_data->question_10_desc          = AR_FRAA_ANS['faq10_answers'][$db_data->question_10];
-            $db_data->question_11_desc          = AR_FRAA_ANS['faq11_answers'][$db_data->question_11];
-            $db_data->question_12_desc          = AR_FRAA_ANS['faq12_answers'][$db_data->question_12];
-            $db_data->question_13_desc          = AR_FRAA_ANS['faq13_answers'][$db_data->question_13];
-            $db_data->question_14_desc          = AR_FRAA_ANS['faq14_answers'][$db_data->question_14];
-            $db_data->question_15_desc          = AR_FRAA_ANS['faq15_answers'][$db_data->question_15];
-            $db_data->question_16_desc          = AR_FRAA_ANS['faq16_answers'][$db_data->question_16];
-            $db_data->question_17_desc          = AR_FRAA_ANS['faq17_answers'][$db_data->question_17];
-            $db_data->question_18_desc          = AR_FRAA_ANS['faq18_answers'][$db_data->question_18];
-            $db_data->question_19_desc          = AR_FRAA_ANS['faq19_answers'][$db_data->question_19];
-            $db_data->question_20_desc          = AR_FRAA_ANS['faq20_answers'][$db_data->question_20];
-            $db_data->question_21_desc          = AR_FRAA_ANS['faq21_answers'][$db_data->question_21];
-            $db_data->question_22_desc          = AR_FRAA_ANS['faq22_answers'][$db_data->question_22];
-            $db_data->question_23_desc          = AR_FRAA_ANS['faq23_answers'][$db_data->question_23];
-            $db_data->question_24_desc          = AR_FRAA_ANS['faq24_answers'][$db_data->question_24];
-            $db_data->question_25_desc          = AR_FRAA_ANS['faq25_answers'][$db_data->question_25];
+            $ret_data[] = $this->_mappingData($db_data);
+            $ret_data[] = $this->_mappingData($db_data);
         }
         
 
         $dataDB['status']  = "success";
         $dataDB['message'] = "";
-        $dataDB['data']    = $db_data;
+        $dataDB['data']    = $ret_data;
 
         return $this->respond( $dataDB, 200 );
+    }
+
+    private function _getLast2TimeData($examinerId) {
+        $query_str = "
+        SELECT *
+        FROM prg_examiners_fra_a
+        WHERE examiner_id = :id:
+            AND active_flag = true
+        ORDER BY exam_date DESC
+        LIMIT 1
+        ";
+
+        return $this->db->query( $query_str, ['id' => $examinerId] )->getRow();
+    }
+
+    private function _getFirstData($examinerId) {
+        $query_str = "
+        SELECT *
+        FROM prg_examiners_fra_a
+        WHERE examiner_id = :id:
+            AND active_flag = true
+        ORDER BY exam_date ASC
+        LIMIT 1
+        ";
+
+        return $this->db->query( $query_str, ['id' => $examinerId] )->getRow();
+    }
+
+    private function _getCurrentData($fraId) {
+        $query_str = "
+        SELECT *
+        FROM prg_examiners_fra_a
+        WHERE id = :id:
+            AND active_flag = true
+        ";
+
+        return $this->db->query( $query_str, ['id' => $fraId] )->getRow();
+    }
+
+    private function _mappingData($db_data){
+
+        $db_data->decreased_nutrition_desc  = $this->getDecreasedNutritionDesc($db_data->decreased_nutrition);
+        $db_data->depression_desc           = $this->getDepressionDesc($db_data->depression);
+        $db_data->deterioration_mouth_desc  = $this->getDeteriorationMouseDesc($db_data->deterioration_mouth);
+        $db_data->getForget_desc            = $this->getForgetDesc($db_data->forget);
+        $db_data->hypokinesia_desc          = $this->getHypokinesiaDesc($db_data->hypokinesia);
+        $db_data->living_status_desc        = $this->getLivingDesc($db_data->living_status);
+        $db_data->withdrawal_desc           = $this->getWithdrawalDesc($db_data->withdrawal);
+
+        $db_data->question_1_desc           = AR_FRAA_ANS['faq01_answers'][$db_data->question_1];
+        $db_data->question_2_desc           = AR_FRAA_ANS['faq02_answers'][$db_data->question_2];
+        $db_data->question_3_desc           = AR_FRAA_ANS['faq03_answers'][$db_data->question_3];
+        $db_data->question_4_desc           = AR_FRAA_ANS['faq04_answers'][$db_data->question_4];
+        $db_data->question_5_desc           = AR_FRAA_ANS['faq05_answers'][$db_data->question_5];
+        $db_data->question_6_desc           = AR_FRAA_ANS['faq06_answers'][$db_data->question_6];
+        $db_data->question_7_desc           = AR_FRAA_ANS['faq07_answers'][$db_data->question_7];
+        $db_data->question_8_desc           = AR_FRAA_ANS['faq08_answers'][$db_data->question_8];
+        $db_data->question_9_desc           = AR_FRAA_ANS['faq09_answers'][$db_data->question_9];
+        $db_data->question_10_desc          = AR_FRAA_ANS['faq10_answers'][$db_data->question_10];
+        $db_data->question_11_desc          = AR_FRAA_ANS['faq11_answers'][$db_data->question_11];
+        $db_data->question_12_desc          = AR_FRAA_ANS['faq12_answers'][$db_data->question_12];
+        $db_data->question_13_desc          = AR_FRAA_ANS['faq13_answers'][$db_data->question_13];
+        $db_data->question_14_desc          = AR_FRAA_ANS['faq14_answers'][$db_data->question_14];
+        $db_data->question_15_desc          = AR_FRAA_ANS['faq15_answers'][$db_data->question_15];
+        $db_data->question_16_desc          = AR_FRAA_ANS['faq16_answers'][$db_data->question_16];
+        $db_data->question_17_desc          = AR_FRAA_ANS['faq17_answers'][$db_data->question_17];
+        $db_data->question_18_desc          = AR_FRAA_ANS['faq18_answers'][$db_data->question_18];
+        $db_data->question_19_desc          = AR_FRAA_ANS['faq19_answers'][$db_data->question_19];
+        $db_data->question_20_desc          = AR_FRAA_ANS['faq20_answers'][$db_data->question_20];
+        $db_data->question_21_desc          = AR_FRAA_ANS['faq21_answers'][$db_data->question_21];
+        $db_data->question_22_desc          = AR_FRAA_ANS['faq22_answers'][$db_data->question_22];
+        $db_data->question_23_desc          = AR_FRAA_ANS['faq23_answers'][$db_data->question_23];
+        $db_data->question_24_desc          = AR_FRAA_ANS['faq24_answers'][$db_data->question_24];
+        $db_data->question_25_desc          = AR_FRAA_ANS['faq25_answers'][$db_data->question_25];
+
+        return $db_data;
     }
 
 
@@ -391,43 +428,31 @@ class PrgExaminersFraAController extends Origin001
     }
 
     private function getDecreasedNutritionDesc(int $decresedNutrionValue) {
-        return ($decresedNutrionValue >= 2) ? 'suspected' : 'nodoubt';
-//        msgid "Nopossibility"
-//msgstr "可能性なし"
-//msgid "Suspected"
-//msgstr "可能性あり"
+        return ($decresedNutrionValue >= 2) ? SUSPECTED : NODOUBT;
     }
 
-    private function get_status(string $type, int $value) {
-        $_txt = '--';
-        switch ($type) {
-            case 'living_status':
-                $_txt = ($value >= 3) ? 'suspected' : 'nodoubt';
-                break;
-            case 'hypokinesia_status':
-                $_txt = ($value >= 3) ? 'suspected' : 'nodoubt';
-                break;
-            case 'deterioration_mouth_status':
-                $_txt = ($value >= 2) ? 'suspected' : 'nodoubt';
-                break;
-            case 'withdrawal_status':
-                $_txt = ($value >= 2) ? 'suspected' : 'nodoubt';
-                break;
-            case 'forget_status':
-                $_txt = ($value >= 1) ? 'suspected' : 'nodoubt';
-                break;
-            case 'depression_status':
-                $_txt = ($value >= 2) ? 'suspected' : 'nodoubt';
-                break;
-            default:
-                break;
-        }
+    private function getLivingDesc(int $livingValue) {
+        return ($livingValue >= 3) ? SUSPECTED: NODOUBT;
+    }
 
-        if($_txt != '--'){
-            $_txt = __($_txt);
-        }
+    private function getHypokinesiaDesc(int $hypokinesiaValue) {
+        return ($hypokinesiaValue >= 3) ? SUSPECTED: NODOUBT;
+    }
 
-        return $_txt;
+    private function getDeteriorationMouseDesc(int $deteriorationValue) {
+        return ($deteriorationValue >= 2) ? SUSPECTED: NODOUBT;
+    }
+
+    private function getWithdrawalDesc($withdrawalValue) {
+        return ($withdrawalValue >= 2) ? SUSPECTED: NODOUBT;
+    }
+
+    private function getForgetDesc($forgetValue) {
+        return ($forgetValue >= 1) ? SUSPECTED: NODOUBT;
+    }
+
+    private function getDepressionDesc($depressionValue) {
+        return ($depressionValue >= 2) ? SUSPECTED: NODOUBT;
     }
 
 }
